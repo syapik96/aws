@@ -59,5 +59,5 @@ sysctl -w net.ipv6.conf.all.disable_ipv6=1 && sysctl -w net.ipv6.conf.default.di
 
 ## Credit :
   
-*   OriginalCreatorScript = Horas
-*   Modded Script    = whytzy
+*   Original Script by  Horas Marolop Amsal Siregar
+*   Modded Script by    whytzy
