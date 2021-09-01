@@ -3,7 +3,7 @@ red='\e[1;31m'
 green='\e[0;32m'
 NC='\e[0m'
 clear
-DOMAIN=gilergames.tk
+DOMAIN=gilerspeednet.tk
 #read -rp "Masukkan Domain: " -e DOMAIN
 #echo ""
 #echo "Domain: ${DOMAIN}" 
