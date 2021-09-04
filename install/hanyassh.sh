@@ -15,11 +15,11 @@ ver=$VERSION_ID
 
 #detail nama perusahaan
 country=MY
-state=Malaysia
+state=MY
 locality=Kuala Lumpur
 organization=Gilergames
 organizationalunit=Gilergames
-commonname=Gilergames
+commonname=Gilergames.tk
 email=zulhisyam421@gmail.com
 
 # simple password minimal
@@ -27,7 +27,7 @@ wget -O /etc/pam.d/common-password "https://raw.githubusercontent.com/${GitUser}
 chmod +x /etc/pam.d/common-password
 
 # go to root
-cd
+cd /root/
 
 # Edit file /etc/systemd/system/rc-local.service
 cat > /etc/systemd/system/rc-local.service <<-END
@@ -220,7 +220,7 @@ echo 'Config file is at /usr/local/ddos/ddos.conf'
 echo 'Please send in your comments and/or suggestions to zaf@vsnl.com'
 
 # xml parser
-cd
+cd /root/
 apt install -y libxml-parser-perl
 
 # banner /etc/issue.net
@@ -229,8 +229,8 @@ echo "Banner /etc/issue.net" >>/etc/ssh/sshd_config
 sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/issue.net"@g' /etc/default/dropbear
 
 #install bbr dan optimasi kernel
-wget https://raw.githubusercontent.com/${GitUser}/aws/main/bbr.sh && chmod +x bbr.sh && ./bbr.sh
-wget https://raw.githubusercontent.com/${GitUser}/aws/main/set-br.sh && chmod +x set-br.sh && ./set-br.sh
+wget -0 https://raw.githubusercontent.com/${GitUser}/aws/main/bbr.sh && chmod +x bbr.sh && ./bbr.sh
+wget -O https://raw.githubusercontent.com/${GitUser}/aws/main/set-br.sh && chmod +x set-br.sh && ./set-br.sh
 
 # blockir torrent
 iptables -A FORWARD -m string --string "get_peers" --algo bm -j DROP
@@ -251,7 +251,7 @@ netfilter-persistent reload
 
 # download script
 cd /usr/bin
-wget -O add-host "https://raw.githubusercontent.com/${GitUser}/aws/main/tambah/addhost.sh"
+wget -O add-host "https://raw.githubusercontent.com/${GitUser}/aws/main/tambah/add-host.sh"
 wget -O about "https://raw.githubusercontent.com/${GitUser}/aws/main/about.sh"
 wget -O menu "https://raw.githubusercontent.com/${GitUser}/aws/main/menu.sh"
 wget -O usernew "https://raw.githubusercontent.com/${GitUser}/aws/main/usernew.sh"
@@ -273,7 +273,7 @@ wget -O clear-log "https://raw.githubusercontent.com/${GitUser}/aws/main/clear-l
 
 echo "0 5 * * * root clear-log && reboot" >> /etc/crontab
 
-chmod +x addhost
+chmod +x add-host
 chmod +x menu
 chmod +x usernew
 chmod +x trial
@@ -303,7 +303,7 @@ apt-get -y remove sendmail*
 apt -y autoremove
 
 # finishing
-cd
+cd 
 chown -R www-data:www-data /home/vps/public_html
 /etc/init.d/nginx restart
 /etc/init.d/openvpn restart
@@ -322,7 +322,7 @@ screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500
 history -c
 echo "unset HISTFILE" >> /etc/profile
 
-cd
+cd /root/
 rm -f /root/ssh-vpn.sh
 
 # finihsing
