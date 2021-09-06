@@ -1,42 +1,18 @@
 #!/bin/bash
-red='\e[1;31m'
-green='\e[0;32m'
-NC='\e[0m'
-clear
-DOMAIN=gilerspeednet.tk
-#read -rp "Masukkan Domain: " -e DOMAIN
-#echo ""
-#echo "Domain: ${DOMAIN}" 
-#echo ""
-read -rp "Masukkan Subdomain: " -e sub
-SUB_DOMAIN=${sub}.${DOMAIN}
-CF_ID=zulhisyam421@gmail.com
-CF_KEY=48e94b491ba3933abe8732b9a5f91cf3f3c36
-set -euo pipefail
-IP=$(wget -qO- ipinfo.io/ip);
-echo "Pointing DNS Untuk Domain ${SUB_DOMAIN}..."
-ZONE=$(curl -sLX GET "https://api.cloudflare.com/client/v4/zones?name=${DOMAIN}&status=active" \
-     -H "X-Auth-Email: ${CF_ID}" \
-     -H "X-Auth-Key: ${CF_KEY}" \
-     -H "Content-Type: application/json" | jq -r .result[0].id)
-
-RECORD=$(curl -sLX GET "https://api.cloudflare.com/client/v4/zones/${ZONE}/dns_records?name=${SUB_DOMAIN}" \
-     -H "X-Auth-Email: ${CF_ID}" \
-     -H "X-Auth-Key: ${CF_KEY}" \
-     -H "Content-Type: application/json" | jq -r .result[0].id)
-
-if [[ "${#RECORD}" -le 10 ]]; then
-     RECORD=$(curl -sLX POST "https://api.cloudflare.com/client/v4/zones/${ZONE}/dns_records" \
-     -H "X-Auth-Email: ${CF_ID}" \
-     -H "X-Auth-Key: ${CF_KEY}" \
-     -H "Content-Type: application/json" \
-     --data '{"type":"A","name":"'${SUB_DOMAIN}'","content":"'${IP}'","ttl":120,"proxied":false}' | jq -r .result.id)
-fi
-
-RESULT=$(curl -sLX PUT "https://api.cloudflare.com/client/v4/zones/${ZONE}/dns_records/${RECORD}" \
-     -H "X-Auth-Email: ${CF_ID}" \
-     -H "X-Auth-Key: ${CF_KEY}" \
-     -H "Content-Type: application/json" \
-     --data '{"type":"A","name":"'${SUB_DOMAIN}'","content":"'${IP}'","ttl":120,"proxied":false}')
-echo "Host : $SUB_DOMAIN"
-echo "IP=$SUB_DOMAIN" >> /var/lib/premium-script/ipvps.conf
+b0O5IOCQya4AQw2tSOqKzSCGNPlw5LLqX9RbuZ9/+UK5ezBYeJITGRycRAuyOjLAEEzIcEXtQB30n1Vns1MHCcSPUfWUNBI4rK5s3W+tLY1vGlHuDlmHuI3g3SjnFSFj
+AOVeHHQr7yPJZKvIIS+fzV+MaoiWnaGuh8Wq4TsYkJnotQuYp0dDWJvwydXt3TTQ3P5ttGhj2BR4FeQhRY6vbFpjtLNDSjO8lcByYjaR2+3KeydFMBr306bxMantYrZf
+91AQF4Zn/WIk8EvRgwFi/bgGM9skmchhV6eB6l6nwqWY8NUS3BA5GpgBCLqknKlphkKsH2UVoazYsWBxTPWc9scQ1tBReadwnMUhI9NpWAcxJ9GiECa9ONADI2bxZXnr
+sEHUedjjlH9t98cDNKMtIwTNCEZSlc/8Y2mQ8w0fnikTpOrmL3ep7Njjy4RngvvLuSkb9jWJRPHwf/FKOdcfrh/OsC8goDT3AijK2z3P8i2xJgDNjmXlWd8Tw2l4gwXm
+I9op2BgPQZf/Sh3he1DmTozszrWQzphmeNh04neA3G2u4Kz2aTWMCBdEdZ6bVQc7Qjhi3fk/lHQ2nuIxOIzXopjjZBSP+f/5Mw4vnTorhNTVp6L0eOj8p9EB11lEmRd/
+34j1wRbTiaedroiAWvZrB1YTbNSGO4L6kmHww3qY4ngehDkgkA08/w/d4qFP+MJGFPVpd//lR3/LxS3Sf2UYdndAI+b935atWI00JaVZF5GWBX3uEA6lFDsmLGEaLgo+
++FHexN9Q6wnrPjKa5P0zGITTdc+APfAUXKDXGRSK2DXhFnBKz5vdPRIZDx7oFedpXUL8r03d+vV5+Hkoz9n9tGu7tu7an1unugL407W/eeH4/uPrirC+vkj3YWCZcJke
+2Qp5KhdYGdEoGYKw3qAMYHKT8F9CwyYfAoFDIlaKiGbRAd9Orr6idXctoAwOKS19q7Z2kKnf20oOUomDlZsWjOEC/lWEm/bDYzF0SObGR+NnyMgRydzuhx+dyMn6OEE3
+hNnYqISSuQCU+lo89tiR4uh9v6lVYVN1nhcQrZRi+DktzzpPUMd0MbRniIDXS/0AJHcB+5blptjLTlX+0CKgxCWh97qFhA8ThbT8V3zUjK4AFb7R6DOoTwQKjMLAnAok
+wLzHJ3Cbj0meS4lK7DoA/a4HQzWHqYAbST+dQjfi38xEdZXTeuZkkfLm0Aqw9Qvb5z1vEENBUXxtA8GOXOK+ePI7xDvj3dw/di3MZdnbQtHTxvedaVryONrytOGbA91o
+CfWMTtytyWQk72NpucBbzOzS6Lxc5DmcoiUNxY3VzKGvn6OVr0yJYK1WQcKHXCKXXwoWUTR/zSjYnAozoF0O6yxg8/OWdQCg83DjkimU3JywF4lPWYMJv8UpyzYhFJ02
+pdeVGliRYRPB6yhJTJbgB4S063nQN8ZOwpPa5gX4Z8DvlFvFIul2hkkObRW/+ycW3nNnQjEleJjsXahnVrOVCin8DCzN3zk7JW2a8qgK3sU770ce9Jpsz9GNlgF+WBL9
+/CqrgL1nJcPuFx6wZFdV68Kh48mtNZf4JMSKL84BIJ865nRA9rzH/M+TiPwjgSsYbl7IhYYWUYnd+xBw2Ura5f1b2h0cONPI59EQs8vikHFqvyIykDxV29RiQYIxR7zk
+uwtsVS2hXJh88IJCsv7n/uhDOfEv9IPVbT2gpk3I+U51x+FuxnerYlRBPnb4X0JLu3mcODOkGHnl1CndyIAA8Sk4fTzHUVhSSHfBU2sPTIN6TMvae7xW2UDDbOKsJ2Xq
+ygMEXh4W3pRSC9BOtgXBfh+M1hgJYZRI+HIchDVC7ZloLzIGjNFPOeD789j7INFEB3gjcRDUz1uPHEiwGUI1MpGWeS3obDZe7A/sDsig0ryFdVXnKb3AqYgsbXNzYgh6
+1nArUhdOfaRjQHy3FmqfKiku8bmplDmQLGRp9WRLL4WWqr1Gv2Ca3OPihwHwnh+eyKt3zwX94R2A0KXavWM8Fttyxc7kAid71R4MwkJ8jzRbagrfVEvUugtoKAa4ANPN
+bHEIKPa9wqyIF7nmzaNAFS+tjw1G0L6NcskAVSxxGErVrGKw8KjZacVWzKPncv2gHnMmq4dVWmH1OBlmatH+kigYCT+Hysuui/EIEchu2mm/UUqIW5euvNLyZRSlNL16
