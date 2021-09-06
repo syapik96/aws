@@ -5,9 +5,9 @@ NC='\e[0m'
 MYIP=$(wget -qO- ipinfo.io/ip);
 echo "Checking VPS"
 apt install jq curl -y
-DOMAIN=gilergames.tk
+DOMAIN=kasihentamaje.cf
 sub=$(</dev/urandom tr -dc a-z0-9 | head -c4)
-SUB_DOMAIN=${sub}.gilergames.tk
+SUB_DOMAIN=${sub}.kasihentamaje.cf
 CF_ID=zulhisyam421@gmail.com
 CF_KEY=48e94b491ba3933abe8732b9a5f91cf3f3c36
 set -euo pipefail
