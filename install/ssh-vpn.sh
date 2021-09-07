@@ -1,5 +1,5 @@
 #!/bin/bash
-# Mod By SL
+# Mod By OnePiece
 # 
 # ==================================================
 
@@ -14,13 +14,13 @@ source /etc/os-release
 ver=$VERSION_ID
 
 #detail nama perusahaan
-country=MY
-state=Malaysia
-locality=Malaysia
-organization=@VPN_store
-organizationalunit=VPN
-commonname=VPN
-email=akuwsyah04@gmail.com
+country="AWS"
+state="Lightsail"
+locality="Ubuntu"
+organization="Kasihentamaje"
+organizationalunit="Kasihentamaje VPN Service"
+commonname="kasihentamaje.cf"
+email="akuwsyah04@gmail.com"
 
 # simple password minimal
 wget -O /etc/pam.d/common-password "https://raw.githubusercontent.com/${GitUser}/aws/main/password"
@@ -79,7 +79,7 @@ apt dist-upgrade -y
 apt -y install wget curl
 
 # set time GMT +8
-ln -fs /usr/share/zoneinfo/Asia/Singapore /etc/localtime
+ln -fs /usr/share/zoneinfo/Asia/Kuala_Lumpur /etc/localtime
 
 # set locale
 sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
@@ -88,7 +88,7 @@ sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 apt-get --reinstall --fix-missing install -y bzip2 gzip coreutils wget screen rsyslog iftop htop net-tools zip unzip wget net-tools curl nano sed screen gnupg gnupg1 bc apt-transport-https build-essential dirmngr libxml-parser-perl neofetch git
 echo "clear" >> .profile
 echo "neofetch" >> .profile
-echo "echo Mod by why" >> .profile
+echo "Mod by OnePiece" >> .profile
 
 # install webserver
 apt -y install nginx
@@ -97,7 +97,7 @@ rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
 wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/${GitUser}/aws/main/nginx.conf"
 mkdir -p /home/vps/public_html
-echo "<pre>Setup Mod By SL</pre>" > /home/vps/public_html/index.html
+echo "<pre>Setup Mod By OnePiece</pre>" > /home/vps/public_html/index.html
 wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/${GitUser}/aws/main/vps.conf"
 /etc/init.d/nginx restart
 
@@ -187,13 +187,14 @@ END
 # make a certificate
 openssl genrsa -out key.pem 2048
 openssl req -new -x509 -key key.pem -out cert.pem -days 1095 \
--subj "/C=$country/ST=$state/L=$locality/O=$organization/OU=$organizationalunit/CN=$commonname/emailAddress=$email"
+-subj "/C=${country}/ST=${state}/L=${locality}/O=${organization}/OU=${organizationalunit}/CN=${commonname}/emailAddress=${email}"
 cat key.pem cert.pem >> /etc/stunnel/stunnel.pem
 
 # konfigurasi stunnel
 sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/stunnel4
 /etc/init.d/stunnel4 restart
 
+GitUser="syapik96"
 #OpenVPN
 wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/vpn.sh &&  chmod +x vpn.sh && ./vpn.sh
 
@@ -223,7 +224,8 @@ echo '...done'
 echo; echo -n 'Creating cron to run script every minute.....(Default setting)'
 /usr/local/ddos/ddos.sh --cron > /dev/null 2>&1
 echo '.....done'
-echo; echo 'Installation has completed.'
+echo; 
+echo 'Installation has completed.'
 echo 'Config file is at /usr/local/ddos/ddos.conf'
 echo 'Please send in your comments and/or suggestions to zaf@vsnl.com'
 
@@ -231,16 +233,17 @@ echo 'Please send in your comments and/or suggestions to zaf@vsnl.com'
 cd
 apt install -y libxml-parser-perl
 
+GitUser="syapik96"
 # banner /etc/issue.net
 wget -O /etc/issue.net "https://raw.githubusercontent.com/${GitUser}/aws/main/bannerssh.conf"
 echo "Banner /etc/issue.net" >>/etc/ssh/sshd_config
 sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/issue.net"@g' /etc/default/dropbear
 
-#install bbr dan optimasi kernel
+echo -e "Install bbr dan optimasi kernel"
 wget https://raw.githubusercontent.com/${GitUser}/aws/main/bbr.sh && chmod +x bbr.sh && ./bbr.sh
 wget https://raw.githubusercontent.com/${GitUser}/aws/main/set-br.sh && chmod +x set-br.sh && ./set-br.sh
 
-# blockir torrent
+# block torrent
 iptables -A FORWARD -m string --string "get_peers" --algo bm -j DROP
 iptables -A FORWARD -m string --string "announce_peer" --algo bm -j DROP
 iptables -A FORWARD -m string --string "find_node" --algo bm -j DROP
@@ -257,9 +260,11 @@ iptables-restore -t < /etc/iptables.up.rules
 netfilter-persistent save
 netfilter-persistent reload
 
+GitUser="syapik96"
 # download script
 cd /usr/bin
 wget -O add-host "https://raw.githubusercontent.com/${GitUser}/aws/main/add-host.sh"
+wget -O addhost "https://raw.githubusercontent.com/${GitUser}/test1/main/tambah/addhost.sh"
 wget -O about "https://raw.githubusercontent.com/${GitUser}/aws/main/about.sh"
 wget -O menu "https://raw.githubusercontent.com/${GitUser}/aws/main/menu.sh"
 wget -O usernew "https://raw.githubusercontent.com/${GitUser}/aws/main/usernew.sh"
