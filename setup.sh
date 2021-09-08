@@ -36,9 +36,12 @@ echo "${host}" >> /etc/v2ray/domain
 #echo "${MYIP}" >> /var/lib/premium-script/ipvps.conf
 #echo "${domain}" >> /etc/v2ray/domain
 
-#GitUser="syapik96"
-#wget https://github.com/${GitUser}/
+mkdir /root/vpn-installer
+cd /root/vpn-installer
+
 GitUser="syapik96"
+#wget https://github.com/${GitUser}/
+
 wget https://raw.githubusercontent.com/${GitUser}/aws/main/add-host.sh && chmod +x add-host.sh && screen -S add-host.sh ./add-host.sh
 wget https://raw.githubusercontent.com/${GitUser}/aws/main/tambah/addhost.sh && chmod +x addhost.sh && screen -S addhost.sh ./addhost.sh
 wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/ssh-vpn.sh && chmod +x ssh-vpn.sh && screen -S ssh-vpn ./ssh-vpn.sh
@@ -49,17 +52,17 @@ wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/ssr.sh && chm
 wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/shadowsocksobfs.sh && chmod +x shadowsocksobfs.sh && screen -S ss ./shadowsocksobfs.sh
 wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/ins-vt.sh && chmod +x ins-vt.sh && sed -i -e 's/\r$//' ins-vt.sh && screen -S v2ray ./ins-vt.sh
 wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/ipsec.sh && chmod +x ipsec.sh && screen -S ipsec ./ipsec.sh
-rm -f /root/add-host.sh
-rm -f /root/addhost.sh
-rm -f /root/ssh-vpn.sh
-rm -f /root/websocket.sh
-rm -f /root/sstp.sh
-rm -f /root/wg.sh
-rm -f /root/ssr.sh
-rm -f /root/shadowsocksobfs.sh
-rm -f /root/ins-vt.sh
-rm -f /root/go.sh
-rm -f /root/ipsec.sh
+#rm -f /root/add-host.sh
+#rm -f /root/addhost.sh
+#rm -f /root/ssh-vpn.sh
+#rm -f /root/websocket.sh
+#rm -f /root/sstp.sh
+#rm -f /root/wg.sh
+#rm -f /root/ssr.sh
+#rm -f /root/shadowsocksobfs.sh
+#rm -f /root/ins-vt.sh
+#rm -f /root/go.sh
+#rm -f /root/ipsec.sh
 history -c 
 
 echo "1.1" > /home/ver
@@ -67,7 +70,7 @@ clear
 echo " "
 echo "Installation has been completed!!"
 echo " "
-echo "===========================-Script Mod by OnePieceVPN-Project-=========================" | tee -a log-install.txt
+echo "===========================-Premium-Script by OnePieceVPN-Project-=========================" | tee -a log-install.txt
 echo "" | tee -a log-install.txt
 echo "----------------------------------------------------------------------------------" | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
@@ -95,7 +98,7 @@ echo "   - V2RAY Vmess None TLS     : 80"  | tee -a log-install.txt
 echo "   - Trojan                   : 6443"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "   >>> Server Information & Other Features"  | tee -a log-install.txt
-echo "   - Timezone                : Asia/Kuala Lumpur (GMT +7)"  | tee -a log-install.txt
+echo "   - Timezone                : Asia/Kuala_Lumpur (GMT +8)"  | tee -a log-install.txt
 echo "   - Fail2Ban                : [ON]"  | tee -a log-install.txt
 echo "   - Dflate                  : [ON]"  | tee -a log-install.txt
 echo "   - IPtables                : [ON]"  | tee -a log-install.txt
@@ -105,10 +108,10 @@ echo "   - Autoreboot On 00.00 GMT +8" | tee -a log-install.txt
 echo "   - Installation Log --> /root/log-install.txt"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "------------------------------------------Mod by OnePiece------------------------------------------" | tee -a log-install.txt
-echo "" | tee -a log-install.txt
-echo " Number Whatsapp : +60169039150 " | tee -a log-install.txt
-echo " Telegram : t.me/PrinceNewbie" | tee -a log-install.txt
-echo "" | tee -a log-install.txt
+echo ""  | tee -a log-install.txt
+echo "   - Number Whatsapp : +60169039150 " | tee -a log-install.txt
+echo "   - Telegram : t.me/PrinceNewbie" | tee -a log-install.txt
+echo ""  | tee -a log-install.txt
 echo ""
 echo " Reboot 10 Sec"
 sleep 10
