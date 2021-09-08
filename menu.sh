@@ -14,25 +14,26 @@ GETIP=$( wget -qO- http://ipecho.net/plain | xargs echo );
 GETHOST=$( cat /etc/hostname );
 
 if [ "$EUID" -ne 0 ]; then
-  echo -e "${RED}Skrip perlu dijalankan sebagai root!${PLAIN}"; exit 1
+  echo -e "${RED}Skrip perlu dijalankan sebagai root!${PLAIN}"; 
+  exit 1
 fi
 
 . /etc/os-release
-echo -e"================================================================================="
-echo -e "${PURPLE}  ░█▀▀▀█ ░█▄─░█ ░█▀▀▀ 　 ░█▀▀█ ▀█▀ ░█▀▀▀ ░█▀▀█ ░█▀▀▀           ${PLAIN}" 
-echo -e "${PURPLE}  ░█──░█ ░█░█░█ ░█▀▀▀ 　 ░█▄▄█ ░█─ ░█▀▀▀ ░█─── ░█▀▀▀           ${PLAIN}" 
-echo -e "${PURPLE}  ░█▄▄▄█ ░█──▀█ ░█▄▄▄ 　 ░█─── ▄█▄ ░█▄▄▄ ░█▄▄█ ░█▄▄▄           ${PLAIN}"
-echo -e "                                                                                "         
-echo -e "                PUBLIC IP:${CYAN}$GETIP{PLAIN}                                  "   
-echo -e "                     HOST:${CYAN}$GETHOST${PLAIN}                               "     
-echo -e "                       OS:${CYAN}Ubuntu $VERSION_ID${PLAIN}                     "
-echo -e "================================================================================"
 echo -e ""
-echo -e "==========================[ Menu Command-List ]============================="
-echo -e "                      Script  By  ONEPIECEVPN - PROJECT  "
-echo -e "                                   Just type                "
-echo -e "\e[31m                         [example: usernew and enter ]\e[0m"
-echo -e "============================================================================="
+echo -e "${PURPLE}       ░█▀▀▀█ ░█▄─░█ ░█▀▀▀ 　 ░█▀▀█ ▀█▀ ░█▀▀▀ ░█▀▀█ ░█▀▀▀           ${PLAIN}" 
+echo -e "${PURPLE}       ░█──░█ ░█░█░█ ░█▀▀▀ 　 ░█▄▄█ ░█─ ░█▀▀▀ ░█─── ░█▀▀▀           ${PLAIN}" 
+echo -e "${PURPLE}       ░█▄▄▄█ ░█──▀█ ░█▄▄▄ 　 ░█─── ▄█▄ ░█▄▄▄ ░█▄▄█ ░█▄▄▄           ${PLAIN}"
+echo -e ""         
+echo -e "                PUBLIC IP :${CYAN}$GETIP{PLAIN}"   
+echo -e "                     HOST :${CYAN}$GETHOST${PLAIN}"     
+echo -e "                       OS :${CYAN}Ubuntu $VERSION_ID${PLAIN}"
+echo -e ""
+echo -e "======================[ Menu Command-List ]============================="
+echo -e "                  Script  By  ONEPIECEVPN - PROJECT"
+echo -e "                               Just type"
+echo -e "\e[31m                   [ example: usernew and enter ] \e[0m"
+echo -e "======================================================================"
+echo -e ""
 echo -e "===================[ SSH & OVPN MENU ]-========================"
 echo -e ""
 echo -e "* usernew      : Buat akun SSH dan OpenVPN"
