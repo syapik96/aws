@@ -1,7 +1,7 @@
 #!/bin/bash
 source /var/lib/crot-script/ipvps.conf
 if [[ "$IP" = "" ]]; then
-PUBLIC_IP=$(wget -qO- ipv4.icanhazip.com);
+PUBLIC_IP=$(wget -qO- http://ipecho.net/plain | xargs echo);
 else
 PUBLIC_IP=$IP
 fi
@@ -45,6 +45,6 @@ Username     : $VPN_USER
 Password     : $VPN_PASSWORD
 Expired ON   : $exp
 
-Mod By SL
+Mod By OnePiece
 =================================
 EOF
