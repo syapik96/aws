@@ -1,8 +1,8 @@
 #!/bin/bash
 echo start
 sleep 0.5
-source /var/lib/crot-script/ipvps.conf
-domain=$IP
+source /var/lib/premium-script/ipvps.conf
+domain=$(cat /etc/v2ray/domain)
 systemctl stop v2ray
 systemctl stop v2ray@none
 /root/.acme.sh/acme.sh --issue -d $domain --standalone -k ec-256
