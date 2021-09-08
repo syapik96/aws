@@ -1,5 +1,5 @@
 #!/bin/bash
-IP=$(wget -qO- icanhazip.com);
+IP=$(wget -qO- http://ipecho.net/plain | xargs echo);
 echo "Please enter the username you want to set (do not repeat, does not support Chinese, will be reported incorrect!)"
 read -e -p "(Default: ):" ssr_user
 CLIENT_EXISTS=$(grep -w $ssr_user /usr/local/shadowsocksr/akun.conf | wc -l)
@@ -12,7 +12,7 @@ read -p "Expired (days): " masaaktif
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
 lastport=$(cat /usr/local/shadowsocksr/mudb.json | grep '"port": ' | tail -n1 | awk '{print $2}' | cut -d "," -f 1 | cut -d ":" -f 1 )
 if [[ $lastport == '' ]]; then
-ssr_port=7443
+ssr_port=1447
 else
 ssr_port=$((lastport+1))
 fi
@@ -35,7 +35,7 @@ SSRobfs=$(echo ${ssr_obfs} | sed 's/_compatible//g')
 tmp2=$(echo -n "$IP:${ssr_port}:${ssr_protocol}:${ssr_method}:${SSRobfs}:${tmp1}/obfsparam=" | base64 -w0)
 ssr_link="ssr://${tmp2}"
 /etc/init.d/ssrmu restart
-IP=$(wget -qO- ifconfig.co);
+IP=$(wget -qO- http://ipecho.net/plain | xargs echo);
 clear && echo && echo "===================================================" && echo
 echo -e " User [${ssr_user}] configuration info："
 echo -e " IP            : ${IP}"
@@ -50,4 +50,4 @@ echo -e " Expired On    : ${exp} "
 echo "==================================================="
 echo -e " Link SSR      : ${ssr_link}"
 echo "==================================================="
-echo -e " Script Mod SL"
+echo -e "-----------Script Mod OnePiece----------------"
