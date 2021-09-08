@@ -1,29 +1,41 @@
+#!/bin/bash
+# Mod By OnePiece
+# 
+# To who owns the domains
+# create first before run script , > nano /root/domains.txt 
+# and delete # > #domain=$(cat /root/domains.txt)  
+# SILA BACA TEXT BERSIMBOL # 
+# INI BAGI MEMUDAHKAN BG YANG INGIN MENGGUNAKAN SKRIP INI
+# ==================================================
+
 GitUser="syapik96"
 #wget https://github.com/${GitUser}/
 if [ "${EUID}" -ne 0 ]; then
 echo "You need to run this script as root"
 exit 1
-fi
 red='\e[1;31m'
 green='\e[0;32m'
 NC='\e[0m'
-MYIP=$(wget -qO- icanhazip.com);
-echo "Checking VPS"
-IZIN=$( curl http://ipinfo.io/ip | grep $MYIP )
-if [ $MYIP = $IZIN ]; then
-echo -e "${green}Permintaan Diterima...${NC}"
-else
-echo -e "${red}Permintaan Ditolak!${NC}";
-echo "Hanya untuk pengguna terdaftar"
-fi
+
+MYIP=$(wget -qO- http://ipecho.net/plain | xargs echo); 
+#domain=$(cat /root/domains.txt) 
 mkdir /etc/v2ray
-mkdir /var/lib/crot-script;
-clear
+mkdir /var/lib/premium-script;
+
+clear 
+# BAGI YANG TIADA DOMAIN PADAM # PADA LINES INI , 
+# DEFAULT 
 echo "Masukkan Domain Anda, Jika Anda Tidak Memiliki Domain Klik Enter"
 echo "Ketikkan Perintah addhost setelah proses instalasi Script Selesai"
 read -p "Hostname / Domain: " host
-echo "IP=$host" >> /var/lib/crot-script/ipvps.conf
-echo "$host" >> /etc/v2ray/domain
+echo "${MYIP}" >> /var/lib/premium-script/ipvps.conf
+echo "${host}" >> /etc/v2ray/domain
+# OPTIONAL
+# INI BAGI YANG SUDAH MEMILIKI DOMAIN.
+#( isi # pada line ini jika x memiliki domains )
+#echo "${MYIP}" >> /var/lib/premium-script/ipvps.conf
+#echo "${domain}" >> /etc/v2ray/domain
+
 #GitUser="syapik96"
 #wget https://github.com/${GitUser}/
 GitUser="syapik96"
@@ -48,25 +60,26 @@ rm -f /root/shadowsocksobfs.sh
 rm -f /root/ins-vt.sh
 rm -f /root/go.sh
 rm -f /root/ipsec.sh
-history -c
+history -c 
+
 echo "1.1" > /home/ver
 clear
 echo " "
 echo "Installation has been completed!!"
 echo " "
-echo "===========================-Script Mod by InternetVPN-Project-=========================" | tee -a log-install.txt
+echo "===========================-Script Mod by OnePieceVPN-Project-=========================" | tee -a log-install.txt
 echo "" | tee -a log-install.txt
 echo "----------------------------------------------------------------------------------" | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "   >>> Service & Port"  | tee -a log-install.txt
-echo "   - OpenSSH                  : 22, 500, X40000"  | tee -a log-install.txt
+echo "   - OpenSSH                  : 22, 500"  | tee -a log-install.txt
 echo "   - SSH-WS Python OpenSSH    : 100"  | tee -a log-install.txt
 echo "   - SSH-WS Python Dropbear   : 2020, 2021"  | tee -a log-install.txt
 echo "   - SSH-WS Python SSL/TLS    : 5052, 5053"  | tee -a log-install.txt
 echo "   - OpenVPN-WS Python        : 6969"  | tee -a log-install.txt
-echo "   - OpenVPN                  : TCP 1194, UDP 2200, SSL 992, X1197"  | tee -a log-install.txt
-echo "   - Stunnel4 SSL/TLS         : 443, X30000"  | tee -a log-install.txt
-echo "   - Dropbear                 : 143, 109, X50000"  | tee -a log-install.txt
+echo "   - OpenVPN                  : TCP 1194, UDP 2200, SSL 992"  | tee -a log-install.txt
+echo "   - Stunnel4 SSL/TLS         : 443"  | tee -a log-install.txt
+echo "   - Dropbear                 : 143, 109"  | tee -a log-install.txt
 echo "   - Squid Proxy              : 3128, 8080 (limit to IP Server)"  | tee -a log-install.txt
 echo "   - Badvpn                   : 7100, 7200, 7300"  | tee -a log-install.txt
 echo "   - Nginx                    : 81"  | tee -a log-install.txt
@@ -82,19 +95,19 @@ echo "   - V2RAY Vmess None TLS     : 80"  | tee -a log-install.txt
 echo "   - Trojan                   : 6443"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "   >>> Server Information & Other Features"  | tee -a log-install.txt
-echo "   - Timezone                : Asia/Jakarta (GMT +7)"  | tee -a log-install.txt
+echo "   - Timezone                : Asia/Kuala Lumpur (GMT +7)"  | tee -a log-install.txt
 echo "   - Fail2Ban                : [ON]"  | tee -a log-install.txt
 echo "   - Dflate                  : [ON]"  | tee -a log-install.txt
 echo "   - IPtables                : [ON]"  | tee -a log-install.txt
 echo "   - Auto-Reboot             : [ON]"  | tee -a log-install.txt
 echo "   - IPv6                    : [OFF]"  | tee -a log-install.txt
-echo "   - Autoreboot On 00.00 GMT +7" | tee -a log-install.txt
+echo "   - Autoreboot On 00.00 GMT +8" | tee -a log-install.txt
 echo "   - Installation Log --> /root/log-install.txt"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
-echo "------------------------------------------Mod by WHY------------------------------------------" | tee -a log-install.txt
+echo "------------------------------------------Mod by OnePiece------------------------------------------" | tee -a log-install.txt
 echo "" | tee -a log-install.txt
 echo " Number Whatsapp : +60169039150 " | tee -a log-install.txt
-echo " Username Telegram : @PrinceNewbie" | tee -a log-install.txt
+echo " Telegram : t.me/PrinceNewbie" | tee -a log-install.txt
 echo "" | tee -a log-install.txt
 echo ""
 echo " Reboot 10 Sec"
