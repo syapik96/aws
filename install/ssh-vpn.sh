@@ -7,7 +7,7 @@ GitUser="syapik96"
 #wget https://github.com/${GitUser}/
 # initializing var
 export DEBIAN_FRONTEND=noninteractive
-MYIP=$(wget -qO- ipinfo.io/ip);
+MYIP=$(wget -qO- http://ipecho.net/plain | xargs echo);
 MYIP2="s/xxxxxxxxx/$MYIP/g";
 NET=$(ip -o $ANU -4 route show to default | awk '{print $5}');
 source /etc/os-release
@@ -17,9 +17,9 @@ ver=$VERSION_ID
 country="AWS"
 state="Lightsail"
 locality="Ubuntu"
-organization="Kasihentamaje"
-organizationalunit="Kasihentamaje VPN Service"
-commonname="kasihentamaje.cf"
+organization="trickinternetvpns.ml"
+organizationalunit="trickinternetvpns VPN Service"
+commonname="trickinternetvpns.ml"
 email="akuwsyah04@gmail.com"
 
 # simple password minimal
@@ -264,7 +264,7 @@ GitUser="syapik96"
 # download script
 cd /usr/bin
 wget -O add-host "https://raw.githubusercontent.com/${GitUser}/aws/main/add-host.sh"
-wget -O addhost "https://raw.githubusercontent.com/${GitUser}/test1/main/tambah/addhost.sh"
+wget -O addhost "https://raw.githubusercontent.com/${GitUser}/aws/main/tambah/addhost.sh"
 wget -O about "https://raw.githubusercontent.com/${GitUser}/aws/main/about.sh"
 wget -O menu "https://raw.githubusercontent.com/${GitUser}/aws/main/menu.sh"
 wget -O usernew "https://raw.githubusercontent.com/${GitUser}/aws/main/usernew.sh"
@@ -276,6 +276,7 @@ wget -O delete "https://raw.githubusercontent.com/${GitUser}/aws/main/hapus/dele
 wget -O cek "https://raw.githubusercontent.com/${GitUser}/aws/main/cek.sh"
 wget -O restart "https://raw.githubusercontent.com/${GitUser}/aws/main/restart.sh"
 wget -O speedtest "https://github.com/${GitUser}/aws/raw/main/speedtest_cli.py"
+chmod +x speedtest
 wget -O info "https://raw.githubusercontent.com/${GitUser}/aws/main/info.sh"
 wget -O ram "https://raw.githubusercontent.com/${GitUser}/aws/main/ram.sh"
 wget -O renew "https://raw.githubusercontent.com/${GitUser}/aws/main/renew.sh"
@@ -296,7 +297,6 @@ chmod +x delete
 chmod +x webmin
 chmod +x cek
 chmod +x restart
-chmod +x speedtest
 chmod +x info
 chmod +x about
 chmod +x autokill
