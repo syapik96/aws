@@ -11,7 +11,7 @@ IBGBLUE="\e[1;104m"
 PLAIN="\e[0m"
 
 GETIP=$( wget -qO- http://ipecho.net/plain | xargs echo );
-GETHOST=$( cat /etc/vpnhost );
+GETHOST=$( cat /etc/hostname );
 
 if [ "$EUID" -ne 0 ]; then
   echo -e "${RED}Skrip perlu dijalankan sebagai root!${PLAIN}"; exit 1
