@@ -1,10 +1,10 @@
 #!/bin/bash
-# Script Mod by SL
+# Script Mod by OnePiece
 clear
 echo -e ""
 echo -e "======================================"
-echo -e ""
-echo -e "           Script Mod by SL           "
+echo -e "           Premium Script             "
+echo -e "            By OnePiece               "
 echo -e ""
 echo -e "======================================"
 read -p "         Username       :  " User
@@ -24,7 +24,7 @@ clear
 echo -e ""
 echo -e "========================================"
 echo -e ""
-echo -e "           Script Mod by SL             "
+echo -e "       Script Mod by OnePiece           "
 echo -e ""
 echo -e "    Username        :  $User"
 echo -e "    Days Added      :  $Days Days"
@@ -36,7 +36,7 @@ clear
 echo -e ""
 echo -e "========================================"
 echo -e ""
-echo -e "         Script Mod by SL               "
+echo -e "       Script Mod by OnePiece           "
 echo -e ""
 echo -e "        Username Doesnt Exist           "
 echo -e ""
