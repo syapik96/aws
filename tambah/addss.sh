@@ -1,5 +1,5 @@
  #!/bin/bash
-IP=$(wget -qO- icanhazip.com);
+IP=$(wget -qO- http://ipecho.net/plain | xargs echo);
 lastport1=$(grep "port_tls" /etc/shadowsocks-libev/akun.conf | tail -n1 | awk '{print $2}')
 lastport2=$(grep "port_http" /etc/shadowsocks-libev/akun.conf | tail -n1 | awk '{print $2}')
 if [[ $lastport1 == '' ]]; then
@@ -89,4 +89,4 @@ clear
 	echo -e "==========================="
 	echo -e "Link OBFS HTTP : $linkss2"
 	echo -e "==========================="
-	echo -e "Script Mod by SL"
+	echo -e "Script Mod by OnePiece"
