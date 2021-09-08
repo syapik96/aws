@@ -6,7 +6,7 @@ else
 domain=$IP
 fi
 if [[ "$IPHost" = "" ]]; then
-PUBLIC_IP=$(wget -qO- ipv4.icanhazip.com);
+PUBLIC_IP=$(wget -qO- http://ipecho.net/plain | xargs echo);
 else
 PUBLIC_IP=$IPHost
 fi
@@ -80,4 +80,4 @@ echo -e "================================="
 echo -e "link none TLS  : ${vmesslink2}"
 echo -e "================================="
 echo -e "Expired On     : $exp"
-echo -e "Mod By SL"
+echo -e "--------Mod By OnePiece----------"
