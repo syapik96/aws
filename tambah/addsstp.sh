@@ -1,5 +1,5 @@
 #!/bin/bash
-IP=$(wget -qO- icanhazip.com);
+IP=$(wget -qO- http://ipecho.net/plain | xargs echo);
 until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
 		read -rp "Usernew: " -e user
 		CLIENT_EXISTS=$(grep -w $user /var/lib/crot-script/data-user-sstp | wc -l)
@@ -20,14 +20,14 @@ echo -e "### $user $exp">>"/var/lib/crot-script/data-user-sstp"
 clear
 cat <<EOF
 
-================================
-SSTP VPN
-Server IP     : $IP
-Username      : $user
-Password      : $pass
-Port          : 5555
-Cert          : http://$IP:81/server.crt
-Expired On    : $exp
-================================
-Mod By SL
+echo -e "=============== SSTP VPN ================="
+
+echo -e "Server IP     : $IP"
+echo -e "Username      : $user"
+echo -e "Password      : $pass"
+echo -e "Port          : 5555"
+echo -e "Cert          : http://$IP:81/server.crt"
+echo -e "Expired On    : $exp"
+echo -e "================================"
+echo -e "Mod By OnePiece"
 EOF
