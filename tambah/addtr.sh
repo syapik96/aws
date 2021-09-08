@@ -33,5 +33,5 @@ echo -e "link           : ${trojanlink}"
 echo -e "================================="
 echo -e "Expired On     : $exp"
 echo -e ""
-echo -e "Mod By SL"
+echo -e "Mod By OnePiece"
 
