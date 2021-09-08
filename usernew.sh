@@ -1,19 +1,15 @@
 #!/bin/bash
-ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 )
-CITY=$(curl -s ipinfo.io/city )
-WKT=$(curl -s ipinfo.io/timezone )
-IPVPS=$(curl -s ipinfo.io/ip )
-jam=$(date +"%T")
-hari=$(date +"%A")
-tnggl=$(date +"%d-%B-%Y")
+
 clear
 
+echo -e "Name : Create SSH & OpenVPN Account" | lolcat
+echo -e "=============================="
 read -p "Username : " Login
 read -p "Password : " Pass
 read -p "Expired (hari): " masaaktif
 
-IP=$(wget -qO- icanhazip.com);
-domain=$(cat /etc/v2ray/domain);
+IP=$(wget -qO- http://ipecho.net/plain | xargs echo);trickinternetvpns
+domain=$(cat /etc/hostname);
 echo "Script AutoCreate Akaun SSH dan OpenVPN Mod By OnePiece"
 sleep 1
 echo Ping Host
@@ -36,7 +32,7 @@ echo -e "Informasi Akaun SSH & OpenVPN"
 echo -e "Username          : $Login "
 echo -e "Password          : $Pass"
 echo -e "==============================="
-echo -e "IP Server         : $IP"
+echo -e "IP Host           : $IP"
 echo -e "Host              : $domain"
 echo -e "OpenSSH           : 22, 500"
 echo -e "Dropbear          : 143, 109"
@@ -44,13 +40,11 @@ echo -e "SSH WS Python     : 100, 2021 , 2020"
 echo -e "SSH WS Python SSL : 2052, 2053 "
 echo -e "SSL/TLS           : 443, 777"
 echo -e "Port Squid        : 8000, 8080 (limit to IP SSH)" 
-echo -e "OpenVPN           : TCP 1194 http://$IP:81/client-tcp-1194.ovpn"
-echo -e "OpenVPN           : UDP 2200 http://$IP:81/client-udp-2200.ovpn"
-echo -e "OpenVPN           : SSL 992 http://$IP:81/client-tcp-ssl.ovpn"
+echo -e "OpenVPN           : TCP 1194 http://$domain:81/client-tcp-1194.ovpn"
+echo -e "OpenVPN           : UDP 2200 http://$domain:81/client-udp-2200.ovpn"
+echo -e "OpenVPN           : SSL 992 http://$domain:81/client-tcp-ssl.ovpn"
 echo -e "badvpn            : 7100, 7200, 7300"
 echo -e "==============================="
-echo -e "Payload Websocket : GET / HTTP/1.1[crlf]Host: $domain[crlf]Upgrade: websocket[crlf][crlf]"
-echo -e "                    GET / HTTP/1.1[crlf]Host: $domain[crlf]Connection: Keep-Alive[crlf]User-Agent: [ua][crlf]Upgrade: websocket[crlf][crlf]"
-echo -e "==============================="
+echo -e "Payload Websocket : GET / HTTP/1.1[crlf]Host: $domain[crlf]Upgrade: websocket[crlf][crlf]
 echo -e "Aktif Sampai   : $exp"
 echo -e "Script Mod by OnePiece"
