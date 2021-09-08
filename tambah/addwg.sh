@@ -3,7 +3,7 @@
 source /etc/wireguard/params
 source /var/lib/crot-script/ipvps.conf
 if [[ "$IP" = "" ]]; then
-SERVER_PUB_IP=$(wget -qO- icanhazip.com);
+SERVER_PUB_IP=$(wget -qO- http://ipecho.net/plain | xargs echo);
 else
 SERVER_PUB_IP=$IP
 fi
@@ -36,7 +36,7 @@ fi
 	CLIENT_DNS_1="1.1.1.1"
 	
 	CLIENT_DNS_2="1.0.0.1"
-	MYIP=$(wget -qO- ifconfig.co);
+	MYIP=$(wget -qO- http://ipecho.net/plain | xargs echo);
 	read -p "Expired (days): " masaaktif
 	exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
 
@@ -79,5 +79,5 @@ AllowedIPs = $CLIENT_ADDRESS/32" >>"/etc/wireguard/$SERVER_WG_NIC.conf"
 	echo -e "==============================="
 	echo -e "Expired On     : $exp"
 	echo -e ""
-	echo -e "Mod By SL"
+	echo -e "Mod By OnePiece"
 	rm -f /root/wg0-client-$CLIENT_NAME.conf
