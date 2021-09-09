@@ -57,7 +57,7 @@ cat> /etc/v2ray/config.json << END
         "wsSettings": {
           "path": "/v2ray",
           "headers": {
-            "Host": ""
+            "Host": "$domain"
           }
          },
         "quicSettings": {},
@@ -145,7 +145,7 @@ cat> /etc/v2ray/none.json << END
         "wsSettings": {
           "path": "/v2ray",
           "headers": {
-            "Host": ""
+            "Host": "$domain"
           }
          },
         "quicSettings": {},
@@ -242,7 +242,7 @@ cat> /etc/v2ray/vless.json << END
         "wsSettings": {
           "path": "/v2ray",
           "headers": {
-            "Host": ""
+            "Host": "$domain"
           }
          },
         "quicSettings": {},
@@ -329,7 +329,7 @@ cat> /etc/v2ray/vnone.json << END
         "wsSettings": {
           "path": "/v2ray",
           "headers": {
-            "Host": ""
+            "Host": "$domain"
           }
          },
         "quicSettings": {},
@@ -500,7 +500,7 @@ systemctl daemon-reload
 systemctl enable v2ray@none.service
 systemctl start v2ray@none.service
 systemctl enable v2ray@vless.service
-systemctl start v2ray@vlessservice
+systemctl start v2ray@vless.service
 systemctl enable v2ray@vnone.service
 systemctl start v2ray@vnone.service
 systemctl enable v2ray@trojan.service
