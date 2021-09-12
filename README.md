@@ -28,10 +28,29 @@ v2ray under adjustment , defind update .. current script using old databased  ..
    ```html
 sysctl -w net.ipv6.conf.all.disable_ipv6=1 && sysctl -w net.ipv6.conf.default.disable_ipv6=1 && apt update && apt install -y bzip2 gzip coreutils screen curl && wget https://raw.githubusercontent.com/syapik96/aws/main/install/sshonly.sh && chmod +x sshonly.sh && sed -i -e 's/\r$//' sshonly.sh && screen -S sshonly ./sshonly.sh
   ```
-   
+ 
+# About :
+	#====================================================================#     
+	#                   Premium Script By OnePieceVPN                    #
+	#                                                                    #
+	#       ░█▀▀▀█ ░█▄─░█ ░█▀▀▀ 　 ░█▀▀█ ▀█▀ ░█▀▀▀ ░█▀▀█ ░█▀▀▀           #
+	#       ░█──░█ ░█░█░█ ░█▀▀▀ 　 ░█▄▄█ ░█─ ░█▀▀▀ ░█─── ░█▀▀▀           #
+	#       ░█▄▄▄█ ░█──▀█ ░█▄▄▄ 　 ░█─── ▄█▄ ░█▄▄▄ ░█▄▄█ ░█▄▄▄           #
+	#                                                                    #
+	#          ☆┌─┐ ─┐☆        - Modded By PrinceNewbie                 #
+	#           │▒│ /▒/         - Thanks To Original.Creator             #
+	#           │▒│/▒/          - Whatsapp : +60169039150                #
+	#         　│▒ /▒/─┬─┐◯    - Telegram : t.me/PrinceNewbie           #
+	#           │▒│▒|▒│▒│       - To those who use this script,          #
+	#          ┌┴─┴─┐-┘─┘         this script is still under development #
+	#          │▒┌──┘▒▒▒│◯     - Thanks for who using this script       #
+	#          └┐▒▒▒▒▒▒┌┘       - To EnterMenuList = 'menu'              #
+	#                           - next update v2ray and menulisting      #
+	#====================================================================#
+	
 ## Description :
 
-### Service & Port
+  Service & Port
 
 - OpenSSH                  : 22,500
 - SSH-WS Python OpenSSH    : 100
