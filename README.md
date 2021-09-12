@@ -60,7 +60,7 @@ sysctl -w net.ipv6.conf.all.disable_ipv6=1 && sysctl -w net.ipv6.conf.default.di
 - OpenVPN                  : TCP 1194, UDP 2200, SSL 992
 - Stunnel4 SSL/TLS         : 443
 - Dropbear                 : 143,109
-- Squid Proxy              : 3128,8080 (limit to IP Server)
+- Squid Proxy              : 3128,8000,8080 (limit to IP Server)
 - Badvpn                   : 7100,7200,7300
 - Nginx                    : 81
 - Wireguard                : 7070
