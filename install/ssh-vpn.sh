@@ -14,13 +14,13 @@ source /etc/os-release
 ver=$VERSION_ID
 
 #detail nama perusahaan
-country="AWS"
-state="Lightsail"
-locality="Ubuntu"
-organization="trickinternetvpns.ml"
-organizationalunit="trickinternetvpns VPN Service"
+country="SG"
+state="Singapore"
+locality="Singapore"
+organization="Trickinternetvpns.ml"
+organizationalunit="Trickinternetvpns VPN Service"
 commonname="trickinternetvpns.ml"
-email="akuwsyah04@gmail.com"
+email="trick.internetvpns@gmail.com"
 
 # simple password minimal
 wget -O /etc/pam.d/common-password "https://raw.githubusercontent.com/${GitUser}/aws/main/password"
