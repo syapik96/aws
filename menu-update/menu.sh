@@ -11,7 +11,7 @@ bd='\e[1m'
 MYIP=$(wget -qO- ifconfig.co);
 echo "Checking VPS"
 clear 
-cat /usr/bin/bannerku | lolcat
+figlet -w 40 "Welcome To Menu | lolcat
 ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 )
 CITY=$(curl -s ipinfo.io/city )
 WKT=$(curl -s ipinfo.io/timezone )
