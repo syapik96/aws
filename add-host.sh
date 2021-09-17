@@ -2,7 +2,7 @@
 red='\e[1;31m'
 green='\e[0;32m'
 NC='\e[0m'
-MYIP=$(wget -qO- ifconfig.me/ip);
+MYIP=$(wget -qO- icanhazip.com);
 echo "Checking VPS"
 clear
 source /root/mail.conf
@@ -10,7 +10,7 @@ DOMAIN=$domain
 CF_ID=$email
 CF_KEY=$key
 set -euo pipefail
-IP=$(wget -qO- ifconfig.me/ip);
+IP=$(wget -qO- icanhazip.com);
 read -p "Masukan Subdomain Anda :" sub
 echo "Updating DNS for ${sub}..."
 ZONE=$(curl -sLX GET "https://api.cloudflare.com/client/v4/zones?name=${DOMAIN}&status=active" \
