@@ -12,7 +12,8 @@ echo "Starting Update ..." | lolcat
 # update
 cd /usr/bin
 rm -f /usr/bin/menu
-
+GitUser="syapik96"
+#wget https://github.com/${GitUser}/
 wget -O l2tp "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/l2tp.sh"
 wget -O ssh "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/ssh.sh"
 wget -O ssssr "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/ssssr.sh"
