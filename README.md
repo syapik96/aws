@@ -80,4 +80,4 @@ sysctl -w net.ipv6.conf.all.disable_ipv6=1 && sysctl -w net.ipv6.conf.default.di
 ## Credit :
   
 *   Original Script by  Horas
-*   Modded Script by    syapik96
+*   Modded Script by    t.me/PrinceNewbie
