@@ -1,6 +1,9 @@
 #!/bin/bash
 
 cd /root
+rm /root/mail.confconf 
+figlet "Cloudflare" | lolcat
+
 echo "Name : Add ID Cloudlare " | lolcat
 echo ""
 read -e -p " Masukan Domain :$domain" domain
