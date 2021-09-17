@@ -1,28 +1,24 @@
 #!/bin/bash
-
 red='\e[1;31m'
 green='\e[0;32m'
 NC='\e[0m'
-
+MYIP=$(wget -qO- ifconfig.me/ip);
+echo "Checking VPS"
 clear
-
-read -rp "Masukkan Domain: " -e DOMAIN
-echo ""
-echo "Domain: ${DOMAIN}" 
-echo ""
-read -rp "Masukkan Subdomain: " -e sub
-SUB_DOMAIN=${sub}.${DOMAIN}
-CF_ID=bXVoYW1tYWQubmVpemFtQGdtYWlsLmNvbQ
-CF_KEY=MTBkYTcyNjQ4MDU4NGE2MDFlY2M1OGIxMjYyMWYwYjAxMDJlYw
+source /root/mail.conf
+DOMAIN=$domain
+CF_ID=$email
+CF_KEY=$key
 set -euo pipefail
-IP=$(wget -qO- http://ipecho.net/plain);
-echo "Pointing DNS Untuk Domain ${SUB_DOMAIN}..."
+IP=$(wget -qO- ifconfig.me/ip);
+read -p "Masukan Subdomain Anda :" sub
+echo "Updating DNS for ${sub}..."
 ZONE=$(curl -sLX GET "https://api.cloudflare.com/client/v4/zones?name=${DOMAIN}&status=active" \
      -H "X-Auth-Email: ${CF_ID}" \
      -H "X-Auth-Key: ${CF_KEY}" \
      -H "Content-Type: application/json" | jq -r .result[0].id)
 
-RECORD=$(curl -sLX GET "https://api.cloudflare.com/client/v4/zones/${ZONE}/dns_records?name=${SUB_DOMAIN}" \
+RECORD=$(curl -sLX GET "https://api.cloudflare.com/client/v4/zones/${ZONE}/dns_records?name=${sub}" \
      -H "X-Auth-Email: ${CF_ID}" \
      -H "X-Auth-Key: ${CF_KEY}" \
      -H "Content-Type: application/json" | jq -r .result[0].id)
@@ -32,14 +28,15 @@ if [[ "${#RECORD}" -le 10 ]]; then
      -H "X-Auth-Email: ${CF_ID}" \
      -H "X-Auth-Key: ${CF_KEY}" \
      -H "Content-Type: application/json" \
-     --data '{"type":"A","name":"'${SUB_DOMAIN}'","content":"'${IP}'","ttl":120,"proxied":false}' | jq -r .result.id)
+     --data '{"type":"A","name":"'${DOMAIN}'","content":"'${IP}'","ttl":120,"proxied":false}' | jq -r .result.id)
 fi
 
 RESULT=$(curl -sLX PUT "https://api.cloudflare.com/client/v4/zones/${ZONE}/dns_records/${RECORD}" \
      -H "X-Auth-Email: ${CF_ID}" \
      -H "X-Auth-Key: ${CF_KEY}" \
      -H "Content-Type: application/json" \
-     --data '{"type":"A","name":"'${SUB_DOMAIN}'","content":"'${IP}'","ttl":120,"proxied":false}')
+     --data '{"type":"A","name":"'${sub}'","content":"'${IP}'","ttl":120,"proxied":false}')
+echo "DONE...!"
 echo "Host : $SUB_DOMAIN"
 echo "$SUB_DOMAIN > /root/domain"
 echo "$SUB_DOMAIN > /etc/v2ray/domain"
