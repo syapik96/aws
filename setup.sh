@@ -1,9 +1,6 @@
 #!/bin/bash
-# Mod By OnePiece
-# 
-# To who owns the domains
-# create first before run script , > nano /root/domains.txt 
-# and delete # > #domain=$(cat /root/domains.txt)  
+# Adjusted by PrinceNewbie
+# Updated , Copyright 2021 ,    
 # SILA BACA TEXT BERSIMBOL # 
 # INI BAGI MEMUDAHKAN BG YANG INGIN MENGGUNAKAN SKRIP INI
 # ==================================================
@@ -17,34 +14,29 @@ red='\e[1;31m'
 green='\e[0;32m'
 NC='\e[0m'
 
-MYIP=$(wget -qO- ifconfig.me/ip); 
-#domain=$(cat /root/domains.txt) 
+clear
+
+sysctl -w net.ipv6.conf.all.disable_ipv6 = 1
+sysctl -w net.ipv6.conf.default.disable_ipv6 = 1
+timedatectl set-timezone 'Asia/Kuala_Lumpur'
+apt-get update && apt-get upgrade -y 
+apt install -y bzip2 gzip coreutils screen curl
+apt-get install figlet
+apt-get install ruby
+gem install lolcat
+apt -y install wget curl
+clear
+
+MYIP=$(wget -qO- icanhazip.com);  
 mkdir /etc/v2ray
 mkdir /var/lib/premium-script;
-
-clear 
-# BAGI YANG TIADA DOMAIN PADAM # PADA LINES INI , 
-# DEFAULT 
-echo "Masukkan Domain Anda, Jika Anda Tidak Memiliki Domain Klik Enter"
-echo "Ketikkan Perintah addhost setelah proses instalasi Script Selesai"
-read -p "Hostname / Domain: " host
-echo "${MYIP}" >> /var/lib/premium-script/ipvps.conf
+#echo "${MYIP}" >> /var/lib/premium-script/ipvps.conf
 #echo "${host}" >> /etc/v2ray/domain
-
-
-wget https://raw.githubusercontent.com/${GitUser}/aws/main/panel-domain/cff.sh
-chmod +x cff.sh
-./cf
-rm /root/cff.sh
-
-mkdir /root/vpn-installer
-cd /root/vpn-installer
 
 GitUser="syapik96"
 #wget https://github.com/${GitUser}/
-
+wget https://raw.githubusercontent.com/${GitUser}/aws/main/panel-domain/cff.sh && chmod +x cff.sh && ./cff.sh
 wget https://raw.githubusercontent.com/${GitUser}/aws/main/add-host.sh && chmod +x add-host.sh && screen -S add-host.sh ./add-host.sh
-wget https://raw.githubusercontent.com/${GitUser}/aws/main/tambah/addhost.sh && chmod +x addhost.sh && screen -S addhost.sh ./addhost.sh
 wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/ssh-vpn.sh && chmod +x ssh-vpn.sh && screen -S ssh-vpn ./ssh-vpn.sh
 wget https://raw.githubusercontent.com/${GitUser}/aws/main/websocket-python/websocket.sh && chmod +x websocket.sh && screen -S websocket.sh ./websocket.sh
 wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/sstp.sh && chmod +x sstp.sh && screen -S sstp ./sstp.sh
@@ -53,8 +45,8 @@ wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/ssr.sh && chm
 wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/shadowsocksobfs.sh && chmod +x shadowsocksobfs.sh && screen -S ss ./shadowsocksobfs.sh
 wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/ins-vt.sh && chmod +x ins-vt.sh && sed -i -e 's/\r$//' ins-vt.sh && screen -S v2ray ./ins-vt.sh
 wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/ipsec.sh && chmod +x ipsec.sh && screen -S ipsec ./ipsec.sh
+rm -f /root/cff.sh
 rm -f /root/add-host.sh
-rm -f /root/addhost.sh
 rm -f /root/ssh-vpn.sh
 rm -f /root/websocket.sh
 rm -f /root/sstp.sh
