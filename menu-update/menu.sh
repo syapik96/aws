@@ -40,27 +40,27 @@ echo -e  "  ╠═════════════════════�
 echo -e  "  ║                       ┃ MENU OPTIONS ┃                     ║" |lolcat
 echo -e  "  ╠════════════════════════════════════════════════════════════╣" | lolcat
 echo -e  " $bl ║"
-echo -e  " $rd ║\e[m$bd 1$bl]\e[m$bd Panel SSH & OpenVPN Menu                                 ╨"
-echo -e  " $gl ║\e[m$bd 2$bl]\e[m$bd Panel Wireguard "
-echo -e  " $gl ║\e[m$bd 3$bl]\e[m$bd Panel L2TP & PPTP Account"
-echo -e  " $bl ║\e[m$bd 4$bl]\e[m$bd Panel SSR & SS Account"
-echo -e  " $bl ║\e[m$bd 5$bl]\e[m$bd Panel V2Ray"
-echo -e  " $bl ║\e[m$bd 6$bl]\e[m$bd Panel VLess"
-echo -e  " $bl ║\e[m$bd 7$bl]\e[m$bd Panel TRojan                                             ╥"
+echo -e  " $rd ║\e[m$bd \e[31;1m1$bl]\e[m$bd Panel SSH & OpenVPN Menu                                 ╨"
+echo -e  " $gl ║\e[m$bd \e[31;1m2$bl]\e[m$bd Panel Wireguard "
+echo -e  " $gl ║\e[m$bd \e[31;1m3$bl]\e[m$bd Panel L2TP & PPTP Account"
+echo -e  " $bl ║\e[m$bd \e[31;1m4$bl]\e[m$bd Panel SSR & SS Account"
+echo -e  " $bl ║\e[m$bd \e[31;1m5$bl]\e[m$bd Panel V2Ray"
+echo -e  " $bl ║\e[m$bd \e[31;1m6$bl]\e[m$bd Panel VLess"
+echo -e  " $bl ║\e[m$bd \e[31;1m7$bl]\e[m$bd Panel TRojan                                             ╥"
 echo -e  "  ╠════════════════════════════════════════════════════════════╣" | lolcat
 echo -e  "  ║                       ┃ SYSTEM MENU ┃                      ║" | lolcat 
 echo -e  "  ╠════════════════════════════════════════════════════════════╣" | lolcat
 echo -e  " $bl ║"
-echo -e  " $mg ║\e[m$bd 8$bl]\e[m$bd Panel Domain Point VPS"
-echo -e  " $gl ║\e[m$bd 9$bl]\e[m$bd Webmin Menu"
-echo -e  " $gl ║\e[m$bd 10$bl]\e[m$bd Check Usage of VPS Ram" 
-echo -e  " $gl ║\e[m$bd 11$bl]\e[m$bd Reboot VPS"
-echo -e  " $gl ║\e[m$bd 12$bl]\e[m$bd Speedtest VPS"
-echo -e  " $gl ║\e[m$bd 13$bl]\e[m$bd Information Display System" 
-echo -e  " $gl ║\e[m$bd 14$bl]\e[m$bd Info Script Auto Install"
-echo -e  " $bl ║\e[m$bd 15$bl]\e[m$bd Restart All Service"
-echo -e  " $bl ║\e[m$bd 16$bl]\e[m$bd Change Banner"  
-echo -e  " $bl ║\e[m$bd 17$bl]\e[m$bd Update"                               
+echo -e  " $mg ║\e[m$bd \e[31;1m8$bl]\e[m$bd Panel Domain Point VPS"
+echo -e  " $gl ║\e[m$bd \e[31;1m9$bl]\e[m$bd Webmin Menu"
+echo -e  " $gl ║\e[m$bd \e[31;1m10$bl]\e[m$bd Check Usage of VPS Ram" 
+echo -e  " $gl ║\e[m$bd \e[31;1m11$bl]\e[m$bd Reboot VPS"
+echo -e  " $gl ║\e[m$bd \e[31;1m12$bl]\e[m$bd Speedtest VPS"
+echo -e  " $gl ║\e[m$bd \e[31;1m13$bl]\e[m$bd Information Display System" 
+echo -e  " $gl ║\e[m$bd \e[31;1m14$bl]\e[m$bd Info Script Auto Install"
+echo -e  " $bl ║\e[m$bd \e[31;1m15$bl]\e[m$bd Restart All Service"
+echo -e  " $bl ║\e[m$bd \e[31;1m16$bl]\e[m$bd Change Banner"  
+echo -e  " $bl ║\e[m$bd \e[31;1m17$bl]\e[m$bd Update"                               
 echo -e  "  ╠════════════════════════════════════════════════════════════╣\e[m" | lolcat
 echo -e  "  ║   0) Exit Menu .                                           ║\e[m" | lolcat
 echo -e  "  ║      COPYRIGHT ONEPIECEVPN, POWERED BY PRINCENEWBIE.       ║\e[m" | lolcat
