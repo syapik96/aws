@@ -10,8 +10,12 @@ or='\033[1;33m'
 bd='\e[1m'
 MYIP=$(wget -qO- ifconfig.co);
 echo "Checking VPS"
-clear 
-figlet -w 40 "Welcome To Menu | lolcat
+clear
+echo -e " "
+echo -e " "
+echo -e " " 
+figlet -f shadow WelcomeToMenu | lolcat
+echo -e " " 
 ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 )
 CITY=$(curl -s ipinfo.io/city )
 WKT=$(curl -s ipinfo.io/timezone )
@@ -25,8 +29,9 @@ IPVPS=$(curl -s ipinfo.io/ip )
 
 echo -e  "  ╠════════════════════════════════════════════════════════════╣" | lolcat
 echo -e  "  ║                ┃ ONEPIECEVPN - PROJECT ┃                   ║" |lolcat
-echo -e  "  ╠════════════════════════════════════════════════════════════╣" | lolcat
-echo -e  " $bl ║               𝑷𝒂𝒏𝒆𝒍-𝑴𝒆𝒏𝒖-𝑷𝒓𝒆𝒎𝒖𝒊𝒎" | lolcat
+echo -e  "  ╠════════════════════════════════════════════════════════════╝" | lolcat
+echo -e  " $bl ║             Panel Created by PrinceNewBie" | lolcat
+echo -e  " $bl ║"
 echo -e  " $bl ║ \e[032;1mCPU Model:\e[0m$bd $cname  "
 echo -e  " $bl ║ \e[032;1mNumber Of Cores:\e[0m$bd $cores"
 echo -e  " $bl ║ \e[032;1mCPU Frequency:\e[0m$bd $freq MHz"
@@ -35,32 +40,43 @@ echo -e  " $op ║ \e[032;1mSystem Uptime:\e[0m$bd $up"
 echo -e  " $op ║ \e[032;1mIsp Name:\e[0m$bd $ISP"
 echo -e  " $op ║ \e[032;1mIp Vps:\e[0m$bd $IPVPS"
 echo -e  " $op ║ \e[032;1mCity:\e[0m$bd $CITY"
-echo -e  " $op ║ \e[032;1mTime:\e[0m$bd $WKT                                        ╥"
+echo -e  " $op ║ \e[032;1mTime:\e[0m$bd $WKT "                                    
 echo -e  "  ╠════════════════════════════════════════════════════════════╣" | lolcat
 echo -e  "  ║                       ┃ MENU OPTIONS ┃                     ║" |lolcat
-echo -e  "  ╠════════════════════════════════════════════════════════════╣" | lolcat
+echo -e  "  ╠════════════════════════════════════════════════════════════╝" | lolcat
 echo -e  " $bl ║"
-echo -e  " $rd ║\e[m$bd \e[31;1m1$bl]\e[m$bd Panel SSH & OpenVPN Menu                                 ╨"
-echo -e  " $gl ║\e[m$bd \e[31;1m2$bl]\e[m$bd Panel Wireguard "
-echo -e  " $gl ║\e[m$bd \e[31;1m3$bl]\e[m$bd Panel L2TP & PPTP Account"
-echo -e  " $bl ║\e[m$bd \e[31;1m4$bl]\e[m$bd Panel SSR & SS Account"
-echo -e  " $bl ║\e[m$bd \e[31;1m5$bl]\e[m$bd Panel V2Ray"
-echo -e  " $bl ║\e[m$bd \e[31;1m6$bl]\e[m$bd Panel VLess"
-echo -e  " $bl ║\e[m$bd \e[31;1m7$bl]\e[m$bd Panel TRojan                                             ╥"
+echo -e  " $rd ║\e[m$bd 1$bl]\e[m$bd Panel SSH & OpenVPN Menu"  | lolcat                                
+echo -e  " $gl ║\e[m$bd 2$bl]\e[m$bd Panel Wireguard " | lolcat 
+echo -e  " $gl ║\e[m$bd 3$bl]\e[m$bd Panel L2TP & PPTP Account" | lolcat
+echo -e  " $bl ║\e[m$bd 4$bl]\e[m$bd Panel SSR & SS Account" | lolcat
+echo -e  " $bl ║\e[m$bd 5$bl]\e[m$bd Panel V2Ray" | lolcat
+echo -e  " $bl ║\e[m$bd 6$bl]\e[m$bd Panel VLess" | lolcat
+echo -e  " $bl ║\e[m$bd 7$bl]\e[m$bd Panel TRojan" | lolcat                                           
+echo -e  " $bl ║ "                                                                   
+echo -e  "  ╠════════════════════════════════════════════════════════════╣" | lolcat
+echo -e  "  ║                       ┃ DOMAIN MENU ┃                      ║" | lolcat 
+echo -e  "  ╠════════════════════════════════════════════════════════════╝" | lolcat
+echo -e  " $bl ║"
+echo -e  " $bl ║\e[m$bd 8$bl]\e[m$bd Add Subdomain Host For VPS" | lolcat
+echo -e  " $bl ║\e[m$bd 9$bl]\e[m$bd Add ID Cloudflare" | lolcat 
+echo -e  " $bl ║\e[m$bd 10$bl]\e[m$bd Cloudflare Add-Ons" | lolcat
+echo -e  " $bl ║\e[m$bd 11$bl]\e[m$bd Pointing BUG" | lolcat
+echo -e  " $bl ║\e[m$bd 12$bl]\e[m$bd Renew Certificate V2RAY" | lolcat
+echo -e  " $bl ║"     
 echo -e  "  ╠════════════════════════════════════════════════════════════╣" | lolcat
 echo -e  "  ║                       ┃ SYSTEM MENU ┃                      ║" | lolcat 
-echo -e  "  ╠════════════════════════════════════════════════════════════╣" | lolcat
+echo -e  "  ╠════════════════════════════════════════════════════════════╝" | lolcat
 echo -e  " $bl ║"
-echo -e  " $mg ║\e[m$bd \e[31;1m8$bl]\e[m$bd Panel Domain Point VPS"
-echo -e  " $gl ║\e[m$bd \e[31;1m9$bl]\e[m$bd Webmin Menu"
-echo -e  " $gl ║\e[m$bd \e[31;1m10$bl]\e[m$bd Check Usage of VPS Ram" 
-echo -e  " $gl ║\e[m$bd \e[31;1m11$bl]\e[m$bd Reboot VPS"
-echo -e  " $gl ║\e[m$bd \e[31;1m12$bl]\e[m$bd Speedtest VPS"
-echo -e  " $gl ║\e[m$bd \e[31;1m13$bl]\e[m$bd Information Display System" 
-echo -e  " $gl ║\e[m$bd \e[31;1m14$bl]\e[m$bd Info Script Auto Install"
-echo -e  " $bl ║\e[m$bd \e[31;1m15$bl]\e[m$bd Restart All Service"
-echo -e  " $bl ║\e[m$bd \e[31;1m16$bl]\e[m$bd Change Banner"  
-echo -e  " $bl ║\e[m$bd \e[31;1m17$bl]\e[m$bd Update"                               
+echo -e  " $gl ║\e[m$bd 13$bl]\e[m$bd Webmin Menu" | lolcat
+echo -e  " $gl ║\e[m$bd 14$bl]\e[m$bd Check Usage of VPS Ram" | lolcat
+echo -e  " $gl ║\e[m$bd 15$bl]\e[m$bd Reboot VPS" | lolcat
+echo -e  " $gl ║\e[m$bd 16$bl]\e[m$bd Speedtest VPS" | lolcat
+echo -e  " $gl ║\e[m$bd 17$bl]\e[m$bd Information Display System" | lolcat
+echo -e  " $gl ║\e[m$bd 18$bl]\e[m$bd Info Script Auto Install" | lolcat
+echo -e  " $bl ║\e[m$bd 19$bl]\e[m$bd Restart All Service" | lolcat
+echo -e  " $bl ║\e[m$bd 20$bl]\e[m$bd Change Banner"  | lolcat
+echo -e  " $bl ║\e[m$bd 21$bl]\e[m$bd Update" | lolcat
+echo -e  " $bl ║"                              
 echo -e  "  ╠════════════════════════════════════════════════════════════╣\e[m" | lolcat
 echo -e  "  ║   0) Exit Menu .                                           ║\e[m" | lolcat
 echo -e  "  ║      COPYRIGHT ONEPIECEVPN, POWERED BY PRINCENEWBIE.       ║\e[m" | lolcat
@@ -92,40 +108,53 @@ while true; do
    trojaan
    ;;
    8)
-   add-dns
+   add-host
    ;;
    9)
-   webmin
+   cff
    ;;
    10)
-   ram
+   cfd
    ;;
    11)
-   reboot
+   cfh
    ;;
    12)
-   speedtest
+   certv2ray
    ;;
    13)
-   info
+   webmin
    ;;
    14)
-   about
+   ram
    ;;
    15)
-   restart
+   reboot
    ;;
    16)
+   speedtest
+   ;;
+   17)
+   info
+   ;;
+   18)
+   about
+   ;;
+   19)
+   restart
+   ;;
+   20)
    nano /etc/issue.net
    ;;
-   15)
+   21)
    update
    ;;
    0)
    exit
    ;;
    *)
-   echo  "Please enter an correct number"
+   echo -e "ERROR!! Please Enter an Correct Number"
    ;;
   esac
 done
+
