@@ -7,20 +7,22 @@ GitUser="syapik96"
 #wget https://github.com/${GitUser}/
 # initializing var
 export DEBIAN_FRONTEND=noninteractive
-MYIP=$(wget -qO- http://ipecho.net/plain | xargs echo);
+MYIP=$(wget -qO- ipinfo.io/ip);
 MYIP2="s/xxxxxxxxx/$MYIP/g";
 NET=$(ip -o $ANU -4 route show to default | awk '{print $5}');
 source /etc/os-release
 ver=$VERSION_ID
 
-#detail nama perusahaan
-country="SG"
-state="Singapore"
-locality="Singapore"
-organization="Trickinternetvpns.ml"
-organizationalunit="Trickinternetvpns VPN Service"
-commonname="trickinternetvpns.ml"
-email="trick.internetvpns@gmail.com"
+# certificate ssh & openvpn
+# edit bwh, isikan nama domain anda
+# detail nama perusahaan
+country=SG
+state=Singapore
+locality=Singapore
+organization=Trickinternetvpns.ml
+organizationalunit=Trickinternetvpns VPN Service
+commonname=trickinternetvpns.ml
+email=akuwsyah04@gmail.com
 
 # simple password minimal
 wget -O /etc/pam.d/common-password "https://raw.githubusercontent.com/${GitUser}/aws/main/password"
@@ -78,7 +80,7 @@ apt dist-upgrade -y
 # install wget and curl
 apt -y install wget curl
 
-# set time GMT +8
+# set time GMT +8 # change your location #
 ln -fs /usr/share/zoneinfo/Asia/Kuala_Lumpur /etc/localtime
 
 # set locale
@@ -88,7 +90,7 @@ sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 apt-get --reinstall --fix-missing install -y bzip2 gzip coreutils wget screen rsyslog iftop htop net-tools zip unzip wget net-tools curl nano sed screen gnupg gnupg1 bc apt-transport-https build-essential dirmngr libxml-parser-perl neofetch git
 echo "clear" >> .profile
 echo "neofetch" >> .profile
-echo "Mod by OnePiece" >> .profile
+echo "POWERED BY PRINCENEWBIE" >> .profile
 
 # install webserver
 apt -y install nginx
@@ -187,7 +189,7 @@ END
 # make a certificate
 openssl genrsa -out key.pem 2048
 openssl req -new -x509 -key key.pem -out cert.pem -days 1095 \
--subj "/C=${country}/ST=${state}/L=${locality}/O=${organization}/OU=${organizationalunit}/CN=${commonname}/emailAddress=${email}"
+-subj "/C=$country/ST=$state/L=$locality/O=$organization/OU=$organizationalunit/CN=$commonname/emailAddress=$email"
 cat key.pem cert.pem >> /etc/stunnel/stunnel.pem
 
 # konfigurasi stunnel
