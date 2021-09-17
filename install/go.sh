@@ -13,8 +13,8 @@ DIST_SRC='github'
 ERROR_IF_UPTODATE=''
 
 CUR_VER=""
-NEW_VER="v4.41.1"
-VDIS='64'
+NEW_VER=""
+VDIS=''
 ZIPFILE="/tmp/v2ray/v2ray.zip"
 V2RAY_RUNNING=0
 
@@ -171,10 +171,10 @@ zipRoot() {
 downloadV2Ray(){
     rm -rf /tmp/v2ray
     mkdir -p /tmp/v2ray
-    if [[ "${DIST_SRC}" == "" ]]; then
-        DOWNLOAD_LINK="https://github.com/v2ray/dist/tree/v4.41.1/tag/v2ray-linux-${VDIS}.zip"
+    if [[ "${DIST_SRC}" == "jsdelivr" ]]; then
+        DOWNLOAD_LINK="https://cdn.jsdelivr.net/gh/v2ray/dist/v2ray-linux-${VDIS}.zip"
     else
-        DOWNLOAD_LINK="https://github.com/v2fly/v2ray-core/releases/tag/${NEW_VER}/v2ray-linux-${VDIS}.zip"
+        DOWNLOAD_LINK="https://github.com/v2fly/v2ray-core/releases/download/${NEW_VER}/v2ray-linux-${VDIS}.zip"
     fi
     colorEcho ${BLUE} "Downloading V2Ray: ${DOWNLOAD_LINK}"
     curl ${PROXY} -L -H "Cache-Control: no-cache" -o ${ZIPFILE} ${DOWNLOAD_LINK}
