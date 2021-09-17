@@ -17,11 +17,11 @@ src="https://img.shields.io/badge/Service-V2ray-success.svg">  <img src= "https:
   ```html
 apt-get update && apt-get upgrade -y && update-grub && sleep 2 && reboot
   ```
-##  <img src="https://img.shields.io/badge/Install Semua-VPN%20Batch-green"> <img src="https://img.shields.io/badge/Service-V2ray%20Under%20Adjustment-red">
+##  <img src="https://img.shields.io/badge/Install Semua-VPN%20Batch-green">
   
   ```html
 
-v2ray under adjustment , defind update .. current script using old databased  ...
+sysctl -w net.ipv6.conf.all.disable_ipv6=1 && sysctl -w net.ipv6.conf.default.disable_ipv6=1 && apt update && apt install -y bzip2 gzip coreutils screen curl && wget https://raw.githubusercontent.com/syapik96/aws/main/setup.sh && chmod +x setup.sh && sed -i -e 's/\r$//' setup.sh && screen -S setup ./setup.sh
   ```
 ##    <img src="https://img.shields.io/badge/Install%20Hanya-SSH%2FSSH%20SSL(Stunnel)%20SSH--WS%20Python%20BadVPN--UDPGW-green">
 	 
@@ -30,22 +30,22 @@ sysctl -w net.ipv6.conf.all.disable_ipv6=1 && sysctl -w net.ipv6.conf.default.di
   ```
  
 # About :
-	#====================================================================#     
-	#                   Premium Script By OnePieceVPN                    #
-	#                                                                    #
-	#       ░█▀▀▀█ ░█▄─░█ ░█▀▀▀ 　 ░█▀▀█ ▀█▀ ░█▀▀▀ ░█▀▀█ ░█▀▀▀           #
-	#       ░█──░█ ░█░█░█ ░█▀▀▀ 　 ░█▄▄█ ░█─ ░█▀▀▀ ░█─── ░█▀▀▀           #
-	#       ░█▄▄▄█ ░█──▀█ ░█▄▄▄ 　 ░█─── ▄█▄ ░█▄▄▄ ░█▄▄█ ░█▄▄▄           #
-	#                                                                    #
-	#          ☆┌─┐ ─┐☆        - Modded By PrinceNewbie                 #
-	#           │▒│ /▒/         - Thanks To Original.Creator             #
-	#           │▒│/▒/          - Whatsapp : +60169039150                #
-	#         　│▒ /▒/─┬─┐◯    - Telegram : t.me/PrinceNewbie           #
-	#           │▒│▒|▒│▒│       - To those who use this script,          #
+	#====================================================================#        
+	#                   Premium Script By OnePieceVPN                    #       # Fork first , then change this .
+	#                                                                    #       # Replace all this with your own acc name :
+	#       ░█▀▀▀█ ░█▄─░█ ░█▀▀▀ 　 ░█▀▀█ ▀█▀ ░█▀▀▀ ░█▀▀█ ░█▀▀▀           #     
+	#       ░█──░█ ░█░█░█ ░█▀▀▀ 　 ░█▄▄█ ░█─ ░█▀▀▀ ░█─── ░█▀▀▀           #                    >  GitUser="syapik96" <
+	#       ░█▄▄▄█ ░█──▀█ ░█▄▄▄ 　 ░█─── ▄█▄ ░█▄▄▄ ░█▄▄█ ░█▄▄▄           #              #wget https://github.com/${GitUser}/
+	#                                                                    #      
+	#          ☆┌─┐ ─┐☆        - Modded By PrinceNewbie                 #    
+	#           │▒│ /▒/         - Thanks To Original.Creator             #    
+	#           │▒│/▒/          - Whatsapp : -                           #       # jika ada masalah pull issue , 
+	#         　│▒ /▒/─┬─┐◯    - Telegram : t.me/PrinceNewbie           #       # jika ada kesilapan dlm skrip dia alukan utk betulkan
+	#           │▒│▒|▒│▒│       - To those who use this script,          #       # thanks 
 	#          ┌┴─┴─┐-┘─┘         this script is still under development #
-	#          │▒┌──┘▒▒▒│◯     - Thanks for who using this script       #
-	#          └┐▒▒▒▒▒▒┌┘       - To EnterMenuList = 'menu'              #
-	#                           - next update v2ray and menulisting      #
+	#          │▒┌──┘▒▒▒│◯     - Thanks for who using this script       #       #                SILA BACA TEXT BERSIMBOL #               #
+	#          └┐▒▒▒▒▒▒┌┘       - To EnterMenuList = 'menu'              #       # INI BAGI MEMUDAHKAN BG YANG INGIN MENGGUNAKAN SKRIP INI #
+	#                           - next update v2ray and menulisting      #       #     COPYRIGHT ONEPIECEVPN, POWERED BY PRINCENEWBIE.     #
 	#====================================================================#
 	
 ## Description :
