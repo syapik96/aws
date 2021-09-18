@@ -22,3 +22,5 @@ echo -e "#====================================================================#"
 echo -e "                         COPYRIGHT © 2021 "    
 echo -e "               ONEPIECEVPN POWERED BY PRINCENEWBIE"
 echo -e "            Privacy Policy Terms & Conditions Disclaimer"  
+sleep 10
+ssh
