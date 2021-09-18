@@ -12,10 +12,11 @@ MYIP2="s/xxxxxxxxx/$MYIP/g";
 NET=$(ip -o $ANU -4 route show to default | awk '{print $5}');
 source /etc/os-release
 ver=$VERSION_ID
-timedatectl set-timezone Asia/Kuala_Lumpur
+
 # certificate ssh & openvpn
 # edit bwh, isikan nama domain anda
 # detail nama perusahaan
+
 country=SG
 state=Singapore
 locality=Singapore
@@ -90,7 +91,10 @@ sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 apt-get --reinstall --fix-missing install -y bzip2 gzip coreutils wget screen rsyslog iftop htop net-tools zip unzip wget net-tools curl nano sed screen gnupg gnupg1 bc apt-transport-https build-essential dirmngr libxml-parser-perl neofetch git
 echo "clear" >> .profile
 echo "neofetch" >> .profile
-echo "POWERED PRINCENEWBIE" >> .profile
+echo "echo by PrinceNewbie" >> .profile
+
+GitUser="syapik96"
+#wget https://github.com/${GitUser}/
 
 # install webserver
 apt -y install nginx
@@ -99,61 +103,38 @@ rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
 wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/${GitUser}/aws/main/nginx.conf"
 mkdir -p /home/vps/public_html
-echo "<pre>Setup Mod By OnePiece</pre>" > /home/vps/public_html/index.html
+echo "<h1><center>AutoScriptVPS By t.me/PrinceNewbie</center></h1>" > /home/vps/public_html/index.html
 wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/${GitUser}/aws/main/vps.conf"
 /etc/init.d/nginx restart
 
 # install badvpn
 cd
-#wget -O /usr/bin/badvpn-udpgw "https://github.com/${GitUser}/aws/raw/main/badvpn-udpgw64"
-#chmod +x /usr/bin/badvpn-udpgw
-#sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500' /etc/rc.local
-#sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500' /etc/rc.local
-#sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500' /etc/rc.local
-#screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500
-#screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500
-#screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500
-#screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7400 --max-clients 500
-#screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7500 --max-clients 500
-#screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7600 --max-clients 500
-#screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7700 --max-clients 500
-#screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7800 --max-clients 500
-#screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7900 --max-clients 500
-# INSTALL BADVPN PACKAGE
-wget -q "https://github.com/ambrop72/badvpn/archive/refs/tags/1.999.130.tar.gz"
-tar xzf 1.999.130.tar.gz
-cd badvpn-1.999.130
-cmake -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_UDPGW=1
-make install
-mv /usr/local/bin/badvpn-udpgw /usr/bin/
-
-echo "[Unit]
-Description=Badvpn-udpgw Service
-Documentation=https://github.com/ambrop72/
-After=network.target
-
-[Service]
-Type=simple
-ExecStart=/usr/bin/badvpn-udpgw --listen-addr 127.0.0.1:7300
-Restart=on-failure
-RestartSec=5
-
-[Install]
-WantedBy=multi-user.target" > /etc/systemd/system/badvpn-udpgw.service
-systemctl daemon-reload && systemctl enable badvpn-udpgw && cd /root/
+wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/Dimas1441/yamate/main/1/badvpn-udpgw64"
+chmod +x /usr/bin/badvpn-udpgw
+sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500' /etc/rc.local
+sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500' /etc/rc.local
+sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500' /etc/rc.local
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7400 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7500 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7600 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7700 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7800 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7900 --max-clients 500
 
 # setting port ssh
 sed -i 's/Port 22/Port 22/g' /etc/ssh/sshd_config
-# INSTALL DROPBEAR PACKAGE
-DEBIAN_FRONTEND=noninteractive apt-get -y install dropbear
-echo 'NO_START=0
-DROPBEAR_PORT=442
-DROPBEAR_EXTRA_ARGS="-p 143"
-DROPBEAR_BANNER="/etc/issue.net"
-DROPBEAR_RSAKEY="/etc/dropbear/dropbear_rsa_host_key"
-DROPBEAR_DSSKEY="/etc/dropbear/dropbear_dss_host_key"
-DROPBEAR_ECDSAKEY="/etc/dropbear/dropbear_ecdsa_host_key"
-DROPBEAR_RECEIVE_WINDOW=65536' | tee /etc/default/dropbear
+
+# install dropbear
+apt -y install dropbear
+sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
+sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=143/g' /etc/default/dropbear
+sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 109 -p 69 -p 77"/g' /etc/default/dropbear
+echo "/bin/false" >> /etc/shells
+echo "/usr/sbin/nologin" >> /etc/shells
+/etc/init.d/dropbear restart
 
 # install squid
 cd
@@ -178,10 +159,6 @@ systemctl enable vnstat
 rm -f /root/vnstat-2.6.tar.gz 
 rm -rf /root/vnstat-2.6
 
-# install webmin
-apt install webmin -y
-sed -i 's/ssl=1/ssl=0/g' /etc/webmin/miniserv.conf
-/etc/init.d/webmin restart
 
 # install stunnel
 apt install stunnel4 -y
@@ -217,6 +194,7 @@ connect = 127.0.0.1:143
 [openvpn]
 accept = 442
 connect = 127.0.0.1:1194
+
 END
 
 # make a certificate
@@ -385,7 +363,6 @@ chown -R www-data:www-data /home/vps/public_html
 /etc/init.d/ssh restart
 /etc/init.d/dropbear restart
 /etc/init.d/fail2ban restart
-/etc/init.d/webmin restart
 /etc/init.d/stunnel4 restart
 /etc/init.d/vnstat restart
 /etc/init.d/squid restart
@@ -398,7 +375,7 @@ screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7600 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7700 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7800 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7900 --max-clients 500
-#history -c
+history -c
 echo "unset HISTFILE" >> /etc/profile
 
 cd
@@ -408,5 +385,4 @@ rm -f /root/ssh-vpn.sh
 
 # finihsing
 clear
-neofetch
-netstat -nutlp
+
