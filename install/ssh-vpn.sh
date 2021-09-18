@@ -311,20 +311,7 @@ wget -O cfh "https://raw.githubusercontent.com/${GitUser}/aws/main/panel-domain/
 wget -O add-dns "https://raw.githubusercontent.com/${GitUser}/aws/main/panel-domain/add-dns.sh"
 wget -O menu "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/menu.sh"
 
-chmod +x l2tp
-chmod +x ssh
-chmod +x ssssr
-chmod +x trojaan
-chmod +x v2raay
-chmod +x wgr
-chmod +x vleess
-chmod +x cfd
-chmod +x cff
-chmod +x cfh
-chmod +x add-dns
-
 chmod +x add-host
-chmod +x menu
 chmod +x usernew
 chmod +x trial
 chmod +x hapus
@@ -342,6 +329,18 @@ chmod +x ram
 chmod +x renew
 chmod +x clear-log
 chmod +x update
+
+chmod +x l2tp
+chmod +x ssh
+chmod +x ssssr
+chmod +x trojaan
+chmod +x v2raay
+chmod +x wgr
+chmod +x vleess
+chmod +x cfd
+chmod +x cff
+chmod +x cfh
+chmod +x menu
 
 echo "0 5 * * * root clear-log" >> /etc/crontab
 echo "0 0 * * * root xp" >> /etc/crontab
