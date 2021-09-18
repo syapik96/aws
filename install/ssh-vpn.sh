@@ -17,13 +17,13 @@ ver=$VERSION_ID
 # edit bwh, isikan nama domain anda
 # detail nama perusahaan
 
-country=SG
-state=Singapore
-locality=Singapore
-organization=Trickinternetvpns.ml
-organizationalunit=Trickinternetvpns VPN Service
-commonname=trickinternetvpns.ml
-email=akuwsyah04@gmail.com
+country=MY
+state=Malaysia
+locality=Kuala Lumpur
+organization=gilergames.tk
+organizationalunit=Gilergames VPN
+commonname=gilergames.tk
+email=admin@gilergames.tk
 
 # simple password minimal
 wget -O /etc/pam.d/common-password "https://raw.githubusercontent.com/${GitUser}/aws/main/password"
