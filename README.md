@@ -15,20 +15,22 @@ src="https://img.shields.io/badge/Service-V2ray-success.svg">  <img src= "https:
 
 ##   <img src="https://img.shields.io/badge/Service-Update%20Dulu-green"> 
   ```html
-apt-get update && apt-get upgrade -y && update-grub && sleep 2 && reboot
+apt-get update && apt-get upgrade -y && update-grub && reboot
   ```
 ##  <img src="https://img.shields.io/badge/Install Semua-VPN%20Batch-green">
   
   ```html
 
 wget https://raw.githubusercontent.com/syapik96/aws/main/setup.sh 
-	chmod +x setup.sh 
-	./setup.sh
+chmod +x setup.sh 
+./setup.sh
   ```
 ##    <img src="https://img.shields.io/badge/Install%20Hanya-SSH%2FSSH%20SSL(Stunnel)%20SSH--WS%20Python%20BadVPN--UDPGW-green">
 	 
    ```html
-sysctl -w net.ipv6.conf.all.disable_ipv6=1 && sysctl -w net.ipv6.conf.default.disable_ipv6=1 && apt install -y bzip2 gzip coreutils screen curl && wget https://raw.githubusercontent.com/syapik96/aws/main/install/sshonly.sh && chmod +x sshonly.sh && sed -i -e 's/\r$//' sshonly.sh && screen -S sshonly ./sshonly.sh
+wget https://raw.githubusercontent.com/syapik96/aws/main/install/sshonly.sh
+chmod +x sshonly.sh  
+./sshonly.sh
   ```
  
 # About :
