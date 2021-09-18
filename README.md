@@ -34,23 +34,23 @@ chmod +x sshonly.sh
   ```
  
 # About :
-	#====================================================================#        
-	#                   Premium Script By OnePieceVPN                    #       # Fork first , then change this .
-	#                                                                    #       # Replace all this with your own acc name :
-	#       ░█▀▀▀█ ░█▄─░█ ░█▀▀▀ 　 ░█▀▀█ ▀█▀ ░█▀▀▀ ░█▀▀█ ░█▀▀▀           #     
-	#       ░█──░█ ░█░█░█ ░█▀▀▀ 　 ░█▄▄█ ░█─ ░█▀▀▀ ░█─── ░█▀▀▀           #                    >  GitUser="syapik96" <
-	#       ░█▄▄▄█ ░█──▀█ ░█▄▄▄ 　 ░█─── ▄█▄ ░█▄▄▄ ░█▄▄█ ░█▄▄▄           #              #wget https://github.com/${GitUser}/
-	#                                                                    #      
-	#          ☆┌─┐ ─┐☆        - Modded By PrinceNewbie                 #    
-	#           │▒│ /▒/         - Thanks To Original.Creator             #    
-	#           │▒│/▒/          - Whatsapp : -                           #       # jika ada masalah pull issue , 
-	#         　│▒ /▒/─┬─┐◯    - Telegram : t.me/PrinceNewbie           #       # jika ada kesilapan dlm skrip dia alukan utk betulkan
-	#           │▒│▒|▒│▒│       - To those who use this script,          #       # thanks 
-	#          ┌┴─┴─┐-┘─┘         this script is still under development #
-	#          │▒┌──┘▒▒▒│◯     - Thanks for who using this script       #       #                SILA BACA TEXT BERSIMBOL #               #
-	#          └┐▒▒▒▒▒▒┌┘       - To EnterMenuList = 'menu'              #       # INI BAGI MEMUDAHKAN BG YANG INGIN MENGGUNAKAN SKRIP INI #
-	#                           - next update v2ray and menulisting      #       #     COPYRIGHT ONEPIECEVPN, POWERED BY PRINCENEWBIE.     #
-	#====================================================================#
+	       
+       # Fork first , then change this .
+       # Replace all this with your own acc name :
+	     
+	                    >  GitUser="syapik96" <
+	              #wget https://github.com/${GitUser}/
+	      
+	   
+	    
+      # jika ada masalah pull issue , 
+	     # jika ada kesilapan dlm skrip dia alukan utk betulkan
+	      # thanks 
+	
+       #               SILA BACA TEXT BERSIMBOL #               #
+       # INI BAGI MEMUDAHKAN BG YANG INGIN MENGGUNAKAN SKRIP INI #
+       #     COPYRIGHT ONEPIECEVPN, POWERED BY PRINCENEWBIE.     #
+	
 	
 ## Description :
 
