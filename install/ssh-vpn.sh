@@ -12,7 +12,7 @@ MYIP2="s/xxxxxxxxx/$MYIP/g";
 NET=$(ip -o $ANU -4 route show to default | awk '{print $5}');
 source /etc/os-release
 ver=$VERSION_ID
-
+timedatectl set-timezone Asia/Kuala_Lumpur
 # certificate ssh & openvpn
 # edit bwh, isikan nama domain anda
 # detail nama perusahaan
@@ -90,7 +90,7 @@ sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 apt-get --reinstall --fix-missing install -y bzip2 gzip coreutils wget screen rsyslog iftop htop net-tools zip unzip wget net-tools curl nano sed screen gnupg gnupg1 bc apt-transport-https build-essential dirmngr libxml-parser-perl neofetch git
 echo "clear" >> .profile
 echo "neofetch" >> .profile
-echo "POWERED BY PRINCENEWBIE" >> .profile
+echo "POWERED PRINCENEWBIE" >> .profile
 
 # install webserver
 apt -y install nginx
@@ -105,27 +105,55 @@ wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/${GitUser}
 
 # install badvpn
 cd
-wget -O /usr/bin/badvpn-udpgw "https://github.com/${GitUser}/aws/raw/main/badvpn-udpgw64"
-chmod +x /usr/bin/badvpn-udpgw
-sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500' /etc/rc.local
-sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500' /etc/rc.local
-sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500' /etc/rc.local
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500
+#wget -O /usr/bin/badvpn-udpgw "https://github.com/${GitUser}/aws/raw/main/badvpn-udpgw64"
+#chmod +x /usr/bin/badvpn-udpgw
+#sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500' /etc/rc.local
+#sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500' /etc/rc.local
+#sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500' /etc/rc.local
+#screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500
+#screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500
+#screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500
+#screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7400 --max-clients 500
+#screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7500 --max-clients 500
+#screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7600 --max-clients 500
+#screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7700 --max-clients 500
+#screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7800 --max-clients 500
+#screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7900 --max-clients 500
+# INSTALL BADVPN PACKAGE
+wget -q "https://github.com/ambrop72/badvpn/archive/refs/tags/1.999.130.tar.gz"
+tar xzf 1.999.130.tar.gz
+cd badvpn-1.999.130
+cmake -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_UDPGW=1
+make install
+mv /usr/local/bin/badvpn-udpgw /usr/bin/
+
+echo "[Unit]
+Description=Badvpn-udpgw Service
+Documentation=https://github.com/ambrop72/
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/badvpn-udpgw --listen-addr 127.0.0.1:7300
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target" > /etc/systemd/system/badvpn-udpgw.service
+systemctl daemon-reload && systemctl enable badvpn-udpgw && cd /root/
 
 # setting port ssh
 sed -i 's/Port 22/Port 22/g' /etc/ssh/sshd_config
-sed -i 's/Port 40000/g' /etc/ssh/sshd_config
-
-# install dropbear
-apt -y install dropbear
-sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=143/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 50000 -p 109"/g' /etc/default/dropbear
-echo "/bin/false" >> /etc/shells
-echo "/usr/sbin/nologin" >> /etc/shells
-/etc/init.d/dropbear restart
+# INSTALL DROPBEAR PACKAGE
+DEBIAN_FRONTEND=noninteractive apt-get -y install dropbear
+echo 'NO_START=0
+DROPBEAR_PORT=442
+DROPBEAR_EXTRA_ARGS="-p 143"
+DROPBEAR_BANNER="/etc/issue.net"
+DROPBEAR_RSAKEY="/etc/dropbear/dropbear_rsa_host_key"
+DROPBEAR_DSSKEY="/etc/dropbear/dropbear_dss_host_key"
+DROPBEAR_ECDSAKEY="/etc/dropbear/dropbear_ecdsa_host_key"
+DROPBEAR_RECEIVE_WINDOW=65536' | tee /etc/default/dropbear
 
 # install squid
 cd
@@ -158,11 +186,17 @@ sed -i 's/ssl=1/ssl=0/g' /etc/webmin/miniserv.conf
 # install stunnel
 apt install stunnel4 -y
 cat > /etc/stunnel/stunnel.conf <<-END
+pid = /var/run/stunnel4/stunnel.pid
 cert = /etc/stunnel/stunnel.pem
+debug = 4
 client = no
 socket = a:SO_REUSEADDR=1
 socket = l:TCP_NODELAY=1
 socket = r:TCP_NODELAY=1
+
+[SSL/TLS]
+accept = 443
+connect = 700
 
 [dropbear]
 accept = 443
@@ -181,9 +215,8 @@ accept = 5052
 connect = 127.0.0.1:143
 
 [openvpn]
-accept = 992
+accept = 442
 connect = 127.0.0.1:1194
-
 END
 
 # make a certificate
@@ -268,7 +301,6 @@ cd /usr/bin
 wget -O add-host "https://raw.githubusercontent.com/${GitUser}/aws/main/add-host.sh"
 wget -O addhost "https://raw.githubusercontent.com/${GitUser}/aws/main/tambah/addhost.sh"
 wget -O about "https://raw.githubusercontent.com/${GitUser}/aws/main/about.sh"
-wget -O menu "https://raw.githubusercontent.com/${GitUser}/aws/main/menu.sh"
 wget -O usernew "https://raw.githubusercontent.com/${GitUser}/aws/main/usernew.sh"
 wget -O trial "https://raw.githubusercontent.com/${GitUser}/aws/main/trial.sh"
 wget -O hapus "https://raw.githubusercontent.com/${GitUser}/aws/main/hapus/hapus.sh"
@@ -287,8 +319,31 @@ wget -O ceklim "https://raw.githubusercontent.com/${GitUser}/aws/main/ceklim.sh"
 wget -O tendang "https://raw.githubusercontent.com/${GitUser}/aws/main/tendang.sh"
 wget -O clear-log "https://raw.githubusercontent.com/${GitUser}/aws/main/clear-log.sh"
 wget -O update "https://raw.githubusercontent.com/${GitUser}/aws/main/update.sh"
+#menu-Updated
+wget -O l2tp "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/l2tp.sh"
+wget -O ssh "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/ssh.sh"
+wget -O ssssr "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/ssssr.sh"
+wget -O trojaan "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/trojaan.sh"
+wget -O v2raay "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/.sh"
+wget -O wgr "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/wgr.sh"
+wget -O vleess "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/vleess.sh"
+wget -O cfd "https://raw.githubusercontent.com/${GitUser}/aws/main/panel-domain/cfd.sh"
+wget -O cff "https://raw.githubusercontent.com/${GitUser}/aws/main/panel-domain/cff.sh"
+wget -O cfh "https://raw.githubusercontent.com/${GitUser}/aws/main/panel-domain/cfh.sh"
+wget -O add-dns "https://raw.githubusercontent.com/${GitUser}/aws/main/panel-domain/add-dns.sh"
+wget -O menu "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/menu.sh"
 
-echo "0 5 * * * root clear-log && reboot" >> /etc/crontab
+chmod +x l2tp
+chmod +x ssh
+chmod +x ssssr
+chmod +x trojaan
+chmod +x v2raay
+chmod +x wgr
+chmod +x vleess
+chmod +x cfd
+chmod +x cff
+chmod +x cfh
+chmod +x add-dns
 
 chmod +x add-host
 chmod +x menu
@@ -310,6 +365,8 @@ chmod +x renew
 chmod +x clear-log
 chmod +x update
 
+echo "0 5 * * * root clear-log" >> /etc/crontab
+echo "0 0 * * * root xp" >> /etc/crontab
 # remove unnecessary files
 apt -y autoclean
 apt -y remove --purge unscd
@@ -335,14 +392,19 @@ chown -R www-data:www-data /home/vps/public_html
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500
-
-history -c
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7400 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7500 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7600 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7700 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7800 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7900 --max-clients 500
+#history -c
 echo "unset HISTFILE" >> /etc/profile
 
 cd
 rm -f /root/ssh-vpn.sh
-rm -f /root/cert.pem
-rm -f /root/key.pem
+#rm -f /root/cert.pem
+#rm -f /root/key.pem
 
 # finihsing
 clear
