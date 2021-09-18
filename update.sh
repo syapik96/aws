@@ -45,4 +45,4 @@ echo " Successfully Upload **New Menu Section** :"
 echo " - Fix minor Bugs"
 echo " Reboot 5 Sec"
 sleep 5
-reboot
+echo -e "Please rebbot your server"
