@@ -2,17 +2,16 @@
 
 clear
 
-echo -e "Name : Create SSH & OpenVPN Account" | lolcat
-echo -e "=============================="
-read -p "Username : " Login
-read -p "Password : " Pass
-read -p "Expired (hari): " masaaktif
+echo -e "    ==================================="  | lolcat
+echo -e "    ║    New SSH & OpenVPN Account    ║"       | lolcat
+echo -e "    ==================================="  | lolcat
+read -p "    * Username : " Login
+read -p "    * Password : " Pass
+read -p "    * Expired (hari): " masaaktif
 
-# create nano /root/domains.txt
-
-url=openvpn.trickinternetvpns.ml
-IP=$(wget -qO- http://ipecho.net/plain | xargs echo);
-domain=$(cat /root/domains.txt);
+url=$(cat /root/hostname);
+IP=$(wget -qO- ipinfo.io/ip);
+domain=$(cat /root/hostname);
 echo "Script AutoCreate Akaun SSH dan OpenVPN Mod By OnePiece"
 sleep 1
 echo Ping Host
@@ -30,11 +29,10 @@ useradd -e `date -d "$masaaktif days" +"%Y-%m-%d"` -s /bin/false -M $Login
 exp="$(chage -l $Login | grep "Account expires" | awk -F": " '{print $2}')"
 echo -e "$Pass\n$Pass\n"|passwd $Login &> /dev/null
 echo -e ""
-echo -e "Terima Kasih Telah Menggunakan Layanan Kami"
-echo -e "Informasi Akaun SSH & OpenVPN"
+echo -e "Informasi Akaun SSH & OpenVPN" | lolcat
 echo -e "Username          : $Login "
 echo -e "Password          : $Pass"
-echo -e "==============================="
+echo -e "===============================" | lolcat
 echo -e "IP Host           : $IP"
 echo -e "Host              : $domain"
 echo -e "OpenSSH           : 22, 500"
@@ -47,7 +45,9 @@ echo -e "OpenVPN           : TCP 1194 http://${url}:81/client-tcp-1194.ovpn"
 echo -e "OpenVPN           : UDP 2200 http://${url}:81/client-udp-2200.ovpn"
 echo -e "OpenVPN           : SSL 992 http://${url}:81/client-tcp-ssl.ovpn"
 echo -e "badvpn            : 7100, 7200, 7300"
-echo -e "==============================="
-echo -e "Payload Websocket : GET / HTTP/1.1[crlf]Host: $domain[crlf]Upgrade: websocket[crlf][crlf]
+echo -e "===============================" | lolcat
+echo -e "Payload Websocket : GET / HTTP/1.1[crlf]Host: $domain[crlf]Upgrade: websocket[crlf][crlf]"
+echo -e "===============================" | lolcat
 echo -e "Aktif Sampai   : $exp"
-echo -e "Script Mod by OnePiece"
+echo -e "Terima Kasih Telah Menggunakan Layanan Kami" | lolcat
+
