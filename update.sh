@@ -14,31 +14,9 @@ cd /usr/bin
 rm -f /usr/bin/menu
 GitUser="syapik96"
 #wget https://github.com/${GitUser}/
-wget -O l2tp "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/l2tp.sh"
-wget -O ssh "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/ssh.sh"
-wget -O ssssr "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/ssssr.sh"
-wget -O trojaan "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/trojaan.sh"
-wget -O v2raay "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/.sh"
-wget -O wgr "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/wgr.sh"
-wget -O vleess "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/vleess.sh"
-wget -O cfd "https://raw.githubusercontent.com/${GitUser}/aws/main/panel-domain/cfd.sh"
-wget -O cff "https://raw.githubusercontent.com/${GitUser}/aws/main/panel-domain/cff.sh"
-wget -O cfh "https://raw.githubusercontent.com/${GitUser}/aws/main/panel-domain/cfh.sh"
-wget -O add-dns "https://raw.githubusercontent.com/${GitUser}/aws/main/panel-domain/add-dns.sh"
-wget -O menu "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/menu.sh"
-
-chmod +x l2tp
-chmod +x ssh
-chmod +x ssssr
-chmod +x trojaan
-chmod +x v2raay
-chmod +x wgr
-chmod +x vleess
-chmod +x cfd
-chmod +x cff
-chmod +x cfh
-chmod +x add-dns
-chmod +x menu
+wget -O l2tp "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/update1.0.sh"
+chmod +x update1.0
+update1.0
 
 echo " Successfully Update :"
 echo " Successfully Upload **New Menu Section** :"
