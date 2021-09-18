@@ -109,7 +109,7 @@ wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/${GitUser}
 
 # install badvpn
 cd
-wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/Dimas1441/yamate/main/1/badvpn-udpgw64"
+wget -O /usr/bin/badvpn-udpgw "https://github.com/${GitUser}/aws/raw/main/badvpn-udpgw64"
 chmod +x /usr/bin/badvpn-udpgw
 sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500' /etc/rc.local
 sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500' /etc/rc.local
@@ -117,21 +117,16 @@ sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-c
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7400 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7500 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7600 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7700 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7800 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7900 --max-clients 500
 
 # setting port ssh
 sed -i 's/Port 22/Port 22/g' /etc/ssh/sshd_config
+sed -i 's/Port 40000/g' /etc/ssh/sshd_config
 
 # install dropbear
 apt -y install dropbear
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
 sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=143/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 109 -p 69 -p 77"/g' /etc/default/dropbear
+sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 50000 -p 109"/g' /etc/default/dropbear
 echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
 /etc/init.d/dropbear restart
@@ -163,17 +158,11 @@ rm -rf /root/vnstat-2.6
 # install stunnel
 apt install stunnel4 -y
 cat > /etc/stunnel/stunnel.conf <<-END
-pid = /var/run/stunnel4/stunnel.pid
 cert = /etc/stunnel/stunnel.pem
-debug = 4
 client = no
 socket = a:SO_REUSEADDR=1
 socket = l:TCP_NODELAY=1
 socket = r:TCP_NODELAY=1
-
-[SSL/TLS]
-accept = 443
-connect = 700
 
 [dropbear]
 accept = 443
@@ -192,7 +181,7 @@ accept = 5052
 connect = 127.0.0.1:143
 
 [openvpn]
-accept = 442
+accept = 992
 connect = 127.0.0.1:1194
 
 END
@@ -362,18 +351,14 @@ chown -R www-data:www-data /home/vps/public_html
 /etc/init.d/ssh restart
 /etc/init.d/dropbear restart
 /etc/init.d/fail2ban restart
+/etc/init.d/webmin restart
 /etc/init.d/stunnel4 restart
 /etc/init.d/vnstat restart
 /etc/init.d/squid restart
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7400 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7500 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7600 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7700 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7800 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7900 --max-clients 500
+
 history -c
 echo "unset HISTFILE" >> /etc/profile
 
