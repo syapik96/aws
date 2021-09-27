@@ -43,7 +43,7 @@ echo -e "          \e[1;31mDropbear          :  \e[0m"143 , 109
 echo -e "          \e[1;31mSSH WS Python     :  \e[0m"100 , 2021 , 2020 
 echo -e "          \e[1;31mSSH WS Python SSL :  \e[0m"2052 , 2053
 echo -e "          \e[1;31mSSL/TLS           :  \e[0m"443 , 777
-echo -e "          \e[1;31mPort Squid        :  \e[0m"8000 , 8080 , (limit to IP SSH)
+echo -e "          \e[1;31mPort Squid        :  \e[0m"8000 , 8080 limit to IP SSH
 echo -e "          \e[1;31mOpenVPN TCP 1194  :  \e[0m"http://${url}:81/client-tcp-1194.ovpn
 echo -e "          \e[1;31mOpenVPN UDP 2200  :  \e[0m"http://${url}:81/client-udp-2200.ovpn
 echo -e "          \e[1;31mOpenVPN SSL 992   :  \e[0m"http://${url}:81/client-tcp-ssl.ovpn
