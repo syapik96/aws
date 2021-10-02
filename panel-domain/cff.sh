@@ -14,9 +14,9 @@ echo -e "email=$email" >> /root/mail.conf
 echo -e "key=$key" >> /root/mail.conf
 clear
 echo "Done"
-echo "Your ID Cloudflare"
+echo -e "Your ID Cloudflare"
 echo -e "===============================" | lolcat
-echo "DOMAIN         : $domain"
-echo "Email          : $email"
-echo "Api Key        : $key"
+echo -e "DOMAIN         : $domain"
+echo -e "Email          : $email"
+echo -e "Api Key        : $key"
 echo -e "===============================" | lolcat
