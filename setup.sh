@@ -19,13 +19,38 @@ sysctl -w net.ipv6.conf.default.disable_ipv6 = 1
 timedatectl set-timezone Asia/Kuala_Lumpur
 apt-get update && apt-get upgrade -y 
 apt install -y bzip2 gzip coreutils screen curl
+apt-get install figlet -y
+apt-get install ruby -y
+gem install lolcat -y
 
 mkdir /var/lib/premium-script;
 echo "IP=" >> /var/lib/premium-script/ipvps.conf
 
+echo -e " Untuk Menjalankan Auto Install Script Ini"
+echo -e " Anda Harus Mengisi Borang terlebih Dahulu "
+echo -e " Downloading 20%"
+echo -e " Downloading 40%"
+echo -e " Downloading 80%"
+echo -e " Downloading 100%"
+sleep 0.5
+clear
+echo -e " ---Borang ID Cloudlare--- " | lolcat
+echo -e ""
+read -p " Masukan Domain : " domain
+read -p " Masukan Email Cloudflare :" email
+read -p " Masukan Api Key :" key
+echo "$domain" >> /root/mail2.txt
+echo "$email" >> /root/mail3.txt
+echo "$key" >> /root/mail4.txt
+
+echo -e " Starting Installation AutoScript "
+echo -e "1"
+echo -e "2"
+echo -e "3"
+
 GitUser="syapik96"
 #wget https://github.com/${GitUser}/
-wget https://raw.githubusercontent.com/${GitUser}/aws/main/panel-domain/cff.sh && chmod +x cff.sh && ./cff.sh
+
 wget https://raw.githubusercontent.com/${GitUser}/aws/main/add-host.sh && chmod +x add-host.sh && screen -S add-host ./add-host.sh
 wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/ssh-vpn.sh && chmod +x ssh-vpn.sh && screen -S ssh-vpn ./ssh-vpn.sh
 wget https://raw.githubusercontent.com/${GitUser}/aws/main/websocket-python/websocket.sh && chmod +x websocket.sh && screen -S websocket.sh ./websocket.sh
@@ -35,7 +60,7 @@ wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/ssr.sh && chm
 wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/shadowsocksobfs.sh && chmod +x shadowsocksobfs.sh && screen -S ss ./shadowsocksobfs.sh
 wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/ins-vt.sh && chmod +x ins-vt.sh && sed -i -e 's/\r$//' ins-vt.sh && screen -S v2ray ./ins-vt.sh
 wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/ipsec.sh && chmod +x ipsec.sh && screen -S ipsec ./ipsec.sh
-rm -f /root/cff.sh
+
 rm -f /root/add-host.sh
 rm -f /root/ssh-vpn.sh
 rm -f /root/websocket.sh
@@ -46,10 +71,6 @@ rm -f /root/shadowsocksobfs.sh
 rm -f /root/ins-vt.sh
 rm -f /root/go.sh
 rm -f /root/ipsec.sh
-
-sudo apt-get install figlet
-sudo apt-get install ruby
-sudo gem install lolcat
 
 cat > /etc/systemd/system/autosett.service <<EOF
 [Unit]
