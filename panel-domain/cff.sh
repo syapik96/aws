@@ -1,8 +1,23 @@
 #!/bin/bash
 # updated Add cloudflare section
 
-cd 
-rm /root/mail2.txt  /root/mail3.txt  /root/mail4.txt
+figlet -f standard "WARNING ! !" | lolcat
+echo -e ""
+echo -e "\e[31mPeringatan ini !! akan memadam detail Cloudflare yang terkini\e[0m"
+echo -e "\e[31mDetails anda sebelom boleh dijumpai di >> /root/mail2.txt, mail3.txt, mail4.txt\e[0m"
+echo -e "\e[31mEnter 0 to Back Menu\e[0m"
+echo -e ""
+read -e -p "Press Enter to continue :" DD
+case $DD in
+    0)
+    clear
+    menu
+    exit
+    ;;
+    *)
+    clear
+    cd
+    rm /root/mail2.txt  /root/mail3.txt  /root/mail4.txt
 figlet -f standard "Cloudflare" | lolcat
 echo ""
 echo -e " ---Add ID Cloudlare--- " | lolcat
@@ -33,3 +48,5 @@ case $HH in
     exit
     ;;
  esac   
+esac   
+ 
