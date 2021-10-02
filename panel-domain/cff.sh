@@ -3,7 +3,7 @@
 
 figlet -f standard "WARNING ! !" | lolcat
 echo -e ""
-echo -e "\e[31mPeringatan ini !! akan memadam detail Cloudflare yang terkini\e[0m"
+echo -e "\e[31mPeringatan !! Backup dahulu detail Cloudflare yang terkini supaya tidak menyusahkan anda utk masa akan datang\e[0m"
 echo -e "\e[31mDetails anda sebelom boleh dijumpai di >> /root/mail2.txt, mail3.txt, mail4.txt\e[0m"
 echo -e "\e[31mEnter 0 to Back Menu\e[0m"
 echo -e ""
@@ -34,12 +34,17 @@ email=$(cat /root/mail3.txt)
 key=$(cat /root/mail4.txt)
 figlet -f standard "Succesfully" | lolcat
 echo ""
-echo -e "Your NewID Cloudflare" | lolcat
-echo -e "===============================" | lolcat
-echo -e " DOMAIN         : $domain"
-echo -e " Email          : $email"
-echo -e " Api Key        : $key"
-echo -e "===============================" | lolcat
+echo -e "         Your NewID Cloudflare" | lolcat
+echo -e "  ====================================" | lolcat
+echo -e "     AutoScriptVPN by PrinceNewbie " | lolcat
+echo -e ""
+echo -e "         DOMAIN      : $domain"
+echo -e ""
+echo -e "         Email       : $email"
+echo -e ""
+echo -e "         Api Key     : $key"
+echo -e ""
+echo -e "   ===================================" | lolcat
 read -p " Enter 0 back menu : " HH
 case $HH in
     0)
