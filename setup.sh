@@ -1,16 +1,18 @@
 #!/bin/bash
 # Script Updated , Copyright * 2021
 # Premium Script by t.me/PrinceNewbie
+
 if [ "${EUID}" -ne 0 ]; then
 echo "You need to run this script as root"
 exit 1
 fi
+
+clear
+
 RED='\e[1;31m'
 GREEN='\e[0;32m'
 BLUE='\e[0;34m'
 NC='\e[0m'
-
-clear
 
 sysctl -w net.ipv6.conf.all.disable_ipv6 = 1
 sysctl -w net.ipv6.conf.default.disable_ipv6 = 1
@@ -63,8 +65,6 @@ WantedBy=multi-user.target
 EOF
 systemctl daemon-reload
 systemctl enable autosett
-
-wget https://raw.githubusercontent.com/${GitUser}/aws/main/install.sh && chmod +x install.sh && ./install.sh
 
 history -c
 echo "1.1.1" > /home/ver
