@@ -75,7 +75,6 @@ echo -e  " $gl ║\e[m$bd 17$bl]\e[m$bd Information Display System" | lolcat
 echo -e  " $gl ║\e[m$bd 18$bl]\e[m$bd Info Script Auto Install" | lolcat
 echo -e  " $bl ║\e[m$bd 19$bl]\e[m$bd Restart All Service" | lolcat
 echo -e  " $bl ║\e[m$bd 20$bl]\e[m$bd Change Banner"  | lolcat
-echo -e  " $bl ║\e[m$bd 21$bl]\e[m$bd Update" | lolcat
 echo -e  " $bl ║"                              
 echo -e  "  ╠════════════════════════════════════════════════════════════╣\e[m" | lolcat
 echo -e  "  ║   0) Exit Menu .                                           ║\e[m" | lolcat
@@ -145,9 +144,6 @@ while true; do
    ;;
    20)
    nano /etc/issue.net
-   ;;
-   21)
-   update
    ;;
    0)
    exit
