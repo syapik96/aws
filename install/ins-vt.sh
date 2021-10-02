@@ -1,5 +1,5 @@
 #!/bin/bash
-domain=$(cat /etc/hostname)
+domain=$(cat /root/mail2.txt)
 apt install iptables iptables-persistent -y
 apt install curl socat xz-utils wget apt-transport-https gnupg gnupg2 gnupg1 dnsutils lsb-release -y 
 apt install socat cron bash-completion ntpdate -y
@@ -12,17 +12,23 @@ timedatectl set-timezone Asia/Kuala_lumpur
 chronyc sourcestats -v
 chronyc tracking -v
 date
+
 # install v2ray
 GitUser="syapik96"
 #wget https://github.com/${GitUser}/
-wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/go.sh && chmod +x go.sh && ./go.sh
+
+wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/go.sh 
+chmod +x go.sh
+./go.sh
 rm -f /root/go.sh
 mkdir /root/.acme.sh
 curl https://acme-install.netlify.app/acme.sh -o /root/.acme.sh/acme.sh
 chmod +x /root/.acme.sh/acme.sh
 /root/.acme.sh/acme.sh --issue -d $domain --standalone -k ec-256
 ~/.acme.sh/acme.sh --install-cert -d $domain --fullchainpath /etc/v2ray/v2ray.crt --keypath /etc/v2ray/v2ray.key --ecc
+
 uuid=$(cat /proc/sys/kernel/random/uuid)
+
 cat> /etc/v2ray/config.json << END
 {
   "log": {
@@ -482,6 +488,7 @@ cat> /etc/v2ray/trojan.json <<END
   }
 }
 END
+
 iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 4443 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 5443 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 6443 -j ACCEPT
@@ -507,7 +514,9 @@ systemctl enable v2ray@trojan.service
 systemctl start v2ray@trojan.service
 systemctl restart v2ray
 systemctl enable v2ray
+
 cd /usr/bin
+
 wget -O addws "https://raw.githubusercontent.com/${GitUser}/aws/main/tambah/addws.sh"
 wget -O addvless "https://raw.githubusercontent.com/${GitUser}/aws/main/tambah/addvless.sh"
 wget -O addtr "https://raw.githubusercontent.com/${GitUser}/aws/main/tambah/addtr.sh"
@@ -524,6 +533,7 @@ wget -O xp-ws "https://raw.githubusercontent.com/${GitUser}/aws/main/xp-ws.sh"
 wget -O xp-tr "https://raw.githubusercontent.com/${GitUser}/aws/main/xp-tr.sh"
 wget -O xp-vless "https://raw.githubusercontent.com/${GitUser}/aws/main/xp-vless.sh"
 wget -O certv2ray "https://raw.githubusercontent.com/${GitUser}/aws/main/cert.sh"
+
 chmod +x addws
 chmod +x addvless
 chmod +x addtr
@@ -540,8 +550,9 @@ chmod +x xp-ws
 chmod +x xp-tr
 chmod +x xp-vless
 chmod +x certv2ray
+
 cd
-mv /root/domain /etc/v2ray
+cp /etc/hostname /etc/v2ray
 echo "0 0 * * * root xp-ws" >> /etc/crontab
 echo "0 0 * * * root xp-tr" >> /etc/crontab
 echo "0 0 * * * root xp-vless" >> /etc/crontab
