@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Mod by SL
+# Mod by PrinceNewbie
 # ==================================================
 
 # initialisasi var
@@ -18,8 +18,8 @@ mkdir /etc/openvpn/easy-rsa/keys
 cp /etc/openvpn/easy-rsa/vars.example /etc/openvpn/easy-rsa/vars
 
 # Kemudian edit file variabel easy-rsa
-# nano /etc/openvpn/easy-rsa/vars
-wget -O /etc/openvpn/easy-rsa/vars "https://raw.githubusercontent.com/syapik96/aws/main/vars.conf"
+nano /etc/openvpn/easy-rsa/vars
+#wget -O /etc/openvpn/easy-rsa/vars "https://raw.githubusercontent.com/syapik96/aws/main/vars.conf"
 # edit projek export KEY_NAME="vpn"
 # Save dan keluar dari editor
 
