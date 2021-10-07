@@ -128,7 +128,7 @@ if [[ ${OS} == "centos" ]]; then
 }
 Start_SSR(){
 	check_pid
-	wget -O /etc/init.d/ssrmu "https://raw.githubusercontent.com/${GitUser}/aws/main/install/ssrmu.sh"
+	wget -O /etc/init.d/ssrmu "https://raw.githubusercontent.com/${GitUser}/aws/main/install/ssrmu"
 	/etc/init.d/ssrmu start
 }
 Install_SSR(){
