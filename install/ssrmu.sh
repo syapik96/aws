@@ -1,5 +1,9 @@
 #!/bin/bash
-PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
+red='\e[1;31m'
+green='\e[0;32m'
+NC='\e[0m'
+clear
+#PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
 sh_ver="1.0.26"
 filepath=$(cd "$(dirname "$0")"; pwd)
@@ -656,9 +660,9 @@ menu_status(){
 	if [[ -e ${ssr_folder} ]]; then
 		check_pid
 		if [[ ! -z "${PID}" ]]; then
-			echo -e "  Current status: ${Green_font_prefix} Terinstall${Font_color_suffix} dan ${Green_font_prefix} dimulai${Font_color_suffix}"
+			echo -e "  Current status: ${Green_font_prefix} Installed${Font_color_suffix} & ${Green_font_prefix} Running${Font_color_suffix}"
 		else
-			echo -e "  Current status: ${Green_font_prefix} Terinstall${Font_color_suffix} tapi ${Red_font_prefix} berhenti${Font_color_suffix}"
+			echo -e "  Current status: ${Green_font_prefix} Installed${Font_color_suffix} but ${Red_font_prefix} Not Running${Font_color_suffix}"
 		fi
 		cd "${ssr_folder}"
 	else
@@ -684,7 +688,6 @@ menu_status
   ${Green_font_prefix}8.${Font_color_suffix}  Restart ShadowsocksR
   ${Green_font_prefix}9.${Font_color_suffix}  Cek ShadowsocksR log
   ${Green_font_prefix}10.${Font_color_suffix} Upgrade script 
-  ${Green_font_prefix}---- Lost Server ----${Font_color_suffix}
   
   ${Tip} Username And User Port Can Not Be Changed, If You Need To Modify, Use The Script To Manually Change The Function!
  "
@@ -723,7 +726,7 @@ case "$num" in
 	Update_Shell
 	;;
 	*)
-	echo -e "${Error} Please enter the correct number [1-10] "
+	echo -e "${Error} Pilih Nomor [1-10] "
 	;;
 esac
 fi
