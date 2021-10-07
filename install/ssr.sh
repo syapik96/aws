@@ -114,7 +114,7 @@ fi
 }
 JQ_install(){
 cd "${ssr_folder}"
-wget --no-check-certificate "https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64" -O ${jq_file}
+wget --no-check-certificate "https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64" -O ${jq_file}
 chmod +x ${jq_file}
 }
 Installation_dependency(){
