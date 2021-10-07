@@ -144,7 +144,7 @@ Save_iptables
 Start_SSR
 }
 Install_SSR
-wget -O /usr/bin/ssr https://raw.githubusercontent.com/${GitUser}/aws/main/install/ssrmu.sh && chmod +x /usr/bin/ssr
+#wget -O /usr/bin/ssr https://raw.githubusercontent.com/${GitUser}/aws/main/install/ssrmu.sh && chmod +x /usr/bin/ssr
 wget -O /usr/bin/addssr https://raw.githubusercontent.com/${GitUser}/aws/main/tambah/addssr.sh && chmod +x /usr/bin/addssr
 wget -O /usr/bin/delssr https://raw.githubusercontent.com/${GitUser}/aws/main/hapus/delssr.sh && chmod +x /usr/bin/delssr
 wget -O /usr/bin/xp-ssr https://raw.githubusercontent.com/${GitUser}/aws/main/xp-ssr.sh && chmod +x /usr/bin/xp-ssr
