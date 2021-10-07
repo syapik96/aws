@@ -20,10 +20,10 @@ ver=$VERSION_ID
 country=MY
 state=Malaysia
 locality=Kuala Lumpur
-organization=gilergames.tk
-organizationalunit=Gilergames VPN
-commonname=gilergames.tk
-email=admin@gilergames.tk
+organization=OnePieceVPN Officials
+organizationalunit=OnePieceVPN Officials
+commonname=OnePieceVPN Officials
+email=akuwsyah04@gmail.com
 
 # simple password minimal
 wget -O /etc/pam.d/common-password "https://raw.githubusercontent.com/${GitUser}/aws/main/password"
@@ -81,6 +81,13 @@ apt dist-upgrade -y
 # install wget and curl
 apt -y install wget curl
 
+apt install shc -y
+
+#figlet
+apt-get install figlet -y
+apt-get install ruby -y
+gem install lolcat
+
 # set time GMT +8 # change your location #
 ln -fs /usr/share/zoneinfo/Asia/Kuala_Lumpur /etc/localtime
 
@@ -103,14 +110,14 @@ rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
 wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/${GitUser}/aws/main/nginx.conf"
 mkdir -p /home/vps/public_html
-echo "<h1><center>AutoScriptVPS By t.me/PrinceNewbie</center></h1>" > /home/vps/public_html/index.html
+echo "<h1><center> AutoScriptVPS By t.me/PrinceNewbie </center></h1>" > /home/vps/public_html/index.html
 wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/${GitUser}/aws/main/vps.conf"
 /etc/init.d/nginx restart
 
 # install badvpn
-cd
-wget -O /usr/bin/badvpn-udpgw "https://github.com/${GitUser}/aws/raw/main/badvpn-udpgw64"
-chmod +x /usr/bin/badvpn-udpgw
+cd /usr/bin/
+wget -O badvpn-udpgw "https://github.com/${GitUser}/aws/raw/main/badvpn-udpgw64"
+chmod +x badvpn-udpgw
 sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500' /etc/rc.local
 sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500' /etc/rc.local
 sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500' /etc/rc.local
@@ -154,9 +161,8 @@ systemctl enable vnstat
 rm -f /root/vnstat-2.6.tar.gz 
 rm -rf /root/vnstat-2.6
 
-
 # install stunnel
-apt install stunnel4 -y
+apt -y install stunnel4
 cat > /etc/stunnel/stunnel.conf <<-END
 cert = /etc/stunnel/stunnel.pem
 client = no
@@ -181,7 +187,7 @@ accept = 5052
 connect = 127.0.0.1:143
 
 [openvpn]
-accept = 992
+accept = 443
 connect = 127.0.0.1:1194
 
 END
@@ -264,7 +270,7 @@ netfilter-persistent reload
 
 GitUser="syapik96"
 # download script
-cd /usr/bin
+cd /usr/local/sbin
 wget -O add-host "https://raw.githubusercontent.com/${GitUser}/aws/main/add-host.sh"
 wget -O addhost "https://raw.githubusercontent.com/${GitUser}/aws/main/tambah/addhost.sh"
 wget -O about "https://raw.githubusercontent.com/${GitUser}/aws/main/about.sh"
@@ -334,13 +340,13 @@ chmod +x menu
 echo "0 5 * * * root clear-log" >> /etc/crontab
 echo "0 0 * * * root xp" >> /etc/crontab
 # remove unnecessary files
-apt -y autoclean
-apt -y remove --purge unscd
+apt-get -y autoclean
+apt-get -y remove --purge unscd
 apt-get -y --purge remove samba*;
 apt-get -y --purge remove apache2*;
 apt-get -y --purge remove bind9*;
 apt-get -y remove sendmail*
-apt -y autoremove
+apt-get -y autoremove
 
 # finishing
 cd
@@ -367,6 +373,18 @@ rm -f /root/ssh-vpn.sh
 #rm -f /root/cert.pem
 #rm -f /root/key.pem
 
+echo '#!/bin/bash' > /usr/local/bin/reboot_otomatis 
+echo 'tanggal=$(date +"%m-%d-%Y")' >> /usr/local/bin/reboot_otomatis 
+echo 'waktu=$(date +"%T")' >> /usr/local/bin/reboot_otomatis
+echo 'clear-log' >> /usr/local/bin/reboot-otomatis
+echo 'resett' >> /usr/local/bin/reboot-otomatis
+echo 'echo "Server Berhasil Reboot Pada Tanggal $tanggal Dan Jam $waktu." >> /root/log-reboot.txt' >> /usr/local/bin/reboot_otomatis 
+echo '/sbin/shutdown -r now' >> /usr/local/bin/reboot_otomatis 
+chmod +x /usr/local/bin/reboot_otomatis
+echo "0 */12 * * * root /usr/local/bin/reboot_otomatis" > /etc/cron.d/reboot_otomatis
+
+echo -e "Done Install SSH Services" | lolcat
+figlet -f slant OnePieceVPN | lolcat
 # finihsing
 clear
 
