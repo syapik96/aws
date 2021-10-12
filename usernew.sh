@@ -52,8 +52,8 @@ echo -e ""
 echo -e " [*][*]=================================================================================[*][*]" | lolcat
 echo -e ""
 echo -e "   Payload Websocket : GET / HTTP/1.1[crlf]Host: $domain[crlf]Upgrade: websocket[crlf][crlf]"
-echo -e "
-echo -e " [*][*]=================================================================================[*][*]" | lolcat
+echo -e ""
+echo -e "[*][*]=================================================================================[*][*]" | lolcat
 echo -e ""
 echo -e "         \e[1;31mAktif Sampai   : \e[0m"$exp
 echo -e "         \e[1;31mKembali ke Menu enter >> \e[0m"0
