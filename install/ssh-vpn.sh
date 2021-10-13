@@ -51,7 +51,7 @@ END
 # nano /etc/rc.local
 cat > /etc/rc.local <<-END
 #!/bin/sh -e
-# rc.local
+ rc.local
 # By default this script does nothing.
 exit 0
 END
@@ -297,7 +297,7 @@ wget -O l2tp "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/
 wget -O ssh "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/ssh.sh"
 wget -O ssssr "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/ssssr.sh"
 wget -O trojaan "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/trojaan.sh"
-wget -O v2raay "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/.sh"
+wget -O v2raay "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/v2raay.sh"
 wget -O wgr "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/wgr.sh"
 wget -O vleess "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/vleess.sh"
 wget -O cfd "https://raw.githubusercontent.com/${GitUser}/aws/main/panel-domain/cfd.sh"
