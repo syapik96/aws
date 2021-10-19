@@ -1,4 +1,12 @@
 #!/bin/bash
+#!/bin/bash
+# VPN Premium Script
+# © Github.com/syapik96
+# Orignal Repository: https://github.com/syapik96/aws
+# Modified By PrinceNewBie
+# Telegram: https://t.me/ PrinceNewbie
+# Thanks for using this script, Enjoy Highspeed VPN Service
+
 
 clear 
 yl='\e[32;1m'
@@ -46,16 +54,15 @@ echo -e  "  ╠═════════════════════�
 echo -e  "  ║                       ┃ MENU OPTIONS ┃                     ║" | lolcat
 echo -e  "  ╠════════════════════════════════════════════════════════════╝" | lolcat
 echo -e  "  ║ " | lolcat
-echo -e  "  ║          [ 1 ] > >> >> SSH & OpenVPN Menu"  | lolcat
+echo -e  "  ║          [ 1 ] > >> >> SSH & OpenVPN"  | lolcat
 echo -e  "  ║          [ 2 ] > >> >> Panel Wireguard " | lolcat
 echo -e  "  ║          [ 3 ] > >> >> Panel L2TP & PPTP Account" | lolcat
 echo -e  "  ║          [ 4 ] > >> >> Panel SSTP Account" | lolcat
 echo -e  "  ║          [ 5 ] > >> >> Panel SSR & SS Account" | lolcat
 echo -e  "  ║          [ 6 ] > >> >> Panel V2Ray" | lolcat
 echo -e  "  ║          [ 7 ] > >> >> Panel VLess" | lolcat
-echo -e  "  ║          [ 8 ] > >> >> Panel TRojanGO" | lolcat
-echo -e  "  ║          [ 9 ] > >> >> Panel TrojanGFW" | lolcat
-echo -e  "  ║         [ 10 ] > >> >> Panel SYSTEM" | lolcat
+echo -e  "  ║          [ 8 ] > >> >> Panel TRojan" | lolcat
+echo -e  "  ║          [ 9 ] > >> >> Panel SYSTEM (still working on)" | lolcat
 echo -e  "  ║ " | lolcat
 echo -e  "  ╠════════════════════════════════════════════════════════════╗" | lolcat
 echo -e  "  ║                  Press ENTER to > Exit <                   ║" | lolcat
@@ -67,14 +74,14 @@ echo -e  "\e[1;31m"
 read -p  "           Select From Options :  " menu
 echo -e  "\e[0m"
 case $menu in
-     1)
+           1)
 	   clear
-     ssh
+           ssh
 	   exit
 	   ;;
 	   2)
 	   clear
-     wgr
+           wgr
 	   exit
 	   ;;
 	   3)
@@ -125,7 +132,7 @@ case $menu in
 	   *)
 	   echo -e "\e[1;31mPlease enter an correct number\e[0m"
 	   sleep 0.5
-     clear
+           clear
 	   menu
 	   ;;
 esac
