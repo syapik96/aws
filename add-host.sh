@@ -1,18 +1,25 @@
 #!/bin/bash
+### 🔰 COPYRIGHT © 2021 OnePieceVPN, Inc 🔰 ###
+### Script Update by : t.me/PrinceNewbie ####
+
 red='\e[1;31m'
 green='\e[0;32m'
 NC='\e[0m'
 MYIP=$(wget -qO- icanhazip.com);
 echo "Checking VPS"
 clear
-source /root/mail.conf
-DOMAIN=$domain
-CF_ID=$email
-CF_KEY=$key
+#source /root/mail2,3,4.txt
+DOMAIN="$( cat /root/mail2.txt )"
+CF_ID="$( cat /root/mail3.txt )"
+CF_KEY="$( cat /root/mail4.txt )"
 set -euo pipefail
 IP=$(wget -qO- icanhazip.com);
-read -p "Masukan Subdomain Anda :" sub
-echo "Updating DNS for ${sub}..."
+echo -e  ""
+echo -e  "\e[0;32m====AutoScriptVPN by Prince Newbie====\e[0m" 
+echo -e  "\e[1;31m"
+read -p "    Masukan Subdomain Anda :" sub
+echo -e  "\e[0m"
+echo -e "Updating DNS for ${sub}..."
 ZONE=$(curl -sLX GET "https://api.cloudflare.com/client/v4/zones?name=${DOMAIN}&status=active" \
      -H "X-Auth-Email: ${CF_ID}" \
      -H "X-Auth-Key: ${CF_KEY}" \
