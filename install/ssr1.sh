@@ -107,7 +107,7 @@ chmod +x /etc/init.d/ssrmu
 chkconfig --add ssrmu
 chkconfig ssrmu on
 else
-wget --no-check-certificate https://raw.githubusercontent.com/hybtoy/ssrrmu/master/ssrmu_debian -O /etc/init.d/ssrmu
+wget -O /etc/init.d/ssrmu https://raw.githubusercontent.com/${GitUser}/aws/main/install/ssrmu
 chmod +x /etc/init.d/ssrmu
 update-rc.d -f ssrmu defaults
 fi
@@ -128,7 +128,7 @@ if [[ ${OS} == "centos" ]]; then
 }
 Start_SSR(){
 	check_pid
-	wget -O /etc/init.d/ssrmu "https://raw.githubusercontent.com/${GitUser}/aws/main/install/ssrmu"
+	# wget -O /etc/init.d/ssrmu "https://raw.githubusercontent.com/${GitUser}/aws/main/install/ssrmu"
 	/etc/init.d/ssrmu start
 }
 Install_SSR(){
@@ -149,6 +149,6 @@ wget -O /usr/bin/addssr https://raw.githubusercontent.com/${GitUser}/aws/main/ta
 wget -O /usr/bin/delssr https://raw.githubusercontent.com/${GitUser}/aws/main/hapus/delssr.sh && chmod +x /usr/bin/delssr
 wget -O /usr/bin/xp-ssr https://raw.githubusercontent.com/${GitUser}/aws/main/xp-ssr.sh && chmod +x /usr/bin/xp-ssr
 wget -O /usr/bin/renewssr https://raw.githubusercontent.com/${GitUser}/aws/main/renewssr.sh && chmod +x /usr/bin/renewssr
-touch /usr/local/shadowsocksr/akun.conf
+touch /usr/local/shadowsocksr/akaun.conf
 rm -f /root/ssr.sh
 echo "0 0 * * * root xp-ssr" >> /etc/crontab
