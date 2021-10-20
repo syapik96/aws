@@ -81,14 +81,14 @@ echo -e  "${red}"
 read -p "         ENTER KEY    : " plus
 echo -e "${nc}"
 case $plus in
-	   *)
-	   clear
-	   exit
-	   sudo -i
-	   ;;
-	   2)
-	   clear
-	   menu
-	   ;;
+    *)
+    clear
+    exit
+    sudo -i
+    ;;
+    0)
+    clear
+    menu
+    ;;
 esac  
 
