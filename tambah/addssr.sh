@@ -26,9 +26,11 @@ echo "A client with the specified name was already created, please choose anothe
 echo "\e[0m"
 exit 1
 fi
+
 read -p "Expired (days): " masaaktif
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
 lastport=$(cat /usr/local/shadowsocksr/mudb.json | grep '"port": ' | tail -n1 | awk '{print $2}' | cut -d "," -f 1 | cut -d ":" -f 1 )
+
 if [[ $lastport == '' ]]; then
 ssr_port=7443
 else
@@ -46,7 +48,7 @@ ssr_forbid="bittorrent"
 cd /usr/local/shadowsocksr
 match_add=$(python mujson_mgr.py -a -u "${ssr_user}" -p "${ssr_port}" -k "${ssr_password}" -m "${ssr_method}" -O "${ssr_protocol}" -G "${ssr_protocol_param}" -o "${ssr_obfs}" -s "${ssr_speed_limit_per_con}" -S "${ssr_speed_limit_per_user}" -t "${ssr_transfer}" -f "${ssr_forbid}"|grep -w "add user info")
 cd
-echo -e "${Info} Penambahan user berhasil [username: ${ssr_user}]"
+echo -e "${Info} User added successfully [username: ${ssr_user}]"
 echo -e "### $ssr_user $exp" >> /usr/local/shadowsocksr/akun.conf
 tmp1=$(echo -n "${ssr_password}" | base64 -w0 | sed 's/=//g;s/\//_/g;s/+/-/g')
 SSRobfs=$(echo ${ssr_obfs} | sed 's/_compatible//g')
@@ -54,23 +56,39 @@ tmp2=$(echo -n "$IP:${ssr_port}:${ssr_protocol}:${ssr_method}:${SSRobfs}:${tmp1}
 ssr_link="ssr://${tmp2}"
 /etc/init.d/ssrmu restart
 IP=$(wget -qO- ifconfig.co);
-echo ""
+echo -e ""
 echo -e "╔════════════════════════════════════════════════════════════╗" | lolcat
 echo -e "║         User [${ssr_user}] configuration info：            ║" | lolcat
 echo -e "╠════════════════════════════════════════════════════════════╣" | lolcat 
 echo -e "║ " | lolcat
-echo -e "║ IP            : ${IP}"
-echo -e "║ Host          : ${domain}"
-echo -e "║ Port          : ${ssr_port}"
-echo -e "║ Password      : ${ssr_password}"
-echo -e "║ Encryption    : ${ssr_method}"
-echo -e "║ Protocol      : ${Red_font_prefix}${ssr_protocol}"
-echo -e "║ Obfs          : ${Red_font_prefix}${ssr_obfs}"
-echo -e "║ Device limit  : ${ssr_protocol_param}"
-echo -e "║ Expired On    : ${exp} "
+echo -e "║ \e[32;1mIP            : ${IP}"
+echo -e "║ \e[32;1mHost          : ${domain}"
+echo -e "║ \e[32;1mPort          : ${ssr_port}"
+echo -e "║ \e[32;1mPassword      : ${ssr_password}"
+echo -e "║ \e[32;1mEncryption    : ${ssr_method}"
+echo -e "║ \e[32;1mProtocol      : ${Red_font_prefix}${ssr_protocol}"
+echo -e "║ \e[32;1mObfs          : ${Red_font_prefix}${ssr_obfs}"
+echo -e "║ \e[32;1mDevice limit  : ${ssr_protocol_param}"
+echo -e "║ \e[32;1mExpired On    : ${exp} "
 echo -e "║ " | lolcat
 echo -e "╠═════════════════════════════════════════════════════════" | lolcat
 echo -e "║  Link SSR      : ${ssr_link}"
 echo -e "╠════════════════════════════════════════════════════════╗" | lolcat
 echo -e "║            COPYRIGHT © 2021 by Prince Newbie           ║" | lolcat
 echo -e "╚════════════════════════════════════════════════════════╝" | lolcat
+echo -e "  \e[32;1m      ENTER [ 0 ] TO MENU PRESS [ ENTER ] TO EXIT \e[0m  "
+echo -e  "${red}"
+read -p "         ENTER KEY    : " plus
+echo -e "${nc}"
+case $plus in
+	   *)
+	   clear
+	   exit
+	   sudo -i
+	   ;;
+	   2)
+	   clear
+	   menu
+	   ;;
+esac  
+
