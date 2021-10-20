@@ -21,6 +21,8 @@ jq_file="${ssr_folder}/jq"
 source /etc/os-release
 OS=$ID
 ver=$VERSION_ID
+GitUser="syapik96"
+#wget https://github.com/${GitUser}/
 
 Green_font_prefix="\033[32m" && Red_font_prefix="\033[31m" && Green_background_prefix="\033[42;37m" && Red_background_prefix="\033[41;37m" && Font_color_suffix="\033[0m"
 Info="${Green_font_prefix}[information]${Font_color_suffix}"
@@ -31,8 +33,10 @@ check_pid(){
 	PID=`ps -ef |grep -v grep | grep server.py |awk '{print $2}'`
 }
 Add_iptables(){
-		iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 1443:1543 -j ACCEPT
-		iptables -I INPUT -m state --state NEW -m udp -p udp --dport 1443:1543 -j ACCEPT
+		iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 7443:7543 -j ACCEPT
+		iptables -I INPUT -m state --state NEW -m udp -p udp --dport 7443:7543 -j ACCEPT
+		ip6tables -I INPUT -m state --state NEW -m tcp -p tcp --dport 7443:7543 -j ACCEPT
+		ip6tables -I INPUT -m state --state NEW -m udp -p udp --dport 7443:7543 -j ACCEPT
 }
 Save_iptables(){
 if [[ ${OS} == "centos" ]]; then
@@ -40,6 +44,7 @@ if [[ ${OS} == "centos" ]]; then
 		service ip6tables save
 else
 		iptables-save > /etc/iptables.up.rules
+		ip6tables-save > /etc/ip6tables.up.rules
 fi
 }
 Set_iptables(){
@@ -50,12 +55,13 @@ if [[ ${OS} == "centos" ]]; then
 		chkconfig --level 2345 ip6tables on
 else
 		iptables-save > /etc/iptables.up.rules
+		ip6tables-save > /etc/ip6tables.up.rules
 		echo -e '#!/bin/bash\n/sbin/iptables-restore < /etc/iptables.up.rules\n/sbin/ip6tables-restore < /etc/ip6tables.up.rules' > /etc/network/if-pre-up.d/iptables
 		chmod +x /etc/network/if-pre-up.d/iptables
 fi
 }
 Set_user_api_server_pub_addr(){
-ip=$(wget -qO- ipv4.ifconfig.co);
+ip=$(wget -qO- ipv4.icanhazip.com);
 ssr_server_pub_addr="${ip}"
 }
 Modify_user_api_server_pub_addr(){
@@ -126,7 +132,7 @@ if [[ ${OS} == "centos" ]]; then
 }
 Start_SSR(){
 	check_pid
-	wget -O /etc/init.d/ssrmu "https://raw.githubusercontent.com/Dimas1441/yamate/main/1/ssrmu"
+	wget -O /etc/init.d/ssrmu "https://raw.githubusercontent.com/${GitUser}/AutoScript/main/install/ssrmu.sh"
 	/etc/init.d/ssrmu start
 }
 Install_SSR(){
@@ -142,9 +148,11 @@ Save_iptables
 Start_SSR
 }
 Install_SSR
-wget -O /usr/bin/ssr https://raw.githubusercontent.com/Dimas1441/yamate/main/1/ssrmu.sh && chmod +x /usr/bin/ssr
-wget -O /usr/bin/add-ssr https://raw.githubusercontent.com/Dimas1441/yamate/main/1/add-ssr.sh && chmod +x /usr/bin/add-ssr
-wget -O /usr/bin/del-ssr https://raw.githubusercontent.com/Dimas1441/yamate/main/1/del-ssr.sh && chmod +x /usr/bin/del-ssr
-wget -O /usr/bin/renew-ssr https://raw.githubusercontent.com/Dimas1441/yamate/main/1/renew-ssr.sh && chmod +x /usr/bin/renew-ssr
+wget -O /usr/bin/ssr https://raw.githubusercontent.com/${GitUser}/AutoScript/main/install/ssrmu.sh && chmod +x /usr/bin/ssr
+wget -O /usr/bin/addssr https://raw.githubusercontent.com/${GitUser}/AutoScript/main/tambah/addssr.sh && chmod +x /usr/bin/addssr
+wget -O /usr/bin/delssr https://raw.githubusercontent.com/${GitUser}/AutoScript/main/hapus/delssr.sh && chmod +x /usr/bin/delssr
+wget -O /usr/bin/xp-ssr https://raw.githubusercontent.com/${GitUser}/AutoScript/main/xp-ssr.sh && chmod +x /usr/bin/xp-ssr
+wget -O /usr/bin/renewssr https://raw.githubusercontent.com/${GitUser}/AutoScript/main/renewssr.sh && chmod +x /usr/bin/renewssr
 touch /usr/local/shadowsocksr/akun.conf
 rm -f /root/ssr.sh
+echo "0 0 * * * root xp-ssr" >> /etc/crontab
