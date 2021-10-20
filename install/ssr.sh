@@ -132,7 +132,7 @@ if [[ ${OS} == "centos" ]]; then
 }
 Start_SSR(){
 	check_pid
-	wget -O /etc/init.d/ssrmu "https://raw.githubusercontent.com/${GitUser}/AutoScript/main/install/ssrmu.sh"
+	wget -O /etc/init.d/ssrmu "https://raw.githubusercontent.com/${GitUser}/aws/main/install/ssrmu"
 	/etc/init.d/ssrmu start
 }
 Install_SSR(){
@@ -148,11 +148,17 @@ Save_iptables
 Start_SSR
 }
 Install_SSR
-wget -O /usr/bin/ssr https://raw.githubusercontent.com/${GitUser}/AutoScript/main/install/ssrmu.sh && chmod +x /usr/bin/ssr
-wget -O /usr/bin/addssr https://raw.githubusercontent.com/${GitUser}/AutoScript/main/tambah/addssr.sh && chmod +x /usr/bin/addssr
-wget -O /usr/bin/delssr https://raw.githubusercontent.com/${GitUser}/AutoScript/main/hapus/delssr.sh && chmod +x /usr/bin/delssr
-wget -O /usr/bin/xp-ssr https://raw.githubusercontent.com/${GitUser}/AutoScript/main/xp-ssr.sh && chmod +x /usr/bin/xp-ssr
-wget -O /usr/bin/renewssr https://raw.githubusercontent.com/${GitUser}/AutoScript/main/renewssr.sh && chmod +x /usr/bin/renewssr
+cd /usr/bin
+wget -O ssr https://raw.githubusercontent.com/${GitUser}/aws/main/install/ssrmu.sh
+chmod +x ssr
+wget -O addssr https://raw.githubusercontent.com/${GitUser}/aws/main/tambah/addssr.sh
+chmod +x addssr
+wget -O delssr https://raw.githubusercontent.com/${GitUser}/aws/main/hapus/delssr.sh
+chmod +x delssr
+wget -O xp-ssr https://raw.githubusercontent.com/${GitUser}/aws/main/xp-ssr.sh
+chmod +x xp-ssr
+wget -O renewssr https://raw.githubusercontent.com/${GitUser}/aws/main/renewssr.sh
+chmod +x renewssr
 touch /usr/local/shadowsocksr/akun.conf
 rm -f /root/ssr.sh
 echo "0 0 * * * root xp-ssr" >> /etc/crontab
