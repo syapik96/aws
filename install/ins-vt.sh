@@ -8,7 +8,7 @@ apt -y install chrony
 timedatectl set-ntp true
 systemctl enable chronyd && systemctl restart chronyd
 systemctl enable chrony && systemctl restart chrony
-timedatectl set-timezone Asia/Kuala_lumpur
+timedatectl set-timezone Asia/Singapore
 chronyc sourcestats -v
 chronyc tracking -v
 date
@@ -38,7 +38,7 @@ cat> /etc/v2ray/config.json << END
   },
   "inbounds": [
     {
-      "port": 4443,
+      "port": 8443,
       "protocol": "vmess",
       "settings": {
         "clients": [
@@ -223,7 +223,7 @@ cat> /etc/v2ray/vless.json << END
   },
   "inbounds": [
     {
-      "port": 5443,
+      "port": 2083,
       "protocol": "vless",
       "settings": {
         "clients": [
@@ -319,7 +319,7 @@ cat> /etc/v2ray/vnone.json << END
   },
   "inbounds": [
     {
-      "port": 880,
+      "port": 2052,
       "protocol": "vless",
       "settings": {
         "clients": [
@@ -407,7 +407,7 @@ cat> /etc/v2ray/trojan.json <<END
   },
   "inbounds": [
     {
-      "port": 6443,
+      "port": 2087,
       "protocol": "trojan",
       "settings": {
         "clients": [
@@ -489,16 +489,17 @@ cat> /etc/v2ray/trojan.json <<END
 }
 END
 
-iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 4443 -j ACCEPT
-iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 5443 -j ACCEPT
-iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 6443 -j ACCEPT
-iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 880 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 8443 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
-iptables -I INPUT -m state --state NEW -m udp -p udp --dport 4443 -j ACCEPT
-iptables -I INPUT -m state --state NEW -m udp -p udp --dport 5443 -j ACCEPT
-iptables -I INPUT -m state --state NEW -m udp -p udp --dport 6443 -j ACCEPT
-iptables -I INPUT -m state --state NEW -m udp -p udp --dport 880 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 2083 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 2052 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 2087 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m udp -p udp --dport 8443 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m udp -p udp --dport 80 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m udp -p udp --dport 2083 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m udp -p udp --dport 2052 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m udp -p udp --dport 2087 -j ACCEPT
+
 iptables-save > /etc/iptables.up.rules
 iptables-restore -t < /etc/iptables.up.rules
 netfilter-persistent save
@@ -515,8 +516,15 @@ systemctl start v2ray@trojan.service
 systemctl restart v2ray
 systemctl enable v2ray
 
-cd /usr/bin
+function ConfMenuV2ray(){
+echo -e "\e[1;32m  Creating V2ray Menu scripts..\e[0m"
 
+GitUser="syapik96"
+# Download Script
+cd /usr/bin
+wget -O trojaan "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/trojaan.sh"
+wget -O v2raay "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/v2raay.sh"
+wget -O vleess "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/vleess.sh"
 wget -O addws "https://raw.githubusercontent.com/${GitUser}/aws/main/tambah/addws.sh"
 wget -O addvless "https://raw.githubusercontent.com/${GitUser}/aws/main/tambah/addvless.sh"
 wget -O addtr "https://raw.githubusercontent.com/${GitUser}/aws/main/tambah/addtr.sh"
@@ -533,7 +541,9 @@ wget -O xp-ws "https://raw.githubusercontent.com/${GitUser}/aws/main/xp-ws.sh"
 wget -O xp-tr "https://raw.githubusercontent.com/${GitUser}/aws/main/xp-tr.sh"
 wget -O xp-vless "https://raw.githubusercontent.com/${GitUser}/aws/main/xp-vless.sh"
 wget -O certv2ray "https://raw.githubusercontent.com/${GitUser}/aws/main/cert.sh"
-
+chmod +x trojaan
+chmod +x v2raay
+chmod +x vleess
 chmod +x addws
 chmod +x addvless
 chmod +x addtr
@@ -551,8 +561,11 @@ chmod +x xp-tr
 chmod +x xp-vless
 chmod +x certv2ray
 
+}
+
+
 cd
-cp /etc/hostname /etc/v2ray
+cp /root/mail2.txt /etc/v2ray
 echo "0 0 * * * root xp-ws" >> /etc/crontab
 echo "0 0 * * * root xp-tr" >> /etc/crontab
 echo "0 0 * * * root xp-vless" >> /etc/crontab
