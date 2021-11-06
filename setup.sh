@@ -145,8 +145,11 @@ echo ""
 sleep 1
 if [! -e /root/log-install.txt]; then
 echo -e "${RED}Setup Install Ralat! Sistem Jalan Setup Install Semula${NC}"
-sleep 0.5
-wget https://raw.githubusercontent.com/${GitUser}/aws/main/log.sh && chmod +x log.sh && ./log.sh
+echo -e "${RED} Sistem Install Semula Autoscript Dalam 5 Saat${NC}"
+sleep 5
+wget https://raw.githubusercontent.com/${GitUser}/aws/main/setup.sh
+chmod +x setup.sh 
+./setup.sh
 else
     echo -e "Setup Install Sukses!" | lolcat
 fi
