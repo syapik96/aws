@@ -1,5 +1,5 @@
 #!/bin/bash
-#
+### 🔰 COPYRIGHT © 2021 OnePieceVPN, Inc 🔰 ###
 # Mod by PrinceNewbie
 # ==================================================
 
@@ -11,24 +11,44 @@ MYIP2="s/xxxxxxxxx/$MYIP/g";
 ANU=$(ip -o $ANU -4 route show to default | awk '{print $5}');
 
 # Install OpenVPN dan Easy-RSA
-apt install openvpn easy-rsa openssl -y
-apt install openssl iptables iptables-persistent -y 
+apt install -y openvpn easy-rsa openssl apache2 ufw
+apt install -y iptables iptables-persistent  
+
+cd /etc/stunnel/
+openssl req -new -newkey rsa:2048 -days 3650 -nodes -x509 -sha256 -subj '/CN=127.0.0.1/O=localhost/C=US' -keyout /etc/stunnel/stunnel.pem -out /etc/stunnel/stunnel.pem
+sudo touch stunnel.conf
+echo "client = no" > /etc/stunnel/stunnel.conf
+echo "pid = /var/run/stunnel.pid" >> /etc/stunnel/stunnel.conf
+echo "[openvpn2]" >> /etc/stunnel/stunnel.conf
+echo "accept = 443" >> /etc/stunnel/stunnel.conf
+echo "connect = 127.0.0.1:1194" >> /etc/stunnel/stunnel.conf
+echo "cert = /etc/stunnel/stunnel.pem" >> /etc/stunnel/stunnel.conf
+sudo sed -i -e 's/ENABLED=0/ENABLED=1/g' /etc/default/stunnel4
+iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+sudo cp /etc/stunnel/stunnel.pem ~
+echo "client = yes\ndebug = 6\n[openvpn]\naccept = 127.0.0.1:1194\nconnect = $IPADDRESS:443\nTIMEOUTclose = 0\nverify = 0\nsni = $1" > /var/www/html/stunnel.conf
+# openvpn
+
+mv /etc/openvpn/easy-rsa/vars.example /etc/openvpn/easy-rsa/vars
 cp -r /usr/share/easy-rsa/ /etc/openvpn
 mkdir /etc/openvpn/easy-rsa/keys
-cp /etc/openvpn/easy-rsa/vars.example /etc/openvpn/easy-rsa/vars
+sed -i 's|export KEY_COUNTRY="US"|export KEY_COUNTRY="MY"|' /etc/openvpn/easy-rsa/vars
+sed -i 's|export KEY_PROVINCE="CA"|export KEY_PROVINCE="Malaysia"|' /etc/openvpn/easy-rsa/vars
+sed -i 's|export KEY_CITY="SanFrancisco"|export KEY_CITY="Wilayah Persekutuan Kuala Lumpur"|' /etc/openvpn/easy-rsa/vars
+sed -i 's|export KEY_ORG="Fort-Funston"|export KEY_ORG=OnePieceVPN Inc"|' /etc/openvpn/easy-rsa/vars
+sed -i 's|export KEY_EMAIL="me@myhost.mydomain"|export KEY_EMAIL="prince@onepiecevpn.ml"|' /etc/openvpn/easy-rsa/vars
+sed -i 's|export KEY_OU="MyOrganizationalUnit"|export KEY_OU="OnePieceVPN Inc"|' /etc/openvpn/easy-rsa/vars
+sed -i 's|export KEY_NAME="EasyRSA"|export KEY_NAME="Prince D Newbie"|' /etc/openvpn/easy-rsa/vars
+sed -i 's|export KEY_OU=changeme|export KEY_OU=OnePieceVPN Inc|' /etc/openvpn/easy-rsa/vars
 
-# Kemudian edit file variabel easy-rsa
+# just double checking if anything should u want 
 nano /etc/openvpn/easy-rsa/vars
-#wget -O /etc/openvpn/easy-rsa/vars "https://raw.githubusercontent.com/syapik96/aws/main/vars.conf"
-# edit projek export KEY_NAME="vpn"
-# Save dan keluar dari editor
 
 # generate Diffie hellman parameters
 openssl dhparam -out /etc/openvpn/dh2048.pem 2048
 
 # Create PKI
 cd /etc/openvpn/easy-rsa
-cp openssl-1.0.0.cnf openssl.cnf
 . ./vars
 ./clean-all
 export EASY_RSA="${EASY_RSA:-.}"
@@ -62,18 +82,18 @@ cat > /etc/openvpn/server-tcp-1194.conf <<-END
 port 1194
 proto tcp
 dev tun
-ca ca.crt
-cert server.crt
-key server.key
-dh dh2048.pem
+ca /etc/openvpn/ca.crt
+cert /etc/openvpn/server.crt
+key /etc/openvpn/server.key
+dh /etc/openvpn/dh2048.pem
 plugin /usr/lib/openvpn/openvpn-plugin-auth-pam.so login
 verify-client-cert none
 username-as-common-name
 server 10.6.0.0 255.255.255.0
 ifconfig-pool-persist ipp.txt
 push "redirect-gateway def1 bypass-dhcp"
-push "dhcp-option DNS 1.1.1.1"
-push "dhcp-option DNS 1.0.0.1"
+push "dhcp-option DNS 8.8.8.8"
+push "dhcp-option DNS 8.8.4.4"
 keepalive 5 30
 comp-lzo
 persist-key
@@ -89,24 +109,29 @@ cat > /etc/openvpn/server-tcp-1197.conf <<-END
 port 1197
 proto tcp
 dev tun
-ca ca.crt
-cert server.crt
-key server.key
-dh dh2048.pem
+ca /etc/openvpn/ca.crt
+cert /etc/openvpn/server.crt
+key /etc/openvpn/server.key
+dh /etc/openvpn/dh2048.pem
 plugin /usr/lib/openvpn/openvpn-plugin-auth-pam.so login
 verify-client-cert none
 username-as-common-name
 server 10.6.0.0 255.255.255.0
 ifconfig-pool-persist ipp.txt
 push "redirect-gateway def1 bypass-dhcp"
-push "dhcp-option DNS 1.1.1.1"
-push "dhcp-option DNS 1.0.0.1"
-keepalive 5 30
+push "dhcp-option DNS 8.8.8.8"
+push "dhcp-option DNS 8.8.4.4"
+push "route-method exe"
+push "route-delay 2"
+keepalive 10 120
 comp-lzo
+user nobody
+group nogroup
 persist-key
 persist-tun
 status server-tcp-1197.log
 verb 3
+
 END
 
 # Buat config server UDP 2200
@@ -114,20 +139,24 @@ cat > /etc/openvpn/server-udp-2200.conf <<-END
 port 2200
 proto udp
 dev tun
-ca ca.crt
-cert server.crt
-key server.key
-dh dh2048.pem
+ca /etc/openvpn/ca.crt
+cert /etc/openvpn/server.crt
+key /etc/openvpn/server.key
+dh /etc/openvpn/dh2048.pem
 plugin /usr/lib/openvpn/openvpn-plugin-auth-pam.so login
 verify-client-cert none
 username-as-common-name
 server 10.7.0.0 255.255.255.0
 ifconfig-pool-persist ipp.txt
 push "redirect-gateway def1 bypass-dhcp"
-push "dhcp-option DNS 1.1.1.1"
-push "dhcp-option DNS 1.0.0.1"
-keepalive 5 30
+push "dhcp-option DNS 8.8.8.8"
+push "dhcp-option DNS 8.8.4.4"
+push "route-method exe"
+push "route-delay 2"
+keepalive 10 120
 comp-lzo
+user nobody
+group nogroup
 persist-key
 persist-tun
 status server-udp-2200.log
@@ -162,21 +191,39 @@ cd clientconfig
 # Buat config client TCP 1197
 cd /etc/openvpn
 cat > /etc/openvpn/client-tcp-1197.ovpn <<-END
-############## WELCOME TO ###############
-########## syapik96 ###########
+############## WELCOME TO OnePieceVPN###############
+### 🔰 COPYRIGHT © 2021 OnePieceVPN, Inc 🔰 ######
 ####### DONT FORGET TO SUPPORT US #######
 client
 dev tun
 proto tcp
+setenv FRIENDLY_NAME "OnePieceVPN Inc"
 remote xxxxxxxxx 1197
+remote-cert-tls server
+connect-retry infinite
 resolv-retry infinite
-route-method exe
 nobind
 persist-key
 persist-tun
 auth-user-pass
+auth none
+auth-nocache
+cipher none
 comp-lzo
+redirect-gateway def1
+setenv CLIENT_CERT 0
+reneg-sec 0
 verb 3
+http-proxy $MYIP 8080
+http-proxy-option VERSION 1.1
+http-proxy-option AGENT Chrome/80.0.3987.87
+http-proxy-option CUSTOM-HEADER Host bug.com
+http-proxy-option CUSTOM-HEADER X-Forward-Host bug.com
+http-proxy-option CUSTOM-HEADER X-Forwarded-For bug.com
+http-proxy-option CUSTOM-HEADER Referrer bug.com
+dhcp-option DNS 8.8.8.8
+dhcp-option DNS 8.8.4.4
+
 END
 
 sed -i $MYIP2 /etc/openvpn/client-tcp-1194.ovpn;
@@ -191,43 +238,73 @@ client
 dev tun
 proto udp
 remote xxxxxxxxx 1194
+rremote-cert-tls server
+connect-retry infinite
 resolv-retry infinite
-route-method exe
 nobind
 persist-key
 persist-tun
 auth-user-pass
+auth none
+auth-nocache
+cipher none
 comp-lzo
+redirect-gateway def1
+setenv CLIENT_CERT 0
+reneg-sec 0
 verb 3
+http-proxy $MYIP 8080
+http-proxy-option VERSION 1.1
+http-proxy-option AGENT Chrome/80.0.3987.87
+http-proxy-option CUSTOM-HEADER Host bug.com
+http-proxy-option CUSTOM-HEADER X-Forward-Host bug.com
+http-proxy-option CUSTOM-HEADER X-Forwarded-For bug.com
+http-proxy-option CUSTOM-HEADER Referrer bug.com
+
 END
 
 sed -i $MYIP2 /etc/openvpn/client-udp-1194.ovpn;
 
 # Buat config client TCP 1194
 cat > /etc/openvpn/client-tcp-1194.ovpn <<-END
-############## WELCOME TO ###############
-########## syapik96 ###########
+############## WELCOME TO OnePieceVPN ###############
+### 🔰 COPYRIGHT © 2021 OnePieceVPN, Inc 🔰 ######
 ####### DONT FORGET TO SUPPORT US #######
 client
 dev tun
 proto tcp
 remote xxxxxxxxx 1194
+rremote-cert-tls server
+connect-retry infinite
 resolv-retry infinite
-route-method exe
 nobind
 persist-key
 persist-tun
 auth-user-pass
+auth none
+auth-nocache
+cipher none
 comp-lzo
+redirect-gateway def1
+setenv CLIENT_CERT 0
+reneg-sec 0
 verb 3
+http-proxy $MYIP 8080
+http-proxy-option VERSION 1.1
+http-proxy-option AGENT Chrome/80.0.3987.87
+http-proxy-option CUSTOM-HEADER Host bug.com
+http-proxy-option CUSTOM-HEADER X-Forward-Host bug.com
+http-proxy-option CUSTOM-HEADER X-Forwarded-For bug.com
+http-proxy-option CUSTOM-HEADER Referrer bug.com
+
 END
 
 sed -i $MYIP2 /etc/openvpn/client-tcp-1194.ovpn;
 
 # Buat config client UDP 2200
 cat > /etc/openvpn/client-udp-2200.ovpn <<-END
-############## WELCOME TO ###############
-########## syapik96 ###########
+############## WELCOME TO OnePieceVPN ###############
+### 🔰 COPYRIGHT © 2021 OnePieceVPN, Inc 🔰 ######
 ####### DONT FORGET TO SUPPORT US #######
 client
 dev tun
@@ -247,8 +324,8 @@ sed -i $MYIP2 /etc/openvpn/client-udp-2200.ovpn;
 
 # Buat config client TCP 2200
 cat > /etc/openvpn/client-tcp-2200.ovpn <<-END
-############## WELCOME TO ###############
-########## syapik96 ###########
+############## WELCOME TO OnePieceVPN ###############
+### 🔰 COPYRIGHT © 2021 OnePieceVPN, Inc 🔰 ######
 ####### DONT FORGET TO SUPPORT US #######
 client
 dev tun
@@ -268,8 +345,8 @@ sed -i $MYIP2 /etc/openvpn/client-tcp-2200.ovpn;
 
 # Buat config client SSL
 cat > /etc/openvpn/client-tcp-ssl.ovpn <<-END
-############## WELCOME TO ###############
-########## syapik96 ###########
+############## WELCOME TO OnePieceVPN ###############
+### 🔰 COPYRIGHT © 2021 OnePieceVPN, Inc 🔰 ######
 ####### DONT FORGET TO SUPPORT US #######
 client
 dev tun
@@ -331,9 +408,27 @@ iptables-save > /etc/iptables.up.rules
 chmod +x /etc/iptables.up.rules
 
 iptables-restore -t < /etc/iptables.up.rules
+# enable port for client connect server via config
+iptables -I INPUT 6 -m state --state NEW -m tcp -p tcp --dport 443 -j ACCEPT
+iptables -I INPUT 6 -m state --state NEW -m tcp -p tcp --dport 1194 -j ACCEPT
+iptables -I INPUT 6 -m state --state NEW -m tcp -p tcp --dport 1197 -j ACCEPT
+iptables -I INPUT 6 -m state --state NEW -m tcp -p tcp --dport 2200 -j ACCEPT
+iptables -I INPUT 6 -m state --state NEW -m tcp -p tcp --dport 8080 -j ACCEPT
+iptables -I INPUT 6 -m state --state NEW -m udp -p udp --dport 443 -j ACCEPT
+iptables -I INPUT 6 -m state --state NEW -m udp -p udp --dport 1194 -j ACCEPT
+iptables -I INPUT 6 -m state --state NEW -m udp -p udp --dport 1197 -j ACCEPT
+iptables -I INPUT 6 -m state --state NEW -m udp -p udp --dport 8080 -j ACCEPT
+iptables -I INPUT 6 -m state --state NEW -m udp -p udp --dport 2200 -j ACCEPT
+iptables-save > /etc/iptables.up.rules
+iptables-restore -t < /etc/iptables.up.rules
 netfilter-persistent save
 netfilter-persistent reload
 
+# add dns server ipv4
+echo "nameserver 8.8.8.8" > /etc/resolv.conf
+echo "nameserver 8.8.4.4" >> /etc/resolv.conf
+sed -i '$ i\echo "nameserver 8.8.8.8" > /etc/resolv.conf' /etc/rc.local
+sed -i '$ i\echo "nameserver 8.8.4.4" >> /etc/resolv.conf' /etc/rc.local
 # Restart service openvpn
 systemctl enable openvpn
 systemctl start openvpn
@@ -344,6 +439,7 @@ cat > /etc/network/if-up.d/iptables <<-END
 iptables-restore < /etc/iptables.up.rules
 iptables -t nat -A POSTROUTING -s 10.6.0.0/24 -o $ANU -j SNAT --to xxxxxxxxx
 iptables -t nat -A POSTROUTING -s 10.7.0.0/24 -o $ANU -j SNAT --to xxxxxxxxx
+
 END
 sed -i $MYIP2 /etc/network/if-up.d/iptables
 chmod +x /etc/network/if-up.d/iptables
