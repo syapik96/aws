@@ -22,8 +22,8 @@ state=Malaysia
 locality=Kuala Lumpur
 organization=OnePieceVPN Officials
 organizationalunit=OnePieceVPN Officials
-commonname=OnePieceVPN Officials
-email=akuwsyah04@gmail.com
+commonname=$(cat /root/mail1.txt)
+email=$(cat /root/mail4.txt)
 
 # simple password minimal
 wget -O /etc/pam.d/common-password "https://raw.githubusercontent.com/${GitUser}/aws/main/password"
@@ -89,7 +89,7 @@ apt-get install ruby -y
 gem install lolcat
 
 # set time GMT +8 # change your location #
-ln -fs /usr/share/zoneinfo/Asia/Kuala_Lumpur /etc/localtime
+ln -fs /usr/share/zoneinfo/Asia/Singapore /etc/localtime
 
 # set locale
 sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
@@ -98,7 +98,11 @@ sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 apt-get --reinstall --fix-missing install -y bzip2 gzip coreutils wget screen rsyslog iftop htop net-tools zip unzip wget net-tools curl nano sed screen gnupg gnupg1 bc apt-transport-https build-essential dirmngr libxml-parser-perl neofetch git
 echo "clear" >> .profile
 echo "neofetch" >> .profile
-echo "echo by PrinceNewbie" >> .profile
+echo "echo For Enter Panel TYPE : menu" >> .profile
+echo "echo AustoScriptVPN Free-Premium" >> .profile
+echo "echo Thanks For Using MyScript" >> .profile
+echo "echo Script by: PrinceNewbie" >> .profile
+echo "echo COPYRIGHT © 2021" >> .profile
 
 GitUser="syapik96"
 #wget https://github.com/${GitUser}/
@@ -121,9 +125,13 @@ chmod +x badvpn-udpgw
 sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500' /etc/rc.local
 sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500' /etc/rc.local
 sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500' /etc/rc.local
+sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7400 --max-clients 500' /etc/rc.local
+sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7500 --max-clients 500' /etc/rc.local
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7400 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7500 --max-clients 500
 
 # setting port ssh
 sed -i 's/Port 22/Port 22/g' /etc/ssh/sshd_config
@@ -141,8 +149,12 @@ echo "/usr/sbin/nologin" >> /etc/shells
 # install squid
 cd
 apt -y install squid3
+
+# Removing Duplicate Squid config
+ rm -rf /etc/squid/squid.con*
+ 
 wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/${GitUser}/aws/main/squid3.conf"
-sed -i $MYIP2 /etc/squid/squid.conf
+sed -i "s|IP-ADDRESS|$MYIP|g" /etc/squid/squid.conf
 
 # setting vnstat
 apt -y install vnstat
