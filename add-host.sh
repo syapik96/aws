@@ -2,16 +2,11 @@
 ### 🔰 COPYRIGHT © 2021 OnePieceVPN, Inc 🔰 ###
 ### Script Update by : t.me/PrinceNewbie ####
 
-red='\e[1;31m'
-green='\e[0;32m'
-NC='\e[0m'
-MYIP=$(wget -qO- icanhazip.com);
-echo "Checking VPS"
 clear
 #source /root/mail2,3,4.txt
-DOMAIN="$( cat /root/mail2.txt )"
-CF_ID="$( cat /root/mail3.txt )"
-CF_KEY="$( cat /root/mail4.txt )"
+DOMAIN="$(cat /root/mail2.txt)"
+CF_ID="$(cat /root/mail3.txt)"
+CF_KEY="$(cat /root/mail4.txt)"
 set -euo pipefail
 IP=$(wget -qO- icanhazip.com);
 echo -e  ""
@@ -43,8 +38,10 @@ RESULT=$(curl -sLX PUT "https://api.cloudflare.com/client/v4/zones/${ZONE}/dns_r
      -H "X-Auth-Key: ${CF_KEY}" \
      -H "Content-Type: application/json" \
      --data '{"type":"A","name":"'${sub}'","content":"'${IP}'","ttl":120,"proxied":false}')
-echo "DONE...!"
 echo "Host : $SUB_DOMAIN"
-echo "$SUB_DOMAIN > /root/domain"
-echo "$SUB_DOMAIN > /etc/v2ray/domain"
-echo "$IP > /var/lib/premium-script/ipvps.conf"
+echo "$IP> /var/lib/premium-script/ipvps.conf"
+echo -e "DONE...!"
+echo -e "Back menu in 5sec"
+sleep 5
+clear
+menu
