@@ -33,23 +33,23 @@ chmod +x sshonly.sh
 ./sshonly.sh
   ```
  
-# About :
+Info :
 	       
-       # Fork first , then change this .
-       # Replace all this with your own acc name :
+ Fork first , then change this .
+ Replace all this with your own acc name :
 	     
-	                    >  GitUser="syapik96" <
-	              #wget https://github.com/${GitUser}/
-	      
-	   
+> > GitUser="syapik96" 
 	    
-      # jika ada masalah pull issue , 
-	     # jika ada kesilapan dlm skrip dia alukan utk betulkan
-	      # thanks 
+jika terdapat masalah please pull issue , 
+jika ada kesilapan dlm skrip dia alukan utk betulkan
+thanks for those fork 
 	
-       #               SILA BACA TEXT BERSIMBOL #               #
-       # INI BAGI MEMUDAHKAN BG YANG INGIN MENGGUNAKAN SKRIP INI #
-       #     COPYRIGHT ONEPIECEVPN, POWERED BY PRINCENEWBIE.     #
+SILA BACA TEXT BERSIMBOL #              
+UNTUK BAGI MEMUDAHKAN 
+YANG INGIN MENGGUNAKAN SKRIP INI 
+	
+🔰 POWERED BY PRINCENEWBIE. 🔰     
+🔰 COPYRIGHT © 2021 OnePieceVPN, Inc 🔰	#				 
 	
 	
 ## Description :
@@ -85,3 +85,8 @@ chmod +x sshonly.sh
   
 *   Original Script by  Horas
 *   Modded Script by    t.me/PrinceNewbie
+	
+	
+	            
+	
+	   <img src="https://img.shields.io/badge/%20COPYRIGHT%20%C2%A9%202021-%20By%20PrinceNewbie%20OnePieceVPN%2C%20Inc-blue">
