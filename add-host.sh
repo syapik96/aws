@@ -39,12 +39,10 @@ RESULT=$(curl -sLX PUT "https://api.cloudflare.com/client/v4/zones/${ZONE}/dns_r
      -H "X-Auth-Key: ${CF_KEY}" \
      -H "Content-Type: application/json" \
      --data '{"type":"A","name":"'${sub}'","content":"'${IP}'","ttl":120,"proxied":false}')
- }
+
+}
  
+figlet -f slant "Update DNS DONE.!" | lolcat 
 echo "Host : $SUB_DOMAIN"
-echo "$IP> /var/lib/premium-script/ipvps.conf"
-echo -e "DONE...!"
-echo -e "Back Menu in 5sec"
-sleep 5
-clear
-menu
+echo "IP=$SUB_DOMAIN" >> /var/lib/premium-script/ipvps.conf"
+
