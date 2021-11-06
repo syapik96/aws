@@ -291,21 +291,18 @@ wget -O autokick "https://raw.githubusercontent.com/${GitUser}/aws/main/autokick
 wget -O ceklim "https://raw.githubusercontent.com/${GitUser}/aws/main/ceklim.sh"
 wget -O tendang "https://raw.githubusercontent.com/${GitUser}/aws/main/tendang.sh"
 wget -O clear-log "https://raw.githubusercontent.com/${GitUser}/aws/main/clear-log.sh"
-wget -O update "https://raw.githubusercontent.com/${GitUser}/aws/main/update.sh"
+#wget -O update "https://raw.githubusercontent.com/${GitUser}/aws/main/update.sh"
 #menu-Updated
 wget -O l2tp "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/l2tp.sh"
 wget -O ssh "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/ssh.sh"
 wget -O ssssr "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/ssssr.sh"
-wget -O trojaan "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/trojaan.sh"
-wget -O v2raay "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/v2raay.sh"
 wget -O wgr "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/wgr.sh"
-wget -O vleess "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/vleess.sh"
 wget -O cfd "https://raw.githubusercontent.com/${GitUser}/aws/main/panel-domain/cfd.sh"
 wget -O cff "https://raw.githubusercontent.com/${GitUser}/aws/main/panel-domain/cff.sh"
 wget -O cfh "https://raw.githubusercontent.com/${GitUser}/aws/main/panel-domain/cfh.sh"
 wget -O add-dns "https://raw.githubusercontent.com/${GitUser}/aws/main/panel-domain/add-dns.sh"
-wget -O menu "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/menu.sh"
-
+wget -O sytem "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/system.sh"
+wget -O menu "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/menu.sh
 chmod +x add-host
 chmod +x usernew
 chmod +x trial
@@ -323,18 +320,14 @@ chmod +x ceklim
 chmod +x ram
 chmod +x renew
 chmod +x clear-log
-chmod +x update
-
 chmod +x l2tp
 chmod +x ssh
 chmod +x ssssr
-chmod +x trojaan
-chmod +x v2raay
 chmod +x wgr
-chmod +x vleess
 chmod +x cfd
 chmod +x cff
 chmod +x cfh
+chmod +x system
 chmod +x menu
 
 echo "0 5 * * * root clear-log" >> /etc/crontab
@@ -364,6 +357,8 @@ chown -R www-data:www-data /home/vps/public_html
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7400 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7500 --max-clients 500
 
 history -c
 echo "unset HISTFILE" >> /etc/profile
@@ -384,7 +379,7 @@ chmod +x /usr/local/bin/reboot_otomatis
 echo "0 */12 * * * root /usr/local/bin/reboot_otomatis" > /etc/cron.d/reboot_otomatis
 
 echo -e "Done Install SSH Services" | lolcat
-figlet -f slant OnePieceVPN | lolcat
+figlet -f slant "AutoScript By PrinceNewbie" | lolcat
 # finihsing
 clear
 
