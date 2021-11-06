@@ -1,5 +1,6 @@
 #!/bin/bash
-domain=$(cat /root/mail2.txt)
+domain=$(cat /root/domain)
+
 apt install iptables iptables-persistent -y
 apt install curl socat xz-utils wget apt-transport-https gnupg gnupg2 gnupg1 dnsutils lsb-release -y 
 apt install socat cron bash-completion ntpdate -y
@@ -489,16 +490,18 @@ cat> /etc/v2ray/trojan.json <<END
 }
 END
 
-iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 8443 -j ACCEPT
-iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
-iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 2083 -j ACCEPT
-iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 2052 -j ACCEPT
-iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 2087 -j ACCEPT
-iptables -I INPUT -m state --state NEW -m udp -p udp --dport 8443 -j ACCEPT
-iptables -I INPUT -m state --state NEW -m udp -p udp --dport 80 -j ACCEPT
-iptables -I INPUT -m state --state NEW -m udp -p udp --dport 2083 -j ACCEPT
-iptables -I INPUT -m state --state NEW -m udp -p udp --dport 2052 -j ACCEPT
-iptables -I INPUT -m state --state NEW -m udp -p udp --dport 2087 -j ACCEPT
+# new update iptables -I INPUT 6 -m state --state NEW -p tcp --dport
+# old update iptables -I INPUT-m state --state NEW -p tcp --dport
+iptables -I INPUT 6 -m state --state NEW -m tcp -p tcp --dport 8443 -j ACCEPT
+iptables -I INPUT 6 -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
+iptables -I INPUT 6 -m state --state NEW -m tcp -p tcp --dport 2083 -j ACCEPT
+iptables -I INPUT 6 -m state --state NEW -m tcp -p tcp --dport 2052 -j ACCEPT
+iptables -I INPUT 6 -m state --state NEW -m tcp -p tcp --dport 2087 -j ACCEPT
+iptables -I INPUT 6 -m state --state NEW -m udp -p udp --dport 8443 -j ACCEPT
+iptables -I INPUT 6 -m state --state NEW -m udp -p udp --dport 80 -j ACCEPT
+iptables -I INPUT 6 -m state --state NEW -m udp -p udp --dport 2083 -j ACCEPT
+iptables -I INPUT 6 -m state --state NEW -m udp -p udp --dport 2052 -j ACCEPT
+iptables -I INPUT 6 -m state --state NEW -m udp -p udp --dport 2087 -j ACCEPT
 
 iptables-save > /etc/iptables.up.rules
 iptables-restore -t < /etc/iptables.up.rules
@@ -565,7 +568,7 @@ chmod +x certv2ray
 
 
 cd
-cp /root/mail2.txt /etc/v2ray
+cp /root/domain /etc/v2ray
 echo "0 0 * * * root xp-ws" >> /etc/crontab
 echo "0 0 * * * root xp-tr" >> /etc/crontab
 echo "0 0 * * * root xp-vless" >> /etc/crontab
