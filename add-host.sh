@@ -4,17 +4,18 @@
 
 clear
 #source /root/mail2,3,4.txt
-DOMAIN="$(cat /root/mail2.txt)"
+DOMAIN="$(cat /root/mail1.txt)"
 CF_ID="$(cat /root/mail3.txt)"
 CF_KEY="$(cat /root/mail4.txt)"
 set -euo pipefail
 IP=$(wget -qO- icanhazip.com);
-echo -e  ""
+
+function ConfMenu(){
 echo -e  "\e[0;32m====AutoScriptVPN by Prince Newbie====\e[0m" 
-echo -e  "\e[1;31m"
-read -p "    Masukan Subdomain Anda :" sub
+echo -e ""
+echo -e  "\e[1;32mUpdating DNS for ${DOMAIN}..."
 echo -e  "\e[0m"
-echo -e "Updating DNS for ${sub}..."
+
 ZONE=$(curl -sLX GET "https://api.cloudflare.com/client/v4/zones?name=${DOMAIN}&status=active" \
      -H "X-Auth-Email: ${CF_ID}" \
      -H "X-Auth-Key: ${CF_KEY}" \
@@ -38,10 +39,12 @@ RESULT=$(curl -sLX PUT "https://api.cloudflare.com/client/v4/zones/${ZONE}/dns_r
      -H "X-Auth-Key: ${CF_KEY}" \
      -H "Content-Type: application/json" \
      --data '{"type":"A","name":"'${sub}'","content":"'${IP}'","ttl":120,"proxied":false}')
+ }
+ 
 echo "Host : $SUB_DOMAIN"
 echo "$IP> /var/lib/premium-script/ipvps.conf"
 echo -e "DONE...!"
-echo -e "Back menu in 5sec"
+echo -e "Back Menu in 5sec"
 sleep 5
 clear
 menu
