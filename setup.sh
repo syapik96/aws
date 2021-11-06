@@ -41,6 +41,7 @@ echo ""
 read -rp "Masukkan Subdomain: " -e sub
 domain=${DOMAIN}
 SUB_DOMAIN=${sub}.${DOMAIN}
+echo "${DOMAIN}" >> /root/mail1.txt
 echo "${SUB_DOMAIN}" >> /root/mail2.txt
 echo "${SUB_DOMAIN}" >> /root/domain
 read -p " Masukan Email Cloudflare :" email
@@ -75,7 +76,8 @@ rm -f /root/ins-vt.sh
 rm -f /root/go.sh
 rm -f /root/ipsec.sh
 
-HTTP=$(cat /root/mail2.txt)
+HTTP=$(cat /root/mail1.txt)
+
 cat > /etc/systemd/system/autosett.service <<EOF
 [Unit]
 Description=autosetting
