@@ -1,56 +1,59 @@
 #!/bin/bash
 # Script Updated , Copyright * 2021
-# Premium Script by t.me/PrinceNewbie
-
-if [ "${EUID}" -ne 0 ]; then
-echo "You need to run this script as root"
-exit 1
-fi
+# Free-Premium Script by t.me/PrinceNewbie
 
 clear
-
 RED='\e[1;31m'
 GREEN='\e[0;32m'
 BLUE='\e[0;34m'
 NC='\e[0m'
 
+if [ "${EUID}" -ne 0 ]; then
+echo "\e[1;31mYou need to run this script as root, exiting...\e[0m"
+echo "Optional -> Use command \e[1;31msudo -i\e[0m for direct access /root folder "
+exit 1
+fi
+
+# set ipv6 disable 
 sysctl -w net.ipv6.conf.all.disable_ipv6 = 1
 sysctl -w net.ipv6.conf.default.disable_ipv6 = 1
-timedatectl set-timezone Asia/Kuala_Lumpur
+# set time
+timedatectl set-timezone Asia/Singapore
 apt-get update && apt-get upgrade -y 
 apt install -y bzip2 gzip coreutils screen curl
-apt-get install figlet -y
-apt-get install ruby -y
+apt-get install -y ruby figlet 
 gem install lolcat -y
 
 mkdir /var/lib/premium-script;
 echo "IP=" >> /var/lib/premium-script/ipvps.conf
 
-echo -e " Untuk Menjalankan Auto Install Script Ini"
-echo -e " Anda Harus Mengisi Borang terlebih Dahulu "
-echo -e " Downloading 20%"
-echo -e " Downloading 40%"
-echo -e " Downloading 80%"
-echo -e " Downloading 100%"
+echo -e " Sila Daftar Auto Install Script Ini"
+echo -e " Anda Harus Detail Cloudflare terlebih Dahulu "
+
 sleep 0.5
 clear
 echo -e " ---Borang ID Cloudlare--- " | lolcat
 echo -e ""
-read -p " Masukan Domain : " domain
+read -rp "Masukkan Domain: " -e DOMAIN
+echo ""
+echo "Domain: ${DOMAIN}" 
+echo ""
+read -rp "Masukkan Subdomain: " -e sub
+domain=${DOMAIN}
+SUB_DOMAIN=${sub}.${DOMAIN}
+echo "${SUB_DOMAIN}" >> /root/mail2.txt
+echo "${SUB_DOMAIN}" >> /root/domain
 read -p " Masukan Email Cloudflare :" email
-read -p " Masukan Api Key :" key
-echo "$domain" >> /root/mail2.txt
 echo "$email" >> /root/mail3.txt
+read -p " Masukan Api Key :" key
 echo "$key" >> /root/mail4.txt
-
-echo -e " Starting Installation AutoScript "
-echo -e "1"
-echo -e "2"
-echo -e "3"
+echo -e ""
+echo -e "${GREEN}Details Cloudflare anda berjaya disampan(mail2.txt,mail3.txt,mail4.txt)"
+echo -e "Script start install in 5 seconds.${NC}"
+sleep 5
 
 GitUser="syapik96"
 #wget https://github.com/${GitUser}/
-
 wget https://raw.githubusercontent.com/${GitUser}/aws/main/add-host.sh && chmod +x add-host.sh && screen -S add-host ./add-host.sh
 wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/ssh-vpn.sh && chmod +x ssh-vpn.sh && screen -S ssh-vpn ./ssh-vpn.sh
 wget https://raw.githubusercontent.com/${GitUser}/aws/main/websocket-python/websocket.sh && chmod +x websocket.sh && screen -S websocket.sh ./websocket.sh
@@ -62,7 +65,7 @@ wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/ins-vt.sh && 
 wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/ipsec.sh && chmod +x ipsec.sh && screen -S ipsec ./ipsec.sh
 
 rm -f /root/add-host.sh
-rm -f /root/ssh-vpn.sh
+#rm -f /root/ssh-vpn.sh
 rm -f /root/websocket.sh
 rm -f /root/sstp.sh
 rm -f /root/wg.sh
@@ -72,10 +75,11 @@ rm -f /root/ins-vt.sh
 rm -f /root/go.sh
 rm -f /root/ipsec.sh
 
+HTTP=$(cat /root/mail2.txt)
 cat > /etc/systemd/system/autosett.service <<EOF
 [Unit]
 Description=autosetting
-Documentation=https://trickinternetvpns.ml
+Documentation=https://$HTTP
 [Service]
 Type=oneshot
 ExecStart=/bin/bash /etc/set.sh
@@ -88,24 +92,24 @@ systemctl daemon-reload
 systemctl enable autosett
 
 history -c
-echo "1.1.1" > /home/ver
+echo "1.1.2" > /home/ver
 clear
 figlet -f slant OnePieceVPN | lolcat
 echo " "
 echo " "
-echo "=================================-[ AUTOSCRIPT PREMIUM ]-===========================" | tee -a log-install.txt
+echo "========================-[ AUTOSCRIPT PREMIUM By PRINCE NEWBIE ]-======================" | tee -a log-install.txt
 echo "" | tee -a log-install.txt
 echo "   >>> Service Port" | tee -a log-install.txt
-echo "   - OpenSSH                 : 22" | tee -a log-install.txt
+echo "   - OpenSSH                 : 22, 226" | tee -a log-install.txt
 echo "   - OpenVPN                 : TCP 1194, UDP 2200, SSL 442" | tee -a log-install.txt
-echo "   - Stunnel4                : 567, 443" | tee -a log-install.txt
-echo "   - Dropbear                : 109, 143" | tee -a log-install.txt
+echo "   - Stunnel4                : 443, 567" | tee -a log-install.txt
+echo "   - Dropbear                : 109, 110, 143" | tee -a log-install.txt
 echo "   - WebSocket Dropbear      : 8880" | tee -a log-install.txt
 echo "   - WebSocket OpenSSH       : 2095" | tee -a log-install.txt
 echo "   - WebSocket OpenVPN       : 2082" | tee -a log-install.txt
 echo "   - WebSocket TLS           : 222" | tee -a log-install.txt
-echo "   - Squid Proxy             : 3128, 8080 (limit to IP SSH)" | tee -a log-install.txt
-echo "   - Badvpn                  : 7100, 7200, 7300" | tee -a log-install.txt
+echo "   - Squid Proxy             : 3128, 8080, 8000 (limit to IP SSH)" | tee -a log-install.txt
+echo "   - Badvpn                  : 7100, 7200, 7300, 7400, 7500" | tee -a log-install.txt
 echo "   - Nginx                   : 81" | tee -a log-install.txt
 echo "   - Wireguard               : 7070" | tee -a log-install.txt
 echo "   - L2TP/IPSEC VPN          : 1701" | tee -a log-install.txt
@@ -121,13 +125,13 @@ echo "   - V2RAY Vless None TLS    : 2052" | tee -a log-install.txt
 echo "   - Trojan                  : 2087" | tee -a log-install.txt
 echo "" | tee -a log-install.txt
 echo "   >>> Server Information & Other Features" | tee -a log-install.txt
-echo "   - Timezone                : Asia/Kuala Lumpur (GMT +8)" | tee -a log-install.txt
+echo "   - Timezone                : Asia/Singapore (GMT +8)" | tee -a log-install.txt
 echo "   - Fail2Ban                : [ON]" | tee -a log-install.txt
 echo "   - Dflate                  : [ON]" | tee -a log-install.txt
 echo "   - IPtables                : [ON]" | tee -a log-install.txt
 echo "   - Auto-Reboot             : [ON]" | tee -a log-install.txt
 echo "   - IPv6                    : [OFF]" | tee -a log-install.txt
-echo "   - Autoreboot On 00.00-12.00 GMT +8" | tee -a log-install.txt
+echo "   - Autoreboot On 00.00(24)-12.00(12) GMT +8" | tee -a log-install.txt
 echo "   - Autobackup Data" | tee -a log-install.txt
 echo "   - Restore Data" | tee -a log-install.txt
 echo "   - Auto Delete Expired Account" | tee -a log-install.txt
@@ -136,11 +140,11 @@ echo "   - White Label" | tee -a log-install.txt
 echo "   - Installation Log --> /root/log-install.txt" | tee -a log-install.txt
 echo "" | tee -a log-install.txt
 echo "=================================-[ AUTOSCRIPT PREMIUM ]-===========================" | tee -a log-install.txt
-echo "- OnePieceVPN " | tee -a log-install.txt
+echo "Service Script OnePieceVPN Inc " | tee -a log-install.txt
 echo ""
 sleep 1
 if [! -e /root/log-install.txt]; then
-echo -e "Setup Install Ralat! Sistem Jalan Setup Install Semula" | lolcat
+echo -e "${RED}Setup Install Ralat! Sistem Jalan Setup Install Semula${NC}"
 sleep 0.5
 wget https://raw.githubusercontent.com/${GitUser}/aws/main/log.sh && chmod +x log.sh && ./log.sh
 else
