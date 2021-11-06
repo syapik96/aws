@@ -1,12 +1,14 @@
 #!/bin/bash
-#!/bin/bash
 # VPN Premium Script
 # © Github.com/syapik96
 # Orignal Repository: https://github.com/syapik96/aws
 # Modified By PrinceNewBie
 # Telegram: https://t.me/ PrinceNewbie
 # Thanks for using this script, Enjoy Highspeed VPN Service
-
+if [ "$EUID" -ne 0 ]; then
+  echo -e "${rd}Skrip perlu dijalankan sebagai root!${nc}";
+  exit 1
+fi
 
 clear 
 yl='\e[32;1m'
@@ -19,10 +21,6 @@ op='\e[35m'
 or='\033[1;33m'
 bd='\e[1m'
 nc='\e[0m'
-
-if [ "$EUID" -ne 0 ]; then
-  echo -e "${rd}Skrip perlu dijalankan sebagai root!${nc}"; exit 1
-fi
 
 ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10 )
 CITY=$(curl -s ipinfo.io/city )
@@ -51,7 +49,7 @@ echo -e  "  ║ \e[32;1mCity:\e[0m $CITY"
 echo -e  "  ║ \e[32;1mTime:\e[0m $WKT"
 echo -e  "  ║ " | lolcat
 echo -e  "  ╠════════════════════════════════════════════════════════════╗" | lolcat
-echo -e  "  ║                       ┃ MENU OPTIONS ┃                     ║" | lolcat
+echo -e  "  ║                       ♠ MENU OPTIONS ♠                     ║" | lolcat
 echo -e  "  ╠════════════════════════════════════════════════════════════╝" | lolcat
 echo -e  "  ║ " | lolcat
 echo -e  "  ║          [ 1 ] > >> >> SSH & OpenVPN"  | lolcat
@@ -62,10 +60,10 @@ echo -e  "  ║          [ 5 ] > >> >> Panel SSR & SS Account" | lolcat
 echo -e  "  ║          [ 6 ] > >> >> Panel V2Ray" | lolcat
 echo -e  "  ║          [ 7 ] > >> >> Panel VLess" | lolcat
 echo -e  "  ║          [ 8 ] > >> >> Panel TRojan" | lolcat
-echo -e  "  ║          [ 9 ] > >> >> Panel SYSTEM (still working on)" | lolcat
+echo -e  "  ║          [ 9 ] > >> >> Panel SYSTEM" | lolcat
 echo -e  "  ║ " | lolcat
 echo -e  "  ╠════════════════════════════════════════════════════════════╗" | lolcat
-echo -e  "  ║                  Press ENTER to > Exit <                   ║" | lolcat
+echo -e  "  ║               Exit Panel Just Press Enter                  ║" | lolcat
 echo -e  "  ╠════════════════════════════════════════════════════════════╣" | lolcat
 echo -e  "  ║           🔰 COPYRIGHT © 2021 OnePieceVPN, Inc 🔰           ║" | lolcat
 echo -e  "  ║                  POWERED BY PRINCENEWBIE                   ║" | lolcat
@@ -111,28 +109,17 @@ case $menu in
 	   ;;
 	   8)
 	   clear
-	   trojanGO
+	   trojan
 	   exit
 	   ;;
 	   9)
 	   clear
-	   trojaan
+	   system
 	   exit
 	   ;;
-	   10)
-	   clear
-	   menu
-	   exit
-	   ;;
-	   x)
+	   *)
 	   clear
 	   exit
 	   sudo -i
 	   ;;
-	   *)
-	   echo -e "\e[1;31mPlease enter an correct number\e[0m"
-	   sleep 0.5
-           clear
-	   menu
-	   ;;
-esac
+	esac
