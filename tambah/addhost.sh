@@ -3,6 +3,10 @@
 red='\e[1;31m'
 green='\e[0;32m'
 NC='\e[0m'
+
+sysctl -w net.ipv6.conf.all.disable_ipv6=1
+sysctl -w net.ipv6.conf.default.disable_ipv6=1
+
 clear
 DOMAIN="$( cat /root/mail1.txt )"
 sub="$(cat /root/mail2.txt )"
