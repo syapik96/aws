@@ -98,11 +98,10 @@ sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 apt-get --reinstall --fix-missing install -y bzip2 gzip coreutils wget screen rsyslog iftop htop net-tools zip unzip wget net-tools curl nano sed screen gnupg gnupg1 bc apt-transport-https build-essential dirmngr libxml-parser-perl neofetch git
 echo "clear" >> .profile
 echo "neofetch" >> .profile
+echo "echo AustoScriptVPN by PrinceNewbie" >> .profile
 echo "echo For Enter Panel TYPE : menu" >> .profile
-echo "echo AustoScriptVPN Free-Premium" >> .profile
 echo "echo Thanks For Using MyScript" >> .profile
-echo "echo Script by: PrinceNewbie" >> .profile
-echo "echo COPYRIGHT © 2021" >> .profile
+echo "echo   COPYRIGHT © 2021" >> .profile
 
 GitUser="syapik96"
 #wget https://github.com/${GitUser}/
@@ -313,7 +312,7 @@ wget -O cfd "https://raw.githubusercontent.com/${GitUser}/aws/main/panel-domain/
 wget -O cff "https://raw.githubusercontent.com/${GitUser}/aws/main/panel-domain/cff.sh"
 wget -O cfh "https://raw.githubusercontent.com/${GitUser}/aws/main/panel-domain/cfh.sh"
 wget -O add-dns "https://raw.githubusercontent.com/${GitUser}/aws/main/panel-domain/add-dns.sh"
-wget -O sytem "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/system.sh"
+wget -O system "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/system.sh"
 wget -O menu "https://raw.githubusercontent.com/syapik96/aws/main/menu-update/menu.sh"
 chmod +x add-host
 chmod +x usernew
