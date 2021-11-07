@@ -2,12 +2,17 @@
 # Script by : Prince Newbie
 
 clear
+figlet -f slant "NEW ACCOUNT"
 echo -e "    ==================================="  | lolcat
-echo -e "    ║    New SSH & OpenVPN Account    ║"       | lolcat
+echo -e "    ║    New SSH & OpenVPN Account    ║"  | lolcat
 echo -e "    ==================================="  | lolcat
+echo -e "\e[1;32m"
 read -p "    * Username : " Login
+
 read -p "    * Password : " Pass
+
 read -p "    * Expired (hari): " masaaktif
+echo -e "\e[0m"
 
 url=$(cat /etc/hostname);
 IP=$(wget -qO- ipinfo.io/ip);
@@ -60,8 +65,9 @@ echo -e "         \e[1;31mKembali ke Menu enter >> \e[0m"0
 echo -e "         \e[1;31mExit Enter >> \e[0m"00
 echo -e ""
 echo -e " #####===============[ Terima Kasih Telah Menggunakan Perkhidmatan Kami ]=================#####" | lolcat
-echo -e ""
-read -p "       Mau Kemana Boss : " Lari
+echo -e "\e[1;32m"
+read -p "        Menu or Exit : " Lari
+echo -e "\e[0m"
 case $Lari in 
      0)
      clear 
