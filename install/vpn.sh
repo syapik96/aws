@@ -16,7 +16,7 @@ timedatectl set-timezone Asia/Singapore
 # Install OpenVPN dan Easy-RSA
 apt install -y openvpn easy-rsa openssl
 apt install -y iptables iptables-persistent
-#cp -r /usr/share/easy-rsa/ /etc/openvpn
+cp -r /usr/share/easy-rsa/ /etc/openvpn
 cd /etc/openvpn
 wget https://github.com/syapik96/aws/raw/main/lain2/2.0.zip
 unzip 2.0.zip
