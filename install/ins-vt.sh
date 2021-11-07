@@ -502,7 +502,7 @@ iptables -I INPUT 6 -m state --state NEW -m udp -p udp --dport 80 -j ACCEPT
 iptables -I INPUT 6 -m state --state NEW -m udp -p udp --dport 2083 -j ACCEPT
 iptables -I INPUT 6 -m state --state NEW -m udp -p udp --dport 2052 -j ACCEPT
 iptables -I INPUT 6 -m state --state NEW -m udp -p udp --dport 2087 -j ACCEPT
-
+iptables -I INPUT 6 -m state --state NEW -m tcp -p tcp --dport 443 -j ACCEPT
 iptables-save > /etc/iptables.up.rules
 iptables-restore -t < /etc/iptables.up.rules
 netfilter-persistent save
@@ -519,7 +519,7 @@ systemctl start v2ray@trojan.service
 systemctl restart v2ray
 systemctl enable v2ray
 
-function ConfMenuV2ray(){
+
 echo -e "\e[1;32m  Creating V2ray Menu scripts..\e[0m"
 
 GitUser="syapik96"
@@ -564,7 +564,6 @@ chmod +x xp-tr
 chmod +x xp-vless
 chmod +x certv2ray
 
-}
 
 
 cd
