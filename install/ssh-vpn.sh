@@ -3,6 +3,40 @@
 # 
 # ==================================================
 
+export DEBIAN_FRONTEND=noninteractive
+apt update
+apt upgrade
+apt-get update
+apt-get upgrade -y
+
+# Install Ssl & Certificates
+apt install ssl-cert
+apt install ca-certificates
+
+# Removing some firewall tools that may affect other services
+apt-get remove --purge ufw firewalld -y
+
+# Install Speedtest
+apt install python-pip
+pip install speedtest-cli
+ 
+# Installing some important machine essentials
+apt-get install nano zip unzip tar gzip p7zip-full bc rc openssl cron net-tools dnsutils dos2unix screen bzip2 ccrypt -y
+ 
+# Now installing all our wanted services
+apt-get install dropbear stunnel4 privoxy ca-certificates nginx ruby apt-transport-https lsb-release squid3 -y
+
+# Installing all required packages to install Webmin
+apt-get install perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl apt-show-versions python dbus libxml-parser-perl -y
+apt-get install shared-mime-info jq fail2ban -y
+
+ 
+# Installing a text colorizer
+gem install lolcat
+
+# Trying to remove obsolette packages after installation
+apt-get autoremove -y
+
 GitUser="syapik96"
 #wget https://github.com/${GitUser}/
 # initializing var
@@ -19,11 +53,11 @@ ver=$VERSION_ID
 
 country=MY
 state=Malaysia
-locality=Kuala Lumpur
-organization=OnePieceVPN Officials
+locality=Wilayah Persekutuan Kuala Lumpur
+organization=OnePieceVPN Inc
 organizationalunit=OnePieceVPN Officials
 commonname=$(cat /root/mail1.txt)
-email=$(cat /root/mail4.txt)
+email=$(cat /root/mail3.txt)
 
 # simple password minimal
 wget -O /etc/pam.d/common-password "https://raw.githubusercontent.com/${GitUser}/aws/main/password"
@@ -68,40 +102,30 @@ echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
 sed -i '$ i\echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' /etc/rc.local
 
 # set repo
-sh -c 'echo "deb http://download.webmin.com/download/repository sarge contrib" > /etc/apt/sources.list.d/webmin.list'
+sudo apt-get install apt-transport-https gnupg2 curl
+sudo echo "deb https://download.webmin.com/download/repository sarge contrib" \ > /etc/apt/sources.list.d/webmin.list
 apt install gnupg gnupg1 gnupg2 -y
-wget http://www.webmin.com/jcameron-key.asc
+curl https://download.webmin.com/jcameron-key.asc 
 apt-key add jcameron-key.asc
+apt-get install webmin
 
-#update
-apt update -y
-apt upgrade -y
-apt dist-upgrade -y
+# Configuring webmin server config to use only http instead of https
+sed -i 's|ssl=1|ssl=0|g' /etc/webmin/miniserv.conf
 
-# install wget and curl
-apt -y install wget curl
-
-apt install shc -y
-
-#figlet
-apt-get install figlet -y
-apt-get install ruby -y
-gem install lolcat
+# Then restart to take effect
+systemctl restart webmin
 
 # set time GMT +8 # change your location #
 ln -fs /usr/share/zoneinfo/Asia/Singapore /etc/localtime
-
-# set locale
-sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 
 # install
 apt-get --reinstall --fix-missing install -y bzip2 gzip coreutils wget screen rsyslog iftop htop net-tools zip unzip wget net-tools curl nano sed screen gnupg gnupg1 bc apt-transport-https build-essential dirmngr libxml-parser-perl neofetch git
 echo "clear" >> .profile
 echo "neofetch" >> .profile
-echo "echo AustoScriptVPN by PrinceNewbie" >> .profile
-echo "echo For Enter Panel TYPE : menu" >> .profile
-echo "echo Thanks For Using MyScript" >> .profile
-echo "echo   COPYRIGHT © 2021" >> .profile
+echo "echo AustoScriptVPN by PrinceNewbie" | lolcat >> .profile
+echo "echo For Enter Panel TYPE : menu" | lolcat >> .profile
+echo "echo Thanks For Using MyScript" | lolcat >> .profile
+echo "echo [*] COPYRIGHT © 2021 [*]" | lolcat >> .profile
 
 GitUser="syapik96"
 #wget https://github.com/${GitUser}/
@@ -133,18 +157,70 @@ screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7400 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7500 --max-clients 500
 
 # setting port ssh
-sed -i 's/Port 22/Port 22/g' /etc/ssh/sshd_config
-sed -i 's/Port 40000/g' /etc/ssh/sshd_config
+# Removing some duplicated sshd server configs
+rm -f /etc/ssh/sshd_config*
+ 
+# Creating a SSH server config using cat eof tricks
+cat <<'MySSHConfig' > /etc/ssh/sshd_config
+# My OpenSSH Server config
+Port 22
+Port 226
+Port 40000
+AddressFamily inet
+ListenAddress 0.0.0.0
+HostKey /etc/ssh/ssh_host_rsa_key
+HostKey /etc/ssh/ssh_host_ecdsa_key
+HostKey /etc/ssh/ssh_host_ed25519_key
+PermitRootLogin yes
+MaxSessions 1024
+PubkeyAuthentication yes
+PasswordAuthentication yes
+PermitEmptyPasswords no
+ChallengeResponseAuthentication no
+UsePAM yes
+X11Forwarding yes
+PrintMotd no
+ClientAliveInterval 240
+ClientAliveCountMax 2
+UseDNS no
+Banner /etc/issue.net
+AcceptEnv LANG LC_*
+Subsystem   sftp  /usr/lib/openssh/sftp-server
+MySSHConfig
 
+# set locale
+sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
+
+sed -i '/password\s*requisite\s*pam_cracklib.s.*/d' /etc/pam.d/common-password
+sed -i 's/use_authtok //g' /etc/pam.d/common-password
+# Restarting openssh service
+systemctl restart ssh
+ 
 # install dropbear
-apt -y install dropbear
-sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=143/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 50000 -p 109"/g' /etc/default/dropbear
+apt install dropbear -y
+# Removing some duplicate config file
+rm -rf /etc/default/dropbear*
+ 
+# creating dropbear config using cat eof tricks
+cat <<'MyDropbear' > /etc/default/dropbear
+# My Dropbear Config
+NO_START=0
+DROPBEAR_PORT=22
+DROPBEAR_PORT=143
+DROPBEAR_EXTRA_ARGS="-p 50000 -p 109"
+DROPBEAR_BANNER="/etc/banner"
+DROPBEAR_RSAKEY="/etc/dropbear/dropbear_rsa_host_key"
+DROPBEAR_DSSKEY="/etc/dropbear/dropbear_dss_host_key"
+DROPBEAR_ECDSAKEY="/etc/dropbear/dropbear_ecdsa_host_key"
+DROPBEAR_RECEIVE_WINDOW=65536
+MyDropbear
+
+sed -i '/\/bin\/false/d' /etc/shells
+sed -i '/\/usr\/sbin\/nologin/d' /etc/shells
 echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
-/etc/init.d/dropbear restart
-
+systemctl restart dropbear
+systemctl restart ssh
 # install squid
 cd
 apt -y install squid3
@@ -159,9 +235,9 @@ sed -i "s|IP-ADDRESS|$MYIP|g" /etc/squid/squid.conf
 apt -y install vnstat
 /etc/init.d/vnstat restart
 apt -y install libsqlite3-dev
-wget https://humdi.net/vnstat/vnstat-2.8.tar.gz
-tar zxvf vnstat-2.8.tar.gz
-cd vnstat-2.8
+wget https://humdi.net/vnstat/vnstat-2.6.tar.gz
+tar zxvf vnstat-2.6.tar.gz
+cd vnstat-2.6
 ./configure --prefix=/usr --sysconfdir=/etc && make && make install 
 cd
 vnstat -u -i $NET
@@ -169,8 +245,8 @@ sed -i 's/Interface "'""eth0""'"/Interface "'""$NET""'"/g' /etc/vnstat.conf
 chown vnstat:vnstat /var/lib/vnstat -R
 systemctl enable vnstat
 /etc/init.d/vnstat restart
-rm -f /root/vnstat-2.8.tar.gz 
-rm -rf /root/vnstat-2.8
+rm -f /root/vnstat-2.6.tar.gz 
+rm -rf /root/vnstat-2.6
 
 # install stunnel
 apt -y install stunnel4
@@ -199,6 +275,10 @@ connect = 127.0.0.1:143
 
 [openvpn]
 accept = 992
+connect = 127.0.0.1:1194
+
+[openvpn2]
+accept = 443
 connect = 127.0.0.1:1194
 
 END
@@ -305,7 +385,7 @@ wget -O clear-log "https://raw.githubusercontent.com/${GitUser}/aws/main/clear-l
 #wget -O update "https://raw.githubusercontent.com/${GitUser}/aws/main/update.sh"
 #menu-Updated
 wget -O l2tp "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/l2tp.sh"
-wget -O ssh "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/ssh.sh"
+wget -O sssh "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/ssh.sh"
 wget -O ssssr "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/ssssr.sh"
 wget -O wgr "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/wgr.sh"
 wget -O cfd "https://raw.githubusercontent.com/${GitUser}/aws/main/panel-domain/cfd.sh"
@@ -325,14 +405,14 @@ chmod +x cek
 chmod +x restart
 chmod +x info
 chmod +x about
-chmod +x autokill
+chmod +x autokick
 chmod +x tendang
 chmod +x ceklim
 chmod +x ram
 chmod +x renew
 chmod +x clear-log
 chmod +x l2tp
-chmod +x ssh
+chmod +x sssh
 chmod +x ssssr
 chmod +x wgr
 chmod +x cfd
@@ -340,7 +420,7 @@ chmod +x cff
 chmod +x cfh
 chmod +x system
 chmod +x menu
-
+chmod +x add-dns
 echo "0 5 * * * root clear-log" >> /etc/crontab
 echo "0 0 * * * root xp" >> /etc/crontab
 # remove unnecessary files
