@@ -2,7 +2,7 @@
 # Script by : Prince Newbie
 
 clear
-figlet -f slant "NEW ACCOUNT"
+figlet -f slant "NEW ACCOUNT" | lolcat
 echo -e "    ==================================="  | lolcat
 echo -e "    ║    New SSH & OpenVPN Account    ║"  | lolcat
 echo -e "    ==================================="  | lolcat
@@ -14,9 +14,9 @@ read -p "    * Password : " Pass
 read -p "    * Expired (hari): " masaaktif
 echo -e "\e[0m"
 
-url=$(cat /etc/hostname);
+url=$( wget -qO- http://ipecho.net/plain );
 IP=$(wget -qO- ipinfo.io/ip);
-domain=$(cat /etc/hostname);
+domain=$(cat /root/mail1.txt);
 echo "Script AutoCreate Akaun SSH dan OpenVPN Mod By OnePiece"
 sleep 1
 echo Ping Host
@@ -60,9 +60,9 @@ echo -e "   Payload Websocket : GET / HTTP/1.1[crlf]Host: $domain[crlf]Upgrade: 
 echo -e ""
 echo -e "[*][*]=================================================================================[*][*]" | lolcat
 echo -e ""
-echo -e "         \e[1;31mAktif Sampai   : \e[0m"$exp
-echo -e "         \e[1;31mKembali ke Menu enter >> \e[0m"0
-echo -e "         \e[1;31mExit Enter >> \e[0m"00
+echo -e "     \e[1;31mAktif Sampai   : \e[0m"$exp
+echo -e "     \e[1;31mKembali ke Menu enter >> \e[0m"0
+echo -e "     \e[1;31mJust Enter T Exit>> \e[0m"
 echo -e ""
 echo -e " #####===============[ Terima Kasih Telah Menggunakan Perkhidmatan Kami ]=================#####" | lolcat
 echo -e "\e[1;32m"
@@ -72,9 +72,10 @@ case $Lari in
      0)
      clear 
      menu 
+     exit
      ;;
-     00)
-     clear
+     *)
+     sudo -i
      exit
      ;;
 esac     
