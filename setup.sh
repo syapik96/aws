@@ -21,17 +21,15 @@ sysctl -w net.ipv6.conf.default.disable_ipv6 = 1
 timedatectl set-timezone Asia/Singapore
 apt-get update && apt-get upgrade -y 
 apt install -y bzip2 gzip coreutils screen curl
-apt-get install -y ruby figlet 
+apt-get install ruby -y
+apt-get install figlet -y
 gem install lolcat -y
-
-mkdir /var/lib/premium-script;
-echo "IP=" >> /var/lib/premium-script/ipvps.conf
-
-echo -e " Sila Daftar Auto Install Script Ini"
-echo -e " Anda Harus Detail Cloudflare terlebih Dahulu "
+clear
+figlet -f slant "Cloudlare Form" | lolcat
+echo -e " Sila Daftar Auto Install Script Ini" | lolcat
+echo -e " Anda Harus Detail Cloudflare terlebih Dahulu " | lolcat
 
 sleep 0.5
-clear
 echo -e " ---Borang ID Cloudlare--- " | lolcat
 echo -e ""
 read -rp "Masukkan Domain: " -e DOMAIN
@@ -52,6 +50,8 @@ echo -e ""
 echo -e "${GREEN}Details Cloudflare anda berjaya disampan(mail2.txt,mail3.txt,mail4.txt)"
 echo -e "Script start install in 5 seconds.${NC}"
 sleep 5
+
+mkdir /etc/v2ray
 
 GitUser="syapik96"
 #wget https://github.com/${GitUser}/
@@ -96,7 +96,7 @@ systemctl enable autosett
 history -c
 echo "1.1.2" > /home/ver
 clear
-figlet -f slant OnePieceVPN | lolcat
+figlet -f slant AUTOSCRIPT PREMIUM | lolcat
 echo " "
 echo " "
 echo "========================-[ AUTOSCRIPT PREMIUM By PRINCE NEWBIE ]-======================" | tee -a log-install.txt
@@ -149,7 +149,7 @@ if [! -e /root/log-install.txt]; then
 echo -e "${RED}Setup Install Ralat! Sistem Jalan Setup Install Semula${NC}"
 echo -e "${RED} Sistem Install Semula Autoscript Dalam 5 Saat${NC}"
 sleep 5
-wget https://raw.githubusercontent.com/${GitUser}/aws/main/setup.sh
+wget https://raw.githubusercontent.com/${GitUser}/aws/main/log.sh
 chmod +x setup.sh 
 ./setup.sh
 else
