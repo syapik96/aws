@@ -11,52 +11,20 @@ MYIP=$( wget -qO- http://ipecho.net/plain );
 MYIP2="s/xxxxxxxxx/$MYIP/g";
 ANU=$(ip -o $ANU -4 route show to default | awk '{print $5}');
 
-timedatectl set-timezone Asia/Singapore
+timedatectl set-timezone Asia/Kuala_Lumpur
 
 # Install OpenVPN dan Easy-RSA
-apt install -y openvpn easy-rsa openssl
-apt install -y iptables iptables-persistent
+apt install openvpn easy-rsa openssl -y
+apt install openssl iptables iptables-persistent -y 
 cp -r /usr/share/easy-rsa/ /etc/openvpn
-cd /etc/openvpn
-wget https://github.com/syapik96/aws/raw/main/lain2/2.0.zip
-unzip 2.0.zip
-mv /etc/openvpn/2.0 /etc/openvpn/easy-rsa
-rm /etc/openvpn/2.0.zip
 mkdir /etc/openvpn/easy-rsa/keys
-mv /etc/openvpn/easy-rsa/vars /etc/openvpn/easy-rsa/ori_vars
+cp /etc/openvpn/easy-rsa/vars.example /etc/openvpn/easy-rsa/vars
 
 # Kemudian edit file variabel easy-rsa
-GitUser="syapik96"
-wget -O /etc/openvpn/easy-rsa/vars "https://raw.githubusercontent.com/4{Gituser}/aws/main/vars.conf"
-nano /etc/openvpn/easy-rsa/vars
-# edit projek if export KEY_NAME="vpn" tukar kpd anda ingin "apa2"
-#export KEY_COUNTRY="AWS" Contoh
-#export KEY_PROVINCE="Malaysia"Contoh
-#export KEY_CITY="Kuala Lumpur"Contoh
-#export KEY_ORG="Campany"Contoh
-#export KEY_EMAIL="yakuza@gmail.com"Contoh
-#export KEY_OU="Namma server vpn anda atau apaje"Contoh
+# nano /etc/openvpn/easy-rsa/vars
+wget -O /etc/openvpn/easy-rsa/vars "https://raw.githubusercontent.com/${GitUser}/aws/main/vars.conf"
+# edit projek export KEY_NAME="vpn"
 # Save dan keluar dari editor
-
-# izin file untuk jalam
-cd /etc/openvpn/easy-rsa
-chmod +x /etc/openvpn/easy-rsa/vars
-chmod +x whichopensslcnf
-chmod +x clean-all
-chmod +x build-dh
-chmod +x build-ca
-chmod +x build-inter
-chmod +x build-key
-chmod +x build-key-pass
-chmod +x build-key-pkcs12
-chmod +x build-key-server
-chmod +x pkitool
-chmod +x build-req
-chmod +x build-req-pass
-chmod +x sign-req
-chmod +x inherit-inter
-chmod +x list-crl
-chmod 644 /root/.rnd
 
 # generate Diffie hellman parameters
 openssl dhparam -out /etc/openvpn/dh2048.pem 2048
@@ -108,8 +76,8 @@ username-as-common-name
 server 10.6.0.0 255.255.255.0
 ifconfig-pool-persist ipp.txt
 push "redirect-gateway def1 bypass-dhcp"
-push "dhcp-option DNS 8.8.8.8"
-push "dhcp-option DNS 8.8.4.4"
+push "dhcp-option DNS 1.1.1.1"
+push "dhcp-option DNS 1.0.0.1"
 keepalive 5 30
 comp-lzo
 persist-key
@@ -134,8 +102,8 @@ username-as-common-name
 server 10.6.0.0 255.255.255.0
 ifconfig-pool-persist ipp.txt
 push "redirect-gateway def1 bypass-dhcp"
-push "dhcp-option DNS 8.8.8.8"
-push "dhcp-option DNS 8.8.4.4"
+push "dhcp-option DNS 1.1.1.1"
+push "dhcp-option DNS 1.0.0.1"
 keepalive 5 30
 comp-lzo
 persist-key
@@ -160,8 +128,8 @@ username-as-common-name
 server 10.6.0.0 255.255.255.0
 ifconfig-pool-persist ipp.txt
 push "redirect-gateway def1 bypass-dhcp"
-push "dhcp-option DNS 8.8.8.8"
-push "dhcp-option DNS 8.8.4.4"
+push "dhcp-option DNS 1.1.1.1"
+push "dhcp-option DNS 1.0.0.1"
 keepalive 5 30
 comp-lzo
 persist-key
@@ -186,8 +154,8 @@ username-as-common-name
 server 10.7.0.0 255.255.255.0
 ifconfig-pool-persist ipp.txt
 push "redirect-gateway def1 bypass-dhcp"
-push "dhcp-option DNS 8.8.8.8"
-push "dhcp-option DNS 8.8.4.4"
+push "dhcp-option DNS 1.1.1.1"
+push "dhcp-option DNS 1.0.0.1"
 keepalive 5 30
 comp-lzo
 persist-key
@@ -449,6 +417,6 @@ chmod +x /etc/network/if-up.d/iptables
 # restart opevpn
 /etc/init.d/openvpn restart
 
-# Delete script 
+# Delete script
 history -c
 rm -f /root/vpn.sh
