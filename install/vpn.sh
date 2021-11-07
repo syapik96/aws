@@ -11,7 +11,7 @@ MYIP=$( wget -qO- http://ipecho.net/plain );
 MYIP2="s/xxxxxxxxx/$MYIP/g";
 ANU=$(ip -o $ANU -4 route show to default | awk '{print $5}');
 
-timedatectl set-timezone Asia/Kuala_Lumpur
+timedatectl set-timezone Asia/Singapore
 
 # Install OpenVPN dan Easy-RSA
 apt install -y openvpn easy-rsa openssl
@@ -21,8 +21,8 @@ mkdir /etc/openvpn/easy-rsa/keys
 cp /etc/openvpn/easy-rsa/vars.example /etc/openvpn/easy-rsa/vars
 
 # Kemudian edit file variabel easy-rsa
-Gituser="syapik96"
-# nano /etc/openvpn/easy-rsa/vars
+GitUser="syapik96"
+nano /etc/openvpn/easy-rsa/vars
 wget -O /etc/openvpn/easy-rsa/vars "https://raw.githubusercontent.com/4{Gituser}/aws/main/vars.conf"
 # edit projek export KEY_NAME="vpn"
 # Save dan keluar dari editor
