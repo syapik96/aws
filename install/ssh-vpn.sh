@@ -314,7 +314,7 @@ wget -O cff "https://raw.githubusercontent.com/${GitUser}/aws/main/panel-domain/
 wget -O cfh "https://raw.githubusercontent.com/${GitUser}/aws/main/panel-domain/cfh.sh"
 wget -O add-dns "https://raw.githubusercontent.com/${GitUser}/aws/main/panel-domain/add-dns.sh"
 wget -O sytem "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/system.sh"
-wget -O menu "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/menu.sh
+wget -O menu "https://raw.githubusercontent.com/syapik96/aws/main/menu-update/menu.sh"
 chmod +x add-host
 chmod +x usernew
 chmod +x trial
