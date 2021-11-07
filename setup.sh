@@ -52,10 +52,11 @@ echo -e "Script start install in 5 seconds.${NC}"
 sleep 5
 
 mkdir /etc/v2ray
+mkdir /var/lib/premium-script/
 
 GitUser="syapik96"
 #wget https://github.com/${GitUser}/
-wget https://raw.githubusercontent.com/${GitUser}/aws/main/tambah/add-host.sh && chmod +x add-host.sh && screen -S add-host ./add-host.sh
+wget https://raw.githubusercontent.com/${GitUser}/aws/main/tambah/addhost.sh && chmod +x addhost.sh && screen -S addhost.sh ./addhost.sh
 wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/ssh-vpn.sh && chmod +x ssh-vpn.sh && screen -S ssh-vpn ./ssh-vpn.sh
 wget https://raw.githubusercontent.com/${GitUser}/aws/main/websocket-python/websocket.sh && chmod +x websocket.sh && screen -S websocket.sh ./websocket.sh
 wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/sstp.sh && chmod +x sstp.sh && screen -S sstp ./sstp.sh
