@@ -38,29 +38,29 @@ echo -e  "  ║                    ♠  AutoScriptVPN  ♠                     �
 echo -e  "  ╠════════════════════════════════════════════════════════════╝" | lolcat
 echo -e  "  ║                      VPS PANEL INFO" | lolcat
 echo -e  "  ║ " | lolcat
-echo -e  "  ║ \e[32;1mCPU Model:\e[0m $cname  "
-echo -e  "  ║ \e[32;1mNumber Of Cores:\e[0m $cores"
-echo -e  "  ║ \e[32;1mCPU Frequency:\e[0m $freq MHz"
-echo -e  "  ║ \e[32;1mTotal Amount Of RAM:\e[0m $tram MB"
-echo -e  "  ║ \e[32;1mSystem Uptime:\e[0m $up"
-echo -e  "  ║ \e[32;1mIsp Name:\e[0m $ISP"
-echo -e  "  ║ \e[32;1mIp Vps:\e[0m $IPVPS"
-echo -e  "  ║ \e[32;1mCity:\e[0m $CITY"
-echo -e  "  ║ \e[32;1mTime:\e[0m $WKT"
+echo -e  "  ║    \e[32;1mCPU Model:\e[0m $cname  "
+echo -e  "  ║    \e[32;1mNumber Of Cores:\e[0m $cores"
+echo -e  "  ║    \e[32;1mCPU Frequency:\e[0m $freq MHz"
+echo -e  "  ║    \e[32;1mTotal Amount Of RAM:\e[0m $tram MB"
+echo -e  "  ║    \e[32;1mSystem Uptime:\e[0m $up"
+echo -e  "  ║    \e[32;1mIsp Name:\e[0m $ISP"
+echo -e  "  ║    \e[32;1mIp Vps:\e[0m $IPVPS"
+echo -e  "  ║    \e[32;1mCity:\e[0m $CITY"
+echo -e  "  ║    \e[32;1mTime:\e[0m $WKT"
 echo -e  "  ║ " | lolcat
 echo -e  "  ╠════════════════════════════════════════════════════════════╗" | lolcat
 echo -e  "  ║                       ♠ MENU OPTIONS ♠                     ║" | lolcat
 echo -e  "  ╠════════════════════════════════════════════════════════════╝" | lolcat
 echo -e  "  ║ " | lolcat
-echo -e  "  ║          [ 1 ] > >> >> SSH & OpenVPN"  | lolcat
-echo -e  "  ║          [ 2 ] > >> >> Panel Wireguard " | lolcat
-echo -e  "  ║          [ 3 ] > >> >> Panel L2TP & PPTP Account" | lolcat
-echo -e  "  ║          [ 4 ] > >> >> Panel SSTP Account" | lolcat
-echo -e  "  ║          [ 5 ] > >> >> Panel SSR & SS Account" | lolcat
-echo -e  "  ║          [ 6 ] > >> >> Panel V2Ray" | lolcat
-echo -e  "  ║          [ 7 ] > >> >> Panel VLess" | lolcat
-echo -e  "  ║          [ 8 ] > >> >> Panel TRojan" | lolcat
-echo -e  "  ║          [ 9 ] > >> >> Panel SYSTEM" | lolcat
+echo -e  "  ║      [ 1 ] =>  >>  >>  SSH & OpenVPN"  | lolcat
+echo -e  "  ║      [ 2 ] =>  >>  >>  Panel Wireguard " | lolcat
+echo -e  "  ║      [ 3 ] =>  >>  >>  Panel L2TP & PPTP Account" | lolcat
+echo -e  "  ║      [ 4 ] =>  >>  >>  Panel SSTP Account" | lolcat
+echo -e  "  ║      [ 5 ] =>  >>  >>  Panel SSR & SS Account" | lolcat
+echo -e  "  ║      [ 6 ] =>  >>  >>  Panel V2Ray" | lolcat
+echo -e  "  ║      [ 7 ] =>  >>  >>  Panel VLess" | lolcat
+echo -e  "  ║      [ 8 ] =>  >>  >>  Panel TRojan" | lolcat
+echo -e  "  ║      [ 9 ] =>  >>  >>  Panel SYSTEM" | lolcat
 echo -e  "  ║ " | lolcat
 echo -e  "  ╠════════════════════════════════════════════════════════════╗" | lolcat
 echo -e  "  ║               Exit Panel Just Press Enter                  ║" | lolcat
@@ -72,54 +72,53 @@ echo -e  "\e[1;31m"
 read -p  "           Select From Options :  " menu
 echo -e  "\e[0m"
 case $menu in
-           1)
-	   clear
-           ssh
-	   exit
-	   ;;
-	   2)
-	   clear
-           wgr
-	   exit
-	   ;;
-	   3)
-	   clear
-	   l2tp
-	   exit
-	   ;;
-	   4)
-	   clear
-	   sstpp
-	   exit
-	   ;;
-	   5)
-	   clear
-	   ssssr
-	   exit
-	   ;;
-	   6)
-	   clear
-	   v2raay
-	   exit
-	   ;;
-	   7)
-	   clear
-	   vleess
-	   exit
-	   ;;
-	   8)
-	   clear
-	   trojan
-	   exit
-	   ;;
-	   9)
-	   clear
-	   system
-	   exit
-	   ;;
-	   *)
-	   clear
-	   exit
-	   sudo -i
-	   ;;
-	esac
+       1)
+	clear
+        sssh
+	exit
+	;;
+	2)
+	clear
+        wgr
+	exit
+	;;
+	3)
+	clear
+	l2tp
+	exit
+	;;
+	4)
+	clear
+	sstpp
+	exit
+	;;
+	5)
+	clear
+	ssssr
+	exit
+	;;
+	6)
+	clear
+	v2raay
+	exit
+	;;
+	7)
+	clear
+	vleess
+	exit
+	;;
+	8)
+	clear
+	trojan
+	exit
+	;;
+	9)
+	clear
+	system
+	exit
+	;;
+	*)
+	sudo -i
+	exit
+	;;
+    esac
