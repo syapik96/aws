@@ -18,7 +18,6 @@ apt-get remove --purge ufw firewalld -y
 
 # Install Speedtest
 apt install python-pip
-pip install speedtest-cli
  
 # Installing some important machine essentials
 apt-get install nano zip unzip tar gzip p7zip-full bc rc openssl cron net-tools dnsutils dos2unix screen bzip2 ccrypt -y
@@ -122,10 +121,10 @@ ln -fs /usr/share/zoneinfo/Asia/Singapore /etc/localtime
 apt-get --reinstall --fix-missing install -y bzip2 gzip coreutils wget screen rsyslog iftop htop net-tools zip unzip wget net-tools curl nano sed screen gnupg gnupg1 bc apt-transport-https build-essential dirmngr libxml-parser-perl neofetch git
 echo "clear" >> .profile
 echo "neofetch" >> .profile
-echo "echo AustoScriptVPN by PrinceNewbie" | lolcat >> .profile
-echo "echo For Enter Panel TYPE : menu" | lolcat >> .profile
-echo "echo Thanks For Using MyScript" | lolcat >> .profile
-echo "echo [*] COPYRIGHT © 2021 [*]" | lolcat >> .profile
+echo "echo AustoScriptVPN by PrinceNewbie" >> .profile
+echo "echo For Enter Panel TYPE : menu" >> .profile
+echo "echo Thanks For Using MyScript" >> .profile
+echo "echo [*] COPYRIGHT © 2021 [*]" >> .profile
 
 GitUser="syapik96"
 #wget https://github.com/${GitUser}/
@@ -205,9 +204,9 @@ rm -rf /etc/default/dropbear*
 cat <<'MyDropbear' > /etc/default/dropbear
 # My Dropbear Config
 NO_START=0
-DROPBEAR_PORT=22
-DROPBEAR_PORT=143
-DROPBEAR_EXTRA_ARGS="-p 50000 -p 109"
+DROPBEAR_PORT=443
+DROPBEAR_PORT=442
+DROPBEAR_EXTRA_ARGS="-p 50000 -p 109 -p 110"
 DROPBEAR_BANNER="/etc/banner"
 DROPBEAR_RSAKEY="/etc/dropbear/dropbear_rsa_host_key"
 DROPBEAR_DSSKEY="/etc/dropbear/dropbear_dss_host_key"
@@ -278,7 +277,7 @@ accept = 992
 connect = 127.0.0.1:1194
 
 [openvpn2]
-accept = 443
+accept = 442
 connect = 127.0.0.1:1194
 
 END
