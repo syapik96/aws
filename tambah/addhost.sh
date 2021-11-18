@@ -2,16 +2,20 @@
 red='\e[1;31m'
 green='\e[0;32m'
 NC='\e[0m'
-MYIP=$(wget -qO- http://ipecho.net/plain | xargs echo);
-apt install jq curl -y
-DOMAIN=gilergames.tk
-sub=$(</dev/urandom tr -dc a-z0-9 | head -c4)
-SUB_DOMAIN=${sub}.gilergames.tk
-CF_ID=zulhisyam421@gmail.com
-CF_KEY=48e94b491ba3933abe8732b9a5f91cf3f3c36
+clear
+read -rp "Masukkan Domain: " -e DOMAIN
+echo ""
+echo "Domain: ${DOMAIN}" 
+echo ""
+read -rp "Masukkan Subdomain: " -e sub
+SUB_DOMAIN=${sub}.${DOMAIN}
+read -rp "Masukkan Email Cloudflare: " -e ID
+CF_ID=${ID}
+read -rp "Masukkan Email Cloudflare: " -e KEY
+CF_KEY=${KEY}
 set -euo pipefail
-IP=$(wget -qO- http://ipecho.net/plain | xargs echo);
-echo "Updating DNS for ${SUB_DOMAIN}..."
+IP=$(wget -qO- http://ipecho.net/plain );
+echo "Pointing DNS Untuk Domain ${SUB_DOMAIN}..."
 ZONE=$(curl -sLX GET "https://api.cloudflare.com/client/v4/zones?name=${DOMAIN}&status=active" \
      -H "X-Auth-Email: ${CF_ID}" \
      -H "X-Auth-Key: ${CF_KEY}" \
@@ -36,5 +40,4 @@ RESULT=$(curl -sLX PUT "https://api.cloudflare.com/client/v4/zones/${ZONE}/dns_r
      -H "Content-Type: application/json" \
      --data '{"type":"A","name":"'${SUB_DOMAIN}'","content":"'${IP}'","ttl":120,"proxied":false}')
 echo "Host : $SUB_DOMAIN"
-echo $SUB_DOMAIN > /root/domain
-rm -f /root/cf.sh
+echo "IP=$SUB_DOMAIN" >> /var/lib/premium-script/ipvps.conf
