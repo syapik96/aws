@@ -11,7 +11,7 @@ MYIP=$( wget -qO- http://ipecho.net/plain );
 MYIP2="s/xxxxxxxxx/$MYIP/g";
 ANU=$(ip -o $ANU -4 route show to default | awk '{print $5}');
 
-timedatectl set-timezone Asia/Kuala_Lumpur
+timedatectl set-timezone Asia/Singapore
 
 # Install OpenVPN dan Easy-RSA
 apt install openvpn easy-rsa openssl -y
