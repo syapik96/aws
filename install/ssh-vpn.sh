@@ -19,8 +19,8 @@ state=Malaysia
 locality=Wilayah Persekutuan Kuala Lumpur
 organization=OnePieceVPN Inc.
 organizationalunit=OnePieceVPN Server
-commonname=OnePieceVPN
-email=admin@onepiecevpn.ga
+commonname=onepiecevpn.ml
+email=admin@onepiecevpn.ml
 
 # simple password minimal
 wget -O /etc/pam.d/common-password "https://raw.githubusercontent.com/${GitUser}/aws/main/password"
@@ -258,10 +258,10 @@ netfilter-persistent save
 netfilter-persistent reload
 
 # download script
-cd /usr/bin
+cd /usr/local/sbin
 wget -O add-host "https://raw.githubusercontent.com/${GitUser}/aws/main/add-host.sh"
 wget -O about "https://raw.githubusercontent.com/${GitUser}/aws/main/about.sh"
-wget -O menu "https://raw.githubusercontent.com/${GitUser}/aws/main/menu.sh"
+wget -O menu "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/menu.sh"
 wget -O usernew "https://raw.githubusercontent.com/${GitUser}/aws/main/usernew.sh"
 wget -O trial "https://raw.githubusercontent.com/${GitUser}/aws/main/trial.sh"
 wget -O hapus "https://raw.githubusercontent.com/${GitUser}/aws/main/hapus/hapus.sh"
@@ -294,7 +294,7 @@ chmod +x restart
 chmod +x speedtest
 chmod +x info
 chmod +x about
-chmod +x autokill
+chmod +x autokick
 chmod +x tendang
 chmod +x ceklim
 chmod +x ram
