@@ -1,2 +1,41 @@
 #!/bin/bash
-YXB0IGluc3RhbGwganEgY3VybCAteQpET01BSU49PXRyaWNraW50ZXJuZXR2cG5zLm1sCnN1Yj1zc2gKU1VCX0RPTUFJTj0ke3N1Yn0udHJpY2tpbnRlcm5ldHZwbnMubWwKQ0ZfSUQ9enVsaGlzeWFtNDIxQGdtYWlsLmNvbQpDRl9LRVk9NDhlOTRiNDkxYmEzOTMzYWJlODczMmI5YTVmOTFjZjNmM2MzNgpzZXQgLWV1byBwaXBlZmFpbApJUD0kKHdnZXQgLXFPLSBodHRwOi8vaXBlY2hvLm5ldC9wbGFpbiB8IHhhcmdzIGVjaG8pOwplY2hvICJVcGRhdGluZyBETlMgZm9yICR7U1VCX0RPTUFJTn0uLi4iClpPTkU9JChjdXJsIC1zTFggR0VUICJodHRwczovL2FwaS5jbG91ZGZsYXJlLmNvbS9jbGllbnQvdjQvem9uZXM/bmFtZT0ke0RPTUFJTn0mc3RhdHVzPWFjdGl2ZSIgXAogICAgIC1IICJYLUF1dGgtRW1haWw6ICR7Q0ZfSUR9IiBcCiAgICAgLUggIlgtQXV0aC1LZXk6ICR7Q0ZfS0VZfSIgXAogICAgIC1IICJDb250ZW50LVR5cGU6IGFwcGxpY2F0aW9uL2pzb24iIHwganEgLXIgLnJlc3VsdFswXS5pZCkKClJFQ09SRD0kKGN1cmwgLXNMWCBHRVQgImh0dHBzOi8vYXBpLmNsb3VkZmxhcmUuY29tL2NsaWVudC92NC96b25lcy8ke1pPTkV9L2Ruc19yZWNvcmRzP25hbWU9JHtTVUJfRE9NQUlOfSIgXAogICAgIC1IICJYLUF1dGgtRW1haWw6ICR7Q0ZfSUR9IiBcCiAgICAgLUggIlgtQXV0aC1LZXk6ICR7Q0ZfS0VZfSIgXAogICAgIC1IICJDb250ZW50LVR5cGU6IGFwcGxpY2F0aW9uL2pzb24iIHwganEgLXIgLnJlc3VsdFswXS5pZCkKCmlmIFtbICIkeyNSRUNPUkR9IiAtbGUgMTAgXV07IHRoZW4KICAgICBSRUNPUkQ9JChjdXJsIC1zTFggUE9TVCAiaHR0cHM6Ly9hcGkuY2xvdWRmbGFyZS5jb20vY2xpZW50L3Y0L3pvbmVzLyR7Wk9ORX0vZG5zX3JlY29yZHMiIFwKICAgICAtSCAiWC1BdXRoLUVtYWlsOiAke0NGX0lEfSIgXAogICAgIC1IICJYLUF1dGgtS2V5OiAke0NGX0tFWX0iIFwKICAgICAtSCAiQ29udGVudC1UeXBlOiBhcHBsaWNhdGlvbi9qc29uIiBcCiAgICAgLS1kYXRhICd7InR5cGUiOiJBIiwibmFtZSI6Iicke1NVQl9ET01BSU59JyIsImNvbnRlbnQiOiInJHtJUH0nIiwidHRsIjoxMjAsInByb3hpZWQiOmZhbHNlfScgfCBqcSAtciAucmVzdWx0LmlkKQpmaQoKUkVTVUxUPSQoY3VybCAtc0xYIFBVVCAiaHR0cHM6Ly9hcGkuY2xvdWRmbGFyZS5jb20vY2xpZW50L3Y0L3pvbmVzLyR7Wk9ORX0vZG5zX3JlY29yZHMvJHtSRUNPUkR9IiBcCiAgICAgLUggIlgtQXV0aC1FbWFpbDogJHtDRl9JRH0iIFwKICAgICAtSCAiWC1BdXRoLUtleTogJHtDRl9LRVl9IiBcCiAgICAgLUggIkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vanNvbiIgXAogICAgIC0tZGF0YSAneyJ0eXBlIjoiQSIsIm5hbWUiOiInJHtTVUJfRE9NQUlOfSciLCJjb250ZW50IjoiJyR7SVB9JyIsInR0bCI6MTIwLCJwcm94aWVkIjpmYWxzZX0nKQplY2hvICJIb3N0IDogJFNVQl9ET01BSU4iCmVjaG8gJFNVQl9ET01BSU4gPiAvcm9vdC9kb21haW4Kcm0gLWYgL3Jvb3QvY2Yuc2gKCg
+red='\e[1;31m'
+green='\e[0;32m'
+NC='\e[0m'
+clear
+read -rp "Masukkan Domain: " -e DOMAIN
+echo ""
+echo "Domain: ${DOMAIN}" 
+echo ""
+read -rp "Masukkan Subdomain: " -e sub
+SUB_DOMAIN=${sub}.${DOMAIN}
+CF_ID=zulhisyam421@gmail.com
+CF_KEY=48e94b491ba3933abe8732b9a5f91cf3f3c36
+set -euo pipefail
+IP=$(wget -qO- http://ipecho.net/plain );
+echo "Pointing DNS Untuk Domain ${SUB_DOMAIN}..."
+ZONE=$(curl -sLX GET "https://api.cloudflare.com/client/v4/zones?name=${DOMAIN}&status=active" \
+     -H "X-Auth-Email: ${CF_ID}" \
+     -H "X-Auth-Key: ${CF_KEY}" \
+     -H "Content-Type: application/json" | jq -r .result[0].id)
+
+RECORD=$(curl -sLX GET "https://api.cloudflare.com/client/v4/zones/${ZONE}/dns_records?name=${SUB_DOMAIN}" \
+     -H "X-Auth-Email: ${CF_ID}" \
+     -H "X-Auth-Key: ${CF_KEY}" \
+     -H "Content-Type: application/json" | jq -r .result[0].id)
+
+if [[ "${#RECORD}" -le 10 ]]; then
+     RECORD=$(curl -sLX POST "https://api.cloudflare.com/client/v4/zones/${ZONE}/dns_records" \
+     -H "X-Auth-Email: ${CF_ID}" \
+     -H "X-Auth-Key: ${CF_KEY}" \
+     -H "Content-Type: application/json" \
+     --data '{"type":"A","name":"'${SUB_DOMAIN}'","content":"'${IP}'","ttl":120,"proxied":false}' | jq -r .result.id)
+fi
+
+RESULT=$(curl -sLX PUT "https://api.cloudflare.com/client/v4/zones/${ZONE}/dns_records/${RECORD}" \
+     -H "X-Auth-Email: ${CF_ID}" \
+     -H "X-Auth-Key: ${CF_KEY}" \
+     -H "Content-Type: application/json" \
+     --data '{"type":"A","name":"'${SUB_DOMAIN}'","content":"'${IP}'","ttl":120,"proxied":false}')
+echo "Host : $SUB_DOMAIN"
+echo "IP=$SUB_DOMAIN" >> /var/lib/premium-script/ipvps.conf
