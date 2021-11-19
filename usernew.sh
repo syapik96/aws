@@ -16,7 +16,7 @@ echo -e "\e[0m"
 
 url=$( wget -qO- http://ipecho.net/plain );
 IP=$(wget -qO- ipinfo.io/ip);
-domain=$(cat /root/mail1.txt);
+domain=$(cat /root/domain);
 echo "Script AutoCreate Akaun SSH dan OpenVPN Mod By OnePiece"
 sleep 1
 echo Ping Host
@@ -32,6 +32,7 @@ sleep 0.5
 clear
 useradd -e `date -d "$masaaktif days" +"%Y-%m-%d"` -s /bin/false -M $Login
 exp="$(chage -l $Login | grep "Account expires" | awk -F": " '{print $2}')"
+url=$( wget -qO- http://ipecho.net/plain );
 echo -e "$Pass\n$Pass\n"|passwd $Login &> /dev/null
 echo -e " [*][*]============================================================================[*][*]" | lolcat
 echo -e "                      Informasi Akaun SSH & OpenVPN" | lolcat
@@ -62,7 +63,7 @@ echo -e "[*][*]=================================================================
 echo -e ""
 echo -e "     \e[1;31mAktif Sampai   : \e[0m"$exp
 echo -e "     \e[1;31mKembali ke Menu enter >> \e[0m"0
-echo -e "     \e[1;31mJust Enter T Exit>> \e[0m"
+echo -e "     \e[1;31mJust Enter To Exit>> \e[0m"
 echo -e ""
 echo -e " #####===============[ Terima Kasih Telah Menggunakan Perkhidmatan Kami ]=================#####" | lolcat
 echo -e "\e[1;32m"
