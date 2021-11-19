@@ -28,10 +28,10 @@ chmod +x ws-ovpn.service
 
 #Install Script Websocket-SSH Python
 cd /usr/local/bin
-wget -O ws-openssh "https://raw.githubusercontent.com/${GitUser}/aws/main/websocket-python/ws-openssh" 
-wget -O ws-dropbear "https://raw.githubusercontent.com/${GitUser}/aws/main/websocket-python/ws-dropbear" 
-wget -O ws-stunnel "https://raw.githubusercontent.com/${GitUser}/aws/main/websocket-python/ws-stunnel" 
-wget -O ws-ovpn "https://raw.githubusercontent.com/${GitUser}/aws/main/websocket-python/ws-ovpn" 
+wget -O ws-openssh "https://raw.githubusercontent.com/${GitUser}/aws/main/websocket-python/ws-openssh.py" 
+wget -O ws-dropbear "https://raw.githubusercontent.com/${GitUser}/aws/main/websocket-python/ws-dropbear.py" 
+wget -O ws-stunnel "https://raw.githubusercontent.com/${GitUser}/aws/main/websocket-python/ws-stunnel.py" 
+wget -O ws-ovpn "https://raw.githubusercontent.com/${GitUser}/aws/main/websocket-python/ws-ovpn.py" 
 chmod +x ws-openssh
 chmod +x ws-dropbear
 chmod +x ws-stunnel
