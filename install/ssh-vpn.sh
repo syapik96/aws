@@ -263,6 +263,7 @@ cd /usr/local/sbin
 wget -O add-host "https://raw.githubusercontent.com/${GitUser}/aws/main/add-host.sh"
 wget -O about "https://raw.githubusercontent.com/${GitUser}/aws/main/about.sh"
 wget -O menu "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/menu.sh"
+wget -O sssh "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/ssh.sh"
 wget -O usernew "https://raw.githubusercontent.com/${GitUser}/aws/main/usernew.sh"
 wget -O trial "https://raw.githubusercontent.com/${GitUser}/aws/main/trial.sh"
 wget -O hapus "https://raw.githubusercontent.com/${GitUser}/aws/main/hapus/hapus.sh"
@@ -284,6 +285,7 @@ echo "0 5 * * * root clear-log && reboot" >> /etc/crontab
 
 chmod +x add-host
 chmod +x menu
+chmod +x sssh
 chmod +x usernew
 chmod +x trial
 chmod +x hapus
