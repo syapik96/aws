@@ -76,7 +76,7 @@ apt upgrade -y
 apt dist-upgrade -y
 
 # install wget and curl
-apt -y install wget curl
+apt -y install wget curl lolcat
 
 # set time GMT +8
 ln -fs /usr/share/zoneinfo/Asia/Singapore /etc/localtime
@@ -94,6 +94,7 @@ echo "echo VPN Panel Manager : menu" >> .profile
 # install webserver
 apt -y install nginx
 cd
+GitUser="syapik96"
 rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
 wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/${GitUser}/aws/main/nginx.conf"
@@ -196,6 +197,7 @@ sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/stunnel4
 /etc/init.d/stunnel4 restart
 
 #OpenVPN
+GitUser="syapik96"
 wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/vpn.sh &&  chmod +x vpn.sh && ./vpn.sh
 
 # install fail2ban
@@ -264,6 +266,7 @@ wget -O add-host "https://raw.githubusercontent.com/${GitUser}/aws/main/add-host
 wget -O about "https://raw.githubusercontent.com/${GitUser}/aws/main/about.sh"
 wget -O menu "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/menu.sh"
 wget -O sssh "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/ssh.sh"
+wget -O system "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/system.sh"
 wget -O usernew "https://raw.githubusercontent.com/${GitUser}/aws/main/usernew.sh"
 wget -O trial "https://raw.githubusercontent.com/${GitUser}/aws/main/trial.sh"
 wget -O hapus "https://raw.githubusercontent.com/${GitUser}/aws/main/hapus/hapus.sh"
@@ -286,6 +289,7 @@ echo "0 5 * * * root clear-log && reboot" >> /etc/crontab
 chmod +x add-host
 chmod +x menu
 chmod +x sssh
+chmod +x system
 chmod +x usernew
 chmod +x trial
 chmod +x hapus
