@@ -1,36 +1,41 @@
 #!/bin/bash
 clear
-echo Installing Websocket-SSH Python
+echo -e "\e[1;32mInstalling Websocket-SSH Python\e[0m"
 sleep 1
 echo Cek Hak Akses...
 sleep 0.5
-cd
+
 #Buat name user github dan nama folder
 GitUser="syapik96"
-namafolder="websocket-python"
-#wget https://github.com/${GitUser}/${namafolder}/
-
+#wget https://github.com/${GitUser}/
 #Install system auto run
 cd /etc/systemd/system
 #System OpenSSH Websocket-SSH Python
-wget -O /etc/systemd/system/ws-openssh.service https://raw.githubusercontent.com/${GitUser}/aws/main/${namafolder}/ws-openssh.service && chmod +x /etc/systemd/system/ws-openssh.service
+wget -O ws-openssh.service "https://raw.githubusercontent.com/${GitUser}/aws/main/websocket-python/ws-openssh.service"
+chmod +x ws-openssh.service
 
 #System Dropbear Websocket-SSH Python
-wget -O /etc/systemd/system/ws-dropbear.service https://raw.githubusercontent.com/${GitUser}/aws/main/${namafolder}/ws-dropbear.service && chmod +x /etc/systemd/system/ws-dropbear.service 
+wget -O ws-dropbear.service "https://raw.githubusercontent.com/${GitUser}/aws/main/websocket-python/ws-dropbear.service"
+chmod +x ws-dropbear.service 
 
 #System SSL/TLS Websocket-SSH Python
-wget -O /etc/systemd/system/ws-stunnel.service https://raw.githubusercontent.com/${GitUser}/aws/main/${namafolder}/ws-stunnel.service && chmod +x /etc/systemd/system/ws-stunnel.service
+wget -O ws-stunnel.service "https://raw.githubusercontent.com/${GitUser}/aws/main/websocket-python/ws-stunnel.service"
+chmod +x ws-stunnel.service
 
-##System Websocket-OpenVPN Python
-wget -O /etc/systemd/system/ws-ovpn.service https://raw.githubusercontent.com/${GitUser}/aws/main/${namafolder}/ws-ovpn.service && chmod +x /etc/systemd/system/ws-ovpn.service
+#System Websocket-OpenVPN Python
+wget -O ws-ovpn.service "https://raw.githubusercontent.com/${GitUser}/aws/main/websocket-python/ws-ovpn.service"
+chmod +x ws-ovpn.service
 
 #Install Script Websocket-SSH Python
 cd /usr/local/bin
-wget -O /usr/local/bin/ws-openssh https://raw.githubusercontent.com/${GitUser}/aws/main/${namafolder}/ws-openssh && chmod +x /usr/local/bin/ws-openssh
-wget -O /usr/local/bin/ws-dropbear https://raw.githubusercontent.com/${GitUser}/aws/main/${namafolder}/ws-dropbear && chmod +x /usr/local/bin/ws-dropbear
-wget -O /usr/local/bin/ws-stunnel https://raw.githubusercontent.com/${GitUser}/aws/main/${namafolder}/ws-stunnel && chmod +x /usr/local/bin/ws-stunnel
-wget -O /usr/local/bin/ws-ovpn https://raw.githubusercontent.com/${GitUser}/aws/main/${namafolder}/ws-ovpn && chmod +x /usr/local/bin/ws-ovpn
-
+wget -O ws-openssh "https://raw.githubusercontent.com/${GitUser}/aws/main/websocket-python/ws-openssh" 
+wget -O ws-dropbear "https://raw.githubusercontent.com/${GitUser}/aws/main/websocket-python/ws-dropbear" 
+wget -O ws-stunnel "https://raw.githubusercontent.com/${GitUser}/aws/main/websocket-python/ws-stunnel" 
+wget -O ws-ovpn "https://raw.githubusercontent.com/${GitUser}/aws/main/websocket-python/ws-ovpn" 
+chmod +x ws-openssh
+chmod +x ws-dropbear
+chmod +x ws-stunnel
+chmod +x ws-ovpn
 #
 systemctl daemon-reload
 #Enable & Start & Restart ws-openssh service
