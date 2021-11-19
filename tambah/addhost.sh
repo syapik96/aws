@@ -9,8 +9,10 @@ echo "Domain: ${DOMAIN}"
 echo ""
 read -rp "Masukkan Subdomain: " -e sub
 SUB_DOMAIN=${sub}.${DOMAIN}
+echo ""
 read -rp "Masukkan Email Cloudflare: " -e ID
 CF_ID=${ID}
+echo ""
 read -rp "Masukkan Email Cloudflare: " -e KEY
 CF_KEY=${KEY}
 set -euo pipefail
