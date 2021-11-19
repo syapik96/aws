@@ -13,7 +13,7 @@ echo ""
 read -rp "Masukkan Email Cloudflare: " -e ID
 CF_ID=${ID}
 echo ""
-read -rp "Masukkan Email Cloudflare: " -e KEY
+read -rp "Masukkan Auth-Key Cloudflare: " -e KEY
 CF_KEY=${KEY}
 set -euo pipefail
 IP=$(wget -qO- http://ipecho.net/plain );
