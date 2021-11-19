@@ -7,5 +7,5 @@ echo -e "\e[1;31mJika Tiada domain sila Create Domain dahulu"
 echo -e "Contonya di Freenom(free) \e[0m" 
 
 read -rp "Domain/Host: " -e host
-echo "IP=$host">>/var/lib/premium-script/ipvps.conf
+echo "IP=$host" > /var/lib/premium-script/ipvps.conf
 
