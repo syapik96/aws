@@ -1,6 +1,6 @@
 [Unit]
-Description=Websocket-dropbear By WHY
-Documentation=https://google.com
+Description=Websocket-dropbear By Prince
+Documentation=https://ssh.onepiecevpn.ml
 After=network.target nss-lookup.target
 
 [Service]
