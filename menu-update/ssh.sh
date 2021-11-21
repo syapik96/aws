@@ -82,5 +82,6 @@ case $ssh in
 	*)
 	clear
 	sudo -i
+	neofetch
 	;;
 esac
