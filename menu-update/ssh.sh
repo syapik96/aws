@@ -79,15 +79,8 @@ case $ssh in
 	menu
 	exit
 	;;
-	clear
-	exit
-	sudo -i
-	;;
 	*)
-	echo -e "\e[1;31mERROR !!! Please enter an correct number\e[0m"
-	sleep 0.5
 	clear
-	sssh
-	exit
+	sudo -i
 	;;
 esac
