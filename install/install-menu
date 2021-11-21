@@ -1,9 +1,11 @@
 #!bin/bash
 
 GitUser="syapik96"
-# download script
+# location 
 cd /usr/local/sbin
-rm -rf /usr/local/sbin/{sssh,add-host,menu,system,hapus,member,renew,restart,cek,trial,webmin,delete,info,autokick,ceklim,tendang,clear-log,ram,
+# hapus yang terdahulu elak conflik 
+rm -rf /usr/local/sbin/{sssh,add-host,menu,system,hapus,member,renew,restart,cek,trial,webmin,delete,info,autokick,ceklim,tendang,clear-log,ram}
+# update menu
 wget -O add-host "https://raw.githubusercontent.com/${GitUser}/aws/main/add-host.sh"
 wget -O about "https://raw.githubusercontent.com/${GitUser}/aws/main/about.sh"
 wget -O menu "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/menu.sh"
@@ -24,6 +26,7 @@ wget -O autokick "https://raw.githubusercontent.com/${GitUser}/aws/main/autokick
 wget -O ceklim "https://raw.githubusercontent.com/${GitUser}/aws/main/ceklim.sh"
 wget -O tendang "https://raw.githubusercontent.com/${GitUser}/aws/main/tendang.sh"
 wget -O clear-log "https://raw.githubusercontent.com/${GitUser}/aws/main/clear-log.sh"
+chmod +x about
 chmod +x add-host
 chmod +x menu
 chmod +x sssh
@@ -36,7 +39,6 @@ chmod +x delete
 chmod +x webmin
 chmod +x cek
 chmod +x restart
-chmod +x speedtest
 chmod +x info
 chmod +x about
 chmod +x autokick
