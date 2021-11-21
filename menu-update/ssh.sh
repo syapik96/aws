@@ -77,6 +77,7 @@ case $ssh in
 	x)
 	clear
 	menu
+	exit
 	;;
 	clear
 	exit
