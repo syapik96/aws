@@ -84,10 +84,9 @@ case $ssh in
 	sudo -i
 	;;
 	*)
-	echo -e 
+	clear
 	echo -e "\e[1;31mERROR !!! Please enter an correct number\e[0m"
 	sleep 0.5
-	clear
 	sssh
 	exit
 	;;
