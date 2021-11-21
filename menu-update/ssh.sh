@@ -88,7 +88,7 @@ case $ssh in
 	echo -e "\e[1;31mERROR !!! Please enter an correct number\e[0m"
 	sleep 0.5
 	clear
-	usernew
+	sssh
 	exit
 	;;
 esac
