@@ -1,14 +1,14 @@
 #!/bin/bash
+
 red='\e[1;31m'
 green='\e[0;32m'
 NC='\e[0m'
 bl='\e[36;1m'
 bd='\e[1m'
-MYIP=$(wget -qO- ifconfig.co);
-echo "Checking VPS"
+
 clear
+figlet -f standard "Panel Wireguard" | lolcat
 echo -e ""
-figlet "Panel Wireguard" | lolcat
 echo -e " ╠═══════════════════════════════════════╣" | lolcat
 echo -e " ║            PANEL WIREGUARD            ║" | lolcat
 echo -e " ╠═══════════════════════════════════════╣" | lolcat
@@ -21,26 +21,40 @@ echo -e " $bd║\e[m"
 echo -e " ╠═══════════════════════════════════════╣" | lolcat
 echo -e " ║  0]  RETURN  MENU                     ║"   | lolcat
 echo -e " ╠═══════════════════════════════════════╣" | lolcat
-echo -e ""
-read -p "     Please Input Number  [1-4 or x] :  "  wgr
-echo -e ""
+echo -e "\e[1;32m"
+read -p "     Please select an option :  "  wgr
+echo -e "\e[0m"
 case $wgr in
-1)
-addwg
-;;
-2)
-delwg
-;;
-3)
-wg show
-;;
-4)
-renewwg
-;;
-0)
-menu
-;;
-*)
-echo "Please enter an correct number"
-;;
+    1)
+    clear
+    addwg
+    exit
+    ;;
+    2)
+    clear
+    delwg
+    exit
+    ;;
+    3)
+    clear
+    cekwg
+    exit
+    ;;
+    4)
+    clear
+    renewwg
+    exit
+    ;;
+    0)
+    clear
+    menu
+    exit
+    ;;
+    *)
+    echo -e "${red}Please enter an correct number${NC}"
+    sleep 2
+    clear
+    wgr
+    exit
+    ;;
 esac
