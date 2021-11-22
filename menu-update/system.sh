@@ -2,35 +2,33 @@
 #Menu
 clear
 
-RED="\e[31m"
-GREEN="\e[32m"
-PURPLE="\e[35m"
-YELLOW="\e[33m"
-CYAN="\e[36m"
-IBGBLUE="\e[1;104m"
-PLAIN="\e[0m"
+red='\e[1;31m'
+green='\e[0;32m'
+NC='\e[0m'
+bl='\e[36;1m'
+bd='\e[1m'
 
 figlet -f slant "SYSTEM OPTION" | lolcat
 echo -e ""
 echo -e  "  ╔════════════════════════════════════════════════════════════╗" | lolcat
-echo -e  "  ║                       ┃ SYSTEM MENU ┃                      ║" | lolcat 
+echo -e  "  ║                        SYSTEM MENU                         ║" | lolcat 
 echo -e  "  ╠════════════════════════════════════════════════════════════╝" | lolcat
-echo -e  " $bl ║"| lolcat
-echo -e  " $bl ║\e[m$bd 1$bl]\e[m$bd Add Subdomain Host For VPS" | lolcat
-echo -e  " $bl ║\e[m$bd 2$bl]\e[m$bd Add ID Cloudflare" | lolcat 
-echo -e  " $bl ║\e[m$bd 3$bl]\e[m$bd Cloudflare Add-Ons" | lolcat
-echo -e  " $bl ║\e[m$bd 4$bl]\e[m$bd Pointing BUG" | lolcat
-echo -e  " $bl ║\e[m$bd 5$bl]\e[m$bd Renew Certificate V2RAY" | lolcat
-echo -e  " $gl ║\e[m$bd 6$bl]\e[m$bd Webmin Menu" | lolcat
-echo -e  " $gl ║\e[m$bd 7$bl]\e[m$bd Check Usage of VPS Ram" | lolcat
-echo -e  " $gl ║\e[m$bd 8$bl]\e[m$bd Reboot VPS" | lolcat
-echo -e  " $gl ║\e[m$bd 9$bl]\e[m$bd Speedtest VPS" | lolcat
-echo -e  " $gl ║\e[m$bd 10$bl]\e[m$bd Information Display System" | lolcat
-echo -e  " $gl ║\e[m$bd 11$bl]\e[m$bd Info Script Auto Install" | lolcat
-echo -e  " $bl ║\e[m$bd 12$bl]\e[m$bd Restart All Service" | lolcat
-echo -e  " $bl ║\e[m$bd 13$bl]\e[m$bd Change Banner"  | lolcat
-echo -e  " $bl ║\e[m$bd 14bl]\e[m$bd Update" | lolcat
-echo -e  " $bl ║" | lolcat  
+echo -e  " $bl ║\e[m"| lolcat
+echo -e  " $bl ║\e[m$bd  1$bl]\e[m$bd  Add Subdomain Host For VPS" | lolcat
+echo -e  " $bl ║\e[m$bd  2$bl]\e[m$bd  Add ID Cloudflare" | lolcat 
+echo -e  " $bl ║\e[m$bd  3$bl]\e[m$bd  Cloudflare Add-Ons" | lolcat
+echo -e  " $bl ║\e[m$bd  4$bl]\e[m$bd  Pointing BUG" | lolcat
+echo -e  " $bl ║\e[m$bd  5$bl]\e[m$bd  Renew Certificate V2RAY" | lolcat
+echo -e  " $bl ║\e[m$bd  6$bl]\e[m$bd  Webmin Menu" | lolcat
+echo -e  " $bl ║\e[m$bd  7$bl]\e[m$bd  Check Usage of VPS Ram" | lolcat
+echo -e  " $bl ║\e[m$bd  8$bl]\e[m$bd  Reboot VPS" | lolcat
+echo -e  " $bl ║\e[m$bd  9$bl]\e[m$bd  Speedtest VPS" | lolcat
+echo -e  " $bl ║\e[m$bd 10$bl]\e[m$bd  Information Display System" | lolcat
+echo -e  " $bl ║\e[m$bd 11$bl]\e[m$bd  Info Script Auto Install" | lolcat
+echo -e  " $bl ║\e[m$bd 12$bl]\e[m$bd  Restart All Service" | lolcat
+echo -e  " $bl ║\e[m$bd 13$bl]\e[m$bd  Change Banner"  | lolcat
+echo -e  " $bl ║\e[m$bd 14$bl]\e[m$bd  Update" | lolcat
+echo -e  " $bl ║\e[m" | lolcat  
 echo -e  "  ╠════════════════════════════════════════════════════════════╣" | lolcat
 echo -e  "  ║            0 ) Main Menu      x ) Exit                     ║" | lolcat
 echo -e  "  ║      COPYRIGHT ONEPIECEVPN, POWERED BY PRINCENEWBIE.       ║" | lolcat
@@ -121,11 +119,11 @@ case $system in
 		exit
 		;;
 		x)
-		clear
 		sudo -i
+		exit
 		;;
 		*)
-		echo -e "\e[1;31mERROR!! Please enter an correct number\e[0m"
+		echo -e "\e[1;31mERROR !! Please enter an correct number\e[0m"
 		sleep 3
 		clear
 		system
