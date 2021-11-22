@@ -19,8 +19,8 @@ state=Malaysia
 locality=Wilayah Persekutuan Kuala Lumpur
 organization=OnePieceVPN Inc.
 organizationalunit=OnePieceVPN Server
-commonname=onepiecevpn.ml
-email=admin@onepiecevpn.ml
+commonname=gilergames.tk
+email=admin@gilergames.tk
 
 # simple password minimal
 wget -O /etc/pam.d/common-password "https://raw.githubusercontent.com/${GitUser}/aws/main/password"
@@ -76,7 +76,13 @@ apt upgrade -y
 apt dist-upgrade -y
 
 # install wget and curl
-apt -y install wget curl lolcat
+apt -y install wget curl
+
+apt install dnsutils jq -y
+apt-get install net-tools -y
+apt-get install tcpdump -y
+apt-get install dsniff -y
+apt install grepcidr -y
 
 # set time GMT +8
 ln -fs /usr/share/zoneinfo/Asia/Singapore /etc/localtime
@@ -97,58 +103,72 @@ cd
 GitUser="syapik96"
 rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
-wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/${GitUser}/aws/main/nginx.conf"
+wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/syapik96/aws/main/nginx.conf"
 mkdir -p /home/vps/public_html
-echo "<pre> PREMIUM VPN BY PrinceNewbie </pre>" >> /home/vps/public_html/index.html
-wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/${GitUser}/aws/main/vps.conf"
+wget -O /home/vps/public_html/index.html "https://raw.githubusercontent.com/${GitUser}/aws/main/lain2/TEST.html"
+wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/syapik96/aws/main/vps.conf"
 /etc/init.d/nginx restart
 
 # install badvpn
-cd
 wget -O /usr/bin/badvpn-udpgw "https://github.com/${GitUser}/aws/raw/main/badvpn-udpgw64"
 chmod +x /usr/bin/badvpn-udpgw
+
+
+#install badvpncdn
+cd $HOME
+wget https://github.com/ambrop72/badvpn/archive/master.zip
+unzip master.zip
+cd badvpn-master
+mkdir build
+cmake .. -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_UDPGW=1
+sudo make install
+
 sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500' /etc/rc.local
 sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500' /etc/rc.local
 sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500' /etc/rc.local
+sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7400 --max-clients 500' /etc/rc.local
+sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7500 --max-clients 500' /etc/rc.local
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7400 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7500 --max-clients 500
 
+cd
 # setting port ssh
 sed -i 's/Port 22/Port 22/g' /etc/ssh/sshd_config
-sed -i 's/Port 40000/g' /etc/ssh/sshd_config
+sed -i '/Port 22/a Port 40000' /etc/ssh/sshd_config
 
 # install dropbear
-apt -y install dropbear
+apt-get -y install dropbear
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
 sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=143/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 50000 -p 109"/g' /etc/default/dropbear
+sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 50000 -p 109 -p 110"/g' /etc/default/dropbear
 echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
 /etc/init.d/dropbear restart
 
 # install squid
-cd
 apt -y install squid3
 wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/${GitUser}/aws/main/squid3.conf"
 sed -i $MYIP2 /etc/squid/squid.conf
 
 # setting vnstat
-apt -y install vnstat
-/etc/init.d/vnstat restart
+apt-get -y install vnstat
 apt -y install libsqlite3-dev
-wget https://humdi.net/vnstat/vnstat-2.6.tar.gz
-tar zxvf vnstat-2.6.tar.gz
-cd vnstat-2.6
-./configure --prefix=/usr --sysconfdir=/etc && make && make install 
-cd
+#wget https://humdi.net/vnstat/vnstat-2.6.tar.gz
+#tar zxvf vnstat-2.6.tar.gz
+#cd vnstat-2.6
+#./configure --prefix=/usr --sysconfdir=/etc && make && make install 
+#cd
 vnstat -u -i $NET
 sed -i 's/Interface "'""eth0""'"/Interface "'""$NET""'"/g' /etc/vnstat.conf
-chown vnstat:vnstat /var/lib/vnstat -R
+chown -R vnstat:vnstat /var/lib/vnstat 
 systemctl enable vnstat
 /etc/init.d/vnstat restart
 rm -f /root/vnstat-2.6.tar.gz 
 rm -rf /root/vnstat-2.6
+# /etc/init.d/vnstat restart
 
 # install webmin
 apt install webmin -y
@@ -180,8 +200,12 @@ connect = 127.0.0.1:109
 accept = 5052
 connect = 127.0.0.1:143
 
+[openvpnws]
+accept = 441
+connect = 127.0.0.1:992
+
 [openvpn]
-accept = 992
+accept = 442
 connect = 127.0.0.1:1194
 
 END
@@ -285,8 +309,6 @@ wget -O ceklim "https://raw.githubusercontent.com/${GitUser}/aws/main/ceklim.sh"
 wget -O tendang "https://raw.githubusercontent.com/${GitUser}/aws/main/tendang.sh"
 wget -O clear-log "https://raw.githubusercontent.com/${GitUser}/aws/main/clear-log.sh"
 
-echo "0 5 * * * root clear-log && reboot" >> /etc/crontab
-
 chmod +x add-host
 chmod +x menu
 chmod +x sssh
@@ -309,6 +331,8 @@ chmod +x ram
 chmod +x renew
 chmod +x clear-log
 
+echo "0 5 * * * root clear-log && reboot" >> /etc/crontab
+
 # remove unnecessary files
 apt -y autoclean
 apt -y remove --purge unscd
@@ -328,17 +352,20 @@ chown -R www-data:www-data /home/vps/public_html
 /etc/init.d/dropbear restart
 /etc/init.d/fail2ban restart
 /etc/init.d/webmin restart
-/etc/init.d/stunnel4 restart
+/etc/init.d/stunnel restart
 /etc/init.d/vnstat restart
 /etc/init.d/squid restart
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7400 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7500 --max-clients 500
 
 history -c
 echo "unset HISTFILE" >> /etc/profile
 
 cd
+rm /root/master.zip
 rm -f /root/ssh-vpn.sh
 mkdir /root/folder
 mv -f /root/cert.pem /root/folder/cert.pem
