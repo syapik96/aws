@@ -21,45 +21,45 @@ echo -e " $bd║\e[m"
 echo -e " $bd║\e[m   0 $bl]\e[m$bd MENU    x $bl]\e[m$bd Exit"
 echo -e " $bd║\e[m"
 echo -e " ╠═══════════════════════════════════════╗" | lolcat
-echo -e " ║  0]  RETURN  MENU                     ║" | lolcat
+echo -e " ║    COPYRIGHT 2021 OnePieceVPN Inc     ║" | lolcat
 echo -e " ╚═══════════════════════════════════════╝" | lolcat
 echo -e "\e[1;31m"
 read -p "    Please select an option :  "  v2ray
 echo -e "\e[0m"
 case $v2ray in
-  1)
-  clear
-  addws
-  exit
-  ;;
-  2)
-  clear
-  delws
-  exit
-  ;;
-  3)
-  clear
-  renewws
-  exit
-  ;;
-  4)
-  clear
-  cekws
-  exit
-  ;;
-  0)
-  clear
-  menu
-  exit
-  ;;
-  x)
-  sudo -i
-  exit
-  *)
-  echo -e "${red}Please enter an correct number${NC}"
-  sleep 2
-  clear
-  v2raay
-  exit
-  ;;
+    1)
+    clear
+    addws
+    exit
+    ;;
+    2)
+    clear
+    delws
+    exit
+    ;;
+    3)
+    clear
+    renewws
+    exit
+    ;;
+    4)
+    clear
+    cekws
+    exit
+    ;;
+    0)
+    clear
+    menu
+    exit
+    ;;
+    x)
+    sudo -i
+    exit
+    *)
+    echo -e "${red}Please enter an correct number${NC}"
+    sleep 2
+    clear
+    v2raay
+    exit
+    ;;
 esac
