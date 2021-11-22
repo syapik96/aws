@@ -17,11 +17,11 @@ date
 # install v2ray
 GitUser="syapik96"
 #wget https://github.com/${GitUser}/
-
 wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/go.sh 
 chmod +x go.sh
 ./go.sh
 rm -f /root/go.sh
+cd
 mkdir /root/.acme.sh
 curl https://acme-install.netlify.app/acme.sh -o /root/.acme.sh/acme.sh
 chmod +x /root/.acme.sh/acme.sh
@@ -30,7 +30,7 @@ chmod +x /root/.acme.sh/acme.sh
 
 uuid=$(cat /proc/sys/kernel/random/uuid)
 
-cat> /etc/v2ray/config.json << END
+cat> /etc/v2ray/config.json <<-END
 {
   "log": {
     "access": "/var/log/v2ray/access.log",
@@ -127,7 +127,7 @@ cat> /etc/v2ray/config.json << END
   }
 }
 END
-cat> /etc/v2ray/none.json << END
+cat> /etc/v2ray/none.json <<-END
 {
   "log": {
     "access": "/var/log/v2ray/access.log",
@@ -136,7 +136,7 @@ cat> /etc/v2ray/none.json << END
   },
   "inbounds": [
     {
-      "port": 80,
+      "port": 8880,
       "protocol": "vmess",
       "settings": {
         "clients": [
@@ -215,7 +215,7 @@ cat> /etc/v2ray/none.json << END
   }
 }
 END
-cat> /etc/v2ray/vless.json << END
+cat> /etc/v2ray/vless.json <<-END
 {
   "log": {
     "access": "/var/log/v2ray/access2.log",
@@ -311,7 +311,7 @@ cat> /etc/v2ray/vless.json << END
   }
 }
 END
-cat> /etc/v2ray/vnone.json << END
+cat> /etc/v2ray/vnone.json <<-END
 {
   "log": {
     "access": "/var/log/v2ray/access2.log",
@@ -399,7 +399,7 @@ cat> /etc/v2ray/vnone.json << END
   }
 }
 END
-cat> /etc/v2ray/trojan.json <<END
+cat> /etc/v2ray/trojan.json <<-END
 {
   "log": {
     "access": "/var/log/v2ray/trojan.log",
@@ -493,16 +493,15 @@ END
 # new update iptables -I INPUT 6 -m state --state NEW -p tcp --dport
 # old update iptables -I INPUT-m state --state NEW -p tcp --dport
 iptables -I INPUT 6 -m state --state NEW -m tcp -p tcp --dport 8443 -j ACCEPT
-iptables -I INPUT 6 -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
+iptables -I INPUT 6 -m state --state NEW -m tcp -p tcp --dport 8880 -j ACCEPT
 iptables -I INPUT 6 -m state --state NEW -m tcp -p tcp --dport 2083 -j ACCEPT
 iptables -I INPUT 6 -m state --state NEW -m tcp -p tcp --dport 2052 -j ACCEPT
 iptables -I INPUT 6 -m state --state NEW -m tcp -p tcp --dport 2087 -j ACCEPT
 iptables -I INPUT 6 -m state --state NEW -m udp -p udp --dport 8443 -j ACCEPT
-iptables -I INPUT 6 -m state --state NEW -m udp -p udp --dport 80 -j ACCEPT
+iptables -I INPUT 6 -m state --state NEW -m udp -p udp --dport 8880 -j ACCEPT
 iptables -I INPUT 6 -m state --state NEW -m udp -p udp --dport 2083 -j ACCEPT
 iptables -I INPUT 6 -m state --state NEW -m udp -p udp --dport 2052 -j ACCEPT
 iptables -I INPUT 6 -m state --state NEW -m udp -p udp --dport 2087 -j ACCEPT
-iptables -I INPUT 6 -m state --state NEW -m tcp -p tcp --dport 443 -j ACCEPT
 iptables-save > /etc/iptables.up.rules
 iptables-restore -t < /etc/iptables.up.rules
 netfilter-persistent save
@@ -516,15 +515,14 @@ systemctl enable v2ray@vnone.service
 systemctl start v2ray@vnone.service
 systemctl enable v2ray@trojan.service
 systemctl start v2ray@trojan.service
-systemctl restart v2ray
 systemctl enable v2ray
-
+systemctl restart v2ray
 
 echo -e "\e[1;32m  Creating V2ray Menu scripts..\e[0m"
 
 GitUser="syapik96"
 # Download Script
-cd /usr/bin
+cd /usr/local/sbin
 wget -O trojaan "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/trojaan.sh"
 wget -O v2raay "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/v2raay.sh"
 wget -O vleess "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/vleess.sh"
