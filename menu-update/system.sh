@@ -12,7 +12,7 @@ PLAIN="\e[0m"
 
 figlet -f slant "SYSTEM OPTION" | lolcat
 echo -e ""
-echo -e  "	╔════════════════════════════════════════════════════════════╗" | lolcat
+echo -e  "  ╔════════════════════════════════════════════════════════════╗" | lolcat
 echo -e  "  ║                       ┃ SYSTEM MENU ┃                      ║" | lolcat 
 echo -e  "  ╠════════════════════════════════════════════════════════════╝" | lolcat
 echo -e  " $bl ║"| lolcat
@@ -104,13 +104,13 @@ case $system in
 		echo -e " Command Key Untuk Save Banner Baru Anda Press Key\e[0m :"     
 		echo -e " \e[1;31m[ CTRL + X ] [ ENTER ] [ Enter ]\e[0m \e[1;32mUntuk Simpan"
 		echo -e " Sesudah itu Reboot Vps anda \e[0m"
-		sleep 0.5
+		sleep 5
 		nano /etc/issue.net
 		exit
 		;;
 		14)
 		echo -e "\e[1;31m SORRY!!!! Still No Update , Sila semak repo https://github.com/syapik96/aws masa kesemasa\e[0m "
-		sleep 0.5
+		sleep 5
 		clear
 		system
 		exit
@@ -122,11 +122,14 @@ case $system in
 		;;
 		x)
 		clear
-		exit
 		sudo -i
 		;;
 		*)
-		echo -e "\e[1;31mERROR!! Please Enter an Correct Number\e[0m"
+		echo -e "\e[1;31mERROR!! Please enter an correct number\e[0m"
+		sleep 3
+		clear
+		system
+		exit
 		;;
-	esac
+	 esac
 
