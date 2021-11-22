@@ -1,6 +1,11 @@
 #!/bin/bash
 # updated by syapik96
 
+red='\e[1;31m'
+green='\e[0;32m'
+NC='\e[0m'
+bl='\e[36;1m'
+bd='\e[1m'
 clear
 figlet -f slant "PANEL SSH-OpenVPN" | lolcat
 echo -e ""
