@@ -40,9 +40,13 @@ case $trojan in
       menu
       exit
       ;;
+      0)
+      echo -e " Good bye-bye "
+      sudo -i
+      exit
       *)
-      echo "${red}Please enter an correct number${NC}"
-      sleep 3
+      echo -e "${red}Please enter an correct number${NC}"
+      sleep 2
       clear
       trojaan
       exit
