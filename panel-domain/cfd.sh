@@ -5,10 +5,12 @@ NC='\e[0m'
 MYIP=$(wget -qO- ifconfig.me/ip);
 echo "Checking VPS"
 clear
-source /root/mail.conf
-DOMAIN=$domain
-CF_ID=$email
-CF_KEY=$key
+read -rp " Domain / Host : " -e domain
+DOMAIN=${domain}
+read -rp " Email Cloudflare : " -e email
+CF_ID=${email}
+read -rp " Domain Zone ID : " -e key
+CF_KEY=${key}
 set -euo pipefail
 IP=$(wget -qO- ifconfig.me/ip);
 read -p "Masukan Subdomain Anda :" sub
