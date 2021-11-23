@@ -2,8 +2,7 @@
 # Script By syapik96
 # ==================================================
 
-GitUser="syapik96"
-#wget https://github.com/${GitUser}/
+
 if [ "${EUID}" -ne 0 ]; then
 echo "You need to run this script as root"
 exit 1
@@ -94,6 +93,14 @@ echo "------------------------------------------Mod by WHY----------------------
 echo "" | tee -a log-install.txt
 echo " Username Telegram : @PrinceNewbie" | tee -a log-install.txt
 echo "" | tee -a log-install.txt
+# OPEN PORT ORACLE 
+service iptables stop
+chkconfig iptables off
+iptables -A INPUT -s $MYIP/32 -p tcp -m multiport --dports 1:65535 -j ACCEPT
+iptables -A INPUT -m state --state NEW -m tcp -p udp --dport 443 -j ACCEPT
+iptables -A INPUT -m state --state NEW -m udp -p udp --dport 443 -j ACCEPT
+iptables-save > /etc/iptables/rules.v4
+service iptables save
 echo ""
 echo " Reboot 10 Sec"
 sleep 10
