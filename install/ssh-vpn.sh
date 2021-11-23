@@ -87,6 +87,16 @@ apt install ruby -y && gem install lolcat
 apt-get install figlet -y
 apt-get install iptables-persistent
 
+# oracle setup only ( after fork disable this if u not use oracle cloud )
+sudo apt install apache2
+systemctl restart apache2
+sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 80 -j ACCEPT
+netfilter-persistent save
+apt install libapache2-mod-php7.2
+apt install php7.2-curl php7.2-gd php7.2-zip
+php -v
+systemctl restart apache2
+
 # set time GMT +8
 ln -fs /usr/share/zoneinfo/Asia/Singapore /etc/localtime
 
@@ -343,7 +353,7 @@ echo "0 5 * * * root clear-log && reboot" >> /etc/crontab
 apt -y autoclean
 apt -y remove --purge unscd
 apt-get -y --purge remove samba*;
-apt-get -y --purge remove apache2*;
+#apt-get -y --purge remove apache2*;
 apt-get -y --purge remove bind9*;
 apt-get -y remove sendmail*
 apt -y autoremove
