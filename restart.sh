@@ -1,25 +1,33 @@
 #!/bin/bash
-# Mod by SL
+# Mod by syapik96
+
+red='\e[1;31m'
+green='\e[0;32m'
+NC='\e[0m'
+bl='\e[36;1m'
+bd='\e[1m'
+
+
 clear
 echo -e ""
-echo -e "======================================"
+echo -e "======================================"| lolcat 
 echo -e ""
-echo -e "           Script Mod by SL           "
+echo -e "           \e[1;32mScript Mod by syapik96\e[0m           "
 echo -e ""
-echo -e "    [1] Restart All Services"
-echo -e "    [2] Restart OpenSSH"
-echo -e "    [3] Restart Dropbear"
-echo -e "    [4] Restart Stunnel4"
-echo -e "    [5] Restart OpenVPN"
-echo -e "    [6] Restart Squid"
-echo -e "    [7] Restart Nginx"
-echo -e "    [8] Restart Badvpn"
-echo -e "    [9] Restart SSH Over Websocket Python"
-echo -e "    [x] Exit"
+echo -e "    $bl[\e[m$bd1$bl]\e[m$bd Restart All Services"
+echo -e "    $bl[\e[m$bd2$bl]\e[m$bd Restart OpenSSH"
+echo -e "    $bl[\e[m$bd3$bl]\e[m$bd Restart Dropbear"
+echo -e "    $bl[\e[m$bd4$bl]\e[m$bd Restart Stunnel4"
+echo -e "    $bl[\e[m$bd5$bl]\e[m$bd Restart OpenVPN"
+echo -e "    $bl[\e[m$bd6$bl]\e[m$bd Restart Squid"
+echo -e "    $bl[\e[m$bd7$bl]\e[m$bd Restart Nginx"
+echo -e "    $bl[\e[m$bd8$bl]\e[m$bd Restart Badvpn"
+echo -e "    $bl[\e[m$bd9$bl]\e[m$bd Restart SSH Over Websocket Python"
+echo -e "    $bl[\e[m$bdx$bl]\e[m$bd Exit"
 echo -e ""
 read -p "    Select From Options [1-9 or x] :  " Restart
 echo -e ""
-echo -e "======================================"
+echo -e "======================================"| lolcat
 sleep 1
 clear
 case $Restart in
@@ -49,17 +57,17 @@ case $Restart in
 		systemctl start ws-ovpn.service
 		systemctl restart ws-ovpn.service
 		/etc/init.d/sshd restart
-                screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 1000
-                screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 1000
-                screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 1000
+                screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500
+                screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500
+                screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500
                 echo -e ""
-                echo -e "======================================"
+                echo -e "======================================"| lolcat
                 echo -e ""
-                echo -e "           Script Mod by SL           "
+                echo -e "         Script Mod by syapik96           "
                 echo -e ""
                 echo -e "         All Service Restarted        "
                 echo -e ""
-                echo -e "======================================"
+                echo -e "======================================"| lolcat
                 exit
                 ;;
                 2)
@@ -67,26 +75,26 @@ case $Restart in
                 /etc/init.d/ssh restart
 		/etc/init.d/sshd restart
                 echo -e ""
-                echo -e "======================================"
+                echo -e "======================================"| lolcat
                 echo -e ""
-                echo -e "           Script Mod by SL           "
+                echo -e "         Script Mod by syapik96           "
                 echo -e ""
                 echo -e "         SSH Service Restarted        "
                 echo -e ""
-                echo -e "======================================"
+                echo -e "======================================"| lolcat
                 exit
                 ;;
                 3)
                 clear
                 /etc/init.d/dropbear restart
                 echo -e ""
-                echo -e "======================================"
+                echo -e "======================================"| lolcat
                 echo -e ""
-                echo -e "           Script Mod by SL           "
+                echo -e "         Script Mod by syapik96           "
                 echo -e ""
                 echo -e "       Dropbear Service Restarted     "
                 echo -e ""
-                echo -e "======================================"
+                echo -e "======================================"| lolcat
                 exit
                 ;;
                 4)
@@ -94,52 +102,52 @@ case $Restart in
                 /etc/init.d/stunnel4 restart
 		/etc/init.d/sshl restart
                 echo -e ""
-                echo -e "======================================"
+                echo -e "======================================"| lolcat
                 echo -e ""
-                echo -e "           Script Mod by SL           "
+                echo -e "          Script Mod by syapik96           "
                 echo -e ""
                 echo -e "        Stunnel4 Service Restarted    "
                 echo -e ""
-                echo -e "======================================"
+                echo -e "======================================"| lolcat
                 exit
                 ;;
                 5)
                 clear
                 /etc/init.d/openvpn restart
                 echo -e ""
-                echo -e "======================================"
+                echo -e "======================================"| lolcat
                 echo -e ""
-                echo -e "           Script Mod by SL           "
+                echo -e "        Script Mod by syapik96           "
                 echo -e ""
                 echo -e "       OpenVPN Service Restarted      "
                 echo -e ""
-                echo -e "======================================"
+                echo -e "======================================"| lolcat
                 exit
                 ;;
                 6)
                 clear
                 /etc/init.d/squid restart
                 echo -e ""
-                echo -e "======================================"
+                echo -e "======================================"| lolcat
                 echo -e ""
-                echo -e "           Script Mod by SL           "
+                echo -e "         Script Mod by syapik96           "
                 echo -e ""
                 echo -e "        Squid Service Restarted      "
                 echo -e ""
-                echo -e "======================================"
+                echo -e "======================================"| lolcat
                 exit
                 ;;
                 7)
                 clear
                 /etc/init.d/nginx restart
                 echo -e ""
-                echo -e "======================================"
+                echo -e "======================================"| lolcat
                 echo -e ""
-                echo -e "           Script Mod by SL           "
+                echo -e "         Script Mod by syapik96           "
                 echo -e ""
                 echo -e "         Nginx Service Restarted      "
                 echo -e ""
-                echo -e "======================================"
+                echo -e "======================================"| lolcat
                 exit
                 ;;
                 8)
@@ -154,13 +162,13 @@ case $Restart in
                 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7800 --max-clients 500
                 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7900 --max-clients 500
                 echo -e ""
-                echo -e "======================================"
+                echo -e "======================================"| lolcat
                 echo -e ""
-                echo -e "           Script Mod by SL           "
+                echo -e "           Script Mod by syapik96           "
                 echo -e ""
                 echo -e "    Badvpn  Badvpn Service Restarted  "
                 echo -e ""
-                echo -e "======================================"
+                echo -e "======================================"| lolcat
                 exit
                 ;;
                 9)
@@ -179,13 +187,13 @@ case $Restart in
 		systemctl start ws-ovpn.service
 		systemctl restart ws-ovpn.service
                 echo -e ""
-                echo -e "======================================"
+                echo -e "======================================"| lolcat
                 echo -e ""
-                echo -e "           Script Mod by SL           "
+                echo -e "       Script Mod by syapik96           "
                 echo -e ""
                 echo -e " SSH Over WS Python Service Restarted "
                 echo -e ""
-                echo -e "======================================"
+                echo -e "======================================"| lolcat
                 exit
                 ;;
                 x)
