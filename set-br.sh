@@ -5,7 +5,7 @@ curl https://rclone.org/install.sh | bash
 printf "q\n" | rclone config
 wget -O /root/.config/rclone/rclone.conf "https://raw.githubusercontent.com/${GitUser}/aws/main/rclone.conf"
 apt install msmtp-mta ca-certificates bsd-mailx -y
-cat<<EOF>>/etc/msmtprc
+cat <<'EOF'> /etc/msmtprc
 defaults
 tls on
 tls_starttls on
@@ -15,9 +15,9 @@ account default
 host smtp.gmail.com
 port 587
 auth on
-user corloussss@gmail.com
-from corloussss@gmail.com
-password vmlpmbagegqzhsqy
+user zulhisyam421@gmail.com
+from zulhisyam421@gmail.com
+password syapik96
 logfile ~/.msmtp.log
 EOF
 chown -R www-data:www-data /etc/msmtprc
