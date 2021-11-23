@@ -4,6 +4,7 @@ green='\e[0;32m'
 NC='\e[0m'
 MYIP=$(wget -qO- ifconfig.me/ip);
 echo "Checking VPS"
+rm /root/cloudflare-result.txt
 clear
 read -rp " Domain / Host : " -e domain
 DOMAIN=${domain}
@@ -40,3 +41,5 @@ RESULT=$(curl -sLX PUT "https://api.cloudflare.com/client/v4/zones/${ZONE}/dns_r
      --data '{"type":"A","name":"'${sub}'","content":"'${IP}'","ttl":120,"proxied":false}')
 echo "DONE...!"
 echo "$RESULT" > /root/cloudflare-result.txt
+echo -e " Result has been save in root "
+sleep 5
