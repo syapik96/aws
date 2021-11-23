@@ -94,13 +94,14 @@ echo "" | tee -a log-install.txt
 echo " Username Telegram : @PrinceNewbie" | tee -a log-install.txt
 echo "" | tee -a log-install.txt
 # OPEN PORT ORACLE 
-service iptables stop
-chkconfig iptables off
+
+MYIP=$(wget -qO- icanhazip.com);
 iptables -A INPUT -s $MYIP/32 -p tcp -m multiport --dports 1:65535 -j ACCEPT
 iptables -A INPUT -m state --state NEW -m tcp -p udp --dport 443 -j ACCEPT
-iptables -A INPUT -m state --state NEW -m udp -p udp --dport 443 -j ACCEPT
+iptables -A INPUT -m state --state NEW -m tcp -p udp --dport 2021 -j ACCEPT
+iptables -A INPUT -m state --state NEW -m tcp -p udp --dport 5051 -j ACCEPT
 iptables-save > /etc/iptables/rules.v4
-service iptables save
+netfilter-presistent save
 echo ""
 echo " Reboot 10 Sec"
 sleep 10
