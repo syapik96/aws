@@ -66,8 +66,8 @@ export KEY_COUNTRY="MY"
 export KEY_PROVINCE="Malaysia"
 export KEY_CITY="Wilayah Persekutuan Kuala Lumpur"
 export KEY_ORG="OnePieceVPN Inc."
-export KEY_EMAIL="admin@onepiecevpn.ml"
-export KEY_OU="OnePieceVPN Inc."
+export KEY_EMAIL="zulhisyam421@gmail.com"
+export KEY_OU="OnePieceVPN"
 
 # X509 Subject Field
 export KEY_NAME="server"
@@ -78,4 +78,4 @@ export KEY_NAME="server"
 
 # If you'd like to sign all keys with the same Common Name, uncomment the KEY_CN export below
 # You will also need to make sure your OpenVPN server config has the duplicate-cn option set
-# export KEY_CN="OnePieceVPN"
+# export KEY_CN="CommonName"
