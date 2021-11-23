@@ -56,14 +56,14 @@ echo "" | tee -a log-install.txt
 echo "----------------------------------------------------------------------------------" | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "   >>> Service & Port"  | tee -a log-install.txt
-echo "   - OpenSSH                  : 22, 226, X40000"  | tee -a log-install.txt
+echo "   - OpenSSH                  : 22, X40000"  | tee -a log-install.txt
 echo "   - SSH-WS Python OpenSSH    : 100"  | tee -a log-install.txt
 echo "   - SSH-WS Python Dropbear   : 2020, 2021"  | tee -a log-install.txt
 echo "   - SSH-WS Python SSL/TLS    : 5052, 5053"  | tee -a log-install.txt
-echo "   - OpenVPN-WS Python        : 441"  | tee -a log-install.txt
-echo "   - OpenVPN                  : TCP 1194, UDP 2200, SSL 442, X1197"  | tee -a log-install.txt
-echo "   - Stunnel4 SSL/TLS         : 443, 444, X30000"  | tee -a log-install.txt
-echo "   - Dropbear                 : 143, 109, 110, 80(test) X50000"  | tee -a log-install.txt
+echo "   - OpenVPN-WS Python        : 6969"  | tee -a log-install.txt
+echo "   - OpenVPN                  : TCP 1194, UDP 2200, SSL 992, X1197"  | tee -a log-install.txt
+echo "   - Stunnel4 SSL/TLS         : 443, X30000"  | tee -a log-install.txt
+echo "   - Dropbear                 : 143, 109, X50000"  | tee -a log-install.txt
 echo "   - Squid Proxy              : 3128, 8080, 8000 (limit to IP Server)"  | tee -a log-install.txt
 echo "   - Badvpn                   : 7100, 7200, 7300, 7400, 7500"  | tee -a log-install.txt
 echo "   - Nginx                    : 81"  | tee -a log-install.txt
@@ -96,8 +96,5 @@ echo " Username Telegram : @PrinceNewbie" | tee -a log-install.txt
 echo "" | tee -a log-install.txt
 echo ""
 echo " Reboot 10 Sec"
-# port 80 test setup ssh & openvpn websocket 
-
-sed -i 's/DROPBEAR_EXTRA_ARGS="-p 50000 -p 109 -p 110"/DROPBEAR_EXTRA_ARGS="-p 50000 -p 109 -p 110 -p 80"/g' /etc/default/dropbear
 sleep 10
 reboot
