@@ -85,7 +85,7 @@ apt-get install dsniff -y
 apt install grepcidr -y
 apt install ruby -y && gem install lolcat
 apt-get install figlet -y
-
+apt-get install iptables-persistent
 
 # set time GMT +8
 ln -fs /usr/share/zoneinfo/Asia/Singapore /etc/localtime
