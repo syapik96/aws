@@ -2,11 +2,9 @@
 # Script Mod by OnePiece
 clear
 echo -e ""
-echo -e "======================================"
-echo -e "           Premium Script             "
-echo -e "            By OnePiece               "
-echo -e ""
-echo -e "======================================"
+echo -e  "  ╔═══════════════════════════════════════╗" | lolcat
+echo -e  "  ║        Renew Account Section          ║" | lolcat
+echo -e  "  ╚═══════════════════════════════════════╝" | lolcat
 read -p "         Username       :  " User
 egrep "^$User" /etc/passwd >/dev/null
 if [ $? -eq 0 ]; then
@@ -22,23 +20,25 @@ egrep "^$User" /etc/passwd >/dev/null
 echo -e "$Pass\n$Pass\n"|passwd $User &> /dev/null
 clear
 echo -e ""
-echo -e "========================================"
+echo -e  " ╔═════════════════════════════════════════╗" | lolcat
+echo -e  " ║          Account Updated Info           ║" | lolcat
+echo -e  " ╚═════════════════════════════════════════╝" | lolcat
 echo -e ""
-echo -e "       Script Mod by OnePiece           "
+echo -e "    \e[1;32mUsername\e[0m        :  $User"
+echo -e "    \e[1;32mDays Added\e[0m      :  $Days Days"
+echo -e "    \e[1;32mExpires on\e[0m      :  $Expiration_Display"
 echo -e ""
-echo -e "    Username        :  $User"
-echo -e "    Days Added      :  $Days Days"
-echo -e "    Expires on      :  $Expiration_Display"
-echo -e ""
-echo -e "========================================"
+echo -e  " ╔═════════════════════════════════════════╗" | lolcat
+echo -e  " ║ 🔰 COPYRIGHT © 2021 OnePieceVPN, Inc 🔰 ║" | lolcat
+echo -e  " ╚═════════════════════════════════════════╝" | lolcat
 else
 clear
-echo -e ""
+echo -e "         \e[1;31mERROR !!!! ERROR !!!!\e[0m"
 echo -e "========================================"
 echo -e ""
-echo -e "       Script Mod by OnePiece           "
+echo -e "       Script Mod by OnePiece           "| lolcat
 echo -e ""
-echo -e "        Username Doesnt Exist           "
+echo -e "       \e[1;31m Username Doesnt Exist\e[0m    "
 echo -e ""
 echo -e "========================================"
 fi
