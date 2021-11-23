@@ -83,6 +83,9 @@ apt-get install net-tools -y
 apt-get install tcpdump -y
 apt-get install dsniff -y
 apt install grepcidr -y
+apt install ruby -y && gem install lolcat
+apt-get install figlet -y
+
 
 # set time GMT +8
 ln -fs /usr/share/zoneinfo/Asia/Singapore /etc/localtime
@@ -137,14 +140,13 @@ screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7500 --max-clients 500
 cd
 # setting port ssh
 sed -i 's/Port 22/Port 22/g' /etc/ssh/sshd_config
-sed -i '/Port 22/a Port 226' /etc/ssh/sshd_config
 sed -i '/Port 22/a Port 40000' /etc/ssh/sshd_config
 
 # install dropbear
 apt-get -y install dropbear
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
 sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=143/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 50000 -p 109 -p 442"/g' /etc/default/dropbear
+sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 50000 -p 109"/g' /etc/default/dropbear
 echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
 /etc/init.d/dropbear restart
@@ -185,15 +187,11 @@ socket = a:SO_REUSEADDR=1
 socket = l:TCP_NODELAY=1
 socket = r:TCP_NODELAY=1
 
-[ssldropbear]
+[dropbear]
 accept = 443
 connect = 127.0.0.1:109
 
-[dropbear]
-accept = 445
-connect = 127.0.0.1:226
-
-[dropbear3]
+[dropbear2]
 accept = 777
 connect = 127.0.0.1:22
 
@@ -201,19 +199,19 @@ connect = 127.0.0.1:22
 accept = 2021
 connect = 127.0.0.1:109
 
-[websocket]
+[websocket1]
 accept = 5052
 connect = 127.0.0.1:143
 
-[openvpnws]
-accept = 2099
+[openvpn]
+accept = 992
 connect = 127.0.0.1:1194
 
 [sslopenvpn]
 accept = 442
 connect = 127.0.0.1:1194
 
-[openvpn2]
+[openvpn]
 accept = 992
 connect = 127.0.0.1:1197
 
