@@ -87,16 +87,6 @@ apt install ruby -y && gem install lolcat
 apt-get install figlet -y
 apt-get install iptables-persistent
 
-# oracle setup only ( after fork disable this if u not use oracle cloud )
-sudo apt install apache2
-systemctl restart apache2
-sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 80 -j ACCEPT
-netfilter-persistent save
-apt install libapache2-mod-php7.2
-apt install php7.2-curl php7.2-gd php7.2-zip
-php -v
-systemctl restart apache2
-
 # set time GMT +8
 ln -fs /usr/share/zoneinfo/Asia/Singapore /etc/localtime
 
@@ -150,6 +140,7 @@ cd
 # setting port ssh
 sed -i 's/Port 22/Port 22/g' /etc/ssh/sshd_config
 sed -i 's/Port 40000/g' /etc/ssh/sshd_config
+sed -i 's/Port 226/g' /etc/ssh/sshd_config
 
 # install dropbear
 apt-get -y install dropbear
