@@ -116,7 +116,6 @@ wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/syapik96/a
 wget -O /usr/bin/badvpn-udpgw "https://github.com/${GitUser}/aws/raw/main/badvpn-udpgw64"
 chmod +x /usr/bin/badvpn-udpgw
 
-
 #install badvpncdn
 cd $HOME
 wget https://github.com/ambrop72/badvpn/archive/master.zip
