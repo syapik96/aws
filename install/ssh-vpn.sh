@@ -18,9 +18,9 @@ country=MY
 state=Malaysia
 locality=Wilayah Persekutuan Kuala Lumpur
 organization=OnePieceVPN Inc.
-organizationalunit=OnePieceVPN Server
-commonname=gilergames.tk
-email=admin@gilergames.tk
+organizationalunit=OnePieceVPN Inc.
+commonname=onepiecevpn.ga
+email=zulhisyam421@gmail.com
 
 # simple password minimal
 wget -O /etc/pam.d/common-password "https://raw.githubusercontent.com/${GitUser}/aws/main/password"
@@ -71,7 +71,7 @@ wget http://www.webmin.com/jcameron-key.asc
 apt-key add jcameron-key.asc
 
 #update
-apt update -y
+apt update
 apt upgrade -y
 apt dist-upgrade -y
 
@@ -145,7 +145,7 @@ sed -i '/Port 22/a Port 40000' /etc/ssh/sshd_config
 apt-get -y install dropbear
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
 sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=143/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 50000 -p 109"/g' /etc/default/dropbear
+sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 50000 -p 109 -p 110"/g' /etc/default/dropbear
 echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
 /etc/init.d/dropbear restart
@@ -211,7 +211,7 @@ accept = 442
 connect = 127.0.0.1:1194
 
 [openvpn]
-accept = 992
+accept = 110
 connect = 127.0.0.1:1197
 
 END
