@@ -9,9 +9,10 @@ NUMBER_OF_CLIENTS=$(grep -c -E "^### " "/etc/v2ray/vless.json")
 
 	clear
 	echo ""
-	echo "Select the existing client you want to renew"
-	echo " Press CTRL+C to return"
-	echo -e "==============================="
+	echo -e "\e[1;32m==============================================\e[0m"
+	echo -e " \e[1;31mSelect the existing client you want to renew"
+	echo -e "          Press CTRL+C to return\e[0m"
+	echo -e "\e[1;32m==============================================\e[0m"
 	grep -E "^### " "/etc/v2ray/vless.json" | cut -d ' ' -f 2-3 | nl -s ') '
 	until [[ ${CLIENT_NUMBER} -ge 1 && ${CLIENT_NUMBER} -le ${NUMBER_OF_CLIENTS} ]]; do
 		if [[ ${CLIENT_NUMBER} == '1' ]]; then
@@ -33,10 +34,11 @@ sed -i "s/### $user $exp/### $user $exp4/g" /etc/v2ray/vless.json
 sed -i "s/### $user $exp/### $user $exp4/g" /etc/v2ray/vnone.json
 clear
 echo ""
-echo " VLESS Account Was Successfully Renewed"
-echo " =========================="
-echo " Client Name : $user"
-echo " Expired On  : $exp4"
-echo " =========================="
-echo " Mod by SL"
-
+echo -e "\e[1;32m========================================\e[0m"
+echo -e " VLESS Account Was Successfully Renewed" | lolcat
+echo -e "\e[1;32m========================================\e[0m"
+echo -e "         \e[1;31mClient Name \e[0m: $user"
+echo -e "         \e[1;31mExpired On  \e[0m: $exp4"
+echo -e "\e[1;32m========================================\e[0m"
+echo -e "           Mod by syapik96" | lolcat
+echo -e "\e[1;32m========================================\e[0m"
