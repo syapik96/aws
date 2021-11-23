@@ -14,15 +14,14 @@ GitUser="syapik96"
 timedatectl set-timezone Asia/Singapore
 
 # Install OpenVPN dan Easy-RSA
-apt install openvpn easy-rsa openssl -y
-apt install openssl iptables iptables-persistent -y 
+apt-get -y install openvpn easy-rsa openssl iptables
 cp -r /usr/share/easy-rsa/ /etc/openvpn
 mkdir /etc/openvpn/easy-rsa/keys
-cp /etc/openvpn/easy-rsa/vars.example /etc/openvpn/easy-rsa/vars
+#cp /etc/openvpn/easy-rsa/vars.example /etc/openvpn/easy-rsa/vars
 
 # Kemudian edit file variabel easy-rsa
 # nano /etc/openvpn/easy-rsa/vars
-wget -O /etc/openvpn/easy-rsa/vars "https://raw.githubusercontent.com/${GitUser}/aws/main/vars.conf"
+wget -O /etc/openvpn/easy-rsa/vars "https://raw.githubusercontent.com/${GitUser}/aws/main/vars"
 # edit projek export KEY_NAME="vpn"
 # Save dan keluar dari editor
 
@@ -31,7 +30,6 @@ openssl dhparam -out /etc/openvpn/dh2048.pem 2048
 
 # Create PKI
 cd /etc/openvpn/easy-rsa
-cp openssl-1.0.0.cnf openssl.cnf
 . ./vars
 ./clean-all
 export EASY_RSA="${EASY_RSA:-.}"
@@ -47,7 +45,7 @@ export EASY_RSA="${EASY_RSA:-.}"
 
 #cp /etc/openvpn/easy-rsa/keys/{server.crt,server.key,ca.crt} /etc/openvpn
 
-cd
+cd /etc/openvpn/easy-rsa/keys/
 cp /etc/openvpn/easy-rsa/keys/server.crt  /etc/openvpn/server.crt
 cp /etc/openvpn/easy-rsa/keys/server.key  /etc/openvpn/server.key
 cp /etc/openvpn/easy-rsa/keys/ca.crt  /etc/openvpn/ca.crt
@@ -66,10 +64,10 @@ cat > /etc/openvpn/server-tcp-1194.conf <<-END
 port 1194
 proto tcp
 dev tun
-ca ca.crt
-cert server.crt
-key server.key
-dh dh2048.pem
+ca /etc/openvpn/ca.crt
+cert /etc/openvpn/server.crt
+key /etc/openvpn/server.key
+dh /etc/openvpn/dh2048.pem
 plugin /usr/lib/openvpn/openvpn-plugin-auth-pam.so login
 verify-client-cert none
 username-as-common-name
@@ -92,10 +90,10 @@ cat > /etc/openvpn/server-udp-1194.conf <<-END
 port 1194
 proto udp
 dev tun
-ca ca.crt
-cert server.crt
-key server.key
-dh dh2048.pem
+ca /etc/openvpn/ca.crt
+cert /etc/openvpn/server.crt
+key /etc/openvpn/server.key
+dh /etc/openvpn/dh2048.pem
 plugin /usr/lib/openvpn/openvpn-plugin-auth-pam.so login
 verify-client-cert none
 username-as-common-name
@@ -118,10 +116,10 @@ cat > /etc/openvpn/server-tcp-1197.conf <<-END
 port 1197
 proto tcp
 dev tun
-ca ca.crt
-cert server.crt
-key server.key
-dh dh2048.pem
+ca /etc/openvpn/ca.crt
+cert /etc/openvpn/server.crt
+key /etc/openvpn/server.key
+dh /etc/openvpn/dh2048.pem
 plugin /usr/lib/openvpn/openvpn-plugin-auth-pam.so login
 verify-client-cert none
 username-as-common-name
@@ -144,10 +142,10 @@ cat > /etc/openvpn/server-udp-2200.conf <<-END
 port 2200
 proto udp
 dev tun
-ca ca.crt
-cert server.crt
-key server.key
-dh dh2048.pem
+ca /etc/openvpn/ca.crt
+cert /etc/openvpn/server.crt
+key /etc/openvpn/server.key
+dh /etc/openvpn/dh2048.pem
 plugin /usr/lib/openvpn/openvpn-plugin-auth-pam.so login
 verify-client-cert none
 username-as-common-name
@@ -178,7 +176,7 @@ sed -i 's/#AUTOSTART="all"/AUTOSTART="all"/g' /etc/default/openvpn
 
 # aktifkan ip4 forwarding
 echo 1 > /proc/sys/net/ipv4/ip_forward
-sed -i 's/net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf
+sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf
 # edit file sysctl.conf
 # nano /etc/sysctl.conf
 # Uncomment hilangkan tanda pagar pada #net.ipv4.ip_forward=1
@@ -414,6 +412,12 @@ END
 sed -i $MYIP2 /etc/network/if-up.d/iptables
 chmod +x /etc/network/if-up.d/iptables
 
+apt-get install ufw
+ufw allow ssh
+ufw allow 1194/tcp
+ufw allow 1197/tcp
+sed -i 's|DEFAULT_INPUT_POLICY="DROP"|DEFAULT_INPUT_POLICY="ACCEPT"|' /etc/default/ufw
+sed -i 's|DEFAULT_FORWARD_POLICY="DROP"|DEFAULT_FORWARD_POLICY="ACCEPT"|' /etc/default/ufw
 # restart opevpn
 /etc/init.d/openvpn restart
 
