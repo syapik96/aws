@@ -41,7 +41,7 @@ Info :
 > > GitUser="syapik96" 
 	    
 jika terdapat masalah please pull issue , 
-jika ada kesilapan dlm skrip dia alukan utk betulkan
+please jika ada kesilapan dalam skrip dialukan utk betulkan
 thanks for those fork 
 	
 SILA BACA TEXT BERSIMBOL #              
