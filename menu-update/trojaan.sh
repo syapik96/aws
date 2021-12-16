@@ -1,5 +1,17 @@
 #!/bin/bash
-
+# updated by syapik96
+yl='\e[32;1m'
+bl='\e[36;1m'
+gl='\e[32;1m'
+rd='\e[31;1m'
+mg='\e[0;95m'
+blu='\e[34m'
+op='\e[35m'
+or='\033[1;33m'
+bd='\e[1m'
+red='\e[1;31m'
+NC='\e[0m'
+clear
 figlet -f slant "PANEL TROJAN" | lolcat
 echo -e ""
 echo -e  "  ╔═══════════════════════════════════════╗" | lolcat
@@ -40,7 +52,7 @@ case $trojan in
       menu
       exit
       ;;
-      0)
+      x)
       echo -e " Good bye-bye "
       sudo -i
       exit
