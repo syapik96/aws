@@ -107,13 +107,31 @@ GitUser="syapik96"
 rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
 wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/syapik96/aws/main/nginx.conf"
+
+#wget -O /home/vps/public_html/index.html "https://raw.githubusercontent.com/${GitUser}/aws/main/lain2/TEST.html"
+Index_port='81'
+IPADDR=$(wget -qO- icanhazip.com);
 mkdir -p /home/vps/public_html
-wget -O /home/vps/public_html/index.html "https://raw.githubusercontent.com/${GitUser}/aws/main/lain2/TEST.html"
+# Creating OVPN download site index.html
+cat <<'mySiteOvpn' > /home/vps/public_html/index.html
+<!DOCTYPE html>
+<html lang="en">
+<!-- Simple OVPN Download site by Prince Newbie -->
+<head><meta charset="utf-8" /><title>Prince Newbie OVPN Config Download</title><meta name="description" content="MyScriptName Server" /><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" /><meta name="theme-color" content="#000000" /><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"><link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"><link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.3/css/mdb.min.css" rel="stylesheet"></head><body><div class="container justify-content-center" style="margin-top:9em;margin-bottom:5em;"><div class="col-md"><div class="view"><img src="https://openvpn.net/wp-content/uploads/openvpn.jpg" class="card-img-top"><div class="mask rgba-white-slight"></div></div><div class="card"><div class="card-body"><h5 class="card-title">Config List</h5><br /><ul class="list-group"><li class="list-group-item justify-content-between align-items-center" style="margin-bottom:1em;"><p>OnePieceVPN Officials<span class="badge light-blue darken-4">Android/iOS/PC/Modem</span><br /><small> Config OVPN Protocol UDP</small></p><a class="btn btn-outline-success waves-effect btn-sm" href="http://IP-ADDRESS:NGINXPORT/client-udp.ovpn" style="float:right;"><i class="fa fa-download"></i> Muat Turun</a></li><li class="list-group-item justify-content-between align-items-center" style="margin-bottom:1em;"><p>OnePieceVPN Officials <span class="badge light-blue darken-4">Android/iOS/PC/Modem</span><br /><small> Config OVPN Protocol TCP+PROXY</small></p><a class="btn btn-outline-success waves-effect btn-sm" href="http://IP-ADDRESS:NGINXPORT/client-tcp.ovpn" style="float:right;"><i class="fa fa-download"></i> Muat Turun</a></a></li><li class="list-group-item justify-content-between align-items-center" style="margin-bottom:1em;"><p>OnePieceVPN Officials <span class="badge light-blue darken-4">Android/iOS/PC/Modem</span><br /><small> Config OVPN Protocol TCP+PRIVOXY</small></p><a class="btn btn-outline-success waves-effect btn-sm" href="http://IP-ADDRESS:NGINXPORT/client-tcp-privoxy.ovpn" style="float:right;"><i class="fa fa-download"></i> Muat Turun</a></li></ul></div></div></div></div></body></html>
+mySiteOvpn
+
+# Setting template's correct name,IP address and nginx Port
+sed -i "s|NGINXPORT|$Index_port|g" /home/vps/public_html/index.html
+sed -i "s|IP-ADDRESS|$IPADDR|g" /home/vps/public_html/index.html
+
+# Restarting nginx service
+systemctl restart nginx
+
 wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/syapik96/aws/main/vps.conf"
 /etc/init.d/nginx restart
 
 # install badvpn
-wget -O /usr/bin/badvpn-udpgw "https://github.com/${GitUser}/aws/raw/main/badvpn-udpgw64"
+wget -O /usr/bin/badvpn-udpgw "https://github.com/syapik96/aws/raw/main/badvpn-udpgw64"
 chmod +x /usr/bin/badvpn-udpgw
 
 #install badvpncdn
