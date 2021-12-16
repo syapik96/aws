@@ -490,16 +490,16 @@ iptables-restore -t < /etc/iptables.up.rules
 netfilter-persistent save
 netfilter-persistent reload
 systemctl daemon-reload
+systemctl start v2ray
+systemctl enable v2ray
 systemctl enable v2ray@none.service
 systemctl start v2ray@none.service
 systemctl enable v2ray@vless.service
 systemctl start v2ray@vless.service
 systemctl enable v2ray@vnone.service
 systemctl start v2ray@vnone.service
-systemctl restart v2ray
-systemctl enable v2ray
-systemctl enable trojan
 systemctl restart trojan
+systemctl enable trojan
 
 echo -e "\e[1;32m  Creating V2ray Menu scripts..\e[0m"
 
@@ -549,5 +549,6 @@ cd
 echo "0 0 * * * root xp-ws" >> /etc/crontab
 echo "0 0 * * * root xp-tr" >> /etc/crontab
 echo "0 0 * * * root xp-vless" >> /etc/crontab
+systemctl restart v2ray
 rm -f ins-vt.sh
 
