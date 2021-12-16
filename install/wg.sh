@@ -34,8 +34,8 @@ SERVER_PUB_NIC=$(ip -o $ANU -4 route show to default | awk '{print $5}');
 	if [[ $OS == 'ubuntu' ]]; then
 	apt install -y wireguard
 elif [[ $OS == 'debian' ]]; then
-	echo "deb http://deb.debian.org/debian/ unstable main" >/etc/apt/sources.list.d/unstable.list
-	printf 'Package: *\nPin: release a=unstable\nPin-Priority: 90\n' >/etc/apt/preferences.d/limit-unstable
+	echo "deb http://deb.debian.org/debian/ unstable main" >> /etc/apt/sources.list.d/unstable.list
+	printf 'Package: *\nPin: release a=unstable\nPin-Priority: 90\n' > /etc/apt/preferences.d/limit-unstable
 	apt update
 	apt install -y wireguard-tools iptables iptables-persistent
 	apt install -y linux-headers-$(uname -r)
@@ -46,7 +46,7 @@ elif [[ ${OS} == 'centos' ]]; then
 	fi
 apt install iptables iptables-persistent -y
 # Make sure the directory exists (this does not seem the be the case on fedora)
-mkdir /etc/wireguard >/dev/null 2>&1
+mkdir /etc/wireguard > /dev/null 2>&1
 
 chmod 600 -R /etc/wireguard/
 
@@ -59,7 +59,7 @@ SERVER_WG_NIC=wg0
 SERVER_WG_IPV4=10.66.66.1
 SERVER_PORT=7070
 SERVER_PRIV_KEY=$SERVER_PRIV_KEY
-SERVER_PUB_KEY=$SERVER_PUB_KEY" >/etc/wireguard/params
+SERVER_PUB_KEY=$SERVER_PUB_KEY" >> /etc/wireguard/params
 
 source /etc/wireguard/params
 
@@ -69,7 +69,7 @@ Address = $SERVER_WG_IPV4/24
 ListenPort = $SERVER_PORT
 PrivateKey = $SERVER_PRIV_KEY
 PostUp = iptables -A FORWARD -i wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o $SERVER_PUB_NIC -j MASQUERADE;
-PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o $SERVER_PUB_NIC -j MASQUERADE;" >>"/etc/wireguard/wg0.conf"
+PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o $SERVER_PUB_NIC -j MASQUERADE;" >> /etc/wireguard/wg0.conf
 
 iptables -t nat -I POSTROUTING -s 10.66.66.1/24 -o $SERVER_PUB_NIC -j MASQUERADE
 iptables -I INPUT 1 -i wg0 -j ACCEPT
@@ -89,12 +89,14 @@ systemctl is-active --quiet "wg-quick@wg0"
 WG_RUNNING=$?
 
 # Tambahan
+GitUser="syapik96"
+#wget https://github.com/${GitUser}/
 cd /usr/bin
-wget -O addwg "https://raw.githubusercontent.com/${GitUser}/syapik96/main/tambah/addwg.sh"
-wget -O delwg "https://raw.githubusercontent.com/${GitUser}/syapik96/main/hapus/delwg.sh"
-wget -O cekwg "https://raw.githubusercontent.com/${GitUser}/syapik96/main/cekwg.sh"
-wget -O xp-wg "https://raw.githubusercontent.com/${GitUser}/syapik96/main/xp-wg.sh"
-wget -O renewwg "https://raw.githubusercontent.com/${GitUser}/syapik96/main/renewwg.sh"
+wget -O addwg "https://raw.githubusercontent.com/${GitUser}/aws/main/tambah/addwg.sh"
+wget -O delwg "https://raw.githubusercontent.com/${GitUser}/aws/main/hapus/delwg.sh"
+wget -O cekwg "https://raw.githubusercontent.com/${GitUser}/aws/main/cekwg.sh"
+wget -O xp-wg "https://raw.githubusercontent.com/${GitUser}/aws/main/xp-wg.sh"
+wget -O renewwg "https://raw.githubusercontent.com/${GitUser}/aws/main/renewwg.sh"
 chmod +x addwg
 chmod +x delwg
 chmod +x cekwg
