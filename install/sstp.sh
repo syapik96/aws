@@ -20,7 +20,7 @@ fi
 fi
 mkdir /home/sstp
 touch /home/sstp/sstp_account
-touch /var/lib/crot-script/data-user-sstp
+touch /var/lib/premium-script/data-user-sstp
 #detail nama perusahaan
 country=MY
 state=Malaysia
