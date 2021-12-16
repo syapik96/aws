@@ -493,13 +493,13 @@ systemctl daemon-reload
 systemctl enable v2ray@none.service
 systemctl start v2ray@none.service
 systemctl enable v2ray@vless.service
-systemctl start v2ray@vlessservice
+systemctl start v2ray@vless.service
 systemctl enable v2ray@vnone.service
 systemctl start v2ray@vnone.service
-systemctl restart trojan
-systemctl enable trojan
 systemctl restart v2ray
 systemctl enable v2ray
+systemctl enable trojan
+systemctl restart trojan
 
 echo -e "\e[1;32m  Creating V2ray Menu scripts..\e[0m"
 
@@ -550,4 +550,4 @@ echo "0 0 * * * root xp-ws" >> /etc/crontab
 echo "0 0 * * * root xp-tr" >> /etc/crontab
 echo "0 0 * * * root xp-vless" >> /etc/crontab
 rm -f ins-vt.sh
-mv /root/domain /etc/v2ray
+
