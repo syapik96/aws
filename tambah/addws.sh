@@ -35,7 +35,7 @@ cat > /etc/v2ray/$user-tls.json <<-EOF
       "v": "2",
       "ps": "${user}",
       "add": "${domain}",
-      "port": "4443",
+      "port": "8443",
       "id": "${uuid}",
       "aid": "2",
       "net": "ws",
