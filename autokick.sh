@@ -1,10 +1,10 @@
 #!/bin/bash
-# Script Mod By SL
+# Script Mod By Prince
 clear
 echo -e ""
 echo -e "======================================"
 echo -e ""
-echo -e "     AutoKick Mod by SL      "
+echo -e "     AutoKick Mod by Prince      "
 echo -e ""
 echo -e "     [1]  AutoKick After 5 Minutes"
 echo -e "     [2]  AutoKick After 15 Minutes"
@@ -20,11 +20,11 @@ case $AutoKick in
                 echo -e ""
                 sleep 1
                 clear
-                rm -f /etc/cron.d/tendang
-                echo "*/5 * * * *  root /usr/bin/tendang" > /etc/cron.d/tendang
+                rm -f /etc/cron.d/autokick
+                echo "*/5 * * * *  root /usr/bin/autokick" > /etc/cron.d/autokick
                 echo -e ""
                 echo -e "======================================"
-                echo -e "      AutoKick Mod by SL    "
+                echo -e "      AutoKick Mod by Prince    "
                 echo -e ""
                 echo -e "      Allowed MultiLogin : 2"
                 echo -e "      AutoKick Every     : 5 Minutes"      
@@ -36,12 +36,12 @@ case $AutoKick in
                 echo -e ""
                 sleep 1
                 clear
-                rm -f /etc/cron.d/tendang
-                echo "*/5 * * * *  root /usr/bin/tendang" > /etc/cron.d/tendang
+                rm -f /etc/cron.d/autokick
+                echo "*/5 * * * *  root /usr/bin/autokick" > /etc/cron.d/autokick
                 echo -e ""
                 echo -e "======================================"
                 echo -e ""
-                echo -e "      AutoKick Mod by SL     "
+                echo -e "      AutoKick Mod by Prince     "
                 echo -e ""
                 echo -e "      Allowed MultiLogin : 2"
                 echo -e "      AutoKick Every     : 15 Minutes"
@@ -53,12 +53,12 @@ case $AutoKick in
                 echo -e ""
                 sleep 1
                 clear
-                rm -f /etc/cron.d/tendang
-                echo "*/5 * * * *  root /usr/bin/tendang" > /etc/cron.d/tendang
+                rm -f /etc/cron.d/autokick
+                echo "*/5 * * * *  root /usr/bin/autokick" > /etc/cron.d/autokick
                 echo -e ""
                 echo -e "======================================"
                 echo -e ""
-                echo -e "      AutoKick Mod by SL     "
+                echo -e "      AutoKick Mod by Prince     "
                 echo -e ""
                 echo -e "      Allowed MultiLogin : 2"
                 echo -e "      AutoKick Every     : 30 Minutes"
@@ -68,11 +68,11 @@ case $AutoKick in
                 ;;
                 4)
                 clear
-                rm -f /etc/cron.d/tendang
+                rm -f /etc/cron.d/autokick
                 echo -e ""
                 echo -e "======================================"
                 echo -e ""
-                echo -e "      AutoKick Mod by SL     "
+                echo -e "      AutoKick Mod by Prince     "
                 echo -e ""
                 echo -e "      AutoKick MultiLogin Turned Off  "
                 echo -e ""
