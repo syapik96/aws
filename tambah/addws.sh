@@ -1,12 +1,14 @@
 #!/bin/bash 
-source /var/lib/crot-script/ipvps.conf
+# updated by syapik96
+
+source /var/lib/premium-script/ipvps.conf
 if [[ "$IP" = "" ]]; then
 domain=$(cat /etc/v2ray/domain)
 else
 domain=$IP
 fi
 if [[ "$IPHost" = "" ]]; then
-PUBLIC_IP=$(wget -qO- http://ipecho.net/plain | xargs echo);
+PUBLIC_IP=$(wget -qO- icanhazip.com);
 else
 PUBLIC_IP=$IPHost
 fi
@@ -27,7 +29,8 @@ sed -i '/#tls$/a\### '"$user $exp"'\
 },{"id": "'""$uuid""'","alterId": '"2"',"email": "'""$user""'"' /etc/v2ray/config.json
 sed -i '/#none$/a\### '"$user $exp"'\
 },{"id": "'""$uuid""'","alterId": '"2"',"email": "'""$user""'"' /etc/v2ray/none.json
-cat>/etc/v2ray/$user-tls.json<<EOF
+
+cat > /etc/v2ray/$user-tls.json <<-EOF
       {
       "v": "2",
       "ps": "${user}",
@@ -42,7 +45,8 @@ cat>/etc/v2ray/$user-tls.json<<EOF
       "tls": "tls"
 }
 EOF
-cat>/etc/v2ray/$user-none.json<<EOF
+
+cat > /etc/v2ray/$user-none.json <<-EOF
       {
       "v": "2",
       "ps": "${user}",
@@ -57,6 +61,7 @@ cat>/etc/v2ray/$user-none.json<<EOF
       "tls": "none"
 }
 EOF
+
 vmesslink1="vmess://$(base64 -w 0 /etc/v2ray/$user-tls.json)"
 vmesslink2="vmess://$(base64 -w 0 /etc/v2ray/$user-none.json)"
 systemctl restart v2ray
