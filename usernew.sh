@@ -14,25 +14,24 @@ read -p "    * Password : " Pass
 read -p "    * Expired (hari): " masaaktif
 echo -e "\e[0m"
 
-url=$( wget -qO- http://ipecho.net/plain );
-IP=$(wget -qO- ipinfo.io/ip);
-domain=$(cat /root/domain);
 echo "Script AutoCreate Akaun SSH dan OpenVPN Mod By OnePiece"
 sleep 1
-echo Ping Host
-echo Chek Hak Akses...
-sleep 0.5
-echo Permission Accepted
+echo "Ping Host"
+echo "Chek Hak Akses..."
+sleep 1
+echo "Permission Accepted"
 clear
-sleep 0.5
-echo Membuat Akun: $Login
-sleep 0.5
-echo Setting Password: $Pass
-sleep 0.5
+sleep 1
+echo "Membuat Akun: $Login"
+sleep 1
+echo "Setting Password: $Pass"
+sleep 1
 clear
 useradd -e `date -d "$masaaktif days" +"%Y-%m-%d"` -s /bin/false -M $Login
 exp="$(chage -l $Login | grep "Account expires" | awk -F": " '{print $2}')"
 url=$( wget -qO- http://ipecho.net/plain );
+IP=$(wget -qO- ipv4.icanhazip.com);
+domain=$(cat etc/v2ray/domain);
 echo -e "$Pass\n$Pass\n"|passwd $Login &> /dev/null
 echo -e " [*][*]============================================================================[*][*]" | lolcat
 echo -e "                      Informasi Akaun SSH & OpenVPN" | lolcat
@@ -55,11 +54,11 @@ echo -e "          \e[1;31mOpenVPN UDP 2200  :  \e[0m"http://${url}:81/client-ud
 echo -e "          \e[1;31mOpenVPN SSL 992   :  \e[0m"http://${url}:81/client-tcp-ssl.ovpn
 echo -e "          \e[1;31mbadvpn            :  \e[0m"7100 , 7200 , 7300
 echo -e ""
-echo -e " [*][*]=================================================================================[*][*]" | lolcat
+echo -e " [*][*]==================================================================================[*][*]" | lolcat
 echo -e ""
-echo -e "   Payload Websocket : GET / HTTP/1.1[crlf]Host: $domain[crlf]Upgrade: websocket[crlf][crlf]"
+echo -e "\e[1;32   Payload Websocket : GET / HTTP/1.1[crlf]Host: $domain[crlf]Upgrade: websocket[crlf][crlf] \e[0m"
 echo -e ""
-echo -e "[*][*]=================================================================================[*][*]" | lolcat
+echo -e " [*][*]==================================================================================[*][*]" | lolcat
 echo -e ""
 echo -e "     \e[1;31mAktif Sampai   : \e[0m"$exp
 echo -e "     \e[1;31mKembali ke Menu enter >> \e[0m"0
