@@ -11,6 +11,7 @@ echo -e "     [2]  AutoKick After 15 Minutes"
 echo -e "     [3]  AutoKick After 30 Minutes"
 echo -e "     [4]  Turn Off AutoKick/MultiLogin"
 echo -e "     [x]  Exit"
+echo -e ""
 echo -e "======================================"                                                                                                          
 echo -e ""
 read -p "     Select From Options [1-4 or x] :  " AutoKick
@@ -20,8 +21,8 @@ case $AutoKick in
                 echo -e ""
                 sleep 1
                 clear
-                rm -f /etc/cron.d/autokick
-                echo "*/5 * * * *  root /usr/bin/autokick" > /etc/cron.d/autokick
+                rm -f /etc/cron.d/tendang
+                echo "*/5 * * * *  root /usr/bin/tendang" > /etc/cron.d/tendang
                 echo -e ""
                 echo -e "======================================"
                 echo -e "      AutoKick Mod by Prince    "
@@ -36,8 +37,8 @@ case $AutoKick in
                 echo -e ""
                 sleep 1
                 clear
-                rm -f /etc/cron.d/autokick
-                echo "*/5 * * * *  root /usr/bin/autokick" > /etc/cron.d/autokick
+                rm -f /etc/cron.d/tendang
+                echo "*/5 * * * *  root /usr/bin/tendang" > /etc/cron.d/tendang
                 echo -e ""
                 echo -e "======================================"
                 echo -e ""
@@ -53,8 +54,8 @@ case $AutoKick in
                 echo -e ""
                 sleep 1
                 clear
-                rm -f /etc/cron.d/autokick
-                echo "*/5 * * * *  root /usr/bin/autokick" > /etc/cron.d/autokick
+                rm -f /etc/cron.d/tendang
+                echo "*/5 * * * *  root /usr/bin/tendang" > /etc/cron.d/tendang
                 echo -e ""
                 echo -e "======================================"
                 echo -e ""
@@ -68,7 +69,7 @@ case $AutoKick in
                 ;;
                 4)
                 clear
-                rm -f /etc/cron.d/autokick
+                rm -f /etc/cron.d/tendang
                 echo -e ""
                 echo -e "======================================"
                 echo -e ""
@@ -84,3 +85,4 @@ case $AutoKick in
                 exit
                 ;;
         esac
+
