@@ -74,9 +74,11 @@ YANG INGIN MENGGUNAKAN SKRIP INI
 - Shadowsocks-R            : 1443-1543
 - SS-OBFS TLS              : 2443-2543
 - SS-OBFS HTTP             : 3443-3453
-- V2RAY Vmess TLS          : 4443
+- V2RAY Vmess TLS          : 8443
 - V2RAY Vmess None TLS     : 80
-- Trojan                   : 6443
+- V2RAY Vless TLS          : 2083
+- V2RAY Vless None TLS     : 8880
+- Trojan                   : 2087
 
   
   
