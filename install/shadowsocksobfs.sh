@@ -35,7 +35,6 @@ apt update
 apt -t buster-backports install shadowsocks-libev -y
 apt -t buster-backports install simple-obfs -y
 fi
-fi
 echo "Install Shadowsocks-libev Selesai."
 echo "#############################################"
 
@@ -53,7 +52,7 @@ cat > /etc/shadowsocks-libev/config.json <<-EOF
     "nameserver":"1.1.1.1",
     "mode":"tcp_and_udp",
 }
-END
+EOF
 echo "#############################################"
 
 #mulai ~shadowsocks-libev~ server
