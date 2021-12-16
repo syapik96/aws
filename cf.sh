@@ -2,8 +2,7 @@
 red='\e[1;31m'
 green='\e[0;32m'
 NC='\e[0m'
-MYIP=$(wget -qO- http://ipecho.net/plain);
-echo "Checking VPS"
+
 apt install jq curl -y
 DOMAIN=gilergames.tk
 sub=$(</dev/urandom tr -dc a-z0-9 | head -c4)
@@ -11,7 +10,7 @@ SUB_DOMAIN=${sub}.gilergames.tk
 CF_ID=zulhisyam421@gmail.com
 CF_KEY=48e94b491ba3933abe8732b9a5f91cf3f3c36
 set -euo pipefail
-IP=$(wget -qO- http://ipecho.net/plain);
+IP=$(wget -qO- icanhazip.com);
 echo "Updating DNS for ${SUB_DOMAIN}..."
 ZONE=$(curl -sLX GET "https://api.cloudflare.com/client/v4/zones?name=${DOMAIN}&status=active" \
      -H "X-Auth-Email: ${CF_ID}" \
