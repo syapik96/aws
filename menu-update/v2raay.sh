@@ -7,7 +7,7 @@ bl='\e[36;1m'
 bd='\e[1m'
 
 clear
-figlet "Panel V2RAY" | lolcat
+figlet -f slant "Panel V2RAY" | lolcat
 echo ""
 echo -e " ╔═══════════════════════════════════════╗" | lolcat
 echo -e " ║            Section  V2RAY             ║" | lolcat
