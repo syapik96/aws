@@ -6,7 +6,7 @@ else
 domain=$IP
 fi
 if [[ "$IPHost" = "" ]]; then
-PUBLIC_IP=$(wget -qO- http://ipecho.net/plain | xargs echo);
+PUBLIC_IP=$(wget -qO- icanhazip.com);
 else
 PUBLIC_IP=$IPHost
 fi
