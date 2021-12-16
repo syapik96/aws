@@ -74,7 +74,7 @@ echo "   - Shadowsocks-R            : 1443-1543"  | tee -a log-install.txt
 echo "   - SS-OBFS TLS              : 2443-2543"  | tee -a log-install.txt
 echo "   - SS-OBFS HTTP             : 3443-3453"  | tee -a log-install.txt
 echo "   - V2RAY Vmess TLS          : 8443"  | tee -a log-install.txt
-echo "   - V2RAY Vmess None TLS     : 8880"  | tee -a log-install.txt
+echo "   - V2RAY Vmess None TLS     : 80"  | tee -a log-install.txt
 echo "   - V2RAY Vless TLS          : 2083"  | tee -a log-install.txt
 echo "   - V2RAY Vless None TLS     : 2052"  | tee -a log-install.txt
 echo "   - Trojan                   : 2087"  | tee -a log-install.txt
@@ -93,15 +93,14 @@ echo "------------------------------------------Mod by WHY----------------------
 echo "" | tee -a log-install.txt
 echo " Username Telegram : @PrinceNewbie" | tee -a log-install.txt
 echo "" | tee -a log-install.txt
-# OPEN PORT ORACLE 
-
-MYIP=$(wget -qO- icanhazip.com);
-iptables -A INPUT -s $MYIP/32 -p tcp -m multiport --dports 1:65535 -j ACCEPT
-iptables -A INPUT -m state --state NEW -m tcp -p udp --dport 443 -j ACCEPT
-iptables -A INPUT -m state --state NEW -m tcp -p udp --dport 2021 -j ACCEPT
-iptables -A INPUT -m state --state NEW -m tcp -p udp --dport 5051 -j ACCEPT
-iptables-save > /etc/iptables/rules.v4
-netfilter-presistent save
+# OPEN PORT ORACLE CLOUD
+IP=$(wget -qO- icanhazip.com);
+iptables -A INPUT -s $IP/32 -p tcp -m multiport --dports 1:65535 -j ACCEPT
+iptables -A INPUT -m state --state NEW -m tcp -p tcp --dport 443 -j ACCEPT
+iptables -A INPUT -m state --state NEW -m tcp -p tcp --dport 81 -j ACCEPT
+iptables -A INPUT -m state --state NEW -m tcp -p tcp --dport 5052 -j ACCEPT
+netfilter-persistent save
+netfilter-persistent reload
 echo ""
 echo " Reboot 10 Sec"
 sleep 10
