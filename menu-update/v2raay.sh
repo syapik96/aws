@@ -56,8 +56,8 @@ case $v2ray in
     sudo -i
     exit
     *)
-    echo -e "${red}Please enter an correct number${NC}"
-    sleep 2
+    echo -e "\e[1;31mPlease enter an correct number\e[0m"
+    echo -e ""
     clear
     v2raay
     exit
