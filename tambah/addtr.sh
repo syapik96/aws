@@ -1,4 +1,6 @@
 #!/bin/bash
+# use this systemctl restart trojan if default not work ( let me know which one work )
+# updated 
 
 red='\e[1;31m'
 green='\e[0;32m'
@@ -23,12 +25,13 @@ until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
 	done
 uuid=$(cat /proc/sys/kernel/random/uuid)	
 read -p "Expired (days): " masaaktif
-sed -i '/"'""$uuid""'"$/a\,"'""$user""'"' /etc/trojan/config.json
+sed -i '/#tls$/a\### '"$user $exp"'\
+},{"password": "'""$uuid""'","email": "'""$user""'"' /etc/v2ray/trojan.json
 exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
-echo "### $user $exp" >> /etc/trojan/akun.conf
 systemctl restart v2ray@trojan
-# systemctl restart trojan ( let me know which one work )
+# systemctl restart trojan
 trojanlink="trojan://${uuid}@${domain}:6443"
+
 clear
 echo -e ""
 echo -e "==========-Trojan-=========="
