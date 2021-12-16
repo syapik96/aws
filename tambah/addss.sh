@@ -1,5 +1,7 @@
- #!/bin/bash
-IP=$(wget -qO- http://ipecho.net/plain | xargs echo);
+#!/bin/bash
+# updated
+
+IP=$(wget -qO- icanhazip.com);
 lastport1=$(grep "port_tls" /etc/shadowsocks-libev/akun.conf | tail -n1 | awk '{print $2}')
 lastport2=$(grep "port_http" /etc/shadowsocks-libev/akun.conf | tail -n1 | awk '{print $2}')
 if [[ $lastport1 == '' ]]; then
@@ -13,14 +15,14 @@ else
 http="$((lastport2+1))"
 fi
 echo ""
-echo "Masukkan password"
+echo -e "Masukkan password"
 until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
 		read -rp "Password: " -e user
 		CLIENT_EXISTS=$(grep -w $user /etc/shadowsocks-libev/akun.conf | wc -l)
 
 		if [[ ${CLIENT_EXISTS} == '1' ]]; then
-			echo ""
-			echo "Akun sudah ada, silahkan masukkan password lain."
+			echo -e ""
+			echo -e "Akun sudah ada, silahkan masukkan password lain."
 			exit 1
 		fi
 	done
@@ -71,7 +73,7 @@ systemctl enable shadowsocks-libev-server@$user-http.service
 
 echo -e "### $user $exp 
 port_tls $tls 
-port_http $http" >> "/etc/shadowsocks-libev/akun.conf"
+port_http $http" >> /etc/shadowsocks-libev/akun.conf
 tmp1=$(echo -n "aes-256-cfb:${user}@${IP}:$tls" | base64 -w0)
 tmp2=$(echo -n "aes-256-cfb:${user}@${IP}:$http" | base64 -w0)
 linkss1="ss://${tmp1}?plugin=obfs-local;obfs=tls;obfs-host=your.bug.com"
@@ -92,4 +94,4 @@ echo -e "Link OBFS TLS : $linkss1"
 echo -e "==========================="
 echo -e "Link OBFS HTTP : $linkss2"
 echo -e "==========================="
-echo -e "Script Mod by OnePiece"
+echo -e "Script Mod by Prince"
