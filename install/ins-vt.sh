@@ -403,7 +403,7 @@ cat > /etc/v2ray/vnone.json <<-EOF
 }
 EOF
 
-cat <<EOF > /etc/trojan/config.json
+cat > /etc/trojan/config.json <<-EOF
 {
     "run_type": "server",
     "local_addr": "0.0.0.0",
