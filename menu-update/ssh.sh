@@ -48,7 +48,7 @@ case $ssh in
 	;;
 	4)
 	clear
-	deluser
+	hapus
 	exit
 	;;
 	5)
@@ -68,7 +68,7 @@ case $ssh in
 	;;
 	8)
 	clear
-	autokill
+	autokick
 	exit
 	;;
 	9)
@@ -76,15 +76,13 @@ case $ssh in
 	ceklim
 	exit
 	;;
-	x)
+	0)
 	clear
 	menu
 	exit
 	;;
-	*)
-	clear
+	x)
 	sudo -i
-	neofetch
 	exit
 	;;
 esac
