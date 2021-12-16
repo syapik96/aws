@@ -1,5 +1,5 @@
 #!/bin/bash
-source /var/lib/crot-script/ipvps.conf
+source /var/lib/premium-script/ipvps.conf
 if [[ "$IP" = "" ]]; then
 domain=$(cat /etc/v2ray/domain)
 else
@@ -49,4 +49,4 @@ echo -e "================================="
 echo -e "link none TLS  : ${vlesslink2}"
 echo -e "================================="
 echo -e "Expired On     : $exp"
-echo -e "Mod By OnePiece"
+echo -e "Mod By Princenewbie"
