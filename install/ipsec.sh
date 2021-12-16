@@ -107,58 +107,58 @@ XAUTH_NET=192.168.43.0/24
 XAUTH_POOL=192.168.43.10-192.168.43.250
 DNS_SRV1=1.1.1.1
 DNS_SRV2=1.0.0.1
-DNS_SRVS="\"$DNS_SRV1 $DNS_SRV2\""
+DNS_SRVS="\"$DNS_SRV1 $DNS_SRV2"\"
 [ -n "$VPN_DNS_SRV1" ] && [ -z "$VPN_DNS_SRV2" ] && DNS_SRVS="$DNS_SRV1"
 
 # Create IPsec config
-cat > /etc/ipsec.conf <<EOF
+cat > /etc/ipsec.conf <<-EOF
 version 2.0
 
 config setup
-  virtual-private=%v4:10.0.0.0/8,%v4:192.168.0.0/16,%v4:172.16.0.0/12,%v4:!$L2TP_NET,%v4:!$XAUTH_NET
-  protostack=netkey
-  interfaces=%defaultroute
-  uniqueids=no
+virtual-private=%v4:10.0.0.0/8,%v4:192.168.0.0/16,%v4:172.16.0.0/12,%v4:!$L2TP_NET,%v4:!$XAUTH_NET
+protostack=netkey
+interfaces=%defaultroute
+uniqueids=no
 
 conn shared
-  left=%defaultroute
-  leftid=$PUBLIC_IP
-  right=%any
-  encapsulation=yes
-  authby=secret
-  pfs=no
-  rekey=no
-  keyingtries=5
-  dpddelay=30
-  dpdtimeout=120
-  dpdaction=clear
-  ikev2=never
-  ike=aes256-sha2,aes128-sha2,aes256-sha1,aes128-sha1,aes256-sha2;modp1024,aes128-sha1;modp1024
-  phase2alg=aes_gcm-null,aes128-sha1,aes256-sha1,aes256-sha2_512,aes128-sha2,aes256-sha2
-  sha2-truncbug=no
+left=%defaultroute
+leftid=$PUBLIC_IP
+right=%any
+encapsulation=yes
+authby=secret
+pfs=no
+rekey=no
+keyingtries=5
+dpddelay=30
+dpdtimeout=120
+dpdaction=clear
+ikev2=never
+ike=aes256-sha2,aes128-sha2,aes256-sha1,aes128-sha1,aes256-sha2;modp1024,aes128-sha1;modp1024
+phase2alg=aes_gcm-null,aes128-sha1,aes256-sha1,aes256-sha2_512,aes128-sha2,aes256-sha2
+sha2-truncbug=no
 
 conn l2tp-psk
-  auto=add
-  leftprotoport=17/1701
-  rightprotoport=17/%any
-  type=transport
-  phase2=esp
-  also=shared
+auto=add
+leftprotoport=17/1701
+rightprotoport=17/%any
+type=transport
+phase2=esp
+also=shared
 
 conn xauth-psk
-  auto=add
-  leftsubnet=0.0.0.0/0
-  rightaddresspool=$XAUTH_POOL
-  modecfgdns=$DNS_SRVS
-  leftxauthserver=yes
-  rightxauthclient=yes
-  leftmodecfgserver=yes
-  rightmodecfgclient=yes
-  modecfgpull=yes
-  xauthby=file
-  ike-frag=yes
-  cisco-unity=yes
-  also=shared
+auto=add
+leftsubnet=0.0.0.0/0
+rightaddresspool=$XAUTH_POOL
+modecfgdns=$DNS_SRVS
+leftxauthserver=yes
+rightxauthclient=yes
+leftmodecfgserver=yes
+rightmodecfgclient=yes
+modecfgpull=yes
+xauthby=file
+ike-frag=yes
+cisco-unity=yes
+also=shared
 
 include /etc/ipsec.d/*.conf
 EOF
@@ -170,12 +170,12 @@ if uname -m | grep -qi '^arm'; then
 fi
 
 # Specify IPsec PSK
-cat > /etc/ipsec.secrets <<EOF
+cat > /etc/ipsec.secrets <<-EOF
 %any  %any  : PSK "$VPN_IPSEC_PSK"
 EOF
 
 # Create xl2tpd config
-cat > /etc/xl2tpd/xl2tpd.conf <<EOF
+cat > /etc/xl2tpd/xl2tpd.conf <<-EOF
 [global]
 port = 1701
 
@@ -191,7 +191,7 @@ length bit = yes
 EOF
 
 # Set xl2tpd options
-cat > /etc/ppp/options.xl2tpd <<EOF
+cat > /etc/ppp/options.xl2tpd <<-EOF
 +mschap-v2
 ipcp-accept-local
 ipcp-accept-remote
@@ -207,29 +207,30 @@ ms-dns $DNS_SRV1
 EOF
 
 if [ -z "$VPN_DNS_SRV1" ] || [ -n "$VPN_DNS_SRV2" ]; then
-cat >> /etc/ppp/options.xl2tpd <<EOF
+cat > /etc/ppp/options.xl2tpd <<-EOF
 ms-dns $DNS_SRV2
 EOF
 fi
 
 # Create VPN credentials
-cat > /etc/ppp/chap-secrets <<EOF
+cat > /etc/ppp/chap-secrets <<-EOF
 "$VPN_USER" l2tpd "$VPN_PASSWORD" *
 EOF
 
 VPN_PASSWORD_ENC=$(openssl passwd -1 "$VPN_PASSWORD")
-cat > /etc/ipsec.d/passwd <<EOF
+cat > /etc/ipsec.d/passwd <<-EOF
 $VPN_USER:$VPN_PASSWORD_ENC:xauth-psk
 EOF
 
 # Create PPTP config
-cat >/etc/pptpd.conf <<END
+cat > /etc/pptpd.conf <<-EOF
 option /etc/ppp/options.pptpd
 logwtmp
 localip 192.168.41.1
 remoteip 192.168.41.10-100
-END
-cat >/etc/ppp/options.pptpd <<END
+EOF
+
+cat > /etc/ppp/options.pptpd <<-EOF
 name pptpd
 refuse-pap
 refuse-chap
@@ -244,7 +245,7 @@ nobsdcomp
 novj
 novjccomp
 nologfd
-END
+EOF
 
 bigecho "Updating IPTables rules..."
 service fail2ban stop >/dev/null 2>&1
@@ -289,8 +290,8 @@ wget -O /usr/bin/delpptp https://raw.githubusercontent.com/${GitUser}/aws/main/h
 wget -O /usr/bin/xp-pptp https://raw.githubusercontent.com/${GitUser}/aws/main/xp-pptp.sh && chmod +x /usr/bin/xp-pptp
 wget -O /usr/bin/renewpptp https://raw.githubusercontent.com/${GitUser}/aws/main/renewpptp.sh && chmod +x /usr/bin/renewpptp
 wget -O /usr/bin/renewl2tp https://raw.githubusercontent.com/${GitUser}/aws/main/renewl2tp.sh && chmod +x /usr/bin/renewl2tp
-touch /var/lib/crot-script/data-user-l2tp
-touch /var/lib/crot-script/data-user-pptp
+touch /var/lib/premium-script/data-user-l2tp
+touch /var/lib/premium-script/data-user-pptp
 rm -f /root/ipsec.sh
 echo "0 0 * * * root xp-pptp" >> /etc/crontab
 echo "0 0 * * * root xp-l2tp" >> /etc/crontab
