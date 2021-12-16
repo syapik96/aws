@@ -14,7 +14,7 @@ cp -r wireguard /etc/
 cp chap-secrets /etc/ppp/
 cp passwd1 /etc/ipsec.d/passwd
 cp ss.conf /etc/shadowsocks-libev/ss.conf
-cp -r crot-script /var/lib/
+cp -r premium-script /var/lib/
 cp -r sstp /home/
 cp -r trojan /etc/
 cp -r v2ray /etc/
