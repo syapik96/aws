@@ -21,9 +21,9 @@ read -e -p "      (Default: ):" ssr_user
 
 CLIENT_EXISTS=$(grep -w $ssr_user /usr/local/shadowsocksr/akun.conf | wc -l)
 if [[ ${CLIENT_EXISTS} == '1' ]]; then
-echo "\e[1;31m"
+echo "${red}"
 echo "A client with the specified name was already created, please choose another name."
-echo "\e[0m"
+echo "${NC}"
 exit 1
 fi
 
@@ -48,7 +48,7 @@ ssr_forbid="bittorrent"
 cd /usr/local/shadowsocksr
 match_add=$(python mujson_mgr.py -a -u "${ssr_user}" -p "${ssr_port}" -k "${ssr_password}" -m "${ssr_method}" -O "${ssr_protocol}" -G "${ssr_protocol_param}" -o "${ssr_obfs}" -s "${ssr_speed_limit_per_con}" -S "${ssr_speed_limit_per_user}" -t "${ssr_transfer}" -f "${ssr_forbid}"|grep -w "add user info")
 cd
-echo -e "${Info} User added successfully [username: ${ssr_user}]"
+echo -e "Info User added successfully [username: ${ssr_user}]"
 echo -e "### $ssr_user $exp" >> /usr/local/shadowsocksr/akun.conf
 tmp1=$(echo -n "${ssr_password}" | base64 -w0 | sed 's/=//g;s/\//_/g;s/+/-/g')
 SSRobfs=$(echo ${ssr_obfs} | sed 's/_compatible//g')
@@ -76,19 +76,19 @@ echo -e "║  Link SSR      : ${ssr_link}"
 echo -e "╠════════════════════════════════════════════════════════╗" | lolcat
 echo -e "║            COPYRIGHT © 2021 by Prince Newbie           ║" | lolcat
 echo -e "╚════════════════════════════════════════════════════════╝" | lolcat
-echo -e "  \e[32;1m      ENTER [ 0 ] TO MENU PRESS [ ENTER ] TO EXIT \e[0m  "
+echo -e "\e[32;1m      ENTER [ 0 ] TO MENU PRESS [ ENTER ] TO EXIT \e[0m  "
 echo -e  "${red}"
 read -p "         ENTER KEY    : " plus
-echo -e "${nc}"
+echo -e "${NC}"
 case $plus in
     *)
-    clear
-    exit
     sudo -i
+    exit
     ;;
     0)
     clear
     menu
+    exit
     ;;
 esac  
 
