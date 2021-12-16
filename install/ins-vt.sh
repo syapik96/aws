@@ -62,7 +62,7 @@ cat > /etc/v2ray/config.json <<-EOF
           ]
         },
         "wsSettings": {
-          "path": "/brody",
+          "path": "/v2ray",
           "headers": {
             "Host": ""
           }
@@ -151,7 +151,7 @@ cat > /etc/v2ray/none.json <<-EOF
       "streamSettings": {
         "network": "ws",
         "wsSettings": {
-          "path": "/brody",
+          "path": "/v2ray",
           "headers": {
             "Host": ""
           }
@@ -249,7 +249,7 @@ cat > /etc/v2ray/vless.json <<-EOF
           ]
         },
         "wsSettings": {
-          "path": "/brody",
+          "path": "/v2ray",
           "headers": {
             "Host": ""
           }
@@ -323,7 +323,7 @@ cat > /etc/v2ray/vnone.json <<-EOF
   },
   "inbounds": [
     {
-      "port": 8880,
+      "port": 2052,
       "protocol": "vless",
       "settings": {
         "clients": [
@@ -337,7 +337,7 @@ cat > /etc/v2ray/vnone.json <<-EOF
       "streamSettings": {
         "network": "ws",
         "wsSettings": {
-          "path": "/brody",
+          "path": "/v2ray",
           "headers": {
             "Host": ""
           }
@@ -453,7 +453,7 @@ cat <<EOF > /etc/trojan/config.json
 }
 EOF
 
-cat <<EOF> /etc/systemd/system/trojan.service
+cat > /etc/systemd/system/trojan.service <<-EOF
 [Unit]
 Description=Trojan
 Documentation=https://trojan-gfw.github.io/trojan/
@@ -471,7 +471,7 @@ WantedBy=multi-user.target
 
 EOF
 
-cat <<EOF > /etc/trojan/uuid.txt
+cat > /etc/trojan/uuid.txt <<-EOF
 $uuid
 EOF
 
@@ -479,12 +479,12 @@ iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 2087 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 8443 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 2083 -j ACCEPT
-iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 8880 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 2052 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m udp -p udp --dport 2087 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m udp -p udp --dport 8443 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m udp -p udp --dport 80 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m udp -p udp --dport 2083 -j ACCEPT
-iptables -I INPUT -m state --state NEW -m udp -p udp --dport 8880 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m udp -p udp --dport 2052 -j ACCEPT
 iptables-save > /etc/iptables.up.rules
 iptables-restore -t < /etc/iptables.up.rules
 netfilter-persistent save
