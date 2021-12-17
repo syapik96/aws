@@ -57,9 +57,7 @@ case $v2ray in
     exit
     *)
     echo -e "\e[1;31mPlease enter an correct number\e[0m"
-    echo -e ""
     clear
-    v2raay
     exit
     ;;
 esac
