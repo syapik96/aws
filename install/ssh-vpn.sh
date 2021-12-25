@@ -20,7 +20,7 @@ state=Malaysia
 locality=Wilayah Persekutuan Kuala Lumpur
 organization=OnePieceVPN Inc.
 organizationalunit=OnePieceVPN Inc.
-commonname=onepiecevpn.ga
+commonname=OnePieceVPN
 email=zulhisyam421@gmail.com
 
 # simple password minimal
@@ -145,6 +145,10 @@ screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7400 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7500 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7600 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7700 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7800 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7900 --max-clients 500
 
 cd
 # setting port ssh
@@ -197,28 +201,20 @@ socket = a:SO_REUSEADDR=1
 socket = l:TCP_NODELAY=1
 socket = r:TCP_NODELAY=1
 
-[dropbear2]
+[dropbear]
 accept = 443
 connect = 127.0.0.1:143
 
 [dropbear]
-accept = 777
+accept = 587
 connect = 127.0.0.1:109
 
-[ssh1]
-accept = 110
+[dropbear]
+accept = 777
 connect = 127.0.0.1:22
 
-[websocketpython]
-accept = 2021
-connect = 127.0.0.1:109
-
-[websocket1]
-accept = 5052
-connect = 127.0.0.1:143
-
 [openvpn]
-accept = 992
+accept = 442
 connect = 127.0.0.1:1194
 
 EOF
@@ -231,8 +227,8 @@ cat key.pem cert.pem >> /etc/stunnel/stunnel.pem
 
 # konfigurasi stunnel
 sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/stunnel4
-#/etc/init.d/stunnel4 restart
-systemctl restart stunnel4
+/etc/init.d/stunnel4 restart
+#systemctl restart stunnel4
 
 #OpenVPN
 wget https://raw.githubusercontent.com/syapik96/aws/main/install/vpn.sh && chmod +x vpn.sh && ./vpn.sh
@@ -349,21 +345,20 @@ echo "0 5 * * * root clear-log && reboot" >> /etc/crontab
 apt -y autoclean
 apt -y remove --purge unscd
 apt-get -y --purge remove samba*;
-#apt-get -y --purge remove apache2*;
+apt-get -y --purge remove apache2*;
 apt-get -y --purge remove bind9*;
 apt-get -y remove sendmail*
 apt -y autoremove
 
 # finishing
 cd
-chown -R www-data:www-data /home/vps/public_html
+#chown -R www-data:www-data /home/vps/public_html
 /etc/init.d/nginx restart
 /etc/init.d/openvpn restart
 /etc/init.d/cron restart
 /etc/init.d/ssh restart
 /etc/init.d/dropbear restart
 /etc/init.d/fail2ban restart
-/etc/init.d/webmin restart
 /etc/init.d/stunnel4 restart
 /etc/init.d/vnstat restart
 /etc/init.d/squid restart
@@ -372,6 +367,10 @@ screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7400 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7500 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7600 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7700 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7800 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7900 --max-clients 500
 
 history -c
 echo "unset HISTFILE" >> /etc/profile
