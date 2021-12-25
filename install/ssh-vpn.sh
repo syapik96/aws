@@ -194,6 +194,16 @@ sed -i 's/ssl=1/ssl=0/g' /etc/webmin/miniserv.conf
 
 # install stunnel
 apt install stunnel4 -y
+## choose which one work on your vps, [ if u got some issue ]
+## after configur or make change stunnel.conf
+## and if this three not isn't fixed your pid file issue 
+### so u need to locat your pid it been saved 
+## not find ,, configur your stunnel.conf until work
+## /*/*/stunnel4.pid or /*/*/stunnel.pid
+# if use default setup, 1 from this 3 may solve your issue
+# pid = /run/stunnel.pid
+# pid = /var/run/stunnel.pid
+# pid = /var/run/stunnel4.pid
 cat > /etc/stunnel/stunnel.conf <<-EOF
 cert = /etc/stunnel/stunnel.pem
 client = no
