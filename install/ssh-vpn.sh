@@ -221,10 +221,6 @@ connect = 127.0.0.1:143
 accept = 992
 connect = 127.0.0.1:1194
 
-[wsovpn]
-accept = 2099
-connect = 127.0.0.1:1194
-
 EOF
 
 # make a certificate
