@@ -14,12 +14,12 @@ MYIP=$(wget -qO- icanhazip.com);
 mkdir /etc/v2ray
 mkdir /var/lib/premium-script;
 clear
-echo "Masukkan Domain Anda, Jika Anda Tidak Memiliki Domain Klik Enter"
-echo "Ketikkan Perintah addhost setelah proses instalasi Script Selesai"
+echo -e "${green}Masukkan Domain Anda, Jika Anda Tidak Memiliki Domain Klik Enter"
+echo -e "Ketikkan Perintah addhost setelah proses instalasi Script Selesai${NC}"
 read -p "Hostname / Domain: " host
-echo "IP=$host" > /var/lib/premium-script/ipvps.conf
-echo "$host" > /etc/v2ray/domain
-echo "$host" > /root/domain
+echo "IP=$host" >> /var/lib/premium-script/ipvps.conf
+echo "$host" >> /etc/v2ray/domain
+echo "$host" >> /root/domain
 #GitUser="syapik96"
 #wget https://github.com/${GitUser}/
 GitUser="syapik96"
@@ -91,17 +91,17 @@ echo "   - Installation Log --> /root/log-install.txt"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "------------------------------------------Mod by WHY------------------------------------------" | tee -a log-install.txt
 echo "" | tee -a log-install.txt
-echo " Username Telegram : @PrinceNewbie" | tee -a log-install.txt
+echo -e " Username Telegram : @PrinceNewbie" | tee -a log-install.txt
 echo "" | tee -a log-install.txt
 # OPEN PORT ORACLE CLOUD
-IP=$(wget -qO- icanhazip.com);
-iptables -A INPUT -s $IP/32 -p tcp -m multiport --dports 1:65535 -j ACCEPT
-iptables -A INPUT -m state --state NEW -m tcp -p tcp --dport 443 -j ACCEPT
-iptables -A INPUT -m state --state NEW -m tcp -p tcp --dport 81 -j ACCEPT
-iptables -A INPUT -m state --state NEW -m tcp -p tcp --dport 5052 -j ACCEPT
-netfilter-persistent save
-netfilter-persistent reload
-echo ""
-echo " Reboot 10 Sec"
+#IP=$(wget -qO- icanhazip.com);
+#iptables -A INPUT -s $IP/32 -p tcp -m multiport --dports 1:65535 -j ACCEPT
+#iptables -A INPUT -m state --state NEW -m tcp -p tcp --dport 443 -j ACCEPT
+#iptables -A INPUT -m state --state NEW -m tcp -p tcp --dport 81 -j ACCEPT
+#iptables -A INPUT -m state --state NEW -m tcp -p tcp --dport 5052 -j ACCEPT
+#netfilter-persistent save
+#netfilter-persistent reload
+echo -e ""
+echo -e "${red} Reboot in 10 Sec${NC}"
 sleep 10
 reboot
