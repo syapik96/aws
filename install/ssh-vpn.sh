@@ -197,12 +197,16 @@ socket = a:SO_REUSEADDR=1
 socket = l:TCP_NODELAY=1
 socket = r:TCP_NODELAY=1
 
-[dropbear]
+[sshssltls]
 accept = 443
+connect = 127.0.0.1:143
+
+[dropbear]
+accept = 777
 connect = 127.0.0.1:109
 
-[dropbear2]
-accept = 777
+[openssh1]
+accept = 110
 connect = 127.0.0.1:22
 
 [websocketpython]
