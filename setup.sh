@@ -55,16 +55,16 @@ echo "" | tee -a log-install.txt
 echo "----------------------------------------------------------------------------------" | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "   >>> Service & Port"  | tee -a log-install.txt
-echo "   - OpenSSH                  : 22, X40000"  | tee -a log-install.txt
-echo "   - SSH-WS Python OpenSSH    : 100"  | tee -a log-install.txt
-echo "   - SSH-WS Python Dropbear   : 2020, 2021"  | tee -a log-install.txt
-echo "   - SSH-WS Python SSL/TLS    : 5052, 5053"  | tee -a log-install.txt
-echo "   - OpenVPN-WS Python        : 6969"  | tee -a log-install.txt
+echo "   - OpenSSH                  : 22,777"  | tee -a log-install.txt
+echo "   - SSH-WS Python OpenSSH    : 100,"  | tee -a log-install.txt
+echo "   - SSH-WS Python Dropbear   : 2021"  | tee -a log-install.txt
+echo "   - SSH-WS Python SSL/TLS    : 5053"  | tee -a log-install.txt
+echo "   - OpenVPN-WS Python        : 2099"  | tee -a log-install.txt
 echo "   - OpenVPN                  : TCP 1194, UDP 2200, SSL 992, X1197"  | tee -a log-install.txt
-echo "   - Stunnel4 SSL/TLS         : 443, X30000"  | tee -a log-install.txt
-echo "   - Dropbear                 : 143, 109, X50000"  | tee -a log-install.txt
-echo "   - Squid Proxy              : 3128, 8080, 8000 (limit to IP Server)"  | tee -a log-install.txt
-echo "   - Badvpn                   : 7100, 7200, 7300, 7400, 7500"  | tee -a log-install.txt
+echo "   - Stunnel4 SSL/TLS         : 443"  | tee -a log-install.txt
+echo "   - Dropbear                 : 143,109,587"  | tee -a log-install.txt
+echo "   - Squid Proxy              : 3128,8080,8000 (limit to IP Server)"  | tee -a log-install.txt
+echo "   - Badvpn                   : 7100-7900"  | tee -a log-install.txt
 echo "   - Nginx                    : 81"  | tee -a log-install.txt
 echo "   - Wireguard                : 7070"  | tee -a log-install.txt
 echo "   - L2TP/IPSEC VPN           : 1701"  | tee -a log-install.txt
