@@ -55,16 +55,16 @@ Replace all this with your own acc name :
 
   Service & Port
 
-- OpenSSH                  : 22,500
+- OpenSSH                  : 22,777
 - SSH-WS Python OpenSSH    : 100
-- SSH-WS Python Dropbear   : 2020,2021
-- SSH-WS Python SSL/TLS    : 5052,5053
+- SSH-WS Python Dropbear   : 2021
+- SSH-WS Python SSL/TLS    : 5053
 - OpenVPN-WS Python        : 2099
-- OpenVPN                  : TCP 1194, UDP 2200, SSL 992
+- OpenVPN                  : TCP 1194, UDP 2200, SSL 442
 - Stunnel4 SSL/TLS         : 443
-- Dropbear                 : 143,109
+- Dropbear                 : 143,109(587)
 - Squid Proxy              : 3128,8000,8080 (limit to IP Server)
-- Badvpn                   : 7100-7500
+- Badvpn                   : 7100-7900
 - Nginx                    : 81
 - Wireguard                : 7070
 - L2TP/IPSEC VPN           : 1701
@@ -84,7 +84,7 @@ Replace all this with your own acc name :
 ## Credit :
   
 *   Original Script by  Horas , SL
-*   Modded and update Script by    t.me/PrinceNewbie
+*   Modded and update Script by t.me/PrinceNewbie
 	
 	
 	            
