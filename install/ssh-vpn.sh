@@ -197,7 +197,7 @@ socket = a:SO_REUSEADDR=1
 socket = l:TCP_NODELAY=1
 socket = r:TCP_NODELAY=1
 
-[sshssltls]
+[dropbear2]
 accept = 443
 connect = 127.0.0.1:143
 
@@ -205,7 +205,7 @@ connect = 127.0.0.1:143
 accept = 777
 connect = 127.0.0.1:109
 
-[openssh1]
+[ssh1]
 accept = 110
 connect = 127.0.0.1:22
 
@@ -219,6 +219,10 @@ connect = 127.0.0.1:143
 
 [openvpn]
 accept = 992
+connect = 127.0.0.1:1194
+
+[wsovpn]
+accept = 2099
 connect = 127.0.0.1:1194
 
 EOF
