@@ -1,6 +1,6 @@
 [Unit]
-Description=Websocket-OpenVPN By Why
-Documentation=https://gilergames.tk
+Description=Websocket-OpenVPN By Prince
+Documentation=https://google,com
 After=network.target nss-lookup.target
 
 [Service]
