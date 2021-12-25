@@ -5,17 +5,15 @@ LISTENING_ADDR = '0.0.0.0'
 if sys.argv[1:]:
     LISTENING_PORT = sys.argv[1]
 else:
-    LISTENING_PORT = 2020
     LISTENING_PORT = 2021
-
 #Pass
 PASS = ''
 
 # CONST
 BUFLEN = 4096 * 4
 TIMEOUT = 60
-DEFAULT_HOST = '127.0.0.1:109'
-RESPONSE = 'HTTP/1.1 101 Switching_Proctocols\r\nContent-Length: 1048576000000\r\n\r\n'
+DEFAULT_HOST = '127.0.0.1:143'
+RESPONSE = 'HTTP/1.1 101 SwitchProctocols_CDNDropbear\r\n\r\n'
 #RESPONSE = 'HTTP/1.1 200 Hello_World!\r\nContent-length: 0\r\n\r\nHTTP/1.1 200 Connection established\r\n\r\n'  # lint:ok
 
 class Server(threading.Thread):
