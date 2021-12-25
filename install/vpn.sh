@@ -54,10 +54,10 @@ cat > /etc/openvpn/server-tcp-1194.conf <<-END
 port 1194
 proto tcp
 dev tun
-ca /etc/openvpn/ca.crt
-cert /etc/openvpn/server.crt
-key /etc/openvpn/server.key
-dh /etc/openvpn/dh2048.pem
+ca ca.crt
+cert server.crt
+key server.key
+dh dh2048.pem
 plugin /usr/lib/openvpn/openvpn-plugin-auth-pam.so login
 verify-client-cert none
 username-as-common-name
@@ -79,10 +79,10 @@ cat > /etc/openvpn/server-udp-2200.conf <<-END
 port 2200
 proto udp
 dev tun
-ca /etc/openvpn/ca.crt
-cert /etc/openvpn/server.crt
-key /etc/openvpn/server.key
-dh /etc/openvpn/dh2048.pem
+ca ca.crt
+cert server.crt
+key server.key
+dh dh2048.pem
 plugin /usr/lib/openvpn/openvpn-plugin-auth-pam.so login
 verify-client-cert none
 username-as-common-name
