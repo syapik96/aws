@@ -83,7 +83,7 @@ Replace all this with your own acc name :
 
 ## Credit :
   
-*   Original Script by  Horas
+*   Original Script by  Horas , SL
 *   Modded and update Script by    t.me/PrinceNewbie
 	
 	
