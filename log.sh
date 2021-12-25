@@ -1,10 +1,10 @@
 echo ""
-echo "===============================-{ Autoscript Premium }-=========================" | lolcat | tee -a log-install.txt
+echo "===============================-{ Autoscript FullPremium }-=========================" | lolcat | tee -a log-install.txt
 echo "" | tee -a log-install.txt
 echo "--------------------------------------------------------------------------------" | lolcat | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "   >>> Service & Port"  | tee -a log-install.txt
-echo "   - OpenSSH                 : 22"  | tee -a log-install.txt
+echo "   - OpenSSH                 : 22,777"  | tee -a log-install.txt
 echo "   - OpenVPN                 : TCP 1194, UDP 2200, SSL 442"  | tee -a log-install.txt
 echo "   - Stunnel4                : 443, 526"  | tee -a log-install.txt
 echo "   - Dropbear                : 109, 143"  | tee -a log-install.txt
@@ -38,7 +38,6 @@ echo "   - Autoreboot On 00.10 GMT +8" | tee -a log-install.txt
 echo "   - Autobackup Data" | tee -a log-install.txt
 echo "   - Restore Data" | tee -a log-install.txt
 echo "   - Auto Delete Expired Account" | tee -a log-install.txt
-echo "   - Full Orders For Various Services" | tee -a log-install.txt
 echo "   - White Label" | tee -a log-install.txt
 echo "   - Installation Log --> /root/log-install.txt"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
