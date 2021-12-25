@@ -18,8 +18,8 @@ ver=$VERSION_ID
 country=MY
 state=Malaysia
 locality=Wilayah Persekutuan Kuala Lumpur
-organization=OnePieceVPN Inc.
-organizationalunit=OnePieceVPN Inc.
+organization=OnePieceVPN Inc
+organizationalunit=OnePieceVPN Inc
 commonname=OnePieceVPN
 email=zulhisyam421@gmail.com
 
