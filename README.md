@@ -1,8 +1,8 @@
-<h2 align="center">AutoScript Install SSH & OpenVPN & V2rayXray & SSR & Trojan & WireGuard For Debian VPS By PrinceNewbie <img src="https://img.shields.io/badge/Version-2.0.4-blue.svg"></h2>
+<h2 align="center">AutoScript Install SSH & OpenVPN & V2rayXray & SSR & Trojan & WireGuard For VPS By PrinceNewbie <img src="https://img.shields.io/badge/Version-2.0.5-blue.svg"></h2>
 
 
 <h2 align="center"> Supported Linux Distribution</h2>
-<p align="center"><img src="https://d33wubrfki0l68.cloudfront.net/5911c43be3b1da526ed609e9c55783d9d0f6b066/9858b/assets/img/debian-ubuntu-hover.png"></p> 
+
 <p align="center"><img src="https://img.shields.io/static/v1?style=for-the-badge&logo=debian&label=Debian%209&message=Stretch&color=red"> <img src="https://img.shields.io/static/v1?style=for-the-badge&logo=debian&label=Debian%2010&message=Buster&color=red"> <img src="https://img.shields.io/static/v1?style=for-the-badge&logo=ubuntu&label=Ubuntu%2018&message=18.04 LTS&color=red"> <img src="https://img.shields.io/static/v1?style=for-the-badge&logo=ubuntu&label=Ubuntu%2020&message=20.04 LTS&color=red"></p>
 
 <p align="center"><img src="https://img.shields.io/badge/Service-OpenSSH-success.svg">  <img src="https://img.shields.io/badge/Service-Dropbear-success.svg">  <img src="https://img.shields.io/badge/Service-BadVPN-success.svg">  <img src="https://img.shields.io/badge/Service-Stunnel-success.svg">  <img src="https://img.shields.io/badge/Service-OpenVPN-success.svg">  <img src="https://img.shields.io/badge/Service-Squid3-success.svg">  <img   src="https://img.shields.io/badge/Service-Webmin-success.svg">  <img src="https://img.shields.io/badge/Service-Privoxy-green.svg">   <img
@@ -32,25 +32,24 @@ wget https://raw.githubusercontent.com/syapik96/aws/main/install/sshonly.sh
 chmod +x sshonly.sh  
 ./sshonly.sh
   ```
- 
-Info :
-	       
- Fork first , then change this .
- Replace all this with your own acc name :
-	     
-> > GitUser="syapik96" 
+	
+	
+## Info :
+	
+	PLEASE READ THE SYMBOLIC TEXT ( # )
+    ( to find out what script to install n do )
+
+- for u easy make any change u want
+after forked.then change this .
+Replace all this with your own acc name :
+	
+	→ → GitUser="syapik96" 
 	    
-jika terdapat masalah please pull issue , 
-please jika ada kesilapan dalam skrip dialukan utk betulkan
-thanks for those fork 
+- if there is an error not skilled to fix, (please pull issue).
+- if anyone is proficient in scripting, if there are any errors in the script are welcome to correct
 	
-SILA BACA TEXT BERSIMBOL #              
-UNTUK BAGI MEMUDAHKAN 
-YANG INGIN MENGGUNAKAN SKRIP INI 
-	
-🔰 POWERED BY PRINCENEWBIE. 🔰     
-🔰 COPYRIGHT © 2021 OnePieceVPN, Inc 🔰	#				 
-	
+- thanks for those fork 
+	 
 	
 ## Description :
 
@@ -60,12 +59,12 @@ YANG INGIN MENGGUNAKAN SKRIP INI
 - SSH-WS Python OpenSSH    : 100
 - SSH-WS Python Dropbear   : 2020,2021
 - SSH-WS Python SSL/TLS    : 5052,5053
-- OpenVPN-WS Python        : 6969
+- OpenVPN-WS Python        : 2099
 - OpenVPN                  : TCP 1194, UDP 2200, SSL 992
 - Stunnel4 SSL/TLS         : 443
 - Dropbear                 : 143,109
 - Squid Proxy              : 3128,8000,8080 (limit to IP Server)
-- Badvpn                   : 7100,7200,7300
+- Badvpn                   : 7100-7500
 - Nginx                    : 81
 - Wireguard                : 7070
 - L2TP/IPSEC VPN           : 1701
@@ -77,18 +76,17 @@ YANG INGIN MENGGUNAKAN SKRIP INI
 - V2RAY Vmess TLS          : 8443
 - V2RAY Vmess None TLS     : 80
 - V2RAY Vless TLS          : 2083
-- V2RAY Vless None TLS     : 8880
+- V2RAY Vless None TLS     : 2052
 - Trojan                   : 2087
 
-  
-  
+
 
 ## Credit :
   
 *   Original Script by  Horas
-*   Modded Script by    t.me/PrinceNewbie
+*   Modded and update Script by    t.me/PrinceNewbie
 	
 	
 	            
 	
-	   <img src="https://img.shields.io/badge/%20COPYRIGHT%20%C2%A9%202021-%20By%20PrinceNewbie%20OnePieceVPN%2C%20Inc-blue">
+	<p align="center"><img src="https://img.shields.io/badge/%20COPYRIGHT%20%C2%A9%202021-%20By%20PrinceNewbie%20VPN%2C%20Inc-blue"></p>
