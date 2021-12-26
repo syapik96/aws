@@ -51,7 +51,7 @@ cat > /etc/v2ray/$user-none.json <<-EOF
       "v": "2",
       "ps": "${user}",
       "add": "${domain}",
-      "port": "80",
+      "port": "880",
       "id": "${uuid}",
       "aid": "2",
       "net": "ws",
@@ -73,7 +73,7 @@ echo -e "Remarks        : ${user}"
 echo -e "Domain         : ${domain}"
 echo -e "Server IP      : $PUBLIC_IP"
 echo -e "port TLS       : 8443"
-echo -e "port none TLS  : 80"
+echo -e "port none TLS  : 880"
 echo -e "id             : ${uuid}"
 echo -e "alterId        : 2"
 echo -e "Security       : auto"
