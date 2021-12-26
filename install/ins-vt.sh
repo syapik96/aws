@@ -137,7 +137,7 @@ cat > /etc/v2ray/none.json <<-EOF
   },
   "inbounds": [
     {
-      "port": 80,
+      "port": 880,
       "protocol": "vmess",
       "settings": {
         "clients": [
@@ -477,12 +477,12 @@ EOF
 
 iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 2087 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 8443 -j ACCEPT
-iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 880 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 2082 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 2052 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m udp -p udp --dport 2087 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m udp -p udp --dport 8443 -j ACCEPT
-iptables -I INPUT -m state --state NEW -m udp -p udp --dport 80 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m udp -p udp --dport 880 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m udp -p udp --dport 2082 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m udp -p udp --dport 2052 -j ACCEPT
 iptables-save > /etc/iptables.up.rules
