@@ -55,29 +55,29 @@ Replace all this with your own acc name :
 
   Service & Port
 
-- OpenSSH                  : 22,777
-- SSH-WS Python OpenSSH    : 100
-- SSH-WS Python Dropbear   : 2021
-- SSH-WS Python SSL/TLS    : 5053
-- OpenVPN-WS Python        : 2099
-- OpenVPN                  : TCP 1194, UDP 2200, SSL 442
-- Stunnel4 SSL/TLS         : 443
-- Dropbear                 : 143,109(587)
-- Squid Proxy              : 3128,8000,8080 (limit to IP Server)
-- Badvpn                   : 7100-7900
-- Nginx                    : 81
-- Wireguard                : 7070
-- L2TP/IPSEC VPN           : 1701
-- PPTP VPN                 : 1732
-- SSTP VPN                 : 5555
-- Shadowsocks-R            : 1443-1543
-- SS-OBFS TLS              : 2443-2543
-- SS-OBFS HTTP             : 3443-3453
-- V2RAY Vmess TLS          : 8443
-- V2RAY Vmess None TLS     : 80
-- V2RAY Vless TLS          : 2083
-- V2RAY Vless None TLS     : 2052
-- Trojan                   : 2087
+- OpenSSH                    : 22,777
+- WebScket Python OpenSSH    : 100
+- WebScket Python Dropbear   : 2021,2020 ( < alt port ) [ default 80 ]
+- WebScket Python SSL/TLS    : 5053 , 5052 ( < alt port ) [ default 443 ]
+- OpenVPN-WS Python          : 2099
+- OpenVPN                    : TCP 1194, UDP 2200, SSL 992(442)
+- Stunnel4 SSL/TLS           : 443
+- Dropbear                   : 143,109(587)
+- Squid Proxy                : 3128,8000,8080 (limit to IP Server)
+- Badvpn                     : 7100-7900
+- Nginx                      : 81
+- Wireguard                  : 7070
+- L2TP/IPSEC VPN             : 1701
+- PPTP VPN                   : 1732
+- SSTP VPN                   : 5555
+- Shadowsocks-R              : 1443-1543
+- SS-OBFS TLS                : 2443-2543
+- SS-OBFS HTTP               : 3443-3453
+- V2RAY Vmess TLS            : 8443
+- V2RAY Vmess None TLS       : 880
+- V2RAY Vless TLS            : 2083
+- V2RAY Vless None TLS       : 2052
+- Trojan                     : 2087
 
 
 
