@@ -1,15 +1,15 @@
 #!/bin/bash
 
 IP=$(wget -qO- icanhazip.com);
-domain=$(cat /root/domain);
+domain=$(cat /etc/v2ray/domain);
 
 Login=trial`</dev/urandom tr -dc X-Z0-9 | head -c4`
 hari="1"
-Pass=1
+Pass="1"
 
 
-echo Script AutoCreate Akun SSH dan OpenVPN Mod By PrinceNewbie
-sleep 1
+echo "Script AutoCreate Akun SSH dan OpenVPN Mod By PrinceNewbie"
+sleep 3
 echo Ping Host
 echo Cek Hak Akses...
 sleep 0.5
