@@ -4,11 +4,12 @@
 clear
 echo -n > /tmp/other.txt
 data=$(cat /etc/v2ray/vless.json | grep '^###' | cut -d ' ' -f 2)
-figlet -f slant "Login Status" | lolcat 
-echo "--------------------------------" | lolcat;
-echo "-----=[ Vless User Login ]=-----" | lolcat;
-echo "--------------------------------" | lolcat;
+figlet -f slant "Login Status" | lolcat
+echo "          --------------------------------" | lolcat;
+echo "          -----=[ Vless User Login ]=-----" | lolcat;
+echo "          --------------------------------" | lolcat;
 echo -e "\e[0m"
+
 for akun in "${data[@]}"
 do
 if [[ -z "$akun" ]]; then
@@ -34,17 +35,16 @@ if [[ -z "$jum3" ]]; then
 else
 #akun=$(cat /tmp/ipvless.txt)
 ip=$(cat /tmp/other.txt | nl)
-echo -e "\e[1;32mUser : $akun";
-echo -e "\e[0m"
-echo -e "\e[1;31$ip\e[0m";
-echo "--------------------------------" | lolcat;
+echo -e "                       \e[1;32mUser : $akun";
+echo -e "               \e[0m"
+echo -e "               \e[1;31$ip\e[0m";
+echo "          --------------------------------" | lolcat;
 echo -e "\e[0m"
 fi
 oth=$(cat /tmp/other.txt | sort | uniq | nl)
-echo -e "\e[1;31mOther : $oth\e[0m";
+echo -e "                       \e[1;31mOther : $oth\e[0m";
 echo "";
-echo "--------------------------------" | lolcat;
+echo "          --------------------------------" | lolcat;
 echo -e "\e[0m"
 rm -rf /tmp/other
 rm -rf /tmp/ipvless.txt
-
