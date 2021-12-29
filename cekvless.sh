@@ -1,6 +1,6 @@
 #!/bin/bash
 echo -n > /tmp/other.txt
-data=( `cat /etc/v2ray/vless.json | grep '^###' | cut -d ' ' -f 2`);
+data=$(cat /etc/v2ray/vless.json | grep '^###' | cut -d ' ' -f 2);
 echo "-------------------------------";
 echo "-----=[ Vless User Login ]=-----";
 echo "-------------------------------";
@@ -10,7 +10,7 @@ if [[ -z "$akun" ]]; then
 akun="tidakada"
 fi
 echo -n > /tmp/ipvless.txt
-data2=( `netstat -anp | grep ESTABLISHED | grep tcp6 | grep v2ray | awk '{print $5}' | cut -d: -f1 | sort | uniq`);
+data2=$(netstat -anp | grep ESTABLISHED | grep tcp6 | grep v2ray | awk '{print $5}' | cut -d: -f1 | sort | uniq);
 for ip in "${data2[@]}"
 do
 jum=$(cat /var/log/v2ray/access2.log | grep -w $akun | awk '{print $3}' | cut -d: -f1 | grep -w $ip | sort | uniq)
