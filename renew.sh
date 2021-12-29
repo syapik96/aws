@@ -5,7 +5,7 @@ clear
 figlet -f slant "Renewing Account" | lolcat
 echo -e ""
 echo -e  "     ╔═════════════════════════════════════════════════╗" | lolcat
-echo -e  "     ║              Account Updated Info               ║" | lolcat
+echo -e  "     ║             Renew Regisetred User               ║" | lolcat
 echo -e  "     ╚═════════════════════════════════════════════════╝" | lolcat
 echo -e  "\e[1;32m"
 read -p "                Username       :  " User
@@ -16,7 +16,7 @@ echo -e  "\e[0m"
 Today=`date +%s`
 Days_Detailed=$(( $Days * 86400 ))
 Expire_On=$(($Today + $Days_Detailed))
-Expiration=$(date -u --date="1970-01-01 $Expire_On sec GMT" +%Y/%m/%d)
+Expiration=$(date -u --date="1970-01-01 $Expire_On sec GMT" +'%Y/%m/%d')
 Expiration_Display=$(date -u --date="1970-01-01 $Expire_On sec GMT" '+%d %b %Y')
 passwd -u $User
 usermod -e $Expiration $User
