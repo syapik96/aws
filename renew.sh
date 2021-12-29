@@ -36,6 +36,8 @@ echo -e  " ║      🔰 COPYRIGHT © 2021 OnePieceVPN, Inc 🔰          ║" |
 echo -e  " ╚═════════════════════════════════╝" | lolcat
 else
  clear
+ figlet -f slant "System Error" | lolcat
+ echo -e ""
  echo -e  " ╔═════════════════════════════════╗" | lolcat
  echo -e  " ║              Account Updated Info                     ║" | lolcat
  echo -e  " ╚═════════════════════════════════╝" | lolcat
