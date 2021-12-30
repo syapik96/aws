@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo -e "\e[1;32mInstalling Websocket-SSH Python\e[0m"
-sleep 1
+
 
 #Buat name user github dan nama folder
 GitUser="syapik96"
@@ -10,8 +10,8 @@ GitUser="syapik96"
 cd /etc/systemd/system
 
 #System OpenSSH Websocket-SSH Python
-#wget -O ws-openssh.service "https://raw.githubusercontent.com/${GitUser}/aws/main/websocket-python/ws-openssh.service"
-#chmod +x ws-openssh.service
+wget -O ws-openssh.service "https://raw.githubusercontent.com/${GitUser}/aws/main/websocket-python/ws-openssh.service"
+chmod +x ws-openssh.service
 
 #System Dropbear Websocket-SSH Python
 wget -O ws-dropbear.service "https://raw.githubusercontent.com/${GitUser}/aws/main/websocket-python/ws-dropbear.service"
@@ -22,25 +22,25 @@ wget -O ws-stunnel.service "https://raw.githubusercontent.com/${GitUser}/aws/mai
 chmod +x ws-stunnel.service
 
 #System Websocket-OpenVPN Python
-#wget -O ws-ovpn.service "https://raw.githubusercontent.com/${GitUser}/aws/main/websocket-python/ws-ovpn.service"
-#chmod +x ws-ovpn.service
+wget -O ws-ovpn.service "https://raw.githubusercontent.com/${GitUser}/aws/main/websocket-python/ws-ovpn.service"
+chmod +x ws-ovpn.service
 
 #Install Script Websocket-SSH Python
 cd /usr/local/bin
-#wget -O ws-openssh "https://raw.githubusercontent.com/${GitUser}/aws/main/websocket-python/ws-openssh" 
+wget -O ws-openssh "https://raw.githubusercontent.com/${GitUser}/aws/main/websocket-python/ws-openssh" 
 wget -O ws-dropbear "https://raw.githubusercontent.com/${GitUser}/aws/main/websocket-python/ws-dropbear" 
 wget -O ws-stunnel "https://raw.githubusercontent.com/${GitUser}/aws/main/websocket-python/ws-stunnel" 
-#wget -O ws-ovpn "https://raw.githubusercontent.com/${GitUser}/aws/main/websocket-python/ws-ovpn" 
-#chmod +x ws-openssh
+wget -O ws-ovpn "https://raw.githubusercontent.com/${GitUser}/aws/main/websocket-python/ws-ovpn" 
+chmod +x ws-openssh
 chmod +x ws-dropbear
 chmod +x ws-stunnel
-#chmod +x ws-ovpn
+chmod +x ws-ovpn
 
 systemctl daemon-reload
 #Enable & Start & Restart ws-openssh service
-#systemctl enable ws-openssh.service
-#systemctl start ws-openssh.service
-#systemctl restart ws-openssh.service
+systemctl enable ws-openssh.service
+systemctl start ws-openssh.service
+systemctl restart ws-openssh.service
 
 #Enable & Start & Restart ws-dropbear service
 systemctl enable ws-dropbear.service
@@ -53,6 +53,6 @@ systemctl start ws-stunnel.service
 systemctl restart ws-stunnel.service
 
 #Enable & Start ws-ovpn service
-#systemctl enable ws-ovpn.service
-#systemctl start ws-ovpn.service
-#systemctl restart ws-ovpn.service
+systemctl enable ws-ovpn.service
+systemctl start ws-ovpn.service
+systemctl restart ws-ovpn.service
