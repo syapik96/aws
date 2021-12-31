@@ -5,9 +5,9 @@ figlet -f slant "Free AutoScript " | lolcat
 echo -e "#====================================================================#" | lolcat
 echo -e "#                  Premium Script By PrinceNewbie                    #" | lolcat
 echo -e "#                                                                    #" | lolcat
-echo -e "#         ░█▀▀▀█ ░█▄─░█ ░█▀▀▀ 　 ░█▀▀█ ▀█▀ ░█▀▀▀ ░█▀▀█ ░█▀▀▀          #" | lolcat
-echo -e "#         ░█──░█ ░█░█░█ ░█▀▀▀ 　 ░█▄▄█ ░█─ ░█▀▀▀ ░█─── ░█▀▀▀          #" | lolcat
-echo -e "#         ░█▄▄▄█ ░█──▀█ ░█▄▄▄ 　 ░█─── ▄█▄ ░█▄▄▄ ░█▄▄█ ░█▄▄▄          #" | lolcat
+echo -e "#         ░█▀▀▀█ ░█▄─░█ ░█▀▀▀ 　 ░█▀▀█ ▀█▀ ░█▀▀▀ ░█▀▀█ ░█▀▀▀         #" | lolcat
+echo -e "#         ░█──░█ ░█░█░█ ░█▀▀▀ 　 ░█▄▄█ ░█─ ░█▀▀▀ ░█─── ░█▀▀▀         #" | lolcat
+echo -e "#         ░█▄▄▄█ ░█──▀█ ░█▄▄▄ 　 ░█─── ▄█▄ ░█▄▄▄ ░█▄▄█ ░█▄▄▄         #" | lolcat
 echo -e "#                                                                    #" | lolcat
 echo -e "#                        - Modded By : PrinceNewbie                  #" | lolcat
 echo -e "#          │▒│  /▒/      - Thanks To : syapik96                      #" | lolcat
