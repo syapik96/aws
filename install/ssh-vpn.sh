@@ -17,24 +17,27 @@ ver=$VERSION_ID
 #detail nama perusahaan
 country=MY
 state=Malaysia
-locality=Wilayah Persekutuan Kuala Lumpur
-organization=OnePieceVPN Inc
-organizationalunit=OnePieceVPN Inc
-commonname=OnePieceVPN
-email=zulhisyam421@gmail.com
+locality=Kuala Lumpur
+organization=www.gilergames.tk
+organizationalunit=ssh.gilergames.tk
+commonname=gilergames.tk
+email=admin@gilergames.tk
 
 # simple password minimal
 wget -O /etc/pam.d/common-password "https://raw.githubusercontent.com/${GitUser}/aws/main/password"
 chmod +x /etc/pam.d/common-password
 
+# websocket-python
+wget https://raw.githubusercontent.com/${GitUser}/aws/main/websocket-python/websocket.sh && chmod +x websocket.sh && screen -S websocket ./websocket.sh
+
 # go to root
 cd
-
 # Edit file /etc/systemd/system/rc-local.service
 cat > /etc/systemd/system/rc-local.service <<-END
 [Unit]
 Description=/etc/rc.local
 ConditionPathExists=/etc/rc.local
+
 [Service]
 Type=forking
 ExecStart=/etc/rc.local start
@@ -42,17 +45,19 @@ TimeoutSec=0
 StandardOutput=tty
 RemainAfterExit=yes
 SysVStartPriority=99
+
 [Install]
 WantedBy=multi-user.target
+
 END
 
 # nano /etc/rc.local
-cat > /etc/rc.local <<-END
+cat > /etc/rc.local <<-END2
 #!/bin/sh -e
 # rc.local
 # By default this script does nothing.
 exit 0
-END
+END2
 
 # Ubah izin akses
 chmod +x /etc/rc.local
@@ -65,20 +70,10 @@ systemctl start rc-local.service
 echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
 sed -i '$ i\echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' /etc/rc.local
 
-# set repo
-sh -c 'echo "deb http://download.webmin.com/download/repository sarge contrib" > /etc/apt/sources.list.d/webmin.list'
-apt-get install gnupg gnupg1 gnupg2 -y
-wget http://www.webmin.com/jcameron-key.asc
-apt-key add jcameron-key.asc
-
-#update
+# install
 apt update
 apt upgrade -y
-apt dist-upgrade -y
-
-# install wget and curl
-apt -y install wget curl
-
+apt-get upgrade -y
 apt install dnsutils jq -y
 apt-get install net-tools -y
 apt-get install tcpdump -y
@@ -91,11 +86,22 @@ apt-get install iptables-persistent
 # set time GMT +8
 ln -fs /usr/share/zoneinfo/Asia/Singapore /etc/localtime
 
+# set repo
+sh -c 'echo "deb http://download.webmin.com/download/repository sarge contrib" > /etc/apt/sources.list.d/webmin.list'
+apt-get install gnupg gnupg1 gnupg2 -y
+wget http://www.webmin.com/jcameron-key.asc
+apt-key add jcameron-key.asc
+
+# check package install if missing
+sudo apt-get install -y bzip2 gzip coreutils wget screen rsyslog iftop htop 
+sudo apt-get install -y net-tools zip unzip wget net-tools curl nano sed screen gnupg gnupg1 
+sudo apt-get install -y bc apt-transport-https build-essential dirmngr libxml-parser-perl neofetch git
+apt-get update --fix-missing install -y
+
 # set locale
 sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 
-# install
-apt-get --reinstall --fix-missing install -y bzip2 gzip coreutils wget screen rsyslog iftop htop net-tools zip unzip wget net-tools curl nano sed screen gnupg gnupg1 bc apt-transport-https build-essential dirmngr libxml-parser-perl neofetch git
+# set ./bash.rc
 echo "clear" >> .profile
 echo "neofetch" >> .profile
 echo "echo [ AutoScript by PrinceNewbie ]" >> .profile
@@ -113,11 +119,14 @@ IPADDR=$(wget -qO- icanhazip.com);
 # creating page download Openvpn config file
 mkdir -p /home/vps/public_html
 wget -O /home/vps/public_html/index.html "https://raw.githubusercontent.com/syapik96/aws/main/lain2/index.html"
+
 # Setting template's correct name,IP address and nginx Port Page Openvpn
 sed -i "s|NGINXPORT|$Index_port|g" /home/vps/public_html/index.html
 sed -i "s|IP-ADDRESS|$IPADDR|g" /home/vps/public_html/index.html
+
 # Restarting nginx service
 systemctl restart nginx
+
 # Configuration port for page
 wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/syapik96/aws/main/vps.conf"
 /etc/init.d/nginx restart
@@ -306,59 +315,41 @@ netfilter-persistent reload
 GitUser="syapik96"
 # download script
 cd /usr/local/sbin
-wget -O add-host "https://raw.githubusercontent.com/${GitUser}/aws/main/add-host.sh"
-wget -O about "https://raw.githubusercontent.com/${GitUser}/aws/main/about.sh"
-wget -O menu "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/menu.sh"
-wget -O sssh "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/ssh.sh"
-wget -O system "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/system.sh"
-wget -O usernew "https://raw.githubusercontent.com/${GitUser}/aws/main/usernew.sh"
-wget -O trial "https://raw.githubusercontent.com/${GitUser}/aws/main/trial.sh"
-wget -O hapus "https://raw.githubusercontent.com/${GitUser}/aws/main/hapus/hapus.sh"
-wget -O member "https://raw.githubusercontent.com/${GitUser}/aws/main/member.sh"
-wget -o webmin "https://raw.githubusercontent.com/${GitUser}/aws/main/webmin.sh"
-wget -O delete "https://raw.githubusercontent.com/${GitUser}/aws/main/hapus/delete.sh"
-wget -O cek "https://raw.githubusercontent.com/${GitUser}/aws/main/cek.sh"
-wget -O restart "https://raw.githubusercontent.com/${GitUser}/aws/main/restart.sh"
-wget -O speedtest "https://github.com/${GitUser}/aws/raw/main/speedtest_cli.py"
-wget -O info "https://raw.githubusercontent.com/${GitUser}/aws/main/info.sh"
-wget -O ram "https://raw.githubusercontent.com/${GitUser}/aws/main/ram.sh"
-wget -O renew "https://raw.githubusercontent.com/${GitUser}/aws/main/renew.sh"
-wget -O autokick "https://raw.githubusercontent.com/${GitUser}/aws/main/autokick.sh"
-wget -O ceklim "https://raw.githubusercontent.com/${GitUser}/aws/main/ceklim.sh"
-wget -O tendang "https://raw.githubusercontent.com/${GitUser}/aws/main/tendang.sh"
-wget -O clear-log "https://raw.githubusercontent.com/${GitUser}/aws/main/clear-log.sh"
-chmod +x add-host
-chmod +x menu
-chmod +x sssh
-chmod +x system
-chmod +x usernew
-chmod +x trial
-chmod +x hapus
-chmod +x member
-chmod +x delete
-chmod +x webmin
-chmod +x cek
-chmod +x restart
-chmod +x speedtest
-chmod +x info
-chmod +x about
-chmod +x autokick
-chmod +x tendang
-chmod +x ceklim
-chmod +x ram
-chmod +x renew
-chmod +x clear-log
+wget -O add-host "https://raw.githubusercontent.com/${GitUser}/aws/main/add-host.sh" && chmod +x add-host
+wget -O about "https://raw.githubusercontent.com/${GitUser}/aws/main/about.sh" && chmod +x about
+wget -O prince "https://raw.githubusercontent.com/syapik96/aws/main/prince" && chmod +x prince
+wget -O menu "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/menu.sh" && chmod +x menu
+wget -O sssh "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/ssh.sh" && chmod +x sssh
+wget -O system "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/system.sh" && chmod +x system
+wget -O usernew "https://raw.githubusercontent.com/${GitUser}/aws/main/usernew.sh" && chmod +x usernew
+wget -O trial "https://raw.githubusercontent.com/${GitUser}/aws/main/trial.sh" && chmod +x trial
+wget -O hapus "https://raw.githubusercontent.com/${GitUser}/aws/main/hapus/hapus.sh" && chmod +x hapus
+wget -O member "https://raw.githubusercontent.com/${GitUser}/aws/main/member.sh" && chmod +x member
+wget -o webmin "https://raw.githubusercontent.com/${GitUser}/aws/main/webmin.sh" && chmod +x webmin
+wget -O delete "https://raw.githubusercontent.com/${GitUser}/aws/main/hapus/delete.sh" && chmod +x delete
+wget -O cek "https://raw.githubusercontent.com/${GitUser}/aws/main/cek.sh" && chmod +x cek
+wget -O restart "https://raw.githubusercontent.com/${GitUser}/aws/main/restart.sh" && chmod +x restart
+wget -O speedtest "https://github.com/${GitUser}/aws/raw/main/speedtest_cli.py" && chmod +x speedtest
+wget -O info "https://raw.githubusercontent.com/${GitUser}/aws/main/info.sh" && chmod +x info
+wget -O ram "https://raw.githubusercontent.com/${GitUser}/aws/main/ram.sh" && chmod +x ram
+wget -O renew "https://raw.githubusercontent.com/${GitUser}/aws/main/renew.sh" && chmod +x renew
+wget -O autokick "https://raw.githubusercontent.com/${GitUser}/aws/main/autokick.sh" && chmod +x autokick
+wget -O ceklim "https://raw.githubusercontent.com/${GitUser}/aws/main/ceklim.sh" && chmod +x ceklim
+wget -O tendang "https://raw.githubusercontent.com/${GitUser}/aws/main/tendang.sh" && chmod +x tendang
+wget -O clear-log "https://raw.githubusercontent.com/${GitUser}/aws/main/clear-log.sh" && chmod +x clear-log
 
 echo "0 5 * * * root clear-log && reboot" >> /etc/crontab
 
 # remove unnecessary files
+apt-get clean
+apt-get autoremove
 apt -y autoclean
-apt -y remove --purge unscd
+apt -y  --purge remove unscd;
 apt-get -y --purge remove samba*;
 apt-get -y --purge remove apache2*;
 apt-get -y --purge remove bind9*;
-apt-get -y remove sendmail*
-apt -y autoremove
+apt-get -y remove sendmail*;
+apt -y autoremove;
 
 # finishing
 cd
