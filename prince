@@ -1,17 +1,25 @@
-#====================================================================#
-#                  Premium Script By PrinceNewbie                    #
-#                                                                    #
-#         ░█▀▀▀█ ░█▄─░█ ░█▀▀▀ 　 ░█▀▀█ ▀█▀ ░█▀▀▀ ░█▀▀█ ░█▀▀▀          #
-#         ░█──░█ ░█░█░█ ░█▀▀▀ 　 ░█▄▄█ ░█─ ░█▀▀▀ ░█─── ░█▀▀▀          #
-#         ░█▄▄▄█ ░█──▀█ ░█▄▄▄ 　 ░█─── ▄█▄ ░█▄▄▄ ░█▄▄█ ░█▄▄▄          #
-#                                                                    #
-#                        - Modded By : PrinceNewbie                  #
-#          │▒│  /▒/      - Thanks To :                               #
-#          │▒│ /▒/       - Whatsapp  :                               #
-#          │▒|/▒/┬─┐     - Telegram  : t.me/PrinceNewbie             #
-#          │▒│▒|▒│▒│     - For those who use this script,            #
-#         ┌┴─┴─┐-┘─┘       this script is still under development    #
-#         │▒┌──┘▒▒▒│     - Thanks for who using this script          #
-#         └┐▒▒▒▒▒▒┌┘     - To EnterMenuList = 'menu'                 #
-#                                                                    #
-#====================================================================#
+#!/bin/bash
+#Script Mod by Prince AKA syapik96
+
+figlet -f slant "Free AutoScript " | lolcat
+echo -e "#====================================================================#" | lolcat
+echo -e "#                  Premium Script By PrinceNewbie                    #" | lolcat
+echo -e "#                                                                    #" | lolcat
+echo -e "#         ░█▀▀▀█ ░█▄─░█ ░█▀▀▀ 　 ░█▀▀█ ▀█▀ ░█▀▀▀ ░█▀▀█ ░█▀▀▀          #" | lolcat
+echo -e "#         ░█──░█ ░█░█░█ ░█▀▀▀ 　 ░█▄▄█ ░█─ ░█▀▀▀ ░█─── ░█▀▀▀          #" | lolcat
+echo -e "#         ░█▄▄▄█ ░█──▀█ ░█▄▄▄ 　 ░█─── ▄█▄ ░█▄▄▄ ░█▄▄█ ░█▄▄▄          #" | lolcat
+echo -e "#                                                                    #" | lolcat
+echo -e "#                        - Modded By : PrinceNewbie                  #" | lolcat
+echo -e "#          │▒│  /▒/      - Thanks To : syapik96                      #" | lolcat
+echo -e "#          │▒│ /▒/       - Whatsapp  :                               #" | lolcat
+echo -e "#          │▒|/▒/┬─┐     - Telegram  : t.me/PrinceNewbie             #" | lolcat
+echo -e "#          │▒│▒|▒│▒│     - For those who use this script,            #" | lolcat
+echo -e "#         ┌┴─┴─┐-┘─┘       this script is still under development    #" | lolcat
+echo -e "#         │▒┌──┘▒▒▒│     - Thanks for who using this script          #" | lolcat
+echo -e "#         └┐▒▒▒▒▒▒┌┘     - To EnterMenuList = 'menu'                 #" | lolcat
+echo -e "#                                                                    #" | lolcat
+echo -e "#====================================================================#" | lolcat
+echo -e " "
+echo -e "                      \e[1;32mPowered By Prince\e[0m"
+echo -e "                \e[1;32mCOPYRIGHT © 2021 PrinceNewbie\e[0m"
+echo -e "        \e[1;32mPrivacy Policy Terms & Conditions Disclaimer\e[0m"
