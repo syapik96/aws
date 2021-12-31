@@ -1,78 +1,79 @@
 #!/bin/bash
 # Script mod updated By Prince
-# ==================================================
-
+# Commad Install auto setup was changed 
+# due to an error while performing the installation
+# Dec 31 2021 updated
+# ==============================
+#    ! HAPPY NEW YEAR GUYSS !
+# ==============================
 red='\e[1;31m'
 green='\e[1;32m'
 yellow='\e[1;33m'
-blue=\e[1;34m'
-bg
+blue='\e[1;34m'
 NC='\e[0m'
- 
 if [ "${EUID}" -ne 0 ]; then
-    echo -e "\e[1;31mYou need to run this script as root\e[0m"
+    echo -e "${red}You need to run this script as root user${NC}"
     exit 1
  fi
+#update
+sudo apt update
+apt upgrade -y
+apt dist-upgrade -y
+# install wget and curl
+apt -y install wget curl
+apt install screen -y
 
 clear
 cd
-mkdir /etc/v2ray/domain
-mkdir /var/lib/premium-script
+# Check Script
+if [[ ! -e /etc/v2ray ]]; then
+    echo -e "${red}        Auto-Script already installed${NC}"
+    echo -e "${red}Make sure to install this script on a fresh vps only${NC}"
+    echo -e "${red}      to avoid problems when installing${NC}"
+    sleep 10
+    exit 1
+else
+  mkdir /etc/v2ray
+fi
+mkdir /var/lib/premium-script;
 echo -e ""
-echo -e "\e[1;105m==========================================================\e[0m"
+echo -e "\e[1;104m==========================================================\e[0m"
 echo -e ""
-echo -e "${red}Ensure the Domain is already routed to cloudflare (proxy off)${NC}"
+echo -e "${red}Ensure the Domain is already routed to cloudflare with proxy off${NC}"
 echo -e "${green}Enter your domain , if you do not currently have a domain"
 echo -e "or not route with cloudeflare yet click enter to add again later${NC}"
 echo -e ""
+echo -e "\e[1;104m==========================================================\e[0m"
+echo -e ""
 echo -e "\e[1;105m==========================================================\e[0m"
 echo -e "\e[1;33m"
-read -rp     "Enter your Domain/Host: " -e host
+read -rp "    Enter your Domain/Host: " -e host
 echo "IP=$host" >> /var/lib/premium-script/ipvps.conf
 echo "$host" > /etc/v2ray/domain
 echo "$host" > /root/domain
 echo -e "\e[0m"
-echo -e "\e[1;105m==========================================================\e[0m"
+echo -e "\e[1;104m==========================================================\e[0m"
+sleep 1
 clear
-echo ""
-echo -e "\e[1;34mThe script will start running the installation in 2sec${NC}"
+echo -e "\e[1;33mDomain saved successfully\e[0m"
+sleep 1
+clear
+echo -e "\e[1;104m==========================================================\e[0m"
+echo -e ""
+echo -e "\e[1;32mThe script will start running the installation in 2sec${NC}"
+echo -e ""
+echo -e "\e[1;104m==========================================================\e[0m"
 sleep 2
 
-# Commad Install auto setup was changed due to an error while performing the installation
 GitUser="syapik96"
-# stunnel & openvpn
-wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/ssh-vpn.sh
-chmod +x ssh-vpn.sh
-screen -S ssh-vpn ./ssh-vpn.sh
-# websocket-python
-wget https://raw.githubusercontent.com/${GitUser}/aws/main/websocket-python/websocket.sh
-chmod +x websocket.sh
-screen -S websocket ./websocket.sh
-# SSTP
-wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/sstp.sh
-chmod +x sstp.sh
-screen -S sstp ./sstp.sh
-# Wireguard
-wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/wg.sh
-chmod +x wg.sh
-screen -S wg ./wg.sh
-# Shadowsockr
-wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/ssr.sh
-chmod +x ssr.sh
-screen -S ssr ./ssr.sh
-# shodowsock-obfs
-wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/shadowsocksobfs.sh
-chmod +x shadowsocksobfs.sh
-screen -S ss ./shadowsocksobfs.sh
-# V2ray
-wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/ins-vt.sh
-chmod +x ins-vt.sh
-sed -i -e 's/\r$//' ins-vt.sh
-screen -S v2ray ./ins-vt.sh
-# IPsec
-wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/ipsec.sh
-chmod +x ipsec.sh
-screen -S ipsec ./ipsec.sh
+wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/ssh-vpn.sh && chmod +x ssh-vpn.sh && screen -S ssh-vpn ./ssh-vpn.sh
+#wget https://raw.githubusercontent.com/${GitUser}/aws/main/websocket-python/websocket.sh && chmod +x websocket.sh && screen -S websocket ./websocket.sh
+wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/sstp.sh && chmod +x sstp.sh && screen -S sstp ./sstp.sh
+wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/wg.sh && chmod +x wg.sh && screen -S wg ./wg.sh
+wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/ssr.sh && chmod +x ssr.sh && screen -S ssr ./ssr.sh
+wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/shadowsocksobfs.sh && chmod +x shadowsocksobfs.sh && screen -S ss ./shadowsocksobfs.sh
+wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/ins-vt.sh && chmod +x ins-vt.sh && sed -i -e 's/\r$//' ins-vt.sh && screen -S v2ray ./ins-vt.sh
+wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/ipsec.sh && chmod +x ipsec.sh && screen -S ipsec ./ipsec.sh
 
 # Remove script has installed
 rm -f /root/ssh-vpn.sh
@@ -88,11 +89,12 @@ history -c
 echo "1.1" > /home/ver
 
 clear
-figlet -f slant "Installation Completed !" | lolcat
+#figlet -f slant "Installation Completed !" | lolcat
+figlet -f slant "! HAPPY NEW YEAR GUYSS !" | lolcat
 echo  " "
-echo -e "===============-${green}AutoScript by PrinceNewbie${NC}-=========================" | tee -a log-install.txt
+echo -e "===============-${green}AutoScript by PrinceNewbie${NC}-======================" | tee -a log-install.txt
 echo -e "                ${green}Public Free Premium Script${NC}" | tee -a log-install.txt
-echo -e "---------------------\e[1;105mCopyright 2021 @ Prince Newbie\e[0m-----------------------------" | tee -a log-install.txt
+echo -e "-------------------\e[1;32m\e[1;104mMod Updated by Prince\e[0m------------------------" | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "     [       Service        ]   [  Port  ]"  | tee -a log-install.txt
 echo "   - OpenSSH                  : 22,777"  | tee -a log-install.txt
@@ -102,7 +104,7 @@ echo "   - SSH-WS Python SSL/TLS    : 5053"  | tee -a log-install.txt
 echo "   - OpenVPN-WS Python        : 2099"  | tee -a log-install.txt
 echo "   - OpenVPN                  : TCP 1194, UDP 2200, SSL 992, X1197"  | tee -a log-install.txt
 echo "   - Stunnel4 SSL/TLS         : 443"  | tee -a log-install.txt
-echo "   - Dropbear                 : 143,109,587  | tee -a log-install.txt
+echo "   - Dropbear                 : 143,109,587" | tee -a log-install.txt
 echo "   - Squid Proxy              : 3128,8080,8000 (limit to IP Server)"  | tee -a log-install.txt
 echo "   - Badvpn                   : 7100-7900"  | tee -a log-install.txt
 echo "   - Nginx                    : 81"  | tee -a log-install.txt
@@ -130,7 +132,7 @@ echo ""  | tee -a log-install.txt
 echo "   - Autoreboot On 00.00 GMT +8" | tee -a log-install.txt
 echo "   - Installation Log --> /root/log-install.txt"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
-echo "-----------------------------Mod Updated by Prince----------------------------------" | tee -a log-install.txt
+echo -e "---------------------\e[1;32m\e[1;104mCopyright 2021 @ Prince Newbie\e[0m-------------" | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo -e " Telegram : t.me/PrinceNewbie" | tee -a log-install.txt
 echo "" | tee -a log-install.txt
