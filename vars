@@ -62,12 +62,12 @@ export KEY_EXPIRE=3650
 # which will be placed in the certificate.
 # Don't leave any of these fields blank.
 
-export KEY_COUNTRY="MY"
-export KEY_PROVINCE="Malaysia"
-export KEY_CITY="Wilayah Persekutuan Kuala Lumpur"
-export KEY_ORG="OnePieceVPN Inc."
-export KEY_EMAIL="zulhisyam421@gmail.com"
-export KEY_OU="OnePieceVPN"
+export KEY_COUNTRY="US"
+export KEY_PROVINCE="San Jose"
+export KEY_CITY="Oracle"
+export KEY_ORG="www.gilergames.tk"
+export KEY_EMAIL="admin@gilergames.tk"
+export KEY_OU="ssh.gilergames.tk"
 
 # X509 Subject Field
 export KEY_NAME="server"
@@ -78,4 +78,4 @@ export KEY_NAME="server"
 
 # If you'd like to sign all keys with the same Common Name, uncomment the KEY_CN export below
 # You will also need to make sure your OpenVPN server config has the duplicate-cn option set
-# export KEY_CN="CommonName"
+# export KEY_CN="ssh.gilergames.tk"
