@@ -12,7 +12,5 @@ NoNewPrivileges=true
 Restart=on-failure
 ExecStart=/usr/bin/python -O /usr/local/bin/ws-openssh 100
 
-
 [Install]
 WantedBy=multi-user.target
-
