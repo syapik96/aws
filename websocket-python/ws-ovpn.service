@@ -1,5 +1,5 @@
 [Unit]
-Description=OpenvpnCDN Over Websocket Python Prince
+Description=Ovpn-Cdn Over WebSocket Python Prince
 Documentation=https://google.com
 After=network.target nss-lookup.target
 
