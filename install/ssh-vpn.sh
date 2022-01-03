@@ -15,25 +15,41 @@ source /etc/os-release
 ver=$VERSION_ID
 
 #detail nama perusahaan
-country=MY
-state=Malaysia
-locality=Kuala Lumpur
+country=US
+state=San Jose
+locality=Oracle
 organization=www.gilergames.tk
 organizationalunit=ssh.gilergames.tk
-commonname=gilergames.tk
+commonname=gilergames
 email=admin@gilergames.tk
 
 # simple password minimal
 wget -O /etc/pam.d/common-password "https://raw.githubusercontent.com/${GitUser}/aws/main/password"
 chmod +x /etc/pam.d/common-password
 
-# websocket-python
-wget https://raw.githubusercontent.com/${GitUser}/aws/main/websocket-python/websocket.sh && chmod +x websocket.sh && screen -S websocket ./websocket.sh
+# install
+apt update
+apt upgrade -y
+apt-get upgrade -y
+apt install dnsutils jq -y
+apt-get install net-tools -y
+apt-get install tcpdump -y
+apt-get install dsniff -y
+apt install grepcidr -y
+apt install ruby -y && gem install lolcat
+apt-get install figlet -y
+apt-get install iptables-persistent
+
+# check package install if missing
+sudo apt-get ssl-cert bind9-utils install bzip2 gzip coreutils wget screen rsyslog iftop htop -y
+sudo apt-get install -y net-tools zip unzip wget net-tools curl nano sed screen gnupg gnupg1 
+sudo apt-get install -y bc apt-transport-https build-essential dirmngr libxml-parser-perl neofetch git
+apt-get install -y --fix-missing 
 
 # go to root
 cd
 # Edit file /etc/systemd/system/rc-local.service
-cat > /etc/systemd/system/rc-local.service <<-END
+cat > /etc/systemd/system/rc-local.service <<-EOF
 [Unit]
 Description=/etc/rc.local
 ConditionPathExists=/etc/rc.local
@@ -49,19 +65,18 @@ SysVStartPriority=99
 [Install]
 WantedBy=multi-user.target
 
-END
+EOF
 
 # nano /etc/rc.local
-cat > /etc/rc.local <<-END2
+cat > /etc/rc.local <<-EOF2
 #!/bin/sh -e
 # rc.local
 # By default this script does nothing.
 exit 0
-END2
+EOF2
 
 # Ubah izin akses
 chmod +x /etc/rc.local
-
 # enable rc local
 systemctl enable rc-local
 systemctl start rc-local.service
@@ -69,19 +84,6 @@ systemctl start rc-local.service
 # disable ipv6
 echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
 sed -i '$ i\echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' /etc/rc.local
-
-# install
-apt update
-apt upgrade -y
-apt-get upgrade -y
-apt install dnsutils jq -y
-apt-get install net-tools -y
-apt-get install tcpdump -y
-apt-get install dsniff -y
-apt install grepcidr -y
-apt install ruby -y && gem install lolcat
-apt-get install figlet -y
-apt-get install iptables-persistent
 
 # set time GMT +8
 ln -fs /usr/share/zoneinfo/Asia/Singapore /etc/localtime
@@ -92,20 +94,16 @@ apt-get install gnupg gnupg1 gnupg2 -y
 wget http://www.webmin.com/jcameron-key.asc
 apt-key add jcameron-key.asc
 
-# check package install if missing
-sudo apt-get install -y bzip2 gzip coreutils wget screen rsyslog iftop htop 
-sudo apt-get install -y net-tools zip unzip wget net-tools curl nano sed screen gnupg gnupg1 
-sudo apt-get install -y bc apt-transport-https build-essential dirmngr libxml-parser-perl neofetch git
-apt-get update --fix-missing install -y
 
 # set locale
 sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 
 # set ./bash.rc
 echo "clear" >> .profile
-echo "neofetch" >> .profile
-echo "echo [ AutoScript by PrinceNewbie ]" >> .profile
-echo "echo [  VPN Panel Manager : menu  ]" >> .profile
+echo "prince" >> .profile
+#echo "echo '[    AutoScript by PrinceNewbie    ]' | lolcat " >> .profile
+#echo "echo '[     VPN Panel Manager : menu     ]' | lolcat " >> .profile
+#echo "echo '[  Copyright © 2022 Prince Newbie  ]' | lolcat " >> .profile
 
 # install webserver
 apt -y install nginx
@@ -125,15 +123,124 @@ sed -i "s|NGINXPORT|$Index_port|g" /home/vps/public_html/index.html
 sed -i "s|IP-ADDRESS|$IPADDR|g" /home/vps/public_html/index.html
 
 # Restarting nginx service
+wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/syapik96/aws/main/vps.conf"
 systemctl restart nginx
 
-# Configuration port for page
-wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/syapik96/aws/main/vps.conf"
-/etc/init.d/nginx restart
+cd
+# setting port ssh
+sed -i 's/Port 22/Port 22/g' /etc/ssh/sshd_config
+sed -i '/Port 40000/g' /etc/ssh/sshd_config
+sed -i '/Port 226/g' /etc/ssh/sshd_config
+
+# install dropbear
+apt-get -y install dropbear
+sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
+sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=143/g' /etc/default/dropbear
+sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 50000 -p 109 -p 69"/g' /etc/default/dropbear
+echo "/bin/false" >> /etc/shells
+echo "/usr/sbin/nologin" >> /etc/shells
+service ssh restart
+service dropbear restart
+
+# install squid
+apt -y install squid3
+wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/${GitUser}/aws/main/squid3.conf"
+sed -i $MYIP2 /etc/squid/squid.conf
+
+# setting vnstat
+apt-get -y install vnstat
+/etc/init.d/vnstat restart
+apt -y install libsqlite3-dev
+wget https://humdi.net/vnstat/vnstat-2.6.tar.gz
+tar zxvf vnstat-2.6.tar.gz
+cd vnstat-2.6
+./configure --prefix=/usr --sysconfdir=/etc && make && make install
+cd
+vnstat -u -i $NET
+sed -i 's/Interface "'""eth0""'"/Interface "'""$NET""'"/g' /etc/vnstat.conf
+chown vnstat:vnstat /var/lib/vnstat -R
+systemctl enable vnstat
+/etc/init.d/vnstat restart
+rm -f /root/vnstat-2.6.tar.gz
+rm -rf /root/vnstat-2.6
+
+# install webmin
+apt install webmin -y
+sed -i 's/ssl=1/ssl=0/g' /etc/webmin/miniserv.conf
+/etc/init.d/webmin restart
+
+# install stunnel
+apt install stunnel4 -y
+## choose which one work on your vps, [ if u got some issue ]
+## after configur or make change stunnel.conf
+## and if this three not isn't fixed your pid file issue 
+### so u need to locat your pid it been saved 
+## not find ,, configur your stunnel.conf until work
+## /*/*/stunnel4.pid or /*/*/stunnel.pid
+# if use default setup, 1 from this 3 may solve your issue
+# pid = /run/stunnel.pid
+# pid = /var/run/stunnel.pid
+# pid = /var/run/stunnel4.pid
+
+cat > /etc/stunnel/stunnel.conf <<-EOF
+cert = /etc/stunnel/stunnel.pem
+client = no
+socket = a:SO_REUSEADDR=1
+socket = l:TCP_NODELAY=1
+socket = r:TCP_NODELAY=1
+
+[dropbear]
+accept = 443
+connect = 127.0.0.1:143
+
+[dropbear2]
+accept = 777
+connect = 127.0.0.1:22
+
+[websocketpython]
+accept = 2021
+connect = 127.0.0.1:109
+
+[websocket1]
+accept = 5052
+connect = 127.0.0.1:143
+
+[openvpn]
+accept = 992
+connect = 127.0.0.1:1194
+
+EOF
+
+# make a certificate
+openssl genrsa -out key.pem 2048
+openssl req -new -x509 -key key.pem -out cert.pem -days 1095 \
+-subj "/C=$country/ST=$state/L=$locality/O=$organization/OU=$organizationalunit/CN=$commonname/emailAddress=$email"
+cat key.pem cert.pem >> /etc/stunnel/stunnel.pem
+
+# konfigurasi stunnel
+sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/stunnel4
+#/etc/init.d/stunnel4 restart
+systemctl restart stunnel4
+
+#install sslh
+apt-get install sslh -y
+rm /etc/default/sslh
+wget -O /etc/default/sslh "/etc/default/sslh https://raw.githubusercontent.com/syapik96/aws/main/lain2/sslh.conf"
+service sslh restart
+
+#OpenVPN
+wget "https://raw.githubusercontent.com/syapik96/aws/main/install/vpn.sh"
+chmod +x vpn.sh
+./vpn.sh
+
+# websocket-python
+wget "https://raw.githubusercontent.com/syapik96/aws/main/websocket-python/websocket.sh"
+chmod +x websocket.sh
+screen -S websocket ./websocket.sh
 
 # install badvpn
-wget -O /usr/bin/badvpn-udpgw "https://github.com/syapik96/aws/raw/main/badvpn-udpgw64"
-chmod +x /usr/bin/badvpn-udpgw
+#wget -O /usr/bin/badvpn-udpgw "https://github.com/syapik96/aws/raw/main/badvpn-udpgw64"
+#chmod +x /usr/bin/badvpn-udpgw
 
 # install badvpnCDN
 cd $HOME
@@ -158,99 +265,6 @@ screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7600 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7700 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7800 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7900 --max-clients 500
-
-cd
-# setting port ssh
-sed -i 's/Port 22/Port 22/g' /etc/ssh/sshd_config
-sed -i 's/Port 40000/g' /etc/ssh/sshd_config
-sed -i 's/Port 226/g' /etc/ssh/sshd_config
-
-# install dropbear
-apt-get -y install dropbear
-sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=143/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 50000 -p 109"/g' /etc/default/dropbear
-echo "/bin/false" >> /etc/shells
-echo "/usr/sbin/nologin" >> /etc/shells
-/etc/init.d/dropbear restart
-
-# install squid
-apt -y install squid3
-wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/${GitUser}/aws/main/squid3.conf"
-sed -i $MYIP2 /etc/squid/squid.conf
-
-# setting vnstat
-apt-get -y install vnstat
-apt -y install libsqlite3-dev
-#wget https://humdi.net/vnstat/vnstat-2.6.tar.gz
-#tar zxvf vnstat-2.6.tar.gz
-#cd vnstat-2.6
-#./configure --prefix=/usr --sysconfdir=/etc && make && make install 
-#cd
-vnstat -u -i $NET
-sed -i 's/Interface "'""eth0""'"/Interface "'""$NET""'"/g' /etc/vnstat.conf
-chown -R vnstat:vnstat /var/lib/vnstat 
-systemctl enable vnstat
-/etc/init.d/vnstat restart
-#rm -f /root/vnstat-2.6.tar.gz 
-#rm -rf /root/vnstat-2.6
-# /etc/init.d/vnstat restart
-
-# install webmin
-apt install webmin -y
-sed -i 's/ssl=1/ssl=0/g' /etc/webmin/miniserv.conf
-/etc/init.d/webmin restart
-
-# install stunnel
-apt install stunnel4 -y
-## choose which one work on your vps, [ if u got some issue ]
-## after configur or make change stunnel.conf
-## and if this three not isn't fixed your pid file issue 
-### so u need to locat your pid it been saved 
-## not find ,, configur your stunnel.conf until work
-## /*/*/stunnel4.pid or /*/*/stunnel.pid
-# if use default setup, 1 from this 3 may solve your issue
-# pid = /run/stunnel.pid
-# pid = /var/run/stunnel.pid
-# pid = /var/run/stunnel4.pid
-cat > /etc/stunnel/stunnel.conf <<-EOF
-cert = /etc/stunnel/stunnel.pem
-client = no
-socket = a:SO_REUSEADDR=1
-socket = l:TCP_NODELAY=1
-socket = r:TCP_NODELAY=1
-
-[dropbear]
-accept = 110
-connect = 127.0.0.1:143
-
-[dropbear]
-accept = 442
-connect = 127.0.0.1:109
-
-[dropbear]
-accept = 777
-connect = 127.0.0.1:22
-
-[openvpn]
-accept = 992
-connect = 127.0.0.1:1194
-
-EOF
-
-# make a certificate
-openssl genrsa -out key.pem 2048
-openssl req -new -x509 -key key.pem -out cert.pem -days 1095 \
--subj "/C=$country/ST=$state/L=$locality/O=$organization/OU=$organizationalunit/CN=$commonname/emailAddress=$email"
-cat key.pem cert.pem >> /etc/stunnel/stunnel.pem
-
-# konfigurasi stunnel
-sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/stunnel4
-/etc/init.d/stunnel4 restart
-#systemctl restart stunnel4
-
-#OpenVPN
-wget https://raw.githubusercontent.com/syapik96/aws/main/install/vpn.sh && chmod +x vpn.sh && ./vpn.sh
 
 # install fail2ban
 apt -y install fail2ban
@@ -380,8 +394,8 @@ cd
 rm /root/master.zip
 rm -f /root/ssh-vpn.sh
 mkdir /root/folder
-mv -f /root/cert.pem /root/folder/cert.pem
-mv -f /root/key.pem /root/folder/key.pem 
+mv /root/cert.pem /root/folder/cert.pem
+mv /root/key.pem /root/folder/key.pem 
 
 # finihsing
 clear
