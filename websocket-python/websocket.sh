@@ -15,7 +15,7 @@ wget -q -O /usr/local/bin/ws-openssh "https://raw.githubusercontent.com/syapik96
 chmod +x /usr/local/bin/ws-openssh
 wget -q -O /usr/local/bin/ws-dropbear "https://raw.githubusercontent.com/syapik96/aws/main/websocket-python/ws-dropbear"
 chmod +x /usr/local/bin/ws-dropbear
-wge -q -O /usr/local/bin/ws-stunnel "https://raw.githubusercontent.com/syapik96/aws/main/websocket-python/ws-stunnel"
+wget -q -O /usr/local/bin/ws-stunnel "https://raw.githubusercontent.com/syapik96/aws/main/websocket-python/ws-stunnel"
 chmod +x /usr/local/bin/ws-stunnel
 wget -q -O /usr/local/bin/ws-ovpn "https://raw.githubusercontent.com/syapik96/aws/main/websocket-python/ws-ovpn"
 chmod +x /usr/local/bin/ws-ovpn
