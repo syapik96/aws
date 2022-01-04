@@ -1,7 +1,7 @@
 #!/bin/bash
 # updated by syapikk
 
-domain=$(cat /root/domain)
+domain=$(cat /root/v2ray/domain)
 apt install iptables iptables-persistent -y
 apt install curl socat xz-utils wget apt-transport-https gnupg gnupg2 gnupg1 dnsutils lsb-release -y 
 apt install socat cron bash-completion ntpdate -y
@@ -28,6 +28,8 @@ systemctl stop apache2
 /root/.acme.sh/acme.sh --issue -d $domain --standalone -k ec-256
 ~/.acme.sh/acme.sh --installcert -d $domain --fullchainpath /etc/v2ray/v2ray.crt --keypath /etc/v2ray/v2ray.key --ecc
 service squid start
+systemctl restart apache2
+
 uuid=$(cat /proc/sys/kernel/random/uuid)
 
 cat > /etc/v2ray/config.json <<-EOF
@@ -56,7 +58,7 @@ cat > /etc/v2ray/config.json <<-EOF
         "tlsSettings": {
           "certificates": [
             {
-              "certificateFile": "etc/v2ray/v2ray.crt",
+              "certificateFile": "/etc/v2ray/v2ray.crt",
               "keyFile": "/etc/v2ray/v2ray.key"
             }
           ]
@@ -137,7 +139,7 @@ cat > /etc/v2ray/none.json <<-EOF
   },
   "inbounds": [
     {
-      "port": 880,
+      "port": 80,
       "protocol": "vmess",
       "settings": {
         "clients": [
@@ -226,7 +228,7 @@ cat > /etc/v2ray/vless.json <<-EOF
   },
   "inbounds": [
     {
-      "port": 2082,
+      "port": 2083,
       "protocol": "vless",
       "settings": {
         "clients": [
@@ -243,7 +245,7 @@ cat > /etc/v2ray/vless.json <<-EOF
         "tlsSettings": {
           "certificates": [
             {
-              "certificateFile": "etc/v2ray/v2ray.crt",
+              "certificateFile": "/etc/v2ray/v2ray.crt",
               "keyFile": "/etc/v2ray/v2ray.key"
             }
           ]
@@ -323,7 +325,7 @@ cat > /etc/v2ray/vnone.json <<-EOF
   },
   "inbounds": [
     {
-      "port": 2052,
+      "port": 8880,
       "protocol": "vless",
       "settings": {
         "clients": [
@@ -477,9 +479,9 @@ EOF
 
 iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 2087 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 8443 -j ACCEPT
-iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 880 -j ACCEPT
-iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 2082 -j ACCEPT
-iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 2052 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 2083 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 8880 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m udp -p udp --dport 2087 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m udp -p udp --dport 8443 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m udp -p udp --dport 880 -j ACCEPT
