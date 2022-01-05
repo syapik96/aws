@@ -197,13 +197,13 @@ connect = 127.0.0.1:143
 accept = 777
 connect = 127.0.0.1:22
 
-[websocketpython]
+[websocketdropbear]
 accept = 2021
 connect = 127.0.0.1:109
 
-[websocket1]
+[websocketstunnel]
 accept = 5052
-connect = 127.0.0.1:143
+connect = 553
 
 [openvpn]
 accept = 992
@@ -223,10 +223,10 @@ sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/stunnel4
 systemctl restart stunnel4
 
 #install sslh
-apt-get install sslh -y
-rm /etc/default/sslh
-wget -O /etc/default/sslh "/etc/default/sslh https://raw.githubusercontent.com/syapik96/aws/main/lain2/sslh.conf"
-service sslh restart
+#apt-get install sslh -y
+#rm /etc/default/sslh
+#wget -O /etc/default/sslh "/etc/default/sslh https://raw.githubusercontent.com/syapik96/aws/main/lain2/sslh.conf"
+#service sslh restart
 
 #OpenVPN
 wget "https://raw.githubusercontent.com/syapik96/aws/main/install/vpn.sh"
