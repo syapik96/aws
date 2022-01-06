@@ -1,5 +1,5 @@
 [Unit]
-Description=SSH Ssl/tls Over WebSocket Python
+Description=SSH Ssl/Tls Over WebSocket Python
 Documentation=https://google.com
 After=network.target nss-lookup.target
 
