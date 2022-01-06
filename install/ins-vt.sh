@@ -479,18 +479,19 @@ EOF
 
 iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 2087 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 8443 -j ACCEPT
-iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 880 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 2083 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 8880 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m udp -p udp --dport 2087 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m udp -p udp --dport 8443 -j ACCEPT
 iptables -I INPUT -m state --state NEW -m udp -p udp --dport 880 -j ACCEPT
-iptables -I INPUT -m state --state NEW -m udp -p udp --dport 2082 -j ACCEPT
-iptables -I INPUT -m state --state NEW -m udp -p udp --dport 2052 -j ACCEPT
-iptables-save > /etc/iptables.up.rules
-iptables-restore -t < /etc/iptables.up.rules
+iptables -I INPUT -m state --state NEW -m udp -p udp --dport 2083 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m udp -p udp --dport 8880 -j ACCEPT
 netfilter-persistent save
+iptables-save > /etc/iptables.up.rules
 netfilter-persistent reload
+iptables-restore -t < /etc/iptables.up.rules
+
 systemctl daemon-reload
 systemctl start v2ray
 systemctl enable v2ray
@@ -504,7 +505,7 @@ systemctl restart trojan
 systemctl enable trojan
 
 echo -e "\e[1;32m  Creating V2ray Menu scripts..\e[0m"
-
+sleep 2
 GitUser="syapik96"
 # Download Script
 cd /usr/local/sbin
