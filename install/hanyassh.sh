@@ -1,5 +1,5 @@
 #!/bin/bash
-# Mod By SL
+# Mod Has been updated
 # 
 # ==================================================
 
@@ -14,13 +14,13 @@ source /etc/os-release
 ver=$VERSION_ID
 
 #detail nama perusahaan
-country=MY
-state=MY
-locality=Kuala Lumpur
-organization=Gilergames
-organizationalunit=Gilergames
-commonname=Gilergames.tk
-email=zulhisyam421@gmail.com
+country=US
+state=Carlifonia
+locality=San Jose
+organization=Gilergames Inc
+organizationalunit=Gilergames Corp
+commonname=gilergames.tk
+email=admin@gilergames.tk
 
 # simple password minimal
 wget -O /etc/pam.d/common-password "https://raw.githubusercontent.com/${GitUser}/aws/main/password"
@@ -97,7 +97,7 @@ rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
 wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/${GitUser}/aws/main/nginx.conf"
 mkdir -p /home/vps/public_html
-echo "<pre>Setup Mod By SL</pre>" > /home/vps/public_html/index.html
+echo "<pre>Setup Mod Updated By Prince@syapik96</pre>" > /home/vps/public_html/index.html
 wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/${GitUser}/aws/main/vps.conf"
 /etc/init.d/nginx restart
 
@@ -155,16 +155,20 @@ sed -i 's/ssl=1/ssl=0/g' /etc/webmin/miniserv.conf
 
 # install stunnel
 apt install stunnel4 -y
-cat > /etc/stunnel/stunnel.conf <<-END
+cat > /etc/stunnel/stunnel.conf <<END
 cert = /etc/stunnel/stunnel.pem
 client = no
 socket = a:SO_REUSEADDR=1
 socket = l:TCP_NODELAY=1
 socket = r:TCP_NODELAY=1
 
-[dropbear]
+[Ssltls]
 accept = 443
 connect = 127.0.0.1:109
+
+[dropbear]
+accept = 442
+connect = 127.0.0.1:143
 
 [websocketpython]
 accept = 99
@@ -187,7 +191,7 @@ sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/stunnel4
 /etc/init.d/stunnel4 restart
 
 #Matikan OpenVPN
-#wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/vpn.sh &&  chmod +x vpn.sh && ./vpn.sh
+wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/vpn.sh &&  chmod +x vpn.sh && ./vpn.sh
 
 # install fail2ban
 apt -y install fail2ban
