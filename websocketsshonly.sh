@@ -1,9 +1,9 @@
 #!/bin/bash
-
+#
 
 # Edu OVPN
 wget -q -O /usr/local/bin/edu-ovpn "https://raw.githubusercontent.com/syapik96/aws/main/lain2/ovpn.py"
-chmod +x /usr/local/bin/ovpn
+chmod +x /usr/local/bin/edu-ovpn
 
 # Installing Service
 cat > /etc/systemd/system/edu-ovpn.service <<END
