@@ -63,8 +63,8 @@ src="https://img.shields.io/badge/Service-V2ray-success.svg">  <img src= "https:
 - WebScket Python Dropbear   : 80
 - WebScket Python SSL/TLS    : 443
 - OpenVPN-WS Python          : 2099
-- OpenVPN                    : TCP 1194, UDP 2200, SSL 992
-- Stunnel4 SSL/TLS           : 442, 777
+- OpenVPN                    : TCP 1194, UDP 2200, SSL 442
+- Stunnel4 SSL/TLS           : 110, 777
 - Dropbear                   : 143,109, 69
 - Squid Proxy                : 3128,8000,8080 (limit to IP Server)
 - Badvpn                     : 7100-7900
@@ -77,7 +77,7 @@ src="https://img.shields.io/badge/Service-V2ray-success.svg">  <img src= "https:
 - SS-OBFS TLS                : 2443-2543
 - SS-OBFS HTTP               : 3443-3453
 - V2RAY Vmess TLS            : 8443
-- V2RAY Vmess None TLS       : 880
+- V2RAY Vmess None TLS       : 8880
 - V2RAY Vless TLS            : 2083
 - V2RAY Vless None TLS       : 2052
 - Trojan                     : 2087
@@ -92,4 +92,4 @@ src="https://img.shields.io/badge/Service-V2ray-success.svg">  <img src= "https:
 	
 	            
 	
-	<p align="center"><img src="https://img.shields.io/badge/%20COPYRIGHT%20%C2%A9%202021-%20By%20PrinceNewbie%20VPN%2C%20Inc-blue"></p>
+	<p align="center"><img src="https://img.shields.io/badge/%20COPYRIGHT%20%C2%A9%202022-%20By%20PrinceNewbie%20VPN%2C%20Inc-blue"></p>
