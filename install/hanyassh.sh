@@ -163,19 +163,19 @@ socket = l:TCP_NODELAY=1
 socket = r:TCP_NODELAY=1
 
 [Ssltls]
-accept = 443
+accept = 110
 connect = 127.0.0.1:109
 
 [dropbear]
-accept = 442
+accept = 445
 connect = 127.0.0.1:143
 
 [websocketpython]
-accept = 99
-connect = 30000
+accept = 433
+connect = 700
 
 [openvpn]
-accept = 992
+accept = 442
 connect = 127.0.0.1:1194
 
 END
