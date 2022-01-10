@@ -51,13 +51,21 @@ echo -e  "  ║    \e[32;1mCity:\e[0m $CITY"
 echo -e  "  ║    \e[32;1mTime:\e[0m $WKT"
 echo -e  "  ║ " | lolcat
 echo -e  "  ╠════════════════════════════════════════════════════════════╗" | lolcat
-echo -e  "  ║                       ♠ MENU OPTIONS ♠                     ║" | lolcat
+echo -e  "  ║                     SSH & OpenVPN Menu                     ║" | lolcat 
 echo -e  "  ╠════════════════════════════════════════════════════════════╝" | lolcat
-echo -e  "  ║ " | lolcat
-echo -e  "  ║      [ 1 ] =>  >>  >>  SSH & OpenVPN"  | lolcat
-echo -e  "  ║ " | lolcat
-echo -e  "  ║      [ 2 ] =>  >>  >>  Panel SYSTEM" | lolcat
-echo -e  "  ║ " | lolcat
+echo -e  "  $bl║"| lolcat
+echo -e  "  $bl║\e[m$bd 1$bl]\e[m$bd Create SSH & OpenVPN Account"
+echo -e  "  $bl║\e[m$bd 2$bl]\e[m$bd Trial Account SSH & OpenVPN"
+echo -e  "  $bl║\e[m$bd 3$bl]\e[m$bd Renew SSH & OpenVPN Account"
+echo -e  "  $bl║\e[m$bd 4$bl]\e[m$bd Delete SSH & OpenVPN Account"
+echo -e  "  $bl║\e[m$bd 5$bl]\e[m$bd Check User Login SSH & OpenVPN"
+echo -e  "  $bl║\e[m$bd 6$bl]\e[m$bd List Member SSH & OpenVPN"
+echo -e  "  $bl║\e[m$bd 7$bl]\e[m$bd Delete User Expired SSH & OpenVPN"
+echo -e  "  $bl║\e[m$bd 8$bl]\e[m$bd Set up Autokill SSH"
+echo -e  "  $bl║\e[m$bd 9$bl]\e[m$bd Cek Users Who Do Multi Login SSH"
+echo -e  "  $bl║ " | lolcat
+echo -e  "  $bl║   [ 0 ] =>  >>  >>  Panel SYSTEM" | lolcat
+echo -e  "  $bl║ " | lolcat
 echo -e  "  ╠════════════════════════════════════════════════════════════╗" | lolcat
 echo -e  "  ║               Exit Panel Just Press Enter                  ║" | lolcat
 echo -e  "  ╠════════════════════════════════════════════════════════════╣" | lolcat
@@ -68,18 +76,58 @@ echo -e  "\e[1;31m"
 read -p  "           Select From Options :  " menu
 echo -e  "\e[0m"
 case $menu in
-       1)
-       clear
-       sssh
-       exit
-       ;;
-       2)
-       clear
-       system
-       exit
-       ;;
-       *)
-       sudo -i
-       exit
-       ;;
+	1)
+	clear
+	usernew
+	exit
+	;;
+	2)
+	clear
+	trial
+	exit
+	;;
+	3)
+	clear
+	renew
+	exit
+	;;
+	4)
+	clear
+	hapus
+	exit
+	;;
+	5)
+	clear
+	cek
+	exit
+	;;
+	6)
+	clear
+	member
+	exit
+	;;
+	7)
+	clear
+	delete
+	exit
+	;;
+	8)
+	clear
+	autokick
+	exit
+	;;
+	9)
+	clear
+	ceklim
+	exit
+	;;
+	0)
+        clear
+        system
+        exit
+        ;;
+        *)
+        sudo -i
+        exit
+        ;;
  esac
