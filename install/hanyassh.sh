@@ -1,6 +1,6 @@
 #!/bin/bash
 # Mod Has been updated
-# 
+# 2022
 # ==================================================
 
 GitUser="syapik96"
@@ -17,10 +17,10 @@ ver=$VERSION_ID
 country=US
 state=California
 locality=San Jose
-organization=Gilergames Inc
-organizationalunit=Gilergames Corp
-commonname=gilergames.tk
-email=admin@gilergames.tk
+organization=GilerGames, Inc
+organizationalunit=GilerGames Corp
+commonname=gilerspeednet.tk
+email=admin@gilerspeednet.tk
 
 # simple password minimal
 wget -O /etc/pam.d/common-password "https://raw.githubusercontent.com/${GitUser}/aws/main/password"
@@ -34,6 +34,7 @@ cat > /etc/systemd/system/rc-local.service <<-END
 [Unit]
 Description=/etc/rc.local
 ConditionPathExists=/etc/rc.local
+
 [Service]
 Type=forking
 ExecStart=/etc/rc.local start
@@ -41,6 +42,7 @@ TimeoutSec=0
 StandardOutput=tty
 RemainAfterExit=yes
 SysVStartPriority=99
+
 [Install]
 WantedBy=multi-user.target
 END
@@ -65,39 +67,56 @@ echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
 sed -i '$ i\echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' /etc/rc.local
 
 # set repo
-sh -c 'echo "deb http://download.webmin.com/download/repository sarge contrib" > /etc/apt/sources.list.d/webmin.list'
-apt install gnupg gnupg1 gnupg2 -y
-wget http://www.webmin.com/jcameron-key.asc
-apt-key add jcameron-key.asc
+#sh -c 'echo "deb http://download.webmin.com/download/repository sarge contrib" > /etc/apt/sources.list.d/webmin.list'
+#apt-get install gnupg gnupg1 gnupg2 -y
+# You may change its webmin version depends on the link you've loaded in this variable(.deb file only, do not load .zip or .tar.gz file):
+sudo apt-get install apt-transport-https gnupg2 curl
+sudo echo "deb https://download.webmin.com/download/repository sarge contrib" \ > /etc/apt/sources.list.d/webmin.list
+curl https://download.webmin.com/jcameron-key.asc | sudo apt-key add -
 
 #update
-apt update -y
-apt upgrade -y
-apt dist-upgrade -y
+apt-get update -y
+apt-get upgrade -y
+apt-get dist-upgrade -y
 
 # install wget and curl
-apt -y install wget curl
+apt-get -y install wget curl
 
-# set time GMT +7
+# set time GMT +8
 ln -fs /usr/share/zoneinfo/Asia/Singapore /etc/localtime
 
 # set locale
 sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 
 # install
-apt-get --reinstall --fix-missing install -y bzip2 gzip coreutils wget screen rsyslog iftop htop net-tools zip unzip wget net-tools curl nano sed screen gnupg gnupg1 bc apt-transport-https build-essential dirmngr libxml-parser-perl neofetch git
+apt-get install -y --fix-missing bzip2 gzip coreutils wget screen rsyslog iftop htop net-tools zip unzip wget net-tools curl nano sed screen gnupg gnupg1 bc apt-transport-https build-essential dirmngr libxml-parser-perl neofetch git
 echo "clear" >> .profile
 echo "prince" >> .profile
 
+# install webserver
 # install webserver
 apt -y install nginx
 cd
 rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
-wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/${GitUser}/aws/main/nginx.conf"
+wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/syapik96/aws/main/nginx.conf"
+
+Index_port='81'
+IPADDR=$(wget -qO- icanhazip.com);
+# creating page download Openvpn config file
 mkdir -p /home/vps/public_html
-echo "<pre>Setup Mod Updated By Prince@syapik96</pre>" > /home/vps/public_html/index.html
+wget -O /home/vps/public_html/index.html "https://raw.githubusercontent.com/syapik96/aws/main/lain2/index.html"
+
+# Setting template's correct name,IP address and nginx Port Page Openvpn
+sed -i "s|NGINXPORT|$Index_port|g" /home/vps/public_html/index.html
+sed -i "s|IP-ADDRESS|$IPADDR|g" /home/vps/public_html/index.html
+
+# mkdir -p /home/vps/public_html
+# echo "<pre>Setup Mod Updated By Prince@syapik96</pre>" > /home/vps/public_html/index.html
 wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/${GitUser}/aws/main/vps.conf"
+# openport 81 for page /home/vps/public_html/index.html
+sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 81 -j ACCEPT
+sudo netfilter-persistent save
 /etc/init.d/nginx restart
 
 # install badvpnCDN
@@ -120,10 +139,15 @@ sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-c
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7400 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7500 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7600 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7800 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7900 --max-clients 500
 
 # setting port ssh
 sed -i 's/Port 22/Port 22/g' /etc/ssh/sshd_config
-sed -i 's/Port 40000/g' /etc/ssh/sshd_config
+sed -i '/Port 40000/g' /etc/ssh/sshd_config
 
 # install dropbear
 apt -y install dropbear
@@ -154,8 +178,8 @@ sed -i 's/Interface "'""eth0""'"/Interface "'""$NET""'"/g' /etc/vnstat.conf
 chown vnstat:vnstat /var/lib/vnstat -R
 systemctl enable vnstat
 /etc/init.d/vnstat restart
-rm -f /root/vnstat-2.6.tar.gz 
-rm -rf /root/vnstat-2.6
+rm -f /root/vnstat-2.8.tar.gz 
+rm -rf /root/vnstat-2.8
 
 # install webmin
 apt install webmin -y
@@ -307,8 +331,8 @@ chmod +x tendang
 chmod +x ceklim
 chmod +x ram
 chmod +x renew
-chmod +x system
 chmod +x clear-log
+chmod +x system
 
 # remove unnecessary files
 apt -y autoclean
@@ -335,6 +359,11 @@ chown -R www-data:www-data /home/vps/public_html
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7400 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7500 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7600 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7800 --max-clients 500
+screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7900 --max-clients 500
 
 history -c
 echo "unset HISTFILE" >> /etc/profile
