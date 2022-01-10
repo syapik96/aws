@@ -156,8 +156,13 @@ tar zxvf vnstat-2.6.tar.gz
 cd vnstat-2.6
 ./configure --prefix=/usr --sysconfdir=/etc && make && make install
 cd
-vnstat -u -i $NET
+source /etc/vnstat.conf
+if [[ "$Interface" = "" ]]; then
+sed -i 's/Interface "'""""'"/Interface "'""$NET""'"/g' /etc/vnstat.conf
+else
 sed -i 's/Interface "'""eth0""'"/Interface "'""$NET""'"/g' /etc/vnstat.conf
+fi
+vnstat -u -i $NET
 chown vnstat:vnstat /var/lib/vnstat -R
 systemctl enable vnstat
 /etc/init.d/vnstat restart
@@ -190,7 +195,7 @@ socket = l:TCP_NODELAY=1
 socket = r:TCP_NODELAY=1
 
 [dropbear]
-accept = 443
+accept = 442
 connect = 127.0.0.1:143
 
 [dropbear2]
@@ -202,8 +207,8 @@ accept = 2021
 connect = 127.0.0.1:109
 
 [websocketstunnel]
-accept = 5052
-connect = 553
+accept = 443
+connect = 700
 
 [openvpn]
 accept = 992
@@ -222,12 +227,6 @@ sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/stunnel4
 #/etc/init.d/stunnel4 restart
 systemctl restart stunnel4
 
-#install sslh
-#apt-get install sslh -y
-#rm /etc/default/sslh
-#wget -O /etc/default/sslh "/etc/default/sslh https://raw.githubusercontent.com/syapik96/aws/main/lain2/sslh.conf"
-#service sslh restart
-
 #OpenVPN
 wget "https://raw.githubusercontent.com/syapik96/aws/main/install/vpn.sh"
 chmod +x vpn.sh
@@ -244,12 +243,14 @@ screen -S websocket ./websocket.sh
 
 # install badvpnCDN
 cd $HOME
-wget https://github.com/ambrop72/badvpn/archive/master.zip
-unzip master.zip
-cd badvpn-master
+https://github.com/ambrop72/badvpn/archive/refs/tags/1.999.130.zip
+unzip 1.999.130.zip
+cd 1.999.130
 mkdir build
 cmake .. -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_UDPGW=1
 sudo make install
+cd
+rm 1.999.130.zip
 
 sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500' /etc/rc.local
 sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500' /etc/rc.local
@@ -342,7 +343,7 @@ wget -O member "https://raw.githubusercontent.com/${GitUser}/aws/main/member.sh"
 wget -o webmin "https://raw.githubusercontent.com/${GitUser}/aws/main/webmin.sh" && chmod +x webmin
 wget -O delete "https://raw.githubusercontent.com/${GitUser}/aws/main/hapus/delete.sh" && chmod +x delete
 wget -O cek "https://raw.githubusercontent.com/${GitUser}/aws/main/cek.sh" && chmod +x cek
-wget -O restart "https://raw.githubusercontent.com/${GitUser}/aws/main/restart.sh" && chmod +x restart
+wget -O restart "https://raw.githubusercontent.com/${GitUser}/aws/main/restart1.sh" && chmod +x restart
 wget -O speedtest "https://github.com/${GitUser}/aws/raw/main/speedtest_cli.py" && chmod +x speedtest
 wget -O info "https://raw.githubusercontent.com/${GitUser}/aws/main/info.sh" && chmod +x info
 wget -O ram "https://raw.githubusercontent.com/${GitUser}/aws/main/ram.sh" && chmod +x ram
@@ -367,7 +368,7 @@ apt -y autoremove;
 
 # finishing
 cd
-#chown -R www-data:www-data /home/vps/public_html
+chown -R www-data:www-data /home/vps/public_html
 /etc/init.d/nginx restart
 /etc/init.d/openvpn restart
 /etc/init.d/cron restart
