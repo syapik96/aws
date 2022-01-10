@@ -18,7 +18,7 @@ User=root
 CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 NoNewPrivileges=true
-ExecStart=/usr/bin/python -O /usr/local/bin/edu-ovpn 2082
+ExecStart=/usr/bin/python -O /usr/local/bin/edu-ovpn
 Restart=on-failure
 
 [Install]
@@ -74,7 +74,7 @@ User=root
 CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 NoNewPrivileges=true
-ExecStart=/usr/bin/python -O /usr/local/bin/ws-stunnel 700
+ExecStart=/usr/bin/python -O /usr/local/bin/ws-stunnel
 Restart=on-failure
 
 [Install]
@@ -102,7 +102,7 @@ User=root
 CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 NoNewPrivileges=true
-ExecStart=/usr/bin/python -O /usr/local/bin/edu-openssh 100
+ExecStart=/usr/bin/python -O /usr/local/bin/edu-openssh
 Restart=on-failure
 
 [Install]
