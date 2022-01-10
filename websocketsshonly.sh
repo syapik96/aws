@@ -18,7 +18,7 @@ User=root
 CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 NoNewPrivileges=true
-ExecStart=/usr/bin/python -O /usr/local/bin/edu-ovpn 2099
+ExecStart=/usr/bin/python -O /usr/local/bin/edu-ovpn 2082
 Restart=on-failure
 
 [Install]
@@ -46,7 +46,7 @@ User=root
 CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
 NoNewPrivileges=true
-ExecStart=/usr/bin/python -O /usr/local/bin/ws-dropbear 80
+ExecStart=/usr/bin/python -O /usr/local/bin/ws-dropbear 
 Restart=on-failure
 
 [Install]
