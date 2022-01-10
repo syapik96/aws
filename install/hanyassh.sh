@@ -101,10 +101,20 @@ echo "<pre>Setup Mod Updated By Prince@syapik96</pre>" > /home/vps/public_html/i
 wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/${GitUser}/aws/main/vps.conf"
 /etc/init.d/nginx restart
 
+# install badvpnCDN
+cd $HOME
+https://github.com/ambrop72/badvpn/archive/refs/tags/1.999.130.zip
+unzip 1.999.130.zip
+cd 1.999.130
+mkdir build
+cmake .. -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_UDPGW=1
+sudo make install
+
 # install badvpn
 cd
-wget -O /usr/bin/badvpn-udpgw "https://github.com/${GitUser}/aws/raw/main/badvpn-udpgw64"
-chmod +x /usr/bin/badvpn-udpgw
+rm 1.999.130.zip
+# wget -O /usr/bin/badvpn-udpgw "https://github.com/${GitUser}/aws/raw/main/badvpn-udpgw64"
+# chmod +x /usr/bin/badvpn-udpgw
 sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7100 --max-clients 500' /etc/rc.local
 sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500' /etc/rc.local
 sed -i '$ i\screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500' /etc/rc.local
@@ -120,7 +130,7 @@ sed -i 's/Port 40000/g' /etc/ssh/sshd_config
 apt -y install dropbear
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
 sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=143/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 50000 -p 109"/g' /etc/default/dropbear
+sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 50000 -p 109 -p 69"/g' /etc/default/dropbear
 echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
 /etc/init.d/dropbear restart
@@ -140,8 +150,13 @@ tar zxvf vnstat-2.6.tar.gz
 cd vnstat-2.6
 ./configure --prefix=/usr --sysconfdir=/etc && make && make install 
 cd
-vnstat -u -i $NET
+source /etc/vnstat.conf
+if [[ ${Interface} = "" ]]; then
+sed -i 's/Interface "'""""'"/Interface "'""$NET""'"/g' /etc/vnstat.conf
+else
 sed -i 's/Interface "'""eth0""'"/Interface "'""$NET""'"/g' /etc/vnstat.conf
+fi
+vnstat -u -i $NET
 chown vnstat:vnstat /var/lib/vnstat -R
 systemctl enable vnstat
 /etc/init.d/vnstat restart
