@@ -15,7 +15,7 @@ ver=$VERSION_ID
 
 #detail nama perusahaan
 country=US
-state=Carlifonia
+state=California
 locality=San Jose
 organization=Gilergames Inc
 organizationalunit=Gilergames Corp
@@ -87,8 +87,7 @@ sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 # install
 apt-get --reinstall --fix-missing install -y bzip2 gzip coreutils wget screen rsyslog iftop htop net-tools zip unzip wget net-tools curl nano sed screen gnupg gnupg1 bc apt-transport-https build-essential dirmngr libxml-parser-perl neofetch git
 echo "clear" >> .profile
-echo "neofetch" >> .profile
-echo "echo Mod by zulhisyam421" >> .profile
+echo "prince" >> .profile
 
 # install webserver
 apt -y install nginx
@@ -103,7 +102,7 @@ wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/${GitUser}
 
 # install badvpnCDN
 cd $HOME
-https://github.com/ambrop72/badvpn/archive/refs/tags/1.999.130.zip
+wget https://github.com/ambrop72/badvpn/archive/refs/tags/1.999.130.zip
 unzip 1.999.130.zip
 cd 1.999.130
 mkdir build
@@ -111,7 +110,7 @@ cmake .. -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_UDPGW=1
 sudo make install
 
 # install badvpn
-cd
+cd $HOME
 rm 1.999.130.zip
 # wget -O /usr/bin/badvpn-udpgw "https://github.com/${GitUser}/aws/raw/main/badvpn-udpgw64"
 # chmod +x /usr/bin/badvpn-udpgw
@@ -145,18 +144,13 @@ sed -i $MYIP2 /etc/squid/squid.conf
 apt -y install vnstat
 /etc/init.d/vnstat restart
 apt -y install libsqlite3-dev
-wget https://humdi.net/vnstat/vnstat-2.6.tar.gz
-tar zxvf vnstat-2.6.tar.gz
-cd vnstat-2.6
+wget https://github.com/vergoh/vnstat/releases/download/v2.8/vnstat-2.8.tar.gz
+tar zxvf vnstat-2.8.tar.gz
+cd vnstat-2.8
 ./configure --prefix=/usr --sysconfdir=/etc && make && make install 
 cd
-source /etc/vnstat.conf
-if [[ ${Interface} = "" ]]; then
-sed -i 's/Interface "'""""'"/Interface "'""$NET""'"/g' /etc/vnstat.conf
-else
-sed -i 's/Interface "'""eth0""'"/Interface "'""$NET""'"/g' /etc/vnstat.conf
-fi
 vnstat -u -i $NET
+sed -i 's/Interface "'""eth0""'"/Interface "'""$NET""'"/g' /etc/vnstat.conf
 chown vnstat:vnstat /var/lib/vnstat -R
 systemctl enable vnstat
 /etc/init.d/vnstat restart
@@ -272,7 +266,8 @@ netfilter-persistent reload
 cd /usr/bin
 wget -O add-host "https://raw.githubusercontent.com/${GitUser}/aws/main/tambah/add-host.sh"
 wget -O about "https://raw.githubusercontent.com/${GitUser}/aws/main/about.sh"
-wget -O menu "https://raw.githubusercontent.com/${GitUser}/aws/main/menu.sh"
+wget -O prince "https://raw.githubusercontent.com/${GitUser}/aws/main/prince.sh"
+wget -O menu "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/menusshonly.sh"
 wget -O usernew "https://raw.githubusercontent.com/${GitUser}/aws/main/usernew.sh"
 wget -O trial "https://raw.githubusercontent.com/${GitUser}/aws/main/trial.sh"
 wget -O hapus "https://raw.githubusercontent.com/${GitUser}/aws/main/hapus/hapus.sh"
@@ -280,7 +275,7 @@ wget -O member "https://raw.githubusercontent.com/${GitUser}/aws/main/member.sh"
 wget -o webmin "https://raw.githubusercontent.com/${GitUser}/aws/main/webmin.sh"
 wget -O delete "https://raw.githubusercontent.com/${GitUser}/aws/main/hapus/delete.sh"
 wget -O cek "https://raw.githubusercontent.com/${GitUser}/aws/main/cek.sh"
-wget -O restart "https://raw.githubusercontent.com/${GitUser}/aws/main/restart.sh"
+wget -O restart "https://raw.githubusercontent.com/${GitUser}/aws/main/restart1.sh"
 wget -O speedtest "https://github.com/${GitUser}/aws/raw/main/speedtest_cli.py"
 wget -O info "https://raw.githubusercontent.com/${GitUser}/aws/main/info.sh"
 wget -O ram "https://raw.githubusercontent.com/${GitUser}/aws/main/ram.sh"
@@ -289,10 +284,12 @@ wget -O autokick "https://raw.githubusercontent.com/${GitUser}/aws/main/autokick
 wget -O ceklim "https://raw.githubusercontent.com/${GitUser}/aws/main/ceklim.sh"
 wget -O tendang "https://raw.githubusercontent.com/${GitUser}/aws/main/tendang.sh"
 wget -O clear-log "https://raw.githubusercontent.com/${GitUser}/aws/main/clear-log.sh"
+wget -O system "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/system00.sh"
 
 echo "0 5 * * * root clear-log && reboot" >> /etc/crontab
 
 chmod +x add-host
+chmod +x prince
 chmod +x menu
 chmod +x usernew
 chmod +x trial
@@ -310,6 +307,7 @@ chmod +x tendang
 chmod +x ceklim
 chmod +x ram
 chmod +x renew
+chmod +x system
 chmod +x clear-log
 
 # remove unnecessary files
