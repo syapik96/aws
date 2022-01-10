@@ -61,8 +61,8 @@ echo -e  "  ║ " | lolcat
 echo -e  "  ╠════════════════════════════════════════════════════════════╗" | lolcat
 echo -e  "  ║               Exit Panel Just Press Enter                  ║" | lolcat
 echo -e  "  ╠════════════════════════════════════════════════════════════╣" | lolcat
-echo -e  "  ║           🔰 COPYRIGHT © 2021 OnePieceVPN, Inc 🔰           ║" | lolcat
-echo -e  "  ║                  POWERED BY PRINCENEWBIE                   ║" | lolcat
+echo -e  "  ║           Copyright © 2022 by Github.com/syapik96          ║" | lolcat
+echo -e  "  ║            🔰Auto-Script is Powered by PRINCE.🔰           ║" | lolcat
 echo -e  "  ╚════════════════════════════════════════════════════════════╝" | lolcat
 echo -e  "\e[1;31m"
 read -p  "           Select From Options :  " menu
