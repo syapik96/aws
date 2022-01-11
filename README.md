@@ -64,7 +64,7 @@ src="https://img.shields.io/badge/Service-V2ray-success.svg">  <img src= "https:
 - WebScket Python SSL/TLS    : 443
 - OpenVPN-WS Python          : 2099
 - OpenVPN                    : TCP 1194, UDP 2200, SSL 442
-- Stunnel4 SSL/TLS           : 110, 777
+- Stunnel4 SSL/TLS           : 445, 777
 - Dropbear                   : 143,109, 69
 - Squid Proxy                : 3128,8000,8080 (limit to IP Server)
 - Badvpn                     : 7100-7900
