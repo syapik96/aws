@@ -187,7 +187,7 @@ apt install stunnel4 -y
 # pid = /var/run/stunnel.pid
 # pid = /var/run/stunnel4.pid
 
-cat > /etc/stunnel/stunnel.conf <<-EOF
+cat > /etc/stunnel/stunnel.conf <<EOF
 cert = /etc/stunnel/stunnel.pem
 client = no
 socket = a:SO_REUSEADDR=1
@@ -195,25 +195,20 @@ socket = l:TCP_NODELAY=1
 socket = r:TCP_NODELAY=1
 
 [dropbear]
-accept = 442
+accept = 445
 connect = 127.0.0.1:143
 
 [dropbear2]
 accept = 777
 connect = 127.0.0.1:22
 
-[websocketdropbear]
-accept = 2021
-connect = 127.0.0.1:109
-
-[websocketstunnel]
+[wsssltls]
 accept = 443
 connect = 700
 
 [openvpn]
-accept = 992
+accept = 442
 connect = 127.0.0.1:1194
-
 EOF
 
 # make a certificate
