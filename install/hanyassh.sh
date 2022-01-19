@@ -195,7 +195,7 @@ socket = a:SO_REUSEADDR=1
 socket = l:TCP_NODELAY=1
 socket = r:TCP_NODELAY=1
 
-[Ssltls]
+[Ssldropbear]
 accept = 110
 connect = 127.0.0.1:109
 
@@ -203,9 +203,13 @@ connect = 127.0.0.1:109
 accept = 445
 connect = 127.0.0.1:143
 
-[websocketpython]
+[ws-ssltls]
 accept = 433
 connect = 700
+
+[wes-openvpn]
+accept = 992
+connect = 2099
 
 [openvpn]
 accept = 442
