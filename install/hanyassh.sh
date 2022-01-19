@@ -204,7 +204,7 @@ accept = 445
 connect = 127.0.0.1:143
 
 [ws-ssltls]
-accept = 433
+accept = 443
 connect = 700
 
 [wes-openvpn]
