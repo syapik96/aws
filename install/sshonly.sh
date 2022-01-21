@@ -31,7 +31,7 @@ echo "IP=$host" >> /var/lib/premium-script/ipvps.conf
 echo "$host" >> /root/domain
 GitUser="syapik96"
 wget https://raw.githubusercontent.com/${GitUser}/aws/main/install/hanyassh.sh && chmod +x hanyassh.sh && screen -S hanyassh.sh ./hanyassh.sh
-wget https://raw.githubusercontent.com/${GitUser}/aws/main/websocketsshonly.sh && chmod +x websocketsshonly.sh && screen -S websocketsshonly.sh ./websocket.sh
+wget https://raw.githubusercontent.com/${GitUser}/aws/main/websocketsshonly.sh && chmod +x websocketsshonly.sh && screen -S websocketsshonly.sh ./websocketsshonly.sh
 rm -f /root/hanyassh.sh
 rm -f /root/websocketsshonly.sh
 history -c
