@@ -16,11 +16,11 @@ ver=$VERSION_ID
 
 #detail nama perusahaan
 country=US
-state=San Jose
-locality=Oracle
-organization=www.gilergames.tk
-organizationalunit=ssh.gilergames.tk
-commonname=gilergames
+state=California
+locality=San Jose
+organization=Gilergames, Inc
+organizationalunit=Gilergames, Inc
+commonname=ssh.gilergames.tk
 email=admin@gilergames.tk
 
 # simple password minimal
@@ -49,7 +49,7 @@ apt-get install -y --fix-missing
 # go to root
 cd
 # Edit file /etc/systemd/system/rc-local.service
-cat > /etc/systemd/system/rc-local.service <<-EOF
+cat > /etc/systemd/system/rc-local.service <<EOF
 [Unit]
 Description=/etc/rc.local
 ConditionPathExists=/etc/rc.local
@@ -64,16 +64,15 @@ SysVStartPriority=99
 
 [Install]
 WantedBy=multi-user.target
-
 EOF
 
 # nano /etc/rc.local
-cat > /etc/rc.local <<-EOF2
+cat > /etc/rc.local <<EOF
 #!/bin/sh -e
 # rc.local
 # By default this script does nothing.
 exit 0
-EOF2
+EOF
 
 # Ubah izin akses
 chmod +x /etc/rc.local
@@ -101,15 +100,13 @@ sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 # set ./bash.rc
 echo "clear" >> .profile
 echo "prince" >> .profile
-#echo "echo '[    AutoScript by PrinceNewbie    ]' | lolcat " >> .profile
-#echo "echo '[     VPN Panel Manager : menu     ]' | lolcat " >> .profile
-#echo "echo '[  Copyright © 2022 Prince Newbie  ]' | lolcat " >> .profile
+
 
 # install webserver
 apt -y install nginx
 cd
-rm /etc/nginx/sites-enabled/default
-rm /etc/nginx/sites-available/default
+#rm /etc/nginx/sites-enabled/default
+#rm /etc/nginx/sites-available/default
 wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/syapik96/aws/main/nginx.conf"
 
 Index_port='81'
@@ -130,7 +127,7 @@ cd
 # setting port ssh
 sed -i 's/Port 22/Port 22/g' /etc/ssh/sshd_config
 sed -i '/Port 40000/g' /etc/ssh/sshd_config
-sed -i '/Port 226/g' /etc/ssh/sshd_config
+
 
 # install dropbear
 apt-get -y install dropbear
@@ -156,13 +153,8 @@ tar zxvf vnstat-2.6.tar.gz
 cd vnstat-2.6
 ./configure --prefix=/usr --sysconfdir=/etc && make && make install
 cd
-source /etc/vnstat.conf
-if [[ "$Interface" = "" ]]; then
-sed -i 's/Interface "'""""'"/Interface "'""$NET""'"/g' /etc/vnstat.conf
-else
-sed -i 's/Interface "'""eth0""'"/Interface "'""$NET""'"/g' /etc/vnstat.conf
-fi
 vnstat -u -i $NET
+sed -i 's/Interface "'""eth0""'"/Interface "'""$NET""'"/g' /etc/vnstat.conf
 chown vnstat:vnstat /var/lib/vnstat -R
 systemctl enable vnstat
 /etc/init.d/vnstat restart
@@ -196,13 +188,13 @@ socket = r:TCP_NODELAY=1
 
 [dropbear]
 accept = 445
-connect = 127.0.0.1:143
+connect = 127.0.0.1:109
 
-[dropbear2]
+[dropbear]
 accept = 777
 connect = 127.0.0.1:22
 
-[wsssltls]
+[ws-ssl]
 accept = 443
 connect = 700
 
@@ -222,15 +214,15 @@ sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/stunnel4
 #/etc/init.d/stunnel4 restart
 systemctl restart stunnel4
 
-#OpenVPN
-wget "https://raw.githubusercontent.com/syapik96/aws/main/install/vpn.sh"
-chmod +x vpn.sh
-./vpn.sh
-
 # websocket-python
 wget "https://raw.githubusercontent.com/syapik96/aws/main/websocket-python/websocket.sh"
 chmod +x websocket.sh
 screen -S websocket ./websocket.sh
+#OpenVPN
+
+wget "https://raw.githubusercontent.com/syapik96/aws/main/install/vpn.sh"
+chmod +x vpn.sh
+./vpn.sh
 
 # install badvpn
 #wget -O /usr/bin/badvpn-udpgw "https://github.com/syapik96/aws/raw/main/badvpn-udpgw64"
@@ -257,10 +249,6 @@ screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7400 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7500 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7600 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7700 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7800 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7900 --max-clients 500
 
 # install fail2ban
 apt -y install fail2ban
@@ -378,10 +366,6 @@ screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7200 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7400 --max-clients 500
 screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7500 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7600 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7700 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7800 --max-clients 500
-screen -dmS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7900 --max-clients 500
 
 history -c
 echo "unset HISTFILE" >> /etc/profile
@@ -389,9 +373,9 @@ echo "unset HISTFILE" >> /etc/profile
 cd
 rm /root/master.zip
 rm -f /root/ssh-vpn.sh
-mkdir /root/folder
-mv /root/cert.pem /root/folder/cert.pem
-mv /root/key.pem /root/folder/key.pem 
+mkdir /root/folderCert
+mv /root/cert.pem /root/folderCert/cert.pem
+mv /root/key.pem /root/folderCert/key.pem 
 
 # finihsing
 clear
