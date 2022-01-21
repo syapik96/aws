@@ -1,5 +1,5 @@
 #!/bin/bash
-# Mod Has been updated
+# Mod Has been updated by Prince 
 # 2022
 # ==================================================
 
@@ -18,8 +18,8 @@ country=US
 state=California
 locality=San Jose
 organization=GilerGames, Inc
-organizationalunit=GilerGames Corp
-commonname=gilerspeednet.tk
+organizationalunit=GilerGames, Inc
+commonname=server
 email=admin@gilerspeednet.tk
 
 # simple password minimal
@@ -175,6 +175,7 @@ cd vnstat-2.8
 cd
 vnstat -u -i $NET
 sed -i 's/Interface "'""eth0""'"/Interface "'""$NET""'"/g' /etc/vnstat.conf
+sed -i 's/Interface "'""""'"/Interface "'""$NET""'"/g' /etc/vnstat.conf
 chown vnstat:vnstat /var/lib/vnstat -R
 systemctl enable vnstat
 /etc/init.d/vnstat restart
@@ -188,34 +189,33 @@ sed -i 's/ssl=1/ssl=0/g' /etc/webmin/miniserv.conf
 
 # install stunnel
 apt install stunnel4 -y
-cat > /etc/stunnel/stunnel.conf <<END
+cat > /etc/stunnel/stunnel.conf <<EOF
 cert = /etc/stunnel/stunnel.pem
 client = no
 socket = a:SO_REUSEADDR=1
 socket = l:TCP_NODELAY=1
 socket = r:TCP_NODELAY=1
 
-[Ssldropbear]
-accept = 110
+[dropbear]
+accept = 445
 connect = 127.0.0.1:109
 
 [dropbear]
-accept = 445
-connect = 127.0.0.1:143
+accept = 777
+connect = 127.0.0.1:33
 
-[ws-ssltls]
+[ws-ssl]
 accept = 443
 connect = 700
 
-[wes-openvpn]
+[ws-openvpn]
 accept = 992
 connect = 2099
 
 [openvpn]
 accept = 442
 connect = 127.0.0.1:1194
-
-END
+EOF
 
 # make a certificate
 openssl genrsa -out key.pem 2048
@@ -373,7 +373,7 @@ history -c
 echo "unset HISTFILE" >> /etc/profile
 
 cd /root/
-rm -f /root/ssh-vpn.sh
+rm -f /root/hanyassh.sh
 
 # finihsing
 clear
