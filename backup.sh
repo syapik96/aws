@@ -1,14 +1,24 @@
 #!/bin/bash
+#
+# ===========================
+
 IP=$(wget -qO- icanhazip.com);
 date=$(date +"%Y-%m-%d")
 clear
-echo " Enter Your Email To Receive Message"
+echo ""
+echo "#######################################" | lolcat
+echo ""
+echo "  \e[1;32mEnter Your Email To Receive Message\e[0m"
+echo ""
+echo "########=[ POWERED BY PRINCE ]=########" | lolcat
+echo "\e[1;31"
 read -rp " Email: " -e email
+echo "\e[0m"
 sleep 1
-echo Membuat Directory
+echo -e " \e[1;31mCreating  Directory Backup"
 mkdir /root/backup
 sleep 1
-echo Start Backup
+echo -e " \e[1;31mStart Backup\e[0m"
 clear
 cp /etc/passwd backup/
 cp /etc/group backup/
