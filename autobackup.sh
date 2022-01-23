@@ -13,7 +13,11 @@ fi
 function start() {
 email=$(cat /home/email)
 if [[ "$email" = "" ]]; then
-echo "Please enter your email"
+echo -e "==================================" | lolcat
+echo -e "  \e[1;32mPlease enter your email (gmail)"
+echo -e "  to save your backup files\e[0m"
+echo -e "==================================" | lolcat
+echo -e ""
 read -rp "Email: " -e email
 cat > /home/email <<EOF
 $email
@@ -27,9 +31,10 @@ EOF
 service cron restart
 sleep 1
 echo " Please Wait"
+sleep 1
 clear
 echo " Autobackup Has Been Started"
-echo " Data Will Be Backed Up Automatically at 00:05 GMT +7"
+echo " Data Will Be Backed Up Automatically at 05:00 GMT +8"
 exit 0
 }
 function stop() {
@@ -63,6 +68,6 @@ elif [[ "$num" = "2" ]]; then
 stop
 else
 clear
-echo -e "\e[1;31mYou Entered The Wrong Number\e[0m"
+echo -e "\e[1;31mInvalid key !! Please Enter The Correct Number\e[0m"
 menu
 fi
