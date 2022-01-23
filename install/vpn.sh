@@ -240,7 +240,7 @@ cp /etc/openvpn/client-tcp-1194.ovpn /home/vps/public_html/client-tcp-1194.ovpn
 
 # 2200
 # Enter the certificate into the UDP 2200 client config
-cho '<ca>' >> /etc/openvpn/client-udp-2200.ovpn
+cat '<ca>' >> /etc/openvpn/client-udp-2200.ovpn
 cat '/etc/openvpn/ca.crt' >> /etc/openvpn/client-udp-2200.ovpn
 echo '</ca>' >> /etc/openvpn/client-udp-2200.ovpn
 
