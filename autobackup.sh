@@ -1,4 +1,6 @@
 #!/bin/bash
+# Updated by Prince
+
 Green_font_prefix="\033[32m" && Red_font_prefix="\033[31m" && Green_background_prefix="\033[42;37m" && Red_background_prefix="\033[41;37m" && Font_color_suffix="\033[0m"
 Info="${Green_font_prefix}[ON]${Font_color_suffix}"
 Error="${Red_font_prefix}[OFF]${Font_color_suffix}"
@@ -13,11 +15,11 @@ email=$(cat /home/email)
 if [[ "$email" = "" ]]; then
 echo "Please enter your email"
 read -rp "Email: " -e email
-cat <<EOF>>/home/email
+cat > /home/email <<EOF
 $email
 EOF
 fi
-cat << EOF >> /etc/crontab
+cat > /etc/crontab <<EOF
 # BEGIN_Backup
 5 0 * * * root bckp
 # END_Backup
@@ -42,20 +44,25 @@ echo " Autobackup Has Been Stopped"
 exit 0
 }
 clear
-echo -e " =============================="
-echo -e "         Autobackup Data       "
-echo -e " =============================="
-echo -e " Status $sts"
+echo -e " ==============================" | lolcat
+echo -e "         Autobackup Data       " | lolcat
+echo -e " ==============================" | lolcat
+echo -e "  Status \e[1;31m$sts\e[0m "
+echo -e ""
 echo -e "  1. Start Autobackup"
 echo -e "  2. Stop Autobackup"
-echo -e " Press CTRL+C to return"
+echo -e " "
+echo -e " \e[1;31mPress CTRL+C\e[0m to return"
+echo -e " ==============================" | lolcat
+echo -e "\e[1;32m"
 read -rp " Please Enter The Correct Number : " -e num
+echo -e "\e[0m"
 if [[ "$num" = "1" ]]; then
 start
 elif [[ "$num" = "2" ]]; then
 stop
 else
 clear
-echo " You Entered The Wrong Number"
+echo -e "\e[1;31mYou Entered The Wrong Number\e[0m"
 menu
 fi
