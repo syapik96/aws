@@ -1,29 +1,32 @@
 #!/bin/bash
+# Update By Prince
+
 red='\e[1;31m'
 green='\e[0;32m'
 NC='\e[0m'
 bd='\e[1m'
 bl='\e[36;1m'
-MYIP=$(wget -qO- ifconfig.co);
-echo "Checking VPS"
+
 clear
-echo -e ""
-figlet SSR/SS | lolcat
-echo -e " ╠═══════════════════════════════════════╣" | lolcat
-echo -e " ║            PANEL SSR & SS             ║" | lolcat
-echo -e " ╠═══════════════════════════════════════╣" | lolcat
-echo -e " $bd║\e[m"
-echo -e " $bd║\e[m 1$bl]\e[m$bd  Create SSR Account"
-echo -e " $bd║\e[m 2$bl]\e[m$bd  Create Shadowsocks Account"
-echo -e " $bd║\e[m 3$bl]\e[m$bd  Deleting SSR Account"
-echo -e " $bd║\e[m 4$bl]\e[m$bd  Delete Shadowsocks Account"
-echo -e " $bd║\e[m 5$bl]\e[m$bd  Renew SSR Account Active"
-echo -e " $bd║\e[m 6$bl]\e[m$bd  Renew Shadowsocks Account"
-echo -e " $bd║\e[m 7$bl]\e[m$bd  Show Other SSR Menu"
-echo -e " $bd║\e[m"
-echo -e " ╠═══════════════════════════════════════╣" | lolcat
-echo -e " ║  0]  RETURN  MENU                     ║"   | lolcat
-echo -e " ╠═══════════════════════════════════════╣" | lolcat
+figlet -f slant "Shadowsocks & SSR" | lolcat
+echo -e " "
+echo -e " ╠════════════════════════════════╣" | lolcat
+echo -e " ║                 PANEL SS & SSR                      ║" | lolcat
+echo -e " ╠════════════════════════════════╣" | lolcat
+echo -e " $bd║     \e[m"
+echo -e " $bd║     \e[m 1$bl]\e[m$bd  Create SSR Account"
+echo -e " $bd║     \e[m 2$bl]\e[m$bd  Create Shadowsocks Account"
+echo -e " $bd║     \e[m 3$bl]\e[m$bd  Deleting SSR Account"
+echo -e " $bd║     \e[m 4$bl]\e[m$bd  Delete Shadowsocks Account"
+echo -e " $bd║     \e[m 5$bl]\e[m$bd  Renew SSR Account Active"
+echo -e " $bd║     \e[m 6$bl]\e[m$bd  Renew Shadowsocks Account"
+echo -e " $bd║     \e[m 7$bl]\e[m$bd  Show Other SSR Menu"
+echo -e " $bd║     \e[m"
+echo -e " ╠════════════════════════════════╣" | lolcat
+echo -e " ║           ${red}0${NC} ${green}]${NC} RETURN  MENU               ║"
+echo -e " ╠════════════════════════════════╣" | lolcat
+echo -e " ║       COPYRIGHT © 2022 Prince`aka`syapik96          ║" | lolcat
+echo -e " ╠════════════════════════════════╣" | lolcat
 echo -e ""
 read -p "     Please Input Number  :  "  ssssr
 echo -e ""
