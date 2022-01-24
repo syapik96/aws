@@ -96,11 +96,11 @@ echo -e "        ${green}Your Domain / Hostname has been saved${NC}"
 echo -e "\e[1;41m==========================================================\e[0m"
 echo -e "${yellow}"
 echo -e "  The script will start running the installation in 5sec"
-echo -e " 
+echo -e " "
 echo -e "   it will take 5 or 6 min to finish , sit back n relax"
 echo -e "${NC}"
 echo -e "\e[1;41m==========================================================\e[0m"
-sleep 5
+sleep 3
 clear 
 cd
 GitUser="syapik96"
