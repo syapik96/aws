@@ -85,7 +85,7 @@ echo -e " If don't have domain you can use IP-ADD instead, but cert v2ray will \
 echo -e "\e[1;104m\e[1;32===================================================================================\e[0m"
 echo -e "\e[1;33m"
 read -rp "    Domain/Host: " -e host
-echo-e "\e[0m"
+echo -e "\e[0m"
 domain="$host"
 echo "IP=$domain" >> /var/lib/premium-script/ipvps.conf
 echo "$domain" >> /etc/v2ray/domain
@@ -177,5 +177,8 @@ echo -e "\e[97m------------\e[0m\e[100m\e[97mCopyright © 2022 \e[1;104mBy Gitub
 echo ""  | tee -a log-install.txt
 echo -e " Telegram : t.me/PrinceNewbie" | tee -a log-install.txt
 echo "" | tee -a log-install.txt
-sleep 10
+sleep 8
+clear 
+figlet -f slant "Good Bye By Prince" | lolcat
+sleep 2
 reboot
