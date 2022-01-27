@@ -29,9 +29,10 @@ echo -e  "  ╠═════════════════════�
 echo -e  "  ║    COPYRIGHT 2021 OnePieceVPN Inc     ║" | lolcat
 echo -e  "  ╚═══════════════════════════════════════╝" | lolcat
 echo -e "\e[1;32m"
-read -p "     Please select an option :  "  trojan
+read -p "     Please select an option :  " trojann
 echo -e "\e[0m"
-case $trojan in
+while true; do
+ case $trojann in
       1)
       clear
       addtr
@@ -59,8 +60,7 @@ case $trojan in
       *)
       echo -e "${red}Please enter an correct number${NC}"
       sleep 2
-      clear
       trojaan
-      exit
       ;;
   esac
+done
