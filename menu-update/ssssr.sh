@@ -1,5 +1,6 @@
 #!/bin/bash
-# Update By Prince
+##
+## Updated By Prince
 
 red='\e[1;31m'
 green='\e[0;32m'
@@ -28,9 +29,10 @@ echo -e " ╠══════════════════════�
 echo -e " ║       COPYRIGHT © 2022 Prince`aka`syapik96          ║" | lolcat
 echo -e " ╠════════════════════════════════╣" | lolcat
 echo -e ""
-read -p "     Please Input Number  :  "  ssssr
+read -p "     Please Input Number  :  " ssss
 echo -e ""
-case $ssssr in
+while true; do
+case $ssss in
 1)
 addssr
 ;;
@@ -52,10 +54,12 @@ renewss
 7)
 ssr
 ;;
-x)
+0)
 menu
 ;;
 *)
 echo "Please enter an correct number"
+exit
 ;;
 esac
+done
