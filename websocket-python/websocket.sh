@@ -1,58 +1,112 @@
 #!/bin/bash
 # Proxy For Connection Over WebSocket-Python
 # ====================================
+# UPDATED 22-1-28
 
+cd 
+# Installing Service ws ws-ovpn
+wget -O /usr/local/bin/ws-ovpn "https://raw.githubusercontent.com/syapik96/aws/main/lain2/ovpn.py"
+chmod +x /usr/local/bin/ws-ovpn
 
-echo -e ""
-echo -e "\e[1;32mInstalling WebSocket-Python Start in 5 sec\e[0m"
-echo -e ""
-sleep 5 
-clear
-cd
-# Install Script SSH WebSocket-Python
-cd /usr/local/bin/
-##wget -q -O /usr/local/bin/ws-openssh "https://raw.githubusercontent.com/syapik96/aws/main/websocket-python/ws-openssh"
-##chmod +x /usr/local/bin/ws-openssh
-wget -q -O /usr/local/bin/ws-dropbear "https://raw.githubusercontent.com/syapik96/aws/main/websocket-python/ws-dropbear"
+# Create system Service ws ws-ovpn
+cat > /etc/systemd/system/ws-ovpn.service <<END
+[Unit]
+Description=OpenVpn Over Websocket Python
+Documentation=https://github.com/syapik96/aws
+After=network.target nss-lookup.target
+
+[Service]
+Type=simple
+User=root
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+NoNewPrivileges=true
+ExecStart=/usr/bin/python -O /usr/local/bin/ws-ovpn 2099
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+END
+
+# Installing Service ws-dropbear
+wget -O /usr/local/bin/ws-dropbear "https://raw.githubusercontent.com/syapik96/aws/main/lain2/dropbear-ws.py"
 chmod +x /usr/local/bin/ws-dropbear
-wge -q -O /usr/local/bin/ws-stunnel "https://raw.githubusercontent.com/syapik96/aws/main/websocket-python/ws-stunnel"
+
+# Create system Service ws-dropbear
+cat > /etc/systemd/system/ws-dropbear.service <<END
+[Unit]
+Description=Dropbear Over Websocket Python
+Documentation=https://github.com/syapik96/aws
+After=network.target nss-lookup.target
+
+[Service]
+Type=simple
+User=root
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+NoNewPrivileges=true
+ExecStart=/usr/bin/python -O /usr/local/bin/ws-dropbear
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+END
+
+# Installing Service ws-stunnel
+wget -O /usr/local/bin/ws-stunnel "https://raw.githubusercontent.com/syapik96/aws/main/lain2/ws-stunnel.py"
 chmod +x /usr/local/bin/ws-stunnel
-##wget -q -O /usr/local/bin/ws-ovpn "https://raw.githubusercontent.com/syapik96/aws/main/websocket-python/ws-ovpn"
-##chmod +x /usr/local/bin/ws-ovpn
 
-# Install system auto run
-cd /etc/systemd/system
-# System OpenSSH Over WebSocket-Python
-##wget -q -O /etc/systemd/system/ws-openssh.service "https://raw.githubusercontent.com/syapik96/aws/main/websocket-python/ws-openssh.service"
-##chmod +x /etc/systemd/system/ws-openssh.service
-# Enable & Start & Restart ws-openssh service
-##systemctl enable ws-openssh.service
-##systemctl start ws-openssh.service
+# Create system Service ws-stunnel
+cat > /etc/systemd/system/ws-stunnel.service <<END
+[Unit]
+Description=Ssl/tls Proxy Over Websocket Python
+Documentation=https://github.com/syapik96/aws
+After=network.target nss-lookup.target
 
-# System Dropbear Over WebSocket-Python
-wget -q -O /etc/systemd/system/ws-dropbear.service "https://raw.githubusercontent.com/syapik96/aws/main/websocket-python/ws-dropbear.service"
-chmod +x /etc/systemd/system/ws-dropbear.service
-# Enable & Start & 
-systemctl enable ws-dropbear.service
-systemctl start ws-dropbear.service
+[Service]
+Type=simple
+User=root
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+NoNewPrivileges=true
+ExecStart=/usr/bin/python -O /usr/local/bin/ws-stunnel
+Restart=on-failure
 
-#System SSL/TLS Over WebSocket-Python
-wget -q -O /etc/systemd/system/ws-stunnel.service "https://raw.githubusercontent.com/syapik96/aws/main/websocket-python/ws-stunnel.service"
-chmod +x /etc/systemd/system/ws-stunnel.service
-#Enable & Start & Restart ws-stunnel service
-systemctl enable ws-stunnel.service
-systemctl start ws-stunnel.service
+[Install]
+WantedBy=multi-user.target
+END
 
-#System Openvpn-CDN Over Websocket-Python
-##wget -q -O /etc/systemd/system/ws-ovpn.service "https://raw.githubusercontent.com/vaws/main/websocket-python/ws-ovpn.service"
-##chmod +x /etc/systemd/system/ws-ovpn.service
-#Enable & Start ws-ovpn service
-##systemctl enable ws-ovpn.service
-##systemctl start ws-ovpn.service
+# Installing Service ws-openssh
+wget -O /usr/local/bin/ws-openssh "https://raw.githubusercontent.com/syapik96/aws/main/lain2/edu-openssh.py"
+chmod +x /usr/local/bin/ws-openssh
 
-## Restart service
+# Create system Service ws-openssh
+cat > /etc/systemd/system/ws-openssh.service <<END
+[Unit]
+Description=OpenSSH Over Websocket Python
+Documentation=https://github.com/syapik96/aws
+After=network.target nss-lookup.target
+
+[Service]
+Type=simple
+User=root
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+NoNewPrivileges=true
+ExecStart=/usr/bin/python -O /usr/local/bin/ws-openssh
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+END
+
+# ENABLE & START/RESTART SERVICE
 systemctl daemon-reload
-##systemctl restart ws-openssh.service
-systemctl restart ws-dropbear.service
-systemctl restart ws-stunnel.service
-##systemctl restart ws-ovpn.service
+systemctl enable ws-ovpn
+systemctl restart ws-ovpn
+systemctl enable ws-dropbear
+systemctl restart ws-dropbear
+systemctl enable ws-stunnel
+systemctl restart ws-stunnel
+systemctl enable ws-openssh
+systemctl restart ws-openssh
