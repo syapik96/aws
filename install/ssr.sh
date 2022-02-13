@@ -146,7 +146,7 @@ Start_SSR
 
 # Install_SSR
 cd /usr/local/sbin
-wget -O /usr/bin/ssr "https://raw.githubusercontent.com/syapik96/aws/main/panel-update/ssr.sh" && chmod +x /usr/bin/ssr
+wget -O /usr/bin/ssr "https://raw.githubusercontent.com/syapik96/aws/main/menu-update/ssr.sh" && chmod +x /usr/bin/ssr
 wget -O addssr "https://raw.githubusercontent.com/syapik96/aws/main/tambah/addssr.sh" && chmod +x addssr
 wget -O delssr "https://raw.githubusercontent.com/syapik96/aws/main/hapus/delssr.sh" && chmod +x delssr
 wget -O xp-ssr "https://raw.githubusercontent.com/syapik96/aws/main/xp-ssr.sh" && chmod +x xp-ssr
