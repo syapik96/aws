@@ -167,7 +167,7 @@ apt -y install sslh
 RUN=yes 
 
 # binary to use: forked (sslh) or single-thread (sslh-select) version 
-​# systemd users: don't forget to modify /lib/systemd/system/sslh.service 
+​# systemd users: dont forget to modify /lib/systemd/system/sslh.service 
 ​DAEMON=/usr/sbin/sslh 
 
 DAEMON_OPTS="--user sslh --listen 0.0.0.0:443 --ssl 127.0.0.1:777 --ssh 127.0.0.1:109 --openvpn 127.0.0.1:1194 --http 127.0.0.1:8880 --pidfile /var/run/sslh/sslh.pid -n"
