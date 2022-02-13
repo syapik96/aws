@@ -14,9 +14,9 @@ NC='\e[0m'
 clear
 figlet -f slant "PANEL TROJAN" | lolcat
 echo -e ""
-echo -e  "  ╔═══════════════════════════════════════╗" | lolcat
-echo -e  "  ║               TROJAN                  ║" | lolcat
-echo -e  "  ╠═══════════════════════════════════════╝" | lolcat
+echo -e  "  ╔════════════════════════╗" | lolcat
+echo -e  "  ║               TROJAN                   ║" | lolcat
+echo -e  "  ╠════════════════════════╝" | lolcat
 echo -e  "  ║" | lolcat
 echo -e  "  ║ 1$bl]\e[m$bd Create Trojan Account"
 echo -e  "  ║ 2$bl]\e[m$bd Deleting Trojan Account"
@@ -25,14 +25,14 @@ echo -e  "  ║ 4$bl]\e[m$bd Check User Login Trojan"
 echo -e  "  ║" | lolcat
 echo -e  "  ║     0 ] Menu      x ] Exit" |  lolcat              
 echo -e  "  ║" | lolcat
-echo -e  "  ╠═══════════════════════════════════════╗" | lolcat
-echo -e  "  ║    COPYRIGHT 2021 OnePieceVPN Inc     ║" | lolcat
-echo -e  "  ╚═══════════════════════════════════════╝" | lolcat
+echo -e  "  ╠════════════════════════╗" | lolcat
+echo -e  "  ║    COPYRIGHT 2021 OnePieceVPN Inc      ║" | lolcat
+echo -e  "  ╚════════════════════════╝" | lolcat
 echo -e "\e[1;32m"
-read -p "     Please select an option :  " trojann
+read -p "     Please select an option :  " trojann1
 echo -e "\e[0m"
-while true; do
- case $trojann in
+echo ""
+case $trojann1 in
       1)
       clear
       addtr
@@ -55,12 +55,15 @@ while true; do
       ;;
       x)
       echo -e " Good bye-bye "
-      sudo -i
+      sleep 2
+      clear
+      prince
       exit
       *)
       echo -e "${red}Please enter an correct number${NC}"
       sleep 2
       trojaan
+      exit
       ;;
   esac
-done
+
