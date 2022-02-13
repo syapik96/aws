@@ -18,10 +18,10 @@ echo -e  "  ╔═════════════════════�
 echo -e  "  ║               TROJAN                   ║" | lolcat
 echo -e  "  ╠════════════════════════╝" | lolcat
 echo -e  "  ║" | lolcat
-echo -e  "  ║ 1$bl]\e[m$bd Create Trojan Account"
-echo -e  "  ║ 2$bl]\e[m$bd Deleting Trojan Account"
-echo -e  "  ║ 3$bl]\e[m$bd Renew Trojan Account"
-echo -e  "  ║ 4$bl]\e[m$bd Check User Login Trojan"
+echo -e  "  ║  1$bl]\e[m$bd Create Trojan Account"
+echo -e  "  ║  2$bl]\e[m$bd Deleting Trojan Account"
+echo -e  "  ║  3$bl]\e[m$bd Renew Trojan Account"
+echo -e  "  ║  4$bl]\e[m$bd Check User Login Trojan"
 echo -e  "  ║" | lolcat
 echo -e  "  ║     0 ] Menu      x ] Exit" |  lolcat              
 echo -e  "  ║" | lolcat
@@ -48,13 +48,21 @@ case $trojann1 in
       renewtr
       exit
       ;;
+      4)
+      clear
+      cektr
+      exit
+      ;;
       0)
       clear
       menu
       exit
       ;;
       x)
-      echo -e " Good bye-bye "
+      clear
+      echo -e ""
+      figlet -f slant " Good Bye " | lolcat
+      echo -e ""
       sleep 2
       clear
       prince
