@@ -7,7 +7,7 @@ NC='\e[0m'
 bl='\e[36;1m'
 bd='\e[1m'
 clear
-figlet -f slant "PANEL SSH-OpenVPN" | lolcat
+figlet -f slant "PANEL SSH & OpenVPN" | lolcat
 echo -e ""
 echo -e  "  ╔════════════════════════════════════════════════════════════╗" | lolcat
 echo -e  "  ║                     SSH & OpenVPN Menu                     ║" | lolcat 
@@ -28,9 +28,9 @@ echo -e  "  ║            0 ) Main Menu      x ) Exit                     ║" 
 echo -e  "  ║      COPYRIGHT ONEPIECEVPN, POWERED BY PRINCENEWBIE.       ║" | lolcat
 echo -e  "  ╚════════════════════════════════════════════════════════════╝" | lolcat
 echo -e "\e[1;31m"
-read -p "            Please Input Number :  " ssh
+read -p "            Please Input Number :  " ssh1
 echo -e "\e[0m"
-case $ssh in
+case $ssh1 in
 	1)
 	clear
 	usernew
@@ -82,7 +82,13 @@ case $ssh in
 	exit
 	;;
 	x)
-	sudo -i
+        clear
+	prince
 	exit
 	;;
-esac
+        *)
+        echo -e "${red}Please enter the correct number${NC}
+        clear
+        exit
+        ;;
+     esac
