@@ -14,7 +14,7 @@ src="https://img.shields.io/badge/Service-V2ray-success.svg">  <img src= "https:
 <img src="https://img.shields.io/static/v1?style=for-the-badge&logo=powershell&label=Shell&message=Bash%20Script&color=lightgray"></img>
 - Commmand :
 
-<img src="https://img.shields.io/badge/Service-Update%20Dulu-green"></img>
+<img src="https://img.shields.io/badge/Service-Update%20First-green"></img>
  ```html
  apt-get update && apt-get upgrade -y && update-grub && reboot
   ```
