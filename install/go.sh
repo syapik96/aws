@@ -324,46 +324,50 @@ installV2Ray(){
 installInitScript(){
     if [[ ! -f "/etc/systemd/system/v2ray.service" && ! -f "/lib/systemd/system/v2ray.service" ]]; then
         cat > /etc/systemd/system/v2ray.service <<EOF
-[Unit]
-Description=V2Ray Service
-Documentation=https://www.v2ray.com/ https://www.v2fly.org/
-After=network.target nss-lookup.target
+        [Unit]
+        Description=V2Ray Service
+        Documentation=https://www.v2ray.com/ https://www.v2fly.org/
+        After=network.target nss-lookup.target
 
-[Service]
-Type=simple
-User=root
-CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-NoNewPrivileges=true
-ExecStart=/usr/bin/v2ray/v2ray -config /etc/v2ray/config.json
-Restart=on-failure
+       [Service]
+       Type=simple
+       User=root
+       CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+       AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+       NoNewPrivileges=true
+       ExecStart=/usr/bin/v2ray/v2ray -config /etc/v2ray/config.json
+       Restart=on-failure
 
-[Install]
-WantedBy=multi-user.target
-EOF
-cat > /etc/systemd/system/v2ray@.service <<-EOF
-[Unit]
-Description=V2Ray Service
-After=network.target nss-lookup.target
+       [Install]
+       WantedBy=multi-user.target
+  
+       EOF
+
+       cat > /etc/systemd/system/v2ray@.service <<-EOF
+       [Unit]
+       Description=V2Ray Service
+       After=network.target nss-lookup.target
  
-[Service]
-User=root
-CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-NoNewPrivileges=true
-ExecStart=/usr/bin/v2ray/v2ray -config /etc/v2ray/%i.json
-Restart=on-failure
+      [Service]
+      User=root
+      CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+      AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+      NoNewPrivileges=true
+      ExecStart=/usr/bin/v2ray/v2ray -config /etc/v2ray/%i.json
+      Restart=on-failure
  
-[Install]
-WantedBy=multi-user.target
-EOF
-        systemctl enable v2ray.service
+      [Install]
+      WantedBy=multi-user.target
+
+      EOF
+        
+      systemctl enable v2ray.service
     fi
 }
 
 Help(){
   cat - 1>& 2 << EOF
-./install-release.sh [-h] [-c] [--remove] [-p proxy] [-f] [--version vx.y.z] [-l file]
+  ./install-release.sh [-h] [-c] [--remove] [-p proxy] [-f] [--version vx.y.z] [-l file]
   -h, --help            Show help
   -p, --proxy           To download through a proxy server, use -p socks5://127.0.0.1:1080 or -p http://127.0.0.1:3128 etc
   -f, --force           Force install
@@ -371,7 +375,7 @@ Help(){
   -l, --local           Install from a local file
       --remove          Remove installed V2Ray
   -c, --check           Check for update
-EOF
+  EOF
 }
 
 remove(){
