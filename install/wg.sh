@@ -91,7 +91,8 @@ WG_RUNNING=$?
 # Tambahan
 GitUser="syapik96"
 #wget https://github.com/${GitUser}/
-cd /usr/bin
+cd /usr/local/sbin
+wget -O wgr "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/wgr.sh" && chmod +x wgr
 wget -O addwg "https://raw.githubusercontent.com/${GitUser}/aws/main/tambah/addwg.sh"
 wget -O delwg "https://raw.githubusercontent.com/${GitUser}/aws/main/hapus/delwg.sh"
 wget -O cekwg "https://raw.githubusercontent.com/${GitUser}/aws/main/cekwg.sh"
