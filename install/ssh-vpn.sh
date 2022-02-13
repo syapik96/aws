@@ -1,5 +1,5 @@
 #!/bin/bash
-# Mod By syapik96
+# Script Mod updated By Prince
 # 
 # ==================================================
 
@@ -49,7 +49,8 @@ apt-get install -y --fix-missing
 # go to root
 cd
 # Edit file /etc/systemd/system/rc-local.service
-cat > /etc/systemd/system/rc-local.service <<EOF
+
+cat > "/etc/systemd/system/rc-local.service" <<EOF
 [Unit]
 Description=/etc/rc.local
 ConditionPathExists=/etc/rc.local
@@ -67,7 +68,8 @@ WantedBy=multi-user.target
 EOF
 
 # nano /etc/rc.local
-cat > /etc/rc.local <<EOF
+
+cat > "/etc/rc.local" <<EOF
 #!/bin/sh -e
 # rc.local
 # By default this script does nothing.
@@ -130,7 +132,7 @@ sed -i '/Port 40000/g' /etc/ssh/sshd_config
 
 
 # install dropbear
-apt-get -y install dropbear
+apt-get install dropbear -y
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
 sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=143/g' /etc/default/dropbear
 sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 50000 -p 109 -p 69"/g' /etc/default/dropbear
@@ -149,7 +151,8 @@ apt -y install sslh
 ​rm -f /etc/default/sslh 
   
 ​#​ Settings SSLH 
-​cat ​>​ /etc/default/sslh ​<<​-​END 
+​cat ​>​ "/etc/default/sslh" ​<<​EOF
+
 ​# Default options for sslh initscript 
 ​# sourced by /etc/init.d/sslh 
   
@@ -169,7 +172,7 @@ RUN=yes
 
 DAEMON_OPTS="--user sslh --listen 0.0.0.0:443 --ssl 127.0.0.1:777 --ssh 127.0.0.1:109 --openvpn 127.0.0.1:1194 --http 127.0.0.1:8880 --pidfile /var/run/sslh/sslh.pid -n" 
   
-END 
+EOF
   
 ​#​ Restart Service SSLH 
 service sslh restart 
@@ -201,7 +204,7 @@ sed -i 's/ssl=1/ssl=0/g' /etc/webmin/miniserv.conf
 /etc/init.d/webmin restart
 
 # install stunnel
-apt install stunnel4 -y
+apt-get install stunnel4 -y
 ## choose which one work on your vps, [ if u got some issue ]
 ## after configur or make change stunnel.conf
 ## and if this three not isn't fixed your pid file issue 
@@ -324,8 +327,8 @@ echo "Banner /etc/issue.net" >>/etc/ssh/sshd_config
 sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/issue.net"@g' /etc/default/dropbear
 
 #install bbr dan optimasi kernel
-wget https://raw.githubusercontent.com/syapik96/aws/main/bbr.sh && chmod +x bbr.sh && ./bbr.sh
-wget https://raw.githubusercontent.com/syapik96/aws/main/set-br.sh && chmod +x set-br.sh && ./set-br.sh
+wget "https://raw.githubusercontent.com/syapik96/aws/main/bbr.sh" && chmod +x bbr.sh && ./bbr.sh
+wget "https://raw.githubusercontent.com/syapik96/aws/main/set-br.sh" && chmod +x set-br.sh && ./set-br.sh
 
 # blockir torrent
 iptables -A FORWARD -m string --string "get_peers" --algo bm -j DROP
@@ -390,6 +393,7 @@ chown -R www-data:www-data /home/vps/public_html
 /etc/init.d/openvpn restart
 /etc/init.d/cron restart
 /etc/init.d/ssh restart
+/etc/init.d/sslh restart
 /etc/init.d/dropbear restart
 /etc/init.d/fail2ban restart
 /etc/init.d/stunnel4 restart
@@ -412,6 +416,5 @@ mv /root/cert.pem /root/folderCert/cert.pem
 mv /root/key.pem /root/folderCert/key.pem 
 
 # finihsing
-clear
-neofetch
+prince
 netstat -nutlp
