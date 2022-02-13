@@ -69,8 +69,7 @@ case $trojann1 in
       exit
       *)
       echo -e "${red}Please enter an correct number${NC}"
-      sleep 2
-      trojaan
+      clear
       exit
       ;;
   esac
