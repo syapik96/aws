@@ -152,7 +152,7 @@ apt -y install sslh
   
 ​#​ Settings SSLH
 
-​cat ​>​ "/etc/default/sslh" ​<<​END
+​cat ​>​ "/etc/default/sslh" ​<<​-EOF12
 ​# Default options for sslh initscript 
 ​# sourced by /etc/init.d/sslh 
   
@@ -163,15 +163,16 @@ apt -y install sslh
 ​# - sslh(8) via "man sslh" for more configuration details. 
 # Once configuration ready, you *must* set RUN to yes here 
 # and try to start sslh (standalone mode only) 
-  
+ 
 RUN=yes 
-  
+
 # binary to use: forked (sslh) or single-thread (sslh-select) version 
 ​# systemd users: don't forget to modify /lib/systemd/system/sslh.service 
 ​DAEMON=/usr/sbin/sslh 
 
-DAEMON_OPTS="--user sslh --listen 0.0.0.0:443 --ssl 127.0.0.1:777 --ssh 127.0.0.1:109 --openvpn 127.0.0.1:1194 --http 127.0.0.1:8880 --pidfile /var/run/sslh/sslh.pid -n" 
-END
+DAEMON_OPTS="--user sslh --listen 0.0.0.0:443 --ssl 127.0.0.1:777 --ssh 127.0.0.1:109 --openvpn 127.0.0.1:1194 --http 127.0.0.1:8880 --pidfile /var/run/sslh/sslh.pid -n"
+
+EOF12
   
 ​#​ Restart Service SSLH 
 service sslh restart 
