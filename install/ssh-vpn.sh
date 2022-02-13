@@ -150,9 +150,9 @@ sed -i $MYIP2 /etc/squid/squid.conf
 apt -y install sslh 
 ​rm -f /etc/default/sslh 
   
-​#​ Settings SSLH 
-​cat ​>​ "/etc/default/sslh" ​<<​EOF12
+​#​ Settings SSLH
 
+​cat ​>​ "/etc/default/sslh" ​<<​END
 ​# Default options for sslh initscript 
 ​# sourced by /etc/init.d/sslh 
   
@@ -171,7 +171,7 @@ RUN=yes
 ​DAEMON=/usr/sbin/sslh 
 
 DAEMON_OPTS="--user sslh --listen 0.0.0.0:443 --ssl 127.0.0.1:777 --ssh 127.0.0.1:109 --openvpn 127.0.0.1:1194 --http 127.0.0.1:8880 --pidfile /var/run/sslh/sslh.pid -n" 
-EOF12
+END
   
 ​#​ Restart Service SSLH 
 service sslh restart 
