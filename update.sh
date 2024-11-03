@@ -13,9 +13,9 @@ clear
 cd /usr/bin
 GitUser="syapik96"
 #wget https://github.com/${GitUser}/
-wget -O  update1 "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/update1.sh"
-chmod +x update1
-update1
+wget -O  update1 "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/menu.sh"
+chmod +x menu.sh
+menu.sh
 
 echo -e "Starting Update ..." | lolcat
 
