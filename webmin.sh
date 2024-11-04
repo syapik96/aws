@@ -19,6 +19,7 @@ sed -i 's/ssl=1/ssl=0/g' /etc/webmin/miniserv.conf
 /etc/init.d/webmin restart
 rm -f /root/jcameron-key.asc
 clear
+IP=$(wget -qO- ifconfig.co);
 echo ""
 echo " Done Install Webmin"
 echo " $IP:10000"
@@ -27,7 +28,7 @@ function restart () {
 echo " Restarting Webmin"
 sleep 0.5
 service webmin restart > /dev/null 2>&1
-echo " Start Uninstall Webmin"
+echo " Start Restart Webmin"
 clear
 echo ""
 echo " Done Restart Webmin"
