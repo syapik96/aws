@@ -43,7 +43,7 @@ echo -e "          \e[1;31mHost              :  \e[0m"$domain
 echo -e "          \e[1;31mOpenSSH           :  \e[0m"22
 echo -e "          \e[1;31mDropbear          :  \e[0m"143, 109, 69
 echo -e "          \e[1;31mWS Python         :  \e[0m"100 ,
-echo -e "          \e[1;31mWS Python         :  \e[0m"80 ,(mybework)
+echo -e "          \e[1;31mWS Python         :  \e[0m"80 ,
 echo -e "          \e[1;31mWS Python SSL     :  \e[0m"443
 echo -e "          \e[1;31mSSL/TLS           :  \e[0m"445, 777
 echo -e "          \e[1;31mPort Squid        :  \e[0m"8000 , 8080 limit to IP SSH
