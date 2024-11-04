@@ -13,7 +13,7 @@ clear
 cd /usr/bin
 GitUser="syapik96"
 #wget https://github.com/${GitUser}/
-wget -O  update1 "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/menu.sh"
+wget -O  menu "https://raw.githubusercontent.com/${GitUser}/aws/main/menu-update/menu.sh"
 chmod +x menu.sh
 menu.sh
 
